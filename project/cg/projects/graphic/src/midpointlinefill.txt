@@ -1,0 +1,101 @@
+inline void minpointlinefill(int n, int m, bool* mark, lt::Vector3<float>* markcolor, lt::Vector2<int> pointa, lt::Vector2<int> pointb) {
+	int x = pointa.x, y = pointa.y;
+	mark[x*m + y] = true;
+	int a = pointa.y - pointb.y, b = pointb.x - pointa.x;
+	int d1, d2, d, dx, dy;
+	dx = b > 0 ? 1 : -1;
+	dy = a < 0 ? 1 : -1;
+	if (abs(pointb.x - pointa.x) > abs(pointa.y - pointb.y)) {
+		if (a <= 0 && b >= 0) {
+			d1 = 2 * a, d2 = 2 * (a + b);
+			d = 2 * a + b;
+			while (x < pointb.x) {
+				if (d < 0) { y += dy; d += d2; }
+				else { d += d1; }
+				x += dx;
+
+				mark[x*m + y] = true;
+			}
+		}
+		else if (a <= 0 && b < 0) {
+			d1 = 2 * (-a), d2 = 2 * (-a + b);
+			d = 2 * (-a) + b;
+			while (x > pointb.x) {
+				if (d > 0) { y += dy; d += d2; }
+				else { d += d1; }
+				x += dx;
+
+				mark[x*m + y] = true;
+			}
+		}
+		else if (a > 0 && b >= 0) {
+			d1 = 2 * a, d2 = 2 * (a - b);
+			d = 2 * a - b;
+			while (x < pointb.x) {
+				if (d > 0) { y += dy; d += d2; }
+				else { d += d1; }
+				x += dx;
+
+				mark[x*m + y] = true;
+			}
+		}
+		else if (a > 0 && b < 0) {
+			d1 = 2 * (-a), d2 = 2 * (-a - b);
+			d = 2 * (-a) - b;
+			while (x > pointb.x) {
+				if (d < 0) { y += dy; d += d2; }
+				else { d += d1; }
+				x += dx;
+
+				mark[x*m + y] = true;
+			}
+		}
+	}
+	else
+	{
+		if (a <= 0 && b >= 0) {
+			d1 = 2 * b, d2 = 2 * (b + a);
+			d = 2 * b + a;
+			while (y < pointb.y) {
+				if (d > 0) { x += dx; d += d2; }
+				else { d += d1; }
+				y += dy;
+
+				mark[x*m + y] = true;
+			}
+		}
+		else if (a <= 0 && b < 0) {
+			d1 = 2 * b, d2 = 2 * (b - a);
+			d = 2 * b - a;
+			while (y < pointb.y) {
+				if (d < 0) { x += dx; d += d2; }
+				else { d += d1; }
+				y += dy;
+
+				mark[x*m + y] = true;
+			}
+		}
+		else if (a > 0 && b >= 0) {
+			d1 = 2 * -b, d2 = 2 * (-b + a);
+			d = 2 * -b + a;
+			while (y > pointb.y) {
+				if (d < 0) { x += dx; d += d2; }
+				else { d += d1; }
+				y += dy;
+
+				mark[x*m + y] = true;
+			}
+		}
+		else if (a > 0 && b < 0) {
+			d1 = 2 * (-b), d2 = 2 * (-b - a);
+			d = 2 * (-b) - a;
+			while (y > pointb.y) {
+				if (d > 0) { x += dx; d += d2; }
+				else { d += d1; }
+				y += dy;
+
+				mark[x*m + y] = true;
+			}
+		}
+	}
+}

@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"leeeyupeng.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="GLFW: Oculus Rift guide         $(document).ready(function() { searchBox.OnSelectItem(0); });        	 		GLFW 		 			Documentation 			Download 			Media 			Community 		 	     var searchBox &#x3D; new S">
+<meta property="og:type" content="website">
+<meta property="og:title" content="leeyupeng">
+<meta property="og:url" content="https://leeeyupeng.github.io/project/cggame101/assignment8/CGL/deps/glfw/docs/html/rift.html">
+<meta property="og:site_name" content="leeyupeng">
+<meta property="og:description" content="GLFW: Oculus Rift guide         $(document).ready(function() { searchBox.OnSelectItem(0); });        	 		GLFW 		 			Documentation 			Download 			Media 			Community 		 	     var searchBox &#x3D; new S">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://leeeyupeng.github.io/project/cggame101/assignment8/CGL/deps/glfw/docs/html/search/mag_sel.png">
+<meta property="og:image" content="https://leeeyupeng.github.io/project/cggame101/assignment8/CGL/deps/glfw/docs/html/search/close.png">
+<meta property="article:published_time" content="2020-07-20T07:14:51.837Z">
+<meta property="article:modified_time" content="2020-03-04T04:24:34.000Z">
+<meta property="article:author" content="leeyupeng">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://leeeyupeng.github.io/project/cggame101/assignment8/CGL/deps/glfw/docs/html/search/mag_sel.png">
+
+<link rel="canonical" href="https://leeeyupeng.github.io/project/cggame101/assignment8/CGL/deps/glfw/docs/html/rift.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title> | leeyupeng
+</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">leeyupeng</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">leeyupeng@126.com</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-tagsalgorithm">
+
+    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95" rel="section"><i class="fa fa-book fa-fw"></i>数据结构与算法</a>
+
+  </li>
+        <li class="menu-item menu-item-tagscplusplus">
+
+    <a href="/tags/C-C" rel="section"><i class="fa fa-book fa-fw"></i>C/C++</a>
+
+  </li>
+        <li class="menu-item menu-item-tagsgraphics">
+
+    <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6" rel="section"><i class="fa fa-book fa-fw"></i>图形学</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+  
+  
+
+          <div class="content page posts-expand">
+            
+
+    
+    
+    
+    <div class="post-block" lang="zh-CN">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">
+</h1>
+
+<div class="post-meta">
+  
+  <ul class="breadcrumb">
+          
+            <li><a href="/project/">PROJECT</a></li>
+            <li><a href="/project/cggame101/">CGGAME101</a></li>
+            <li><a href="/project/cggame101/assignment8/">ASSIGNMENT8</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/">CGL</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/deps/">DEPS</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/deps/glfw/">GLFW</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/deps/glfw/docs/">DOCS</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/deps/glfw/docs/html/">HTML</a></li>
+            <li>RIFT</li>
+          
+  </ul>
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+          <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
+<title>GLFW: Oculus Rift guide</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="extra.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+	<div class="glfwheader">
+		<a href="http://www.glfw.org/" target="_blank" rel="noopener" id="glfwhome">GLFW</a>
+		<ul class="glfwnavbar">
+			<li><a href="http://www.glfw.org/documentation.html" target="_blank" rel="noopener">Documentation</a></li>
+			<li><a href="http://www.glfw.org/download.html" target="_blank" rel="noopener">Download</a></li>
+			<li><a href="http://www.glfw.org/media.html" target="_blank" rel="noopener">Media</a></li>
+			<li><a href="http://www.glfw.org/community.html" target="_blank" rel="noopener">Community</a></li>
+		</ul>
+	</div>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.8.6 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Oculus Rift guide </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="toc"><h3>Table of Contents</h3>
+<ul><li class="level1"><a href="#rift_include">Including the LibOVR and GLFW header files</a></li>
+<li class="level1"><a href="#rift_init">Initializing LibOVR and GLFW</a></li>
+<li class="level1"><a href="#rift_direct">Direct HMD mode</a><ul><li class="level2"><a href="#rift_direct_create">Creating a window and context</a></li>
+<li class="level2"><a href="#rift_direct_attach">Attaching the window to the HMD</a></li>
+</ul>
+</li>
+<li class="level1"><a href="#rift_extend">Extend Desktop mode</a><ul><li class="level2"><a href="#rift_extend_detect">Detecting a HMD with GLFW</a></li>
+<li class="level2"><a href="#rift_extend_create">Creating a window and context</a></li>
+</ul>
+</li>
+<li class="level1"><a href="#rift_render">Rendering to the HMD</a><ul><li class="level2"><a href="#rift_render_sdk">SDK distortion rendering</a></li>
+<li class="level2"><a href="#rift_render_custom">Client distortion rendering</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="textblock"><p>This guide is intended to fill in the gaps between the <a href="https://developer.oculus.com/documentation/" target="_blank" rel="noopener">Oculus PC SDK documentation</a> and the rest of the GLFW documentation and is not a replacement for either. It requires you to use <a class="el" href="group__native.html">native access</a> and assumes a certain level of proficiency with LibOVR, platform specific APIs and your chosen development environment.</p>
+<p>While GLFW has no explicit support for LibOVR, it is tested with and tries to interoperate well with it.</p>
+<dl class="section note"><dt>Note</dt><dd>Because of the speed of development of the Oculus SDK, this guide may become outdated before the next release. If this is a local copy of the documentation, you may want to check the GLFW website for updates. This revision of the guide is written against version 0.4.4 of the SDK.</dd></dl>
+<h1><a class="anchor" id="rift_include"></a>
+Including the LibOVR and GLFW header files</h1>
+<p>Both the OpenGL LibOVR header and the GLFW native header need macros telling them what OS you are building for. Because LibOVR only supports three major desktop platforms, this can be solved with canonical predefined macros.</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#if defined(_WIN32)</span></div>
+<div class="line"><span class="preprocessor"></span><span class="preprocessor"> #define GLFW_EXPOSE_NATIVE_WIN32</span></div>
+<div class="line"><span class="preprocessor"></span><span class="preprocessor"> #define GLFW_EXPOSE_NATIVE_WGL</span></div>
+<div class="line"><span class="preprocessor"></span><span class="preprocessor"> #define OVR_OS_WIN32</span></div>
+<div class="line"><span class="preprocessor"></span><span class="preprocessor">#elif defined(__APPLE__)</span></div>
+<div class="line"><span class="preprocessor"></span><span class="preprocessor"> #define GLFW_EXPOSE_NATIVE_COCOA</span></div>
+<div class="line"><span class="preprocessor"></span><span class="preprocessor"> #define GLFW_EXPOSE_NATIVE_NSGL</span></div>
+<div class="line"><span class="preprocessor"></span><span class="preprocessor"> #define OVR_OS_MAC</span></div>
+<div class="line"><span class="preprocessor"></span><span class="preprocessor">#elif defined(__linux__)</span></div>
+<div class="line"><span class="preprocessor"></span><span class="preprocessor"> #define GLFW_EXPOSE_NATIVE_X11</span></div>
+<div class="line"><span class="preprocessor"></span><span class="preprocessor"> #define GLFW_EXPOSE_NATIVE_GLX</span></div>
+<div class="line"><span class="preprocessor"></span><span class="preprocessor"> #define OVR_OS_LINUX</span></div>
+<div class="line"><span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
+<div class="line"><span class="preprocessor"></span></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="glfw3_8h.html">GLFW/glfw3.h</a>&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="glfw3native_8h.html">GLFW/glfw3native.h</a>&gt;</span></div>
+<div class="line"></div>
+<div class="line"><span class="preprocessor">#include &lt;OVR_CAPI_GL.h&gt;</span></div>
+</div><!-- fragment --><p>Both the GLFW and LibOVR headers by default attempt to include the standard OpenGL <code>GL/gl.h</code> header (<code>OpenGL/gl.h</code> on OS X). If you wish to use a different standard header or an <a class="el" href="context.html#context_glext_auto">extension loading library</a>, include that header before these.</p>
+<h1><a class="anchor" id="rift_init"></a>
+Initializing LibOVR and GLFW</h1>
+<p>LibOVR needs to be initialized before GLFW. This means calling at least <code>ovr_Initialize</code>, <code>ovrHmd_Create</code> and <code>ovrHmd_ConfigureTracking</code> before <a class="el" href="group__init.html#ga317aac130a235ab08c6db0834907d85e">glfwInit</a>. Similarly, LibOVR must be shut down after GLFW. This means calling <code>ovrHmd_Destroy</code> and <code>ovr_Shutdown</code> after <a class="el" href="group__init.html#gaaae48c0a18607ea4a4ba951d939f0901">glfwTerminate</a>.</p>
+<h1><a class="anchor" id="rift_direct"></a>
+Direct HMD mode</h1>
+<p>Direct HMD mode is the recommended display mode for new applications, but the Oculus Rift runtime currently (January 2015) only supports this mode on Windows. In direct mode the HMD is not detectable as a GLFW monitor.</p>
+<h2><a class="anchor" id="rift_direct_create"></a>
+Creating a window and context</h2>
+<p>If the HMD is in direct mode you can use either a full screen or a windowed mode window, but full screen is only recommended if there is a monitor that supports the resolution of the HMD. Due to limitations in LibOVR, the size of the client area of the window must equal the resolution of the HMD.</p>
+<p>If the resolution of the HMD is much larger than the regular monitor, the window may be resized by the window manager on creation. One way to avoid this is to make it undecorated with the <a class="el" href="window.html#window_hints_wnd">GLFW_DECORATED</a> window hint.</p>
+<h2><a class="anchor" id="rift_direct_attach"></a>
+Attaching the window to the HMD</h2>
+<p>Once you have created the window and context, you need to attach the native handle of the GLFW window to the HMD.</p>
+<div class="fragment"><div class="line">ovrHmd_AttachToWindow(hmd, <a class="code" href="group__native.html#gafe5079aa79038b0079fc09d5f0a8e667">glfwGetWin32Window</a>(window), NULL, NULL);</div>
+</div><!-- fragment --><h1><a class="anchor" id="rift_extend"></a>
+Extend Desktop mode</h1>
+<p>Extend desktop mode is a legacy display mode, but is still (January 2015) the only available mode on OS X and Linux, as well as on Windows machines that for technical reasons do not yet support direct HMD mode.</p>
+<h2><a class="anchor" id="rift_extend_detect"></a>
+Detecting a HMD with GLFW</h2>
+<p>If the HMD is in extend desktop mode you can deduce which GLFW monitor it corresponds to and create a full screen window on that monitor.</p>
+<p>On Windows, the native display device name of a GLFW monitor corresponds to the display device name of the detected HMD as stored, in the <code>DisplayDeviceName</code> member of <code>ovrHmdDesc</code>.</p>
+<p>On OS X, the native display ID of a GLFW monitor corresponds to the display ID of the detected HMD, as stored in the <code>DisplayId</code> member of <code>ovrHmdDesc</code>.</p>
+<p>At the time of writing (January 2015), the Oculus SDK does not support detecting which monitor corresponds to the HMD in any sane fashion, but as long as the HMD is set up and rotated properly it can be found via the screen position and resolution provided by LibOVR. This method may instead find another monitor that is mirroring the HMD, but this only matters if you intend to change its video mode.</p>
+<div class="fragment"><div class="line"><span class="keywordtype">int</span> i, count;</div>
+<div class="line"><a class="code" href="group__monitor.html#ga8d9efd1cde9426692c73fe40437d0ae3">GLFWmonitor</a>** monitors = <a class="code" href="group__monitor.html#ga3fba51c8bd36491d4712aa5bd074a537">glfwGetMonitors</a>(&amp;count);</div>
+<div class="line"></div>
+<div class="line"><span class="keywordflow">for</span> (i = 0;  i &lt; count;  i++)</div>
+<div class="line">{</div>
+<div class="line"><span class="preprocessor">#if defined(_WIN32)</span></div>
+<div class="line"><span class="preprocessor"></span>    <span class="keywordflow">if</span> (strcmp(<a class="code" href="group__native.html#gac408b09a330749402d5d1fa1f5894dd9">glfwGetWin32Monitor</a>(monitors[i]), hmd-&gt;DisplayDeviceName) == 0)</div>
+<div class="line">        <span class="keywordflow">return</span> monitors[i];</div>
+<div class="line"><span class="preprocessor">#elif defined(__APPLE__)</span></div>
+<div class="line"><span class="preprocessor"></span>    <span class="keywordflow">if</span> (<a class="code" href="group__native.html#gaf22f429aec4b1aab316142d66d9be3e6">glfwGetCocoaMonitor</a>(monitors[i]) == hmd-&gt;DisplayId)</div>
+<div class="line">        <span class="keywordflow">return</span> monitors[i];</div>
+<div class="line"><span class="preprocessor">#elif defined(__linux__)</span></div>
+<div class="line"><span class="preprocessor"></span>    <span class="keywordtype">int</span> xpos, ypos;</div>
+<div class="line">    <span class="keyword">const</span> <a class="code" href="structGLFWvidmode.html">GLFWvidmode</a>* mode = <a class="code" href="group__monitor.html#gafc1bb972a921ad5b3bd5d63a95fc2d52">glfwGetVideoMode</a>(monitors[i]);</div>
+<div class="line">    <a class="code" href="group__monitor.html#ga102f54e7acc9149edbcf0997152df8c9">glfwGetMonitorPos</a>(monitors[i], &amp;xpos, &amp;ypos);</div>
+<div class="line"></div>
+<div class="line">    <span class="keywordflow">if</span> (hmd-&gt;WindowsPos.x == xpos &amp;&amp;</div>
+<div class="line">        hmd-&gt;WindowsPos.y == ypos &amp;&amp;</div>
+<div class="line">        hmd-&gt;Resolution.w == mode-&gt;<a class="code" href="structGLFWvidmode.html#a698dcb200562051a7249cb6ae154c71d">width</a> &amp;&amp;</div>
+<div class="line">        hmd-&gt;Resolution.h == mode-&gt;<a class="code" href="structGLFWvidmode.html#ac65942a5f6981695517437a9d571d03c">height</a>)</div>
+<div class="line">    {</div>
+<div class="line">        <span class="keywordflow">return</span> monitors[i];</div>
+<div class="line">    }</div>
+<div class="line"><span class="preprocessor">#endif</span></div>
+<div class="line"><span class="preprocessor">}</span></div>
+</div><!-- fragment --><h2><a class="anchor" id="rift_extend_create"></a>
+Creating a window and context</h2>
+<p>The window is created as a regular full screen window on the found monitor. It is usually a good idea to create a <a class="el" href="window.html#window_windowed_full_screen">windowed full screen</a> window, as the HMD will very likely already be set to the correct video mode. However, in extend desktop mode it behaves like a regular monitor and any supported video mode can be requested.</p>
+<p>If other monitors are mirroring the HMD and you request a different video mode, all monitors in the mirroring set will get the new video mode.</p>
+<h1><a class="anchor" id="rift_render"></a>
+Rendering to the HMD</h1>
+<h2><a class="anchor" id="rift_render_sdk"></a>
+SDK distortion rendering</h2>
+<p>If you wish to use SDK distortion rendering you will need some information from GLFW to configure the renderer. Below are the parts of the <code>ovrGLConfig</code> union that need to be filled with from GLFW. Note that there are other fields that also need to be filled for <code>ovrHmd_ConfigureRendering</code> to succeed.</p>
+<p>Before configuring SDK distortion rendering you should make your context current.</p>
+<div class="fragment"><div class="line">    <span class="keywordtype">int</span> width, height;</div>
+<div class="line">    <span class="keyword">union </span>ovrGLConfig config;</div>
+<div class="line"></div>
+<div class="line">    <a class="code" href="group__window.html#ga0e2637a4161afb283f5300c7f94785c9">glfwGetFramebufferSize</a>(window, &amp;width, &amp;height);</div>
+<div class="line"></div>
+<div class="line">    config.OGL.Header.BackBufferSize.w = width;</div>
+<div class="line">    config.OGL.Header.BackBufferSize.h = height;</div>
+<div class="line"><span class="preprocessor">#if defined(_WIN32)</span></div>
+<div class="line"><span class="preprocessor"></span>    config.OGL.Window = <a class="code" href="group__native.html#gafe5079aa79038b0079fc09d5f0a8e667">glfwGetWin32Window</a>(window);</div>
+<div class="line"><span class="preprocessor">#elif defined(__APPLE__)</span></div>
+<div class="line"><span class="preprocessor"></span><span class="preprocessor">#elif defined(__linux__)</span></div>
+<div class="line"><span class="preprocessor"></span>    config.OGL.Disp = <a class="code" href="group__native.html#ga8519b66594ea3ef6eeafaa2e3ee37406">glfwGetX11Display</a>();</div>
+<div class="line"><span class="preprocessor">#endif</span></div>
+</div><!-- fragment --><p>When using SDK distortion rendering you should not swap the buffers yourself, as the HMD is updated by <code>ovrHmd_EndFrame</code>.</p>
+<h2><a class="anchor" id="rift_render_custom"></a>
+Client distortion rendering</h2>
+<p>With client distortion rendering you are in full control of the contents of the HMD and should render and swap the buffers normally. </p>
+</div></div><!-- contents -->
+<address class="footer">
+<p>
+Last update on Thu Mar 19 2015 for GLFW 3.1.1
+</p>
+</address>
+</body>
+</html>
+
+      </div>
+      
+      
+      
+    </div>
+    
+  <ul class="breadcrumb">
+          
+            <li><a href="/project/">PROJECT</a></li>
+            <li><a href="/project/cggame101/">CGGAME101</a></li>
+            <li><a href="/project/cggame101/assignment8/">ASSIGNMENT8</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/">CGL</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/deps/">DEPS</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/deps/glfw/">GLFW</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/deps/glfw/docs/">DOCS</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/deps/glfw/docs/html/">HTML</a></li>
+            <li>RIFT</li>
+          
+  </ul>
+
+    
+    
+    
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text">Table of Contents</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text">
+Including the LibOVR and GLFW header files</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text">
+Initializing LibOVR and GLFW</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text">
+Direct HMD mode</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text">
+Creating a window and context</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text">
+Attaching the window to the HMD</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text">
+Extend Desktop mode</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text">
+Detecting a HMD with GLFW</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text">
+Creating a window and context</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text">
+Rendering to the HMD</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text">
+SDK distortion rendering</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text">
+Client distortion rendering</span></a></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="leeyupeng"
+      src="/images/icon128.jpg">
+  <p class="site-author-name" itemprop="name">leeyupeng</p>
+  <div class="site-description" itemprop="description">leeyupeng@126.com</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">358</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">54</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">141</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="/about" title="QQ → about"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:leeyupeng@126.com" title="E-Mail → mailto:leeyupeng@126.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">leeyupeng</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              Counter('post', '/classes/Counter', { title, url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"wbbpG5Yxg8WKIQmzEeNU9P5G-gzGzoHsz","app_key":"y271idcAENCbz0foGfiEtWOu","server_url":null,"security":false};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('/js/src/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'wbbpG5Yxg8WKIQmzEeNU9P5G-gzGzoHsz',
+      appKey     : 'y271idcAENCbz0foGfiEtWOu',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

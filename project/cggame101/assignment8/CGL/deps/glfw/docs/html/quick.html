@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"leeeyupeng.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="GLFW: Getting started         $(document).ready(function() { searchBox.OnSelectItem(0); });        	 		GLFW 		 			Documentation 			Download 			Media 			Community 		 	     var searchBox &#x3D; new Sea">
+<meta property="og:type" content="website">
+<meta property="og:title" content="leeyupeng">
+<meta property="og:url" content="https://leeeyupeng.github.io/project/cggame101/assignment8/CGL/deps/glfw/docs/html/quick.html">
+<meta property="og:site_name" content="leeyupeng">
+<meta property="og:description" content="GLFW: Getting started         $(document).ready(function() { searchBox.OnSelectItem(0); });        	 		GLFW 		 			Documentation 			Download 			Media 			Community 		 	     var searchBox &#x3D; new Sea">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://leeeyupeng.github.io/project/cggame101/assignment8/CGL/deps/glfw/docs/html/search/mag_sel.png">
+<meta property="og:image" content="https://leeeyupeng.github.io/project/cggame101/assignment8/CGL/deps/glfw/docs/html/search/close.png">
+<meta property="article:published_time" content="2020-07-20T07:14:51.837Z">
+<meta property="article:modified_time" content="2020-03-04T04:24:34.000Z">
+<meta property="article:author" content="leeyupeng">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://leeeyupeng.github.io/project/cggame101/assignment8/CGL/deps/glfw/docs/html/search/mag_sel.png">
+
+<link rel="canonical" href="https://leeeyupeng.github.io/project/cggame101/assignment8/CGL/deps/glfw/docs/html/quick.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title> | leeyupeng
+</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">leeyupeng</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">leeyupeng@126.com</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-tagsalgorithm">
+
+    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95" rel="section"><i class="fa fa-book fa-fw"></i>数据结构与算法</a>
+
+  </li>
+        <li class="menu-item menu-item-tagscplusplus">
+
+    <a href="/tags/C-C" rel="section"><i class="fa fa-book fa-fw"></i>C/C++</a>
+
+  </li>
+        <li class="menu-item menu-item-tagsgraphics">
+
+    <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6" rel="section"><i class="fa fa-book fa-fw"></i>图形学</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+  
+  
+
+          <div class="content page posts-expand">
+            
+
+    
+    
+    
+    <div class="post-block" lang="zh-CN">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">
+</h1>
+
+<div class="post-meta">
+  
+  <ul class="breadcrumb">
+          
+            <li><a href="/project/">PROJECT</a></li>
+            <li><a href="/project/cggame101/">CGGAME101</a></li>
+            <li><a href="/project/cggame101/assignment8/">ASSIGNMENT8</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/">CGL</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/deps/">DEPS</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/deps/glfw/">GLFW</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/deps/glfw/docs/">DOCS</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/deps/glfw/docs/html/">HTML</a></li>
+            <li>QUICK</li>
+          
+  </ul>
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+          <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
+<title>GLFW: Getting started</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="extra.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+	<div class="glfwheader">
+		<a href="http://www.glfw.org/" target="_blank" rel="noopener" id="glfwhome">GLFW</a>
+		<ul class="glfwnavbar">
+			<li><a href="http://www.glfw.org/documentation.html" target="_blank" rel="noopener">Documentation</a></li>
+			<li><a href="http://www.glfw.org/download.html" target="_blank" rel="noopener">Download</a></li>
+			<li><a href="http://www.glfw.org/media.html" target="_blank" rel="noopener">Media</a></li>
+			<li><a href="http://www.glfw.org/community.html" target="_blank" rel="noopener">Community</a></li>
+		</ul>
+	</div>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.8.6 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Getting started </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="toc"><h3>Table of Contents</h3>
+<ul><li class="level1"><a href="#quick_steps">Step by step</a><ul><li class="level2"><a href="#quick_include">Including the GLFW header</a></li>
+<li class="level2"><a href="#quick_init_term">Initializing and terminating GLFW</a></li>
+<li class="level2"><a href="#quick_capture_error">Setting an error callback</a></li>
+<li class="level2"><a href="#quick_create_window">Creating a window and context</a></li>
+<li class="level2"><a href="#quick_context_current">Making the OpenGL context current</a></li>
+<li class="level2"><a href="#quick_window_close">Checking the window close flag</a></li>
+<li class="level2"><a href="#quick_key_input">Receiving input events</a></li>
+<li class="level2"><a href="#quick_render">Rendering with OpenGL</a></li>
+<li class="level2"><a href="#quick_timer">Reading the timer</a></li>
+<li class="level2"><a href="#quick_swap_buffers">Swapping buffers</a></li>
+<li class="level2"><a href="#quick_process_events">Processing events</a></li>
+</ul>
+</li>
+<li class="level1"><a href="#quick_example">Putting it together</a></li>
+<li class="level1"><a href="#quick_build">Compiling and linking the program</a></li>
+</ul>
+</div>
+<div class="textblock"><p>This guide takes you through writing a simple application using GLFW 3. The application will create a window and OpenGL context, render a rotating triangle and exit when the user closes the window or presses Escape. This guide will introduce a few of the most commonly used functions, but there are many more.</p>
+<p>This guide assumes no experience with earlier versions of GLFW. If you have used GLFW 2 in the past, read the <a class="el" href="moving.html">Moving from GLFW 2 to 3</a> guide, as some functions behave differently in GLFW 3.</p>
+<h1><a class="anchor" id="quick_steps"></a>
+Step by step</h1>
+<h2><a class="anchor" id="quick_include"></a>
+Including the GLFW header</h2>
+<p>In the source files of your application where you use OpenGL or GLFW, you need to include the GLFW 3 header file.</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="glfw3_8h.html">GLFW/glfw3.h</a>&gt;</span></div>
+</div><!-- fragment --><p>This defines all the constants, types and function prototypes of the GLFW API. It also includes the OpenGL header, and defines all the constants and types necessary for it to work on your platform.</p>
+<p>For example, under Windows you are normally required to include <code>windows.h</code> before including <code>GL/gl.h</code>. This would make your source file tied to Windows and pollute your code's namespace with the whole Win32 API.</p>
+<p>Instead, the GLFW header takes care of this for you, not by including <code>windows.h</code>, but rather by itself duplicating only the necessary parts of it. It does this only where needed, so if <code>windows.h</code> <em>is</em> included, the GLFW header does not try to redefine those symbols.</p>
+<p>In other words:</p>
+<ul>
+<li>Do <em>not</em> include the OpenGL headers yourself, as GLFW does this for you</li>
+<li>Do <em>not</em> include <code>windows.h</code> or other platform-specific headers unless you plan on using those APIs directly</li>
+<li>If you <em>do</em> need to include such headers, do it <em>before</em> including the GLFW one and it will detect this</li>
+</ul>
+<p>Starting with version 3.0, the GLU header <code>glu.h</code> is no longer included by default. If you wish to include it, define <code>GLFW_INCLUDE_GLU</code> before the inclusion of the GLFW header.</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#define GLFW_INCLUDE_GLU</span></div>
+<div class="line"><span class="preprocessor">#include &lt;GLFW/glfw3.h&gt;</span></div>
+</div><!-- fragment --><h2><a class="anchor" id="quick_init_term"></a>
+Initializing and terminating GLFW</h2>
+<p>Before you can use most GLFW functions, the library must be initialized. On successful initialization, <code>GL_TRUE</code> is returned. If an error occurred, <code>GL_FALSE</code> is returned.</p>
+<div class="fragment"><div class="line"><span class="keywordflow">if</span> (!<a class="code" href="group__init.html#ga317aac130a235ab08c6db0834907d85e">glfwInit</a>())</div>
+<div class="line">    exit(EXIT_FAILURE);</div>
+</div><!-- fragment --><p>When you are done using GLFW, typically just before the application exits, you need to terminate GLFW.</p>
+<div class="fragment"><div class="line"><a class="code" href="group__init.html#gaaae48c0a18607ea4a4ba951d939f0901">glfwTerminate</a>();</div>
+</div><!-- fragment --><p>This destroys any remaining windows and releases any other resources allocated by GLFW. After this call, you must initialize GLFW again before using any GLFW functions that require it.</p>
+<h2><a class="anchor" id="quick_capture_error"></a>
+Setting an error callback</h2>
+<p>Most events are reported through callbacks, whether it's a key being pressed, a GLFW window being moved, or an error occurring. Callbacks are simply C functions (or C++ static methods) that are called by GLFW with arguments describing the event.</p>
+<p>In case a GLFW function fails, an error is reported to the GLFW error callback. You can receive these reports with an error callback. This function must have the signature below. This simple error callback just prints the error description to <code>stderr</code>.</p>
+<div class="fragment"><div class="line"><span class="keywordtype">void</span> error_callback(<span class="keywordtype">int</span> error, <span class="keyword">const</span> <span class="keywordtype">char</span>* description)</div>
+<div class="line">{</div>
+<div class="line">    fputs(description, stderr);</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>Callback functions must be set, so GLFW knows to call them. The function to set the error callback is one of the few GLFW functions that may be called before initialization, which lets you be notified of errors both during and after initialization.</p>
+<div class="fragment"><div class="line"><a class="code" href="group__init.html#gaa5d796c3cf7c1a7f02f845486333fb5f">glfwSetErrorCallback</a>(error_callback);</div>
+</div><!-- fragment --><h2><a class="anchor" id="quick_create_window"></a>
+Creating a window and context</h2>
+<p>The window and its OpenGL context are created with a single call, which returns a handle to the created combined window and context object. For example, this creates a 640 by 480 windowed mode window with an OpenGL context:</p>
+<div class="fragment"><div class="line"><a class="code" href="group__window.html#ga3c96d80d363e67d13a41b5d1821f3242">GLFWwindow</a>* window = <a class="code" href="group__window.html#ga5c336fddf2cbb5b92f65f10fb6043344">glfwCreateWindow</a>(640, 480, <span class="stringliteral">&quot;My Title&quot;</span>, NULL, NULL);</div>
+</div><!-- fragment --><p>If window or context creation fails, <code>NULL</code> will be returned, so it is necessary to check the return value.</p>
+<div class="fragment"><div class="line"><span class="keywordflow">if</span> (!window)</div>
+<div class="line">{</div>
+<div class="line">    <a class="code" href="group__init.html#gaaae48c0a18607ea4a4ba951d939f0901">glfwTerminate</a>();</div>
+<div class="line">    exit(EXIT_FAILURE);</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>The window handle is passed to all window related functions and is provided to along to all window related callbacks, so they can tell which window received the event.</p>
+<p>When a window is no longer needed, destroy it.</p>
+<div class="fragment"><div class="line"><a class="code" href="group__window.html#gacdf43e51376051d2c091662e9fe3d7b2">glfwDestroyWindow</a>(window);</div>
+</div><!-- fragment --><p>Once this function is called, no more events will be delivered for that window and its handle becomes invalid.</p>
+<h2><a class="anchor" id="quick_context_current"></a>
+Making the OpenGL context current</h2>
+<p>Before you can use the OpenGL API, you must have a current OpenGL context.</p>
+<div class="fragment"><div class="line"><a class="code" href="group__context.html#ga1c04dc242268f827290fe40aa1c91157">glfwMakeContextCurrent</a>(window);</div>
+</div><!-- fragment --><p>The context will remain current until you make another context current or until the window owning the current context is destroyed.</p>
+<h2><a class="anchor" id="quick_window_close"></a>
+Checking the window close flag</h2>
+<p>Each window has a flag indicating whether the window should be closed.</p>
+<p>When the user attempts to close the window, either by pressing the close widget in the title bar or using a key combination like Alt+F4, this flag is set to 1. Note that <b>the window isn't actually closed</b>, so you are expected to monitor this flag and either destroy the window or give some kind of feedback to the user.</p>
+<div class="fragment"><div class="line"><span class="keywordflow">while</span> (!<a class="code" href="group__window.html#ga24e02fbfefbb81fc45320989f8140ab5">glfwWindowShouldClose</a>(window))</div>
+<div class="line">{</div>
+<div class="line">    <span class="comment">// Keep running</span></div>
+<div class="line">}</div>
+</div><!-- fragment --><p>You can be notified when the user is attempting to close the window by setting a close callback with <a class="el" href="group__window.html#gaade9264e79fae52bdb78e2df11ee8d6a">glfwSetWindowCloseCallback</a>. The callback will be called immediately after the close flag has been set.</p>
+<p>You can also set it yourself with <a class="el" href="group__window.html#ga49c449dde2a6f87d996f4daaa09d6708">glfwSetWindowShouldClose</a>. This can be useful if you want to interpret other kinds of input as closing the window, like for example pressing the escape key.</p>
+<h2><a class="anchor" id="quick_key_input"></a>
+Receiving input events</h2>
+<p>Each window has a large number of callbacks that can be set to receive all the various kinds of events. To receive key press and release events, create a key callback function.</p>
+<div class="fragment"><div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> key_callback(<a class="code" href="group__window.html#ga3c96d80d363e67d13a41b5d1821f3242">GLFWwindow</a>* window, <span class="keywordtype">int</span> key, <span class="keywordtype">int</span> scancode, <span class="keywordtype">int</span> action, <span class="keywordtype">int</span> mods)</div>
+<div class="line">{</div>
+<div class="line">    <span class="keywordflow">if</span> (key == <a class="code" href="group__keys.html#gaac6596c350b635c245113b81c2123b93">GLFW_KEY_ESCAPE</a> &amp;&amp; action == <a class="code" href="group__input.html#ga2485743d0b59df3791c45951c4195265">GLFW_PRESS</a>)</div>
+<div class="line">        <a class="code" href="group__window.html#ga49c449dde2a6f87d996f4daaa09d6708">glfwSetWindowShouldClose</a>(window, GL_TRUE);</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>The key callback, like other window related callbacks, are set per-window.</p>
+<div class="fragment"><div class="line"><a class="code" href="group__input.html#ga7e496507126f35ea72f01b2e6ef6d155">glfwSetKeyCallback</a>(window, key_callback);</div>
+</div><!-- fragment --><p>In order for event callbacks to be called when events occur, you need to process events as described below.</p>
+<h2><a class="anchor" id="quick_render"></a>
+Rendering with OpenGL</h2>
+<p>Once you have a current OpenGL context, you can use OpenGL normally. In this tutorial, a multi-colored rotating triangle will be rendered. The framebuffer size needs to be retrieved for <code>glViewport</code>.</p>
+<div class="fragment"><div class="line"><span class="keywordtype">int</span> width, height;</div>
+<div class="line"><a class="code" href="group__window.html#ga0e2637a4161afb283f5300c7f94785c9">glfwGetFramebufferSize</a>(window, &amp;width, &amp;height);</div>
+<div class="line">glViewport(0, 0, width, height);</div>
+</div><!-- fragment --><p>You can also set a framebuffer size callback using <a class="el" href="group__window.html#ga3203461a5303bf289f2e05f854b2f7cf">glfwSetFramebufferSizeCallback</a> and call <code>glViewport</code> from there.</p>
+<h2><a class="anchor" id="quick_timer"></a>
+Reading the timer</h2>
+<p>To create smooth animation, a time source is needed. GLFW provides a timer that returns the number of seconds since initialization. The time source used is the most accurate on each platform and generally has micro- or nanosecond resolution.</p>
+<div class="fragment"><div class="line"><span class="keywordtype">double</span> time = <a class="code" href="group__input.html#gaa6cf4e7a77158a3b8fd00328b1720a4a">glfwGetTime</a>();</div>
+</div><!-- fragment --><h2><a class="anchor" id="quick_swap_buffers"></a>
+Swapping buffers</h2>
+<p>GLFW windows by default use double buffering. That means that each window has two rendering buffers; a front buffer and a back buffer. The front buffer is the one being displayed and the back buffer the one you render to.</p>
+<p>When the entire frame has been rendered, the buffers need to be swapped with one another, so the back buffer becomes the front buffer and vice versa.</p>
+<div class="fragment"><div class="line"><a class="code" href="group__window.html#ga15a5a1ee5b3c2ca6b15ca209a12efd14">glfwSwapBuffers</a>(window);</div>
+</div><!-- fragment --><p>The swap interval indicates how many frames to wait until swapping the buffers, commonly known as <em>vsync</em>. By default, the swap interval is zero, meaning buffer swapping will occur immediately. On fast machines, many of those frames will never be seen, as the screen is still only updated typically 60-75 times per second, so this wastes a lot of CPU and GPU cycles.</p>
+<p>Also, because the buffers will be swapped in the middle the screen update, leading to <a href="https://en.wikipedia.org/wiki/Screen_tearing" target="_blank" rel="noopener">screen tearing</a>.</p>
+<p>For these reasons, applications will typically want to set the swap interval to one. It can be set to higher values, but this is usually not recommended, because of the input latency it leads to.</p>
+<div class="fragment"><div class="line"><a class="code" href="group__context.html#ga6d4e0cdf151b5e579bd67f13202994ed">glfwSwapInterval</a>(1);</div>
+</div><!-- fragment --><p>This function acts on the current context and will fail unless a context is current.</p>
+<h2><a class="anchor" id="quick_process_events"></a>
+Processing events</h2>
+<p>GLFW needs to communicate regularly with the window system both in order to receive events and to show that the application hasn't locked up. Event processing must be done regularly while you have visible windows and is normally done each frame after buffer swapping.</p>
+<p>There are two methods for processing pending events; polling and waiting. This example will use event polling, which processes only those events that have already been received and then returns immediately.</p>
+<div class="fragment"><div class="line"><a class="code" href="group__window.html#ga37bd57223967b4211d60ca1a0bf3c832">glfwPollEvents</a>();</div>
+</div><!-- fragment --><p>This is the best choice when rendering continually, like most games do. If instead you only need to update your rendering once you have received new input, <a class="el" href="group__window.html#ga554e37d781f0a997656c26b2c56c835e">glfwWaitEvents</a> is a better choice. It waits until at least one event has been received, putting the thread to sleep in the meantime, and then processes all received events. This saves a great deal of CPU cycles and is useful for, for example, many kinds of editing tools.</p>
+<h1><a class="anchor" id="quick_example"></a>
+Putting it together</h1>
+<p>Now that you know how to initialize GLFW, create a window and poll for keyboard input, it's possible to create a simple program.</p>
+<div class="fragment"><div class="line"></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="glfw3_8h.html">GLFW/glfw3.h</a>&gt;</span></div>
+<div class="line"></div>
+<div class="line"><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"></div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> error_callback(<span class="keywordtype">int</span> error, <span class="keyword">const</span> <span class="keywordtype">char</span>* description)</div>
+<div class="line">{</div>
+<div class="line">    fputs(description, stderr);</div>
+<div class="line">}</div>
+<div class="line"></div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> key_callback(<a class="code" href="group__window.html#ga3c96d80d363e67d13a41b5d1821f3242">GLFWwindow</a>* window, <span class="keywordtype">int</span> key, <span class="keywordtype">int</span> scancode, <span class="keywordtype">int</span> action, <span class="keywordtype">int</span> mods)</div>
+<div class="line">{</div>
+<div class="line">    <span class="keywordflow">if</span> (key == <a class="code" href="group__keys.html#gaac6596c350b635c245113b81c2123b93">GLFW_KEY_ESCAPE</a> &amp;&amp; action == <a class="code" href="group__input.html#ga2485743d0b59df3791c45951c4195265">GLFW_PRESS</a>)</div>
+<div class="line">        <a class="code" href="group__window.html#ga49c449dde2a6f87d996f4daaa09d6708">glfwSetWindowShouldClose</a>(window, GL_TRUE);</div>
+<div class="line">}</div>
+<div class="line"></div>
+<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">void</span>)</div>
+<div class="line">{</div>
+<div class="line">    <a class="code" href="group__window.html#ga3c96d80d363e67d13a41b5d1821f3242">GLFWwindow</a>* window;</div>
+<div class="line"></div>
+<div class="line">    <a class="code" href="group__init.html#gaa5d796c3cf7c1a7f02f845486333fb5f">glfwSetErrorCallback</a>(error_callback);</div>
+<div class="line"></div>
+<div class="line">    <span class="keywordflow">if</span> (!<a class="code" href="group__init.html#ga317aac130a235ab08c6db0834907d85e">glfwInit</a>())</div>
+<div class="line">        exit(EXIT_FAILURE);</div>
+<div class="line"></div>
+<div class="line">    window = <a class="code" href="group__window.html#ga5c336fddf2cbb5b92f65f10fb6043344">glfwCreateWindow</a>(640, 480, <span class="stringliteral">&quot;Simple example&quot;</span>, NULL, NULL);</div>
+<div class="line">    <span class="keywordflow">if</span> (!window)</div>
+<div class="line">    {</div>
+<div class="line">        <a class="code" href="group__init.html#gaaae48c0a18607ea4a4ba951d939f0901">glfwTerminate</a>();</div>
+<div class="line">        exit(EXIT_FAILURE);</div>
+<div class="line">    }</div>
+<div class="line"></div>
+<div class="line">    <a class="code" href="group__context.html#ga1c04dc242268f827290fe40aa1c91157">glfwMakeContextCurrent</a>(window);</div>
+<div class="line">    <a class="code" href="group__context.html#ga6d4e0cdf151b5e579bd67f13202994ed">glfwSwapInterval</a>(1);</div>
+<div class="line"></div>
+<div class="line">    <a class="code" href="group__input.html#ga7e496507126f35ea72f01b2e6ef6d155">glfwSetKeyCallback</a>(window, key_callback);</div>
+<div class="line"></div>
+<div class="line">    <span class="keywordflow">while</span> (!<a class="code" href="group__window.html#ga24e02fbfefbb81fc45320989f8140ab5">glfwWindowShouldClose</a>(window))</div>
+<div class="line">    {</div>
+<div class="line">        <span class="keywordtype">float</span> ratio;</div>
+<div class="line">        <span class="keywordtype">int</span> width, height;</div>
+<div class="line"></div>
+<div class="line">        <a class="code" href="group__window.html#ga0e2637a4161afb283f5300c7f94785c9">glfwGetFramebufferSize</a>(window, &amp;width, &amp;height);</div>
+<div class="line">        ratio = width / (float) height;</div>
+<div class="line"></div>
+<div class="line">        glViewport(0, 0, width, height);</div>
+<div class="line">        glClear(GL_COLOR_BUFFER_BIT);</div>
+<div class="line"></div>
+<div class="line">        glMatrixMode(GL_PROJECTION);</div>
+<div class="line">        glLoadIdentity();</div>
+<div class="line">        glOrtho(-ratio, ratio, -1.f, 1.f, 1.f, -1.f);</div>
+<div class="line">        glMatrixMode(GL_MODELVIEW);</div>
+<div class="line"></div>
+<div class="line">        glLoadIdentity();</div>
+<div class="line">        glRotatef((<span class="keywordtype">float</span>) <a class="code" href="group__input.html#gaa6cf4e7a77158a3b8fd00328b1720a4a">glfwGetTime</a>() * 50.f, 0.f, 0.f, 1.f);</div>
+<div class="line"></div>
+<div class="line">        glBegin(GL_TRIANGLES);</div>
+<div class="line">        glColor3f(1.f, 0.f, 0.f);</div>
+<div class="line">        glVertex3f(-0.6f, -0.4f, 0.f);</div>
+<div class="line">        glColor3f(0.f, 1.f, 0.f);</div>
+<div class="line">        glVertex3f(0.6f, -0.4f, 0.f);</div>
+<div class="line">        glColor3f(0.f, 0.f, 1.f);</div>
+<div class="line">        glVertex3f(0.f, 0.6f, 0.f);</div>
+<div class="line">        glEnd();</div>
+<div class="line"></div>
+<div class="line">        <a class="code" href="group__window.html#ga15a5a1ee5b3c2ca6b15ca209a12efd14">glfwSwapBuffers</a>(window);</div>
+<div class="line">        <a class="code" href="group__window.html#ga37bd57223967b4211d60ca1a0bf3c832">glfwPollEvents</a>();</div>
+<div class="line">    }</div>
+<div class="line"></div>
+<div class="line">    <a class="code" href="group__window.html#gacdf43e51376051d2c091662e9fe3d7b2">glfwDestroyWindow</a>(window);</div>
+<div class="line"></div>
+<div class="line">    <a class="code" href="group__init.html#gaaae48c0a18607ea4a4ba951d939f0901">glfwTerminate</a>();</div>
+<div class="line">    exit(EXIT_SUCCESS);</div>
+<div class="line">}</div>
+<div class="line"></div>
+</div><!-- fragment --><p> This program creates a 640 by 480 windowed mode window and starts a loop that clears the screen, renders a triangle and processes events until the user either presses Escape or closes the window.</p>
+<p>This program uses only a few of the many functions GLFW provides. There are guides for each of the areas covered by GLFW. Each guide will introduce all the functions for that category.</p>
+<ul>
+<li><a class="el" href="intro.html">Introduction to the API</a></li>
+<li><a class="el" href="window.html">Window guide</a></li>
+<li><a class="el" href="context.html">Context guide</a></li>
+<li><a class="el" href="monitor.html">Monitor guide</a></li>
+<li><a class="el" href="input.html">Input guide</a></li>
+</ul>
+<h1><a class="anchor" id="quick_build"></a>
+Compiling and linking the program</h1>
+<p>The complete program above can be found in the source distribution as <code>examples/simple.c</code> and is compiled along with all other examples when you build GLFW. That is, if you have compiled GLFW then you have already built this as <code>simple.exe</code> on Windows, <code>simple</code> on Linux or <code>simple.app</code> on OS X.</p>
+<p>This tutorial ends here. Once you have written a program that uses GLFW, you will need to compile and link it. How to do that depends on the development environment you are using and is best explained by the documentation for that environment. To learn about the details that are specific to GLFW, see <a class="el" href="build.html">Building applications</a>. </p>
+</div></div><!-- contents -->
+<address class="footer">
+<p>
+Last update on Thu Mar 19 2015 for GLFW 3.1.1
+</p>
+</address>
+</body>
+</html>
+
+      </div>
+      
+      
+      
+    </div>
+    
+  <ul class="breadcrumb">
+          
+            <li><a href="/project/">PROJECT</a></li>
+            <li><a href="/project/cggame101/">CGGAME101</a></li>
+            <li><a href="/project/cggame101/assignment8/">ASSIGNMENT8</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/">CGL</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/deps/">DEPS</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/deps/glfw/">GLFW</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/deps/glfw/docs/">DOCS</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/deps/glfw/docs/html/">HTML</a></li>
+            <li>QUICK</li>
+          
+  </ul>
+
+    
+    
+    
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text">Table of Contents</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text">
+Step by step</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text">
+Including the GLFW header</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text">
+Initializing and terminating GLFW</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text">
+Setting an error callback</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text">
+Creating a window and context</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text">
+Making the OpenGL context current</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text">
+Checking the window close flag</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text">
+Receiving input events</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text">
+Rendering with OpenGL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text">
+Reading the timer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text">
+Swapping buffers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text">
+Processing events</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text">
+Putting it together</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text">
+Compiling and linking the program</span></a></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="leeyupeng"
+      src="/images/icon128.jpg">
+  <p class="site-author-name" itemprop="name">leeyupeng</p>
+  <div class="site-description" itemprop="description">leeyupeng@126.com</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">358</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">54</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">141</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="/about" title="QQ → about"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:leeyupeng@126.com" title="E-Mail → mailto:leeyupeng@126.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">leeyupeng</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              Counter('post', '/classes/Counter', { title, url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"wbbpG5Yxg8WKIQmzEeNU9P5G-gzGzoHsz","app_key":"y271idcAENCbz0foGfiEtWOu","server_url":null,"security":false};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('/js/src/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'wbbpG5Yxg8WKIQmzEeNU9P5G-gzGzoHsz',
+      appKey     : 'y271idcAENCbz0foGfiEtWOu',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

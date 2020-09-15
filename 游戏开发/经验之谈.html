@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"leeeyupeng.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="问题2020&#x2F;09&#x2F;08数据结构与算法很多房间和门 声音传递垃圾回收机制C++ 11 特性角色状态机AI实现寻路技能位移同步骨骼动画C++ 迭代器什么情况下会失效 2020&#x2F;01&#x2F;01怎么画一个圆怎么判断一个点是否在三角形内一组数中找出第K大的数 TOP K一组数中，判断有没有组合等于一个固定的数 subsetsums问题简单计算器的实现怎么渲染一个半透明的玻璃杯同步如何实现的  影子追随，预判法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="经验之谈">
+<meta property="og:url" content="https://leeeyupeng.github.io/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E7%BB%8F%E9%AA%8C%E4%B9%8B%E8%B0%88.html">
+<meta property="og:site_name" content="leeyupeng">
+<meta property="og:description" content="问题2020&#x2F;09&#x2F;08数据结构与算法很多房间和门 声音传递垃圾回收机制C++ 11 特性角色状态机AI实现寻路技能位移同步骨骼动画C++ 迭代器什么情况下会失效 2020&#x2F;01&#x2F;01怎么画一个圆怎么判断一个点是否在三角形内一组数中找出第K大的数 TOP K一组数中，判断有没有组合等于一个固定的数 subsetsums问题简单计算器的实现怎么渲染一个半透明的玻璃杯同步如何实现的  影子追随，预判法">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-09-11T09:13:46.876Z">
+<meta property="article:modified_time" content="2020-09-11T09:13:46.876Z">
+<meta property="article:author" content="leeyupeng">
+<meta property="article:tag" content="游戏开发">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://leeeyupeng.github.io/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E7%BB%8F%E9%AA%8C%E4%B9%8B%E8%B0%88.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>经验之谈 | leeyupeng</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">leeyupeng</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">leeyupeng@126.com</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-tagsalgorithm">
+
+    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95" rel="section"><i class="fa fa-book fa-fw"></i>数据结构与算法</a>
+
+  </li>
+        <li class="menu-item menu-item-tagscplusplus">
+
+    <a href="/tags/C-C" rel="section"><i class="fa fa-book fa-fw"></i>C/C++</a>
+
+  </li>
+        <li class="menu-item menu-item-tagsgraphics">
+
+    <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6" rel="section"><i class="fa fa-book fa-fw"></i>图形学</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E7%BB%8F%E9%AA%8C%E4%B9%8B%E8%B0%88.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          经验之谈
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-11 17:13:46" itemprop="dateCreated datePublished" datetime="2020-09-11T17:13:46+08:00">2020-09-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">游戏开发</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E7%BB%8F%E9%AA%8C%E4%B9%8B%E8%B0%88.html" class="post-meta-item leancloud_visitors" data-flag-title="经验之谈" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E7%BB%8F%E9%AA%8C%E4%B9%8B%E8%B0%88.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E7%BB%8F%E9%AA%8C%E4%B9%8B%E8%B0%88.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>2020/09/08<br>数据结构与算法<br>很多房间和门 声音传递<br>垃圾回收机制<br>C++ 11 特性<br>角色状态机<br>AI实现<br>寻路<br>技能<br>位移同步<br>骨骼动画<br>C++ 迭代器什么情况下会失效</p>
+<p>2020/01/01<br>怎么画一个圆<br>怎么判断一个点是否在三角形内<br>一组数中找出第K大的数 TOP K<br>一组数中，判断有没有组合等于一个固定的数 subsetsums问题<br>简单计算器的实现<br>怎么渲染一个半透明的玻璃杯<br>同步如何实现的  影子追随，预判法 平滑处理<br>团队管理 技术框架 团队人事管理<br>骨骼动画</p>
+<p>C++11有那些特性？<br>C++11模板中的特化和偏特化分别指什么？都在那些情况下应用？<br>C++11模版的高级使用有那些？请举出例子。<br>Java Runtime和Lua Runtime有什么区别和相同点？<br>游戏中状态机如何实现REDO，UNDO和MERGE？（用stack即可实现）<br>极大极小算法的原理和在AI中的应用？<br>3D游戏中相机是有那三个元素构成的（Translate，Target和Up Vector）,分别起什么作用，如何使用四元数进行相机的变换？</p>
+<p>网易游戏的面试流程整体走下来，感觉还是蛮规范的，网易确实在认真的招人和面试，我的感觉是网易希望招聘的应届生除了有一个拿得出手的项目之外（最好是游戏相关的），还要在以下这两个方面至少熟悉一样：</p>
+<p>计算机图形学<br>游戏服务器编程<br>然后再说一下网易的基本要求，当然了，什么数据结构，操作系统，数据库，编译原理这些的基本原理和应用就不细说了，都是本科生基础必会的东西，说些和游戏相关的要求：</p>
+<p>对C++的模版的高级用法要了解的比较深入。<br>对C++的内存管理的各种解决方案要非常熟悉并亲手实验过。<br>对AI的各种算法要有了解：比如博弈论中的极大极小算法，A*算法的优化等等<br>对C++的装载链接过程和Lua的虚拟机的一些底层实现要有了解<br>对VS或者Xcode这两种IDE需要可以熟练的应用<br>需要的项目经历：自己开发过 一个简单的游戏引擎或者是做过比较复杂的 游戏Demo（大概是Kingdom Rush这个级别就可以了吧）<br>对Unity3D或者Cocos2d-x有着丰富的使用经验 （可以没有，有的话加分）<br>对OpenGL或者是DirectX要有了解，做过一些Shader和Renderer （可以没有，有的话加分）<br>了解过网易的后端框架Pomelo（可以没有，有的话加分）</p>
+<p>如何对手机游戏进行优化，我的回答基本上是以下这样的<br>一般分为内存优化帧数优化，内存优化和运存优化。<br>帧数优化可以考虑对一个message loop中的逻辑运算进行优化，比如可以考虑A*的剪枝。或者进行time slice，具体可以参考我的这篇文章<br>体积和运行内存优化有以下几点<br>使用工具对资源进行打包，使用TexturePacker等工具把多张资源合成一张图片。<br>采用png压缩工具，在打包图片之前对每张图片进行压缩，降低图片质量。<br>针对不同的平台使用特定的压缩格式的图片<br>如果项目中帧序列占的比较多，那么可以采用降帧的方式来优化。<br>缩放图片，将原来图片缩小为原来的70% ~ %80，再对图像进行放大<br>采用编辑器，将大图转化为拼接，那么就可以利用地图编辑器、动作编辑器等从而减少体积，降低内存的使 用。<br>如何在对游戏的“手感”进行改进：<br>游戏手感一般指的是打击感，那么我就在打击到一个游戏对象时，游戏对象要产生击退的效果，产生该对象被打击的感觉。<br>时间控制要恰当，要让某个对象（比如火球，拳头）打击到另一个游戏对象的时候，才产生击退效果，这就需要进行使用消息机制和回调来解决。<br>如何在数据库中存储一个人的所有装备<br>建立一个人物ID和装备ID的关系表。<br>将人物的所有装备的id序列化为一个JSON字符串存储为人物的一个字段。<br>这两个最大的区别是在修改装备时，第一个只会影响一条记录，当时第二个会影响所有装备，一旦出现bug还让玩家损失所有装备。两者各有利弊，根据使用场景自己权衡。<br>C++11的新特性？<br>如何对一个快排进行优化使得它的最坏的时间复杂度达到O（LogN）？<br>Lua和Unity中的协程是怎么使用的，都有什么区别？<br>我的游戏Demo中AI的设计思路是怎样的。<br>如果让你设计一个暗黑破坏神的简化版手机游戏，你会从哪里开始设计。</p>
+<h1 id="项目要点"><a href="#项目要点" class="headerlink" title="项目要点"></a>项目要点</h1><p>阴影<br>翅膀 身体 武器 合并 draw<br>五方向<br>C#和lua的通信<br>消息分发机制  广播 观察者 dispatch</p>
+<p>核心战斗<br>角色状态管理  待机 移动 释放技能 被击<br>技能实现 火球 瞬移 石化<br>buff<br>同步<br>地图<br>寻路</p>
+<h1 id="游戏优化"><a href="#游戏优化" class="headerlink" title="游戏优化"></a>游戏优化</h1><h2 id="DrawCall-优化"><a href="#DrawCall-优化" class="headerlink" title="DrawCall 优化"></a>DrawCall 优化</h2><p>面数<br>代码逻辑优化<br>各个功能的逻辑优化<br>寻路 A*优化 ，剪枝<br>减少update刷新<br>渲染优化<br>渲染顺序<br>pass 数目<br>batch合并优化<br>UI batch 优化<br>UI层次<br>TexturePacker<br>使用LOD技术  精模 糙模</p>
+<h2 id="内存优化"><a href="#内存优化" class="headerlink" title="内存优化"></a>内存优化</h2><p>帧序列减少帧数<br>png图片压缩<br>提高纹理复用率<br>帧序列转帧骨骼动画<br>纹理尺寸 降低画质</p>
+<h2 id="字体优化"><a href="#字体优化" class="headerlink" title="字体优化"></a>字体优化</h2><ol>
+<li>控制字体文件数量。除了系统默认字体，自定义字体控制在1~2个为宜。</li>
+<li>少用字体的阴影/描边/发光等效果。</li>
+<li>剔除字库中无用的字形。可以借助FontSubsetGUI或FontPruner给字库瘦身。</li>
+</ol>
+<h2 id="骨骼动画"><a href="#骨骼动画" class="headerlink" title="骨骼动画"></a>骨骼动画</h2><p>面数<br>顶点数<br>骨骼数<br>贴图</p>
+<h2 id="模型数据"><a href="#模型数据" class="headerlink" title="模型数据"></a>模型数据</h2><p>unsigned int  unsigned short<br>三十二位浮点数压缩成十六位浮点数<br>unity中optimize mesh<br>unity中mesh compression</p>
+<h2 id="场景优化"><a href="#场景优化" class="headerlink" title="场景优化"></a>场景优化</h2><p>画质等级<br>面数控制<br>灯光烘培<br>剔除不可见的三角形</p>
+<h2 id="粒子特效"><a href="#粒子特效" class="headerlink" title="粒子特效"></a>粒子特效</h2><p>粒子美术规范</p>
+<p> 单个粒子的发射数量不超过50个。<br> 减少粒子的尺寸，面积越大就会消耗更多的性能。<br> 粒子贴图必须是2的N次方，尽量控制64x64以内，极少量128x128或256x256，最大不超过256x256。<br> 尽可能去掉粒子贴图的Alpha通道。<br> 尽量不用Alpha Test。<br> 尽量使用已有的材质，提高合并渲染的优化概率。<br> 材质优先用Mobile目录下的材质。<br> 尽可能不用模型做粒子，如果使用，要控制模型面数在100以内，最大粒子数在5以内。<br> 单个特效渲染数据限制：<br> 　　小型特效（如受击特效、Buff特效）的面数和顶点数在80以内，贴图在64<em>64以内，材质数2个以内。<br> 　　中型特效（如技能特效）的面数和顶点数在150以内，贴图在128</em>128以内，材质数4个以内。<br> 　　大型特效（如全局特效、大火球）的面数和顶点数在300以内，贴图在256*256以内，材质数6个以内。</p>
+<h2 id="材质"><a href="#材质" class="headerlink" title="材质"></a>材质</h2><h2 id="纹理"><a href="#纹理" class="headerlink" title="纹理"></a>纹理</h2><p>Read/Write<br>启用 Read/Write会导致纹理占用两份内存，一份在GPU端，一份在系统内存中。因为启用 Read/Write说明CPU端逻辑程序可能在运行时读取或修改纹理像素信息（GetPixel32,SetPixel32），像素信息必须在系统内存中保留一份。而在项目中，绝大多数的图片都是只供GPU渲染引用的，所以如果没有特殊需要就禁用Read/Write。</p>
+<p>Mipmaps<br>mipmap主要是用在3D场景中的模型贴图，渲染底层会根据物体在屏幕中呈现的实际渲染大小选择适当的一级mipmap。如果相机的远近距离对某些物体渲染到屏幕的大小没有任何影响（如正交相机），那么这些物体的贴图就应该禁用mipmaps，最典型的就是UI界面的贴图。这几乎可以降低接近1半的贴图内存占用。</p>
+<p>AutoCompressed<br>压缩图片格式对于移动设备是非常有用的，因为相对于truecolor格式，这将大大减少内存的占用。注意，这里的压缩不是单指贴图文件的压缩，而是纹理贴图像素数据在内存中就是压缩格式的，渲染采样时，由GPU负责实时解压的。所以压缩格式与GPU的厂商是具有相关性的，Android和Apple的设备支持的压缩格式就不一样。这种压缩是有损的，以牺牲贴图的像素精度为前提的，所以需要我们研发人员根据实际美术效果需要自己把握。作为程序，建议纹理贴图都采用自动压缩格式，这样Unity能根据目标平台生成其对应的压缩格式纹理。根据之前的项目经验，3D模型的贴图、特效贴图、和部分UI贴图是非常适合采用压缩格式的。而部分对画质要求很高的图片可以使用truecolor，这个需要根据项目实际情况灵活运用。下图是各平台纹理压缩格式情况介绍。</p>
+<p>1024 <em> 2014(ARGB)    1024 </em> 2014(RGB)<br>ETC1(Android)    不支持    0.5M<br>ETC2(Android)    1M    0.5M<br>PVRTC(IOS)    0.5M    0.5M<br>DX1(Windows)    不支持    0.5M<br>DX5(Windows)    1M    不支持<br>TrueColor    4M    3M</p>
+<h2 id="CPU优化"><a href="#CPU优化" class="headerlink" title="CPU优化"></a>CPU优化</h2><h3 id="缓存计算结果"><a href="#缓存计算结果" class="headerlink" title="缓存计算结果"></a>缓存计算结果</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">std::map&lt;KeyType, ValueType&gt; _cache;</span><br><span class="line"></span><br><span class="line">ValueType Calculate(KeyType key)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; 先尝试从缓存中获取结果，有就直接返回。</span><br><span class="line">    if (_cache.count(key) &gt; 0)</span><br><span class="line">    &#123;</span><br><span class="line">        return _cache[key];</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 缓存不存在，执行真正的计算，并缓存计算结果。</span><br><span class="line">    ValueType res &#x3D; DoCalculation(key);</span><br><span class="line">    _cache[key] &#x3D; res;</span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>复杂数学计算。Sin/Cos/Pow/Sqrt等运算要花费一定计算量，如果是第一次计算，可以将结果缓存起来，下次遇到相同的计算，直接从缓存中取值。</p>
+</li>
+<li><p>物理模拟结果。物体的物理模拟过程耗费大量计算，但有些物体模拟完之后就处于静止状态，可以将它之前的模拟结果存下来，防止每帧更新计算。现代主流商业引擎都支持这种优化。</p>
+</li>
+<li><p>光照贴图。光照贴图是离线将场景的静态光影计算并缓存成贴图，渲染时只需要采样光照贴图的颜色，极大降低了光照计算复杂度。</p>
+</li>
+<li><p>搜索结果。例如场景节点搜索，场景节点一般采用树形结构，如果查找的节点很深，将显著增加遍历次数，此时很有必要将查找结果缓存起来。</p>
+</li>
+<li><p>逻辑模块复杂的计算。游戏的逻辑模块，涉及到复杂的计算都可尝试用缓存法降低CPU负担。</p>
+</li>
+</ol>
+<h3 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h3><h3 id="限帧法"><a href="#限帧法" class="headerlink" title="限帧法"></a>限帧法</h3><ol>
+<li>计数法。用一个变量记录更新次数，每累计到某个数才执行更新。</li>
+<li>计时器。利用Timer机制触发，每隔固定时间触发一次更新。</li>
+<li>协程。协程是运行于主线程的伪线程，但可以模拟异步操作，没有多线程的副作用。故而也可以用于限帧操作。</li>
+<li>事件触发。每帧查询状态改成事件触发，也是游戏常用的一种优化手段，用来限帧也非常有效。</li>
+</ol>
+<h3 id="主次法"><a href="#主次法" class="headerlink" title="主次法"></a>主次法</h3><p>主次法跟LOD技法有异曲同工之妙。思路也是将物件按重要程度划分为高中低级别，然后不同级别采用不同复杂度的效果或计算。</p>
+<p>　　这种思路在游戏中可以广泛应用，基本所有消耗高的逻辑或模块都可以采用这个技法。例如：</p>
+<p>　　1. 画质等级。将游戏分为若干等级，画质最高到最低采用不同的渲染技术或资源，区别对待。</p>
+<p>　　2. 资源等级。场景/特效/灯光/物理效果/导航等等模块都可以根据画质等级或物件等级对应不同级别的资源，整体上可以减少消耗，又能兼顾画质效果。</p>
+<p>　　3. 角色分级。主角英雄/Boss等和小怪物/NPC区分开来，前者更新频率更高，AI行为更复杂更智能，而后者采用简单效果或降频更新。</p>
+<h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2><p>在游戏开发中，我们可以将一些逻辑通过创建线程的方式独立出去，交给其它CPU核心处理，以缓解上面提到的现象。</p>
+<p>　　可独立成线程处理的模块：</p>
+<p>　　1. 文件IO。建立一个IO线程，定时检查文件队列是否有数据，若有便启动IO加载，直至文件队列为空，又回到空闲轮询状态。主线程就不会以为文件IO而处于等待状态。</p>
+<p>　　2. 骨骼动画。如果同屏动画角色多，将占据大量CPU计算。可创建一个或多个线程处理骨骼动画计算，加速渲染流程。但随之而来的是同步问题。</p>
+<p>　　3. 粒子计算。粒子的多线程跟骨骼动画类似，也存在同步问题。</p>
+<p>　　4. 渲染线程。将渲染抽离出一个线程，主要是解决CPU与GPU相互等待的问题。常见的一种做法是建立一个渲染线程，定期去查询渲染队列是否有数据，如果有就提交至GPU进行绘制。</p>
+<p>　　5. 音视频编解码。如果游戏有涉及音频频播放，而它们又占据了较大的消耗，那么开辟独立的线程处理音视频编解码是有必要的。</p>
+<p>　　6. 加密解密。加密解密涉及的算法通常较复杂，占用较多CPU性能，而且常常伴随着文件IO或网络IO，所以此时非常有必要将它们交给独立的线程处理。</p>
+<p>　　7. 网络IO。目前大多数游戏都会开辟一个线程专门收发网络数据，以避免网络处理影响主线程。</p>
+<p>　　值得注意的是，线程切换会带来额外开销，同步和死锁问题也会提高逻辑复杂度和调试难度，是悬在程序员头上的一把大刀。</p>
+<h2 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h2><p>降低动画采用频率。</p>
+<p>　　减少关键帧数据。</p>
+<p>　　缓存动画的插值结果。</p>
+<p>　　用简单曲线插值（线性插值）代替复杂插值（贝塞尔曲线）。</p>
+<p>　　判断动画所附对象的可见性，如不可见，则不更新动画。</p>
+<p>　　控制同屏动画的个数。</p>
+<p>　　不同画质加载不同级别的动画资源。</p>
+<h2 id="渲染路径"><a href="#渲染路径" class="headerlink" title="渲染路径"></a>渲染路径</h2><p>前向渲染<br>延迟渲染（Deferred Shading）</p>
+<h2 id="场景管理"><a href="#场景管理" class="headerlink" title="场景管理"></a>场景管理</h2><p>八叉树<br>遮挡剔除（Occlusion Culling）</p>
+<h2 id="阴影"><a href="#阴影" class="headerlink" title="阴影"></a>阴影</h2><h3 id="贴图阴影"><a href="#贴图阴影" class="headerlink" title="贴图阴影"></a>贴图阴影</h3><h3 id="Projector（投射阴影）"><a href="#Projector（投射阴影）" class="headerlink" title="Projector（投射阴影）"></a>Projector（投射阴影）</h3><h3 id="Shadow-Map（阴影图）"><a href="#Shadow-Map（阴影图）" class="headerlink" title="Shadow Map（阴影图）"></a>Shadow Map（阴影图）</h3><h2 id="带宽优化"><a href="#带宽优化" class="headerlink" title="带宽优化"></a>带宽优化</h2><p>　　带宽优化的目的是减少CPU与GPU之间的数据传输。</p>
+<h3 id="LOD（Level-Of-Detail）"><a href="#LOD（Level-Of-Detail）" class="headerlink" title="LOD（Level Of Detail）"></a>LOD（Level Of Detail）</h3><h3 id="GPU-Instance"><a href="#GPU-Instance" class="headerlink" title="GPU Instance"></a>GPU Instance</h3><h3 id="GPU-Skin"><a href="#GPU-Skin" class="headerlink" title="GPU Skin"></a>GPU Skin</h3><p>CPU Skin最基本的角色动画实现方式，它可以方便地实现很复杂的动画操作，如融合/渐隐/组合/串接等等。但它的缺点也显而易见，占用大量CPU计算性能，难以并行计算，每帧需传送模型顶点数据到GPU，增加带宽负载。</p>
+<p>　　GPU Skin的做法是将骨骼矩阵列表作为Uniform传入Shader，然后在Vertex Shader中对模型顶点进行蒙皮计算。它可以并行计算，减轻CPU负载，此外，由于每帧传入GPU的数据是骨骼矩阵，不是顶点数据，极大降低了带宽负载。</p>
+<p>　　当然，GPU Skin也有缺陷。它会提高GPU负载，最高骨骼数往往受限于平台（如OpenGL ES 2.0不能超过250个Vector4数据量），而且也不利于做复杂的动画操作。</p>
+<h3 id="避免后处理"><a href="#避免后处理" class="headerlink" title="避免后处理"></a>避免后处理</h3><p>　　后处理是场景物体渲染完成后，对渲染纹理做逐像素处理，以便实现各种全屏效果，包含以下效果：</p>
+<p>抗锯齿：Anti-aliasing (FXAA &amp; TAA)<br>环境光散射：Ambient Occlusion<br>屏幕空间反射：Screen Space Reflection<br>雾：Fog<br>景深：Depth of Field<br>运动模糊：Motion Blur<br>人眼调节：Eye Adaptation<br>发光：Bloom<br>颜色校正：Color Grading<br>颜色查找表：User Lut<br>色差：Chromatic Aberration<br>颗粒：Grain<br>暗角：Vignette<br>噪点：Dithering</p>
+<h3 id="降分辨率"><a href="#降分辨率" class="headerlink" title="降分辨率"></a>降分辨率</h3><p>　　降分辨率是最粗暴最有效的提升渲染性能的方法。</p>
+<p>　　由于当前很多智能设备分辨率都是超高清，动辄2K以上，但CPU/GPU却跟不上，如果使用原始屏幕分辨率，就会出现严重的卡帧/掉帧现象。</p>
+<p>　　通常可以将屏幕分辨率降到一半，这样渲染纹理/深度Buffer/纹理等等数据都可以缩减到原来的1/4，极大降低了CPU/GPU/带宽各项指标的消耗。</p>
+<h2 id="合批的数据越大越好"><a href="#合批的数据越大越好" class="headerlink" title="合批的数据越大越好?"></a>合批的数据越大越好?</h2><p>　　有人会认为即然合批能够降低渲染消耗，是不是让合批后的数据越大越好，以便更多地降低Draw Call呢?</p>
+<p>　　答案是否定的。</p>
+<p>　　原因有二：</p>
+<p>　　1. 移动游戏的模型索引通常做了优化，只用16位表示，也就是说如果合批后的顶点数超过65025，便会越界，导致渲染异常。</p>
+<p>　　2. 太大的数据量可能无法充分利用LOD，遮挡剔除等技术，导致过多的数据送入GPU，反而增加带宽和GPU消耗。</p>
+<h2 id="片元等同于像素"><a href="#片元等同于像素" class="headerlink" title="片元等同于像素"></a>片元等同于像素</h2><p>　　片元（fragment）是GPU内部的几何体光栅化后形成的最小表示单元，它经过一系列片元操作（alpha测试，深度测试，模板测试等）后，才可能最终写入渲染纹理成为像素（pixel）。</p>
+<p>　　所以，片元不是像素，但有概率成为像素。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.cnblogs.com/neverdie/p/3799189.html" target="_blank" rel="noopener">网易面试</a><br><a href="https://www.cnblogs.com/timlly/p/10463467.html" target="_blank" rel="noopener">移动游戏性能优化通用技法</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" rel="tag"># 游戏开发</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/DecisionProblem.html" rel="prev" title="数据结构与算法/问题/DecisionProblem">
+      <i class="fa fa-chevron-left"></i> 数据结构与算法/问题/DecisionProblem
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/make.html" rel="next" title="make">
+      make <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#项目要点"><span class="nav-number">2.</span> <span class="nav-text">项目要点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#游戏优化"><span class="nav-number">3.</span> <span class="nav-text">游戏优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DrawCall-优化"><span class="nav-number">3.1.</span> <span class="nav-text">DrawCall 优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存优化"><span class="nav-number">3.2.</span> <span class="nav-text">内存优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字体优化"><span class="nav-number">3.3.</span> <span class="nav-text">字体优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#骨骼动画"><span class="nav-number">3.4.</span> <span class="nav-text">骨骼动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型数据"><span class="nav-number">3.5.</span> <span class="nav-text">模型数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#场景优化"><span class="nav-number">3.6.</span> <span class="nav-text">场景优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#粒子特效"><span class="nav-number">3.7.</span> <span class="nav-text">粒子特效</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#材质"><span class="nav-number">3.8.</span> <span class="nav-text">材质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#纹理"><span class="nav-number">3.9.</span> <span class="nav-text">纹理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CPU优化"><span class="nav-number">3.10.</span> <span class="nav-text">CPU优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存计算结果"><span class="nav-number">3.10.1.</span> <span class="nav-text">缓存计算结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#预处理"><span class="nav-number">3.10.2.</span> <span class="nav-text">预处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#限帧法"><span class="nav-number">3.10.3.</span> <span class="nav-text">限帧法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主次法"><span class="nav-number">3.10.4.</span> <span class="nav-text">主次法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程"><span class="nav-number">3.11.</span> <span class="nav-text">多线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动画"><span class="nav-number">3.12.</span> <span class="nav-text">动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#渲染路径"><span class="nav-number">3.13.</span> <span class="nav-text">渲染路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#场景管理"><span class="nav-number">3.14.</span> <span class="nav-text">场景管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#阴影"><span class="nav-number">3.15.</span> <span class="nav-text">阴影</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#贴图阴影"><span class="nav-number">3.15.1.</span> <span class="nav-text">贴图阴影</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Projector（投射阴影）"><span class="nav-number">3.15.2.</span> <span class="nav-text">Projector（投射阴影）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Shadow-Map（阴影图）"><span class="nav-number">3.15.3.</span> <span class="nav-text">Shadow Map（阴影图）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#带宽优化"><span class="nav-number">3.16.</span> <span class="nav-text">带宽优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LOD（Level-Of-Detail）"><span class="nav-number">3.16.1.</span> <span class="nav-text">LOD（Level Of Detail）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GPU-Instance"><span class="nav-number">3.16.2.</span> <span class="nav-text">GPU Instance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GPU-Skin"><span class="nav-number">3.16.3.</span> <span class="nav-text">GPU Skin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#避免后处理"><span class="nav-number">3.16.4.</span> <span class="nav-text">避免后处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#降分辨率"><span class="nav-number">3.16.5.</span> <span class="nav-text">降分辨率</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合批的数据越大越好"><span class="nav-number">3.17.</span> <span class="nav-text">合批的数据越大越好?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#片元等同于像素"><span class="nav-number">3.18.</span> <span class="nav-text">片元等同于像素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">3.19.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="leeyupeng"
+      src="/images/icon128.jpg">
+  <p class="site-author-name" itemprop="name">leeyupeng</p>
+  <div class="site-description" itemprop="description">leeyupeng@126.com</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">358</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">54</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">141</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="/about" title="QQ → about"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:leeyupeng@126.com" title="E-Mail → mailto:leeyupeng@126.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">leeyupeng</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              Counter('post', '/classes/Counter', { title, url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"wbbpG5Yxg8WKIQmzEeNU9P5G-gzGzoHsz","app_key":"y271idcAENCbz0foGfiEtWOu","server_url":null,"security":false};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('/js/src/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'wbbpG5Yxg8WKIQmzEeNU9P5G-gzGzoHsz',
+      appKey     : 'y271idcAENCbz0foGfiEtWOu',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"leeeyupeng.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="GLFW: New features         $(document).ready(function() { searchBox.OnSelectItem(0); });        	 		GLFW 		 			Documentation 			Download 			Media 			Community 		 	     var searchBox &#x3D; new Search">
+<meta property="og:type" content="website">
+<meta property="og:title" content="leeyupeng">
+<meta property="og:url" content="https://leeeyupeng.github.io/project/cggame101/assignment8/CGL/deps/glfw/docs/html/news.html">
+<meta property="og:site_name" content="leeyupeng">
+<meta property="og:description" content="GLFW: New features         $(document).ready(function() { searchBox.OnSelectItem(0); });        	 		GLFW 		 			Documentation 			Download 			Media 			Community 		 	     var searchBox &#x3D; new Search">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://leeeyupeng.github.io/project/cggame101/assignment8/CGL/deps/glfw/docs/html/search/mag_sel.png">
+<meta property="og:image" content="https://leeeyupeng.github.io/project/cggame101/assignment8/CGL/deps/glfw/docs/html/search/close.png">
+<meta property="article:published_time" content="2020-07-20T07:14:51.837Z">
+<meta property="article:modified_time" content="2020-03-04T04:24:34.000Z">
+<meta property="article:author" content="leeyupeng">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://leeeyupeng.github.io/project/cggame101/assignment8/CGL/deps/glfw/docs/html/search/mag_sel.png">
+
+<link rel="canonical" href="https://leeeyupeng.github.io/project/cggame101/assignment8/CGL/deps/glfw/docs/html/news.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title> | leeyupeng
+</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">leeyupeng</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">leeyupeng@126.com</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-tagsalgorithm">
+
+    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95" rel="section"><i class="fa fa-book fa-fw"></i>数据结构与算法</a>
+
+  </li>
+        <li class="menu-item menu-item-tagscplusplus">
+
+    <a href="/tags/C-C" rel="section"><i class="fa fa-book fa-fw"></i>C/C++</a>
+
+  </li>
+        <li class="menu-item menu-item-tagsgraphics">
+
+    <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6" rel="section"><i class="fa fa-book fa-fw"></i>图形学</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+  
+  
+
+          <div class="content page posts-expand">
+            
+
+    
+    
+    
+    <div class="post-block" lang="zh-CN">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">
+</h1>
+
+<div class="post-meta">
+  
+  <ul class="breadcrumb">
+          
+            <li><a href="/project/">PROJECT</a></li>
+            <li><a href="/project/cggame101/">CGGAME101</a></li>
+            <li><a href="/project/cggame101/assignment8/">ASSIGNMENT8</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/">CGL</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/deps/">DEPS</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/deps/glfw/">GLFW</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/deps/glfw/docs/">DOCS</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/deps/glfw/docs/html/">HTML</a></li>
+            <li>NEWS</li>
+          
+  </ul>
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+          <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
+<title>GLFW: New features</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="extra.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+	<div class="glfwheader">
+		<a href="http://www.glfw.org/" target="_blank" rel="noopener" id="glfwhome">GLFW</a>
+		<ul class="glfwnavbar">
+			<li><a href="http://www.glfw.org/documentation.html" target="_blank" rel="noopener">Documentation</a></li>
+			<li><a href="http://www.glfw.org/download.html" target="_blank" rel="noopener">Download</a></li>
+			<li><a href="http://www.glfw.org/media.html" target="_blank" rel="noopener">Media</a></li>
+			<li><a href="http://www.glfw.org/community.html" target="_blank" rel="noopener">Community</a></li>
+		</ul>
+	</div>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.8.6 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">New features </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><h1><a class="anchor" id="news_31"></a>
+New features in 3.1</h1>
+<p>These are the release highlights. For a full list of changes see the <a href="http://www.glfw.org/changelog.html" target="_blank" rel="noopener">version history</a>.</p>
+<h2><a class="anchor" id="news_31_cursor"></a>
+Custom mouse cursor images</h2>
+<p>GLFW now supports creating and setting both custom cursor images and standard cursor shapes. They are created with <a class="el" href="group__input.html#gafca356935e10135016aa49ffa464c355">glfwCreateCursor</a> or <a class="el" href="group__input.html#gaa65f416d03ebbbb5b8db71a489fcb894">glfwCreateStandardCursor</a>, set with <a class="el" href="group__input.html#gad3b4f38c8d5dae036bc8fa959e18343e">glfwSetCursor</a> and destroyed with <a class="el" href="group__input.html#ga81b952cd1764274d0db7fb3c5a79ba6a">glfwDestroyCursor</a>.</p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="input.html#cursor_object">Cursor objects</a></dd></dl>
+<h2><a class="anchor" id="news_31_drop"></a>
+Path drop event</h2>
+<p>GLFW now provides a callback for receiving the paths of files and directories dropped onto GLFW windows. The callback is set with <a class="el" href="group__input.html#ga41291bf15dd3ff564b3143aa6dc74a4b">glfwSetDropCallback</a>.</p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="input.html#path_drop">Path drop input</a></dd></dl>
+<h2><a class="anchor" id="news_31_emptyevent"></a>
+Main thread wake-up</h2>
+<p>GLFW now provides the <a class="el" href="group__window.html#gab5997a25187e9fd5c6f2ecbbc8dfd7e9">glfwPostEmptyEvent</a> function for posting an empty event from another thread to the main thread event queue, causing <a class="el" href="group__window.html#ga554e37d781f0a997656c26b2c56c835e">glfwWaitEvents</a> to return.</p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="input.html#events">Event processing</a></dd></dl>
+<h2><a class="anchor" id="news_31_framesize"></a>
+Window frame size query</h2>
+<p>GLFW now supports querying the size, on each side, of the frame around the client area of a window, with <a class="el" href="group__window.html#ga1a9fd382058c53101b21cf211898f1f1">glfwGetWindowFrameSize</a>.</p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="window.html#window_size">Window size</a></dd></dl>
+<h2><a class="anchor" id="news_31_autoiconify"></a>
+Simultaneous multi-monitor rendering</h2>
+<p>GLFW now supports disabling auto-iconification of full screen windows with the <a class="el" href="window.html#window_hints_wnd">GLFW_AUTO_ICONIFY</a> window hint. This is intended for people building multi-monitor installations, where you need windows to stay in full screen despite losing input focus.</p>
+<h2><a class="anchor" id="news_31_floating"></a>
+Floating windows</h2>
+<p>GLFW now supports floating windows, also called topmost or always on top, for easier debugging with the <a class="el" href="window.html#window_hints_wnd">GLFW_FLOATING</a> window hint.</p>
+<h2><a class="anchor" id="news_31_focused"></a>
+Initially unfocused windows</h2>
+<p>GLFW now supports preventing a windowed mode window from gaining input focus on creation, with the <a class="el" href="window.html#window_hints_wnd">GLFW_FOCUSED</a> window hint.</p>
+<h2><a class="anchor" id="news_31_direct"></a>
+Direct access for window attributes and cursor position</h2>
+<p>GLFW now queries the window input focus, visibility and iconification attributes and the cursor position directly instead of returning cached data.</p>
+<h2><a class="anchor" id="news_31_libovr"></a>
+Better interoperability with Oculus Rift</h2>
+<p>GLFW now provides native access functions for the OS level handles corresponding to monitor objects, as well as a <a class="el" href="rift.html">brief guide</a>. It is also regularly tested for compatibility with the latest version of LibOVR (0.4.4 on release).</p>
+<h2><a class="anchor" id="news_31_charmods"></a>
+Character with modifiers callback</h2>
+<p>GLFW now provides a callback for character events with modifier key bits. The callback is set with <a class="el" href="group__input.html#ga3f55ef5dc03a374e567f068b13c94afc">glfwSetCharModsCallback</a>. Unlike the regular character callback, this will report character events that will not result in a character being input, for example if the Control key is held down.</p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="input.html#input_char">Text input</a></dd></dl>
+<h2><a class="anchor" id="news_31_single"></a>
+Single buffered framebuffers</h2>
+<p>GLFW now supports the creation of single buffered windows, with the <a class="el" href="window.html#window_hints_fb">GLFW_DOUBLEBUFFER</a> window hint.</p>
+<h2><a class="anchor" id="news_31_glext"></a>
+Macro for including extension header</h2>
+<p>GLFW now includes the extension header appropriate for the chosen OpenGL or OpenGL ES header when <a class="el" href="build.html#build_macros">GLFW_INCLUDE_GLEXT</a> is defined. GLFW does not provide these headers. They must be provided by your development environment or your OpenGL or OpenGL ES SDK.</p>
+<h2><a class="anchor" id="news_31_release"></a>
+Context release behaviors</h2>
+<p>GLFW now supports controlling whether the pipeline is flushed when a context is made non-current, with the <a class="el" href="window.html#window_hints_ctx">GLFW_CONTEXT_RELEASE_BEHAVIOR</a> window hint, provided the machine supports the <code>GL_KHR_context_flush_control</code> extension.</p>
+<h2><a class="anchor" id="news_31_wayland"></a>
+(Experimental) Wayland support</h2>
+<p>GLFW now has an <em>experimental</em> Wayland display protocol backend that can be selected on Linux with a CMake option.</p>
+<h2><a class="anchor" id="news_31_mir"></a>
+(Experimental) Mir support</h2>
+<p>GLFW now has an <em>experimental</em> Mir display server backend that can be selected on Linux with a CMake option.</p>
+<h1><a class="anchor" id="news_30"></a>
+New features in 3.0</h1>
+<p>These are the release highlights. For a full list of changes see the <a href="http://www.glfw.org/changelog.html" target="_blank" rel="noopener">version history</a>.</p>
+<h2><a class="anchor" id="news_30_cmake"></a>
+CMake build system</h2>
+<p>GLFW now uses the CMake build system instead of the various makefiles and project files used by earlier versions. CMake is available for all platforms supported by GLFW, is present in most package systems and can generate makefiles and/or project files for most popular development environments.</p>
+<p>For more information on how to use CMake, see the <a href="http://cmake.org/cmake/help/documentation.html" target="_blank" rel="noopener">CMake manual</a>.</p>
+<h2><a class="anchor" id="news_30_multiwnd"></a>
+Multi-window support</h2>
+<p>GLFW now supports the creation of multiple windows, each with their own OpenGL or OpenGL ES context, and all window functions now take a window handle. Event callbacks are now per-window and are provided with the handle of the window that received the event. The <a class="el" href="group__context.html#ga1c04dc242268f827290fe40aa1c91157">glfwMakeContextCurrent</a> function has been added to select which context is current on a given thread.</p>
+<h2><a class="anchor" id="news_30_multimon"></a>
+Multi-monitor support</h2>
+<p>GLFW now explicitly supports multiple monitors. They can be enumerated with <a class="el" href="group__monitor.html#ga3fba51c8bd36491d4712aa5bd074a537">glfwGetMonitors</a>, queried with <a class="el" href="group__monitor.html#ga820b0ce9a5237d645ea7cbb4bd383458">glfwGetVideoModes</a>, <a class="el" href="group__monitor.html#ga102f54e7acc9149edbcf0997152df8c9">glfwGetMonitorPos</a>, <a class="el" href="group__monitor.html#ga79a34ee22ff080ca954a9663e4679daf">glfwGetMonitorName</a> and <a class="el" href="group__monitor.html#ga7d8bffc6c55539286a6bd20d32a8d7ea">glfwGetMonitorPhysicalSize</a>, and specified at window creation to make the newly created window full screen on that specific monitor.</p>
+<h2><a class="anchor" id="news_30_unicode"></a>
+Unicode support</h2>
+<p>All string arguments to GLFW functions and all strings returned by GLFW now use the UTF-8 encoding. This includes the window title, error string, clipboard text, monitor and joystick names as well as the extension function arguments (as ASCII is a subset of UTF-8).</p>
+<h2><a class="anchor" id="news_30_clipboard"></a>
+Clipboard text I/O</h2>
+<p>GLFW now supports reading and writing plain text to and from the system clipboard, with the <a class="el" href="group__input.html#ga5aba1d704d9ab539282b1fbe9f18bb94">glfwGetClipboardString</a> and <a class="el" href="group__input.html#gaba1f022c5eb07dfac421df34cdcd31dd">glfwSetClipboardString</a> functions.</p>
+<h2><a class="anchor" id="news_30_gamma"></a>
+Gamma ramp support</h2>
+<p>GLFW now supports setting and reading back the gamma ramp of monitors, with the <a class="el" href="group__monitor.html#gab7c41deb2219bde3e1eb756ddaa9ec80">glfwGetGammaRamp</a> and <a class="el" href="group__monitor.html#ga583f0ffd0d29613d8cd172b996bbf0dd">glfwSetGammaRamp</a> functions. There is also <a class="el" href="group__monitor.html#ga6ac582625c990220785ddd34efa3169a">glfwSetGamma</a>, which generates a ramp from a gamma value and then sets it.</p>
+<h2><a class="anchor" id="news_30_gles"></a>
+OpenGL ES support</h2>
+<p>GLFW now supports the creation of OpenGL ES contexts, by setting the <code>GLFW_CLIENT_API</code> window hint to <code>GLFW_OPENGL_ES_API</code>, where creation of such contexts are supported. Note that GLFW <em>does not implement</em> OpenGL ES, so your driver must provide support in a way usable by GLFW. Modern Nvidia and Intel drivers support creation of OpenGL ES context using the GLX and WGL APIs, while AMD provides an EGL implementation instead.</p>
+<h2><a class="anchor" id="news_30_egl"></a>
+(Experimental) EGL support</h2>
+<p>GLFW now has an experimental EGL context creation back end that can be selected through CMake options.</p>
+<h2><a class="anchor" id="news_30_hidpi"></a>
+High-DPI support</h2>
+<p>GLFW now supports high-DPI monitors on both Windows and OS X, giving windows full resolution framebuffers where other UI elements are scaled up. To achieve this, <a class="el" href="group__window.html#ga0e2637a4161afb283f5300c7f94785c9">glfwGetFramebufferSize</a> and <a class="el" href="group__window.html#ga3203461a5303bf289f2e05f854b2f7cf">glfwSetFramebufferSizeCallback</a> have been added. These work with pixels, while the rest of the GLFW API works with screen coordinates. This is important as OpenGL uses pixels, not screen coordinates.</p>
+<h2><a class="anchor" id="news_30_error"></a>
+Error callback</h2>
+<p>GLFW now has an error callback, which can provide your application with much more detailed diagnostics than was previously possible. The callback is passed an error code and a description string.</p>
+<h2><a class="anchor" id="news_30_wndptr"></a>
+Per-window user pointer</h2>
+<p>Each window now has a user-defined pointer, retrieved with <a class="el" href="group__window.html#ga17807ce0f45ac3f8bb50d6dcc59a4e06">glfwGetWindowUserPointer</a> and set with <a class="el" href="group__window.html#ga3d2fc6026e690ab31a13f78bc9fd3651">glfwSetWindowUserPointer</a>, to make it easier to integrate GLFW into C++ code.</p>
+<h2><a class="anchor" id="news_30_iconifyfun"></a>
+Window iconification callback</h2>
+<p>Each window now has a callback for iconification and restoration events, which is set with <a class="el" href="group__window.html#gab1ea7263081c0e073b8d5b91d6ffd367">glfwSetWindowIconifyCallback</a>.</p>
+<h2><a class="anchor" id="news_30_wndposfun"></a>
+Window position callback</h2>
+<p>Each window now has a callback for position events, which is set with <a class="el" href="group__window.html#ga2837d4d240659feb4268fcb6530a6ba1">glfwSetWindowPosCallback</a>.</p>
+<h2><a class="anchor" id="news_30_wndpos"></a>
+Window position query</h2>
+<p>The position of a window can now be retrieved using <a class="el" href="group__window.html#ga73cb526c000876fd8ddf571570fdb634">glfwGetWindowPos</a>.</p>
+<h2><a class="anchor" id="news_30_focusfun"></a>
+Window focus callback</h2>
+<p>Each windows now has a callback for focus events, which is set with <a class="el" href="group__window.html#ga25d1c584edb375d7711c5c3548ba711f">glfwSetWindowFocusCallback</a>.</p>
+<h2><a class="anchor" id="news_30_enterleave"></a>
+Cursor enter/leave callback</h2>
+<p>Each window now has a callback for when the mouse cursor enters or leaves its client area, which is set with <a class="el" href="group__input.html#gaa299c41dd0a3d171d166354e01279e04">glfwSetCursorEnterCallback</a>.</p>
+<h2><a class="anchor" id="news_30_wndtitle"></a>
+Initial window title</h2>
+<p>The title of a window is now specified at creation time, as one of the arguments to <a class="el" href="group__window.html#ga5c336fddf2cbb5b92f65f10fb6043344">glfwCreateWindow</a>.</p>
+<h2><a class="anchor" id="news_30_hidden"></a>
+Hidden windows</h2>
+<p>Windows can now be hidden with <a class="el" href="group__window.html#ga49401f82a1ba5f15db5590728314d47c">glfwHideWindow</a>, shown using <a class="el" href="group__window.html#ga61be47917b72536a148300f46494fc66">glfwShowWindow</a> and created initially hidden with the <code>GLFW_VISIBLE</code> window hint. This allows for off-screen rendering in a way compatible with most drivers, as well as moving a window to a specific position before showing it.</p>
+<h2><a class="anchor" id="news_30_undecorated"></a>
+Undecorated windows</h2>
+<p>Windowed mode windows can now be created without decorations, i.e. things like a frame, a title bar, with the <code>GLFW_DECORATED</code> window hint. This allows for the creation of things like splash screens.</p>
+<h2><a class="anchor" id="news_30_keymods"></a>
+Modifier key bit masks</h2>
+<p><a class="el" href="group__mods.html">Modifier key bit mask</a> parameters have been added to the <a class="el" href="group__input.html#ga1e008c7a8751cea648c8f42cc91104cf">mouse button</a> and <a class="el" href="group__input.html#ga592dd1919f8a1dc7576b13cdd8b7b695">key</a> callbacks.</p>
+<h2><a class="anchor" id="news_30_scancode"></a>
+Platform-specific scancodes</h2>
+<p>A scancode parameter has been added to the <a class="el" href="group__input.html#ga592dd1919f8a1dc7576b13cdd8b7b695">key callback</a>. Keys that don't have a <a class="el" href="group__keys.html">key token</a> still get passed on with the key parameter set to <code>GLFW_KEY_UNKNOWN</code>. These scancodes will vary between machines and are intended to be used for key bindings.</p>
+<h2><a class="anchor" id="news_30_jsname"></a>
+Joystick names</h2>
+<p>The name of a joystick can now be retrieved using <a class="el" href="group__input.html#gac8d7f6107e05cfd106cfba973ab51e19">glfwGetJoystickName</a>.</p>
+<h2><a class="anchor" id="news_30_doxygen"></a>
+Doxygen documentation</h2>
+<p>You are reading it. </p>
+</div></div><!-- contents -->
+<address class="footer">
+<p>
+Last update on Thu Mar 19 2015 for GLFW 3.1.1
+</p>
+</address>
+</body>
+</html>
+
+      </div>
+      
+      
+      
+    </div>
+    
+  <ul class="breadcrumb">
+          
+            <li><a href="/project/">PROJECT</a></li>
+            <li><a href="/project/cggame101/">CGGAME101</a></li>
+            <li><a href="/project/cggame101/assignment8/">ASSIGNMENT8</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/">CGL</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/deps/">DEPS</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/deps/glfw/">GLFW</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/deps/glfw/docs/">DOCS</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/deps/glfw/docs/html/">HTML</a></li>
+            <li>NEWS</li>
+          
+  </ul>
+
+    
+    
+    
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text">
+New features in 3.1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.1.</span> <span class="nav-text">
+Custom mouse cursor images</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.2.</span> <span class="nav-text">
+Path drop event</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.3.</span> <span class="nav-text">
+Main thread wake-up</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.4.</span> <span class="nav-text">
+Window frame size query</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.5.</span> <span class="nav-text">
+Simultaneous multi-monitor rendering</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.6.</span> <span class="nav-text">
+Floating windows</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.7.</span> <span class="nav-text">
+Initially unfocused windows</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.8.</span> <span class="nav-text">
+Direct access for window attributes and cursor position</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.9.</span> <span class="nav-text">
+Better interoperability with Oculus Rift</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.10.</span> <span class="nav-text">
+Character with modifiers callback</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.11.</span> <span class="nav-text">
+Single buffered framebuffers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.12.</span> <span class="nav-text">
+Macro for including extension header</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.13.</span> <span class="nav-text">
+Context release behaviors</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.14.</span> <span class="nav-text">
+(Experimental) Wayland support</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.15.</span> <span class="nav-text">
+(Experimental) Mir support</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">2.</span> <span class="nav-text">
+New features in 3.0</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">2.1.</span> <span class="nav-text">
+CMake build system</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">2.2.</span> <span class="nav-text">
+Multi-window support</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">2.3.</span> <span class="nav-text">
+Multi-monitor support</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">2.4.</span> <span class="nav-text">
+Unicode support</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">2.5.</span> <span class="nav-text">
+Clipboard text I&#x2F;O</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">2.6.</span> <span class="nav-text">
+Gamma ramp support</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">2.7.</span> <span class="nav-text">
+OpenGL ES support</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">2.8.</span> <span class="nav-text">
+(Experimental) EGL support</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">2.9.</span> <span class="nav-text">
+High-DPI support</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">2.10.</span> <span class="nav-text">
+Error callback</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">2.11.</span> <span class="nav-text">
+Per-window user pointer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">2.12.</span> <span class="nav-text">
+Window iconification callback</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">2.13.</span> <span class="nav-text">
+Window position callback</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">2.14.</span> <span class="nav-text">
+Window position query</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">2.15.</span> <span class="nav-text">
+Window focus callback</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">2.16.</span> <span class="nav-text">
+Cursor enter&#x2F;leave callback</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">2.17.</span> <span class="nav-text">
+Initial window title</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">2.18.</span> <span class="nav-text">
+Hidden windows</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">2.19.</span> <span class="nav-text">
+Undecorated windows</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">2.20.</span> <span class="nav-text">
+Modifier key bit masks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">2.21.</span> <span class="nav-text">
+Platform-specific scancodes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">2.22.</span> <span class="nav-text">
+Joystick names</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">2.23.</span> <span class="nav-text">
+Doxygen documentation</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="leeyupeng"
+      src="/images/icon128.jpg">
+  <p class="site-author-name" itemprop="name">leeyupeng</p>
+  <div class="site-description" itemprop="description">leeyupeng@126.com</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">358</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">54</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">141</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="/about" title="QQ → about"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:leeyupeng@126.com" title="E-Mail → mailto:leeyupeng@126.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">leeyupeng</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              Counter('post', '/classes/Counter', { title, url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"wbbpG5Yxg8WKIQmzEeNU9P5G-gzGzoHsz","app_key":"y271idcAENCbz0foGfiEtWOu","server_url":null,"security":false};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('/js/src/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'wbbpG5Yxg8WKIQmzEeNU9P5G-gzGzoHsz',
+      appKey     : 'y271idcAENCbz0foGfiEtWOu',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

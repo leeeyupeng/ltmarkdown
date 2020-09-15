@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"leeeyupeng.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="网络游戏中视野范围的处理AOI(Area Of Interest)，中文就是感兴趣区域。通俗一点说，感兴趣区域就是玩家在场景实时看到的区域；也就是AOI会随着英雄的移动改变而改变。游戏的AOI算法应该算作游戏的基础核心了，许多逻辑都是因为AOI进出事件驱动的，许多网络同步数据也是因为AOI进出事件产生的。因此，良好的AOI算法和基于AOI算法的优化，是提高游戏性能的关键。 一则是解决 NPC 的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="(AOI)网络游戏中视野范围的处理">
+<meta property="og:url" content="https://leeeyupeng.github.io/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E5%9C%BA%E6%99%AF%E7%AE%A1%E7%90%86/AOI.html">
+<meta property="og:site_name" content="leeyupeng">
+<meta property="og:description" content="网络游戏中视野范围的处理AOI(Area Of Interest)，中文就是感兴趣区域。通俗一点说，感兴趣区域就是玩家在场景实时看到的区域；也就是AOI会随着英雄的移动改变而改变。游戏的AOI算法应该算作游戏的基础核心了，许多逻辑都是因为AOI进出事件驱动的，许多网络同步数据也是因为AOI进出事件产生的。因此，良好的AOI算法和基于AOI算法的优化，是提高游戏性能的关键。 一则是解决 NPC 的">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-09-11T09:13:46.876Z">
+<meta property="article:modified_time" content="2020-09-11T09:13:46.876Z">
+<meta property="article:author" content="leeyupeng">
+<meta property="article:tag" content="游戏开发">
+<meta property="article:tag" content="场景管理">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://leeeyupeng.github.io/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E5%9C%BA%E6%99%AF%E7%AE%A1%E7%90%86/AOI.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>(AOI)网络游戏中视野范围的处理 | leeyupeng</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">leeyupeng</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">leeyupeng@126.com</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-tagsalgorithm">
+
+    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95" rel="section"><i class="fa fa-book fa-fw"></i>数据结构与算法</a>
+
+  </li>
+        <li class="menu-item menu-item-tagscplusplus">
+
+    <a href="/tags/C-C" rel="section"><i class="fa fa-book fa-fw"></i>C/C++</a>
+
+  </li>
+        <li class="menu-item menu-item-tagsgraphics">
+
+    <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6" rel="section"><i class="fa fa-book fa-fw"></i>图形学</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E5%9C%BA%E6%99%AF%E7%AE%A1%E7%90%86/AOI.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          (AOI)网络游戏中视野范围的处理
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-11 17:13:46" itemprop="dateCreated datePublished" datetime="2020-09-11T17:13:46+08:00">2020-09-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">游戏开发</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E5%9C%BA%E6%99%AF%E7%AE%A1%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">场景管理</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E5%9C%BA%E6%99%AF%E7%AE%A1%E7%90%86/AOI.html" class="post-meta-item leancloud_visitors" data-flag-title="(AOI)网络游戏中视野范围的处理" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E5%9C%BA%E6%99%AF%E7%AE%A1%E7%90%86/AOI.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E5%9C%BA%E6%99%AF%E7%AE%A1%E7%90%86/AOI.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="网络游戏中视野范围的处理"><a href="#网络游戏中视野范围的处理" class="headerlink" title="网络游戏中视野范围的处理"></a>网络游戏中视野范围的处理</h1><p>AOI(Area Of Interest)，中文就是感兴趣区域。通俗一点说，感兴趣区域就是玩家在场景实时看到的区域；也就是AOI会随着英雄的移动改变而改变。游戏的AOI算法应该算作游戏的基础核心了，许多逻辑都是因为AOI进出事件驱动的，许多网络同步数据也是因为AOI进出事件产生的。因此，良好的AOI算法和基于AOI算法的优化，是提高游戏性能的关键。</p>
+<p>一则是解决 NPC 的 AI 事件触发问题。游戏场景中有众多的 NPC ，比 PC 大致要多一个数量级。NPC 的 AI 触发条件往往是和其它 NPC 或 PC 距离接近。如果没有 AOI 模块，每个 NPC 都需要遍历场景中其它对象，判断与之距离。这个检索量是非常巨大的（复杂度 O(N*N) ）。一般我们会设计一个 AOI 模块，统一处理，并优化比较次数，当两个对象距离接近时，以消息的形式通知它们。</p>
+<p>二则用于减少向 PC 发送的同步消息数量。把离 PC 较远的物体状态变化的消息过滤掉。PC 身上可以带一个附近对象列表，由 AOI 消息来增减这个列表的内容。</p>
+<p>AOI 的传统实现方法大致有三种：</p>
+<p>第一，也是最苯的方案。直接定期比较所有对象间的关系，发现能够触发 AOI 事件就发送消息。这种方案实现起来相当简洁，几乎不可能有 bug ，可以用来验证服务协议的正确性。在场景中对象不对的情况下其实也是不错的一个方案。如果我们独立出来的话，利用一个单独的核，其实可以定期处理相当大的对象数量。</p>
+<p>第二，空间切割监视的方法。把场景划分为等大的格子，在每个格子里树立灯塔。在对象进入或退出格子时，维护每个灯塔上的对象列表。对于每个灯塔还是 O(N * N) 的复杂度，但由于把对象数据量大量降了下来，所以性能要好的多，实现也很容易。缺点是，存储空间不仅和对象数量有关，还和场景大小有关。更浪费内存。且当场景规模大过对象数量规模时，性能还会下降。因为要遍历整个场景。对大地图不太合适。这里还有一些优化技巧，比如可以把格子划分为六边形 的。</p>
+<p>第三，使用十字链表 (3d 空间则再增加一个链表维度) 保存一系列线段，当线段移动时触发 AOI 事件。算法不展开解释，这个用的很多应该搜的到。优点是可以混用于不同半径的 AOI 区域。</p>
+<h2 id="统一接口设计"><a href="#统一接口设计" class="headerlink" title="统一接口设计"></a>统一接口设计</h2><p>在服务器上，我们一般推荐把 AOI 模块做成一个独立服务 。场景模块通知它改变对象的位置信息。AOI 服务则发送 AOI 消息给场景。</p>
+<p>AOI需求大概是这样：<br>1.游戏地图上有一些npc和玩家在移动，每一个这样移动的对象我们叫做AOIEntity，每一个AOIEntity可以挂多个不同半径的AOI，每一个这种半径的AOI单元我们叫做AOINode，如此，AOIEntity拥有多个AOINode，然后每一个场景管理者AOIManager管理着多个这样的AOIEntity对象。<br>2.AOI进出事件由三种行为产生：进入场景，离开场景，在场景移动，因为这是AOIEntity相互之间的作用，故因放在AOIManager中统一管理，接口类似这样：<br>void AOIManager:Enter(AOIEntity <em>entity, const Point&amp; target_pos);<br>void AOIManager:Move(AOIEntity </em>entity, const Point&amp; target_pos);<br>void AOIManager:Leave(AOIEntity *entity);<br>3.添加一个AOINode的接口，主要参数是Id(用于标识这个AOI)，半径，进出事件的callback函数：<br>void AOIEntity:AddNode(int aoi_id, float radius, AOICB enter_cb, AOICB leave_cb);<br>4.获取周围对象和观察者玩家对象集合的接口，这个可以在更上层，通过在响应进出事件的enter_cb, leave_cb中维护这样的集合。</p>
+<h2 id="全场景同步法"><a href="#全场景同步法" class="headerlink" title="全场景同步法"></a>全场景同步法</h2><p>即任一实体变动时，都广播给其他在场的所有实体。<br>适用范围：玩家比较少的小型场景，比如组队副本。</p>
+<p>游戏实例：比较早期的游戏，比如：天骄II及其衍生品等。</p>
+<p>缺点：玩家较多时，消息量骤增。</p>
+<p>优化方案：每个实体变动时，遍历所有实体，判断距离在视野内的，才广播。也可以实时维护这个可见列表。</p>
+<h2 id="网格算法"><a href="#网格算法" class="headerlink" title="网格算法"></a>网格算法</h2><p>既是把整个场景用网格划分成一个一个小区域（划分粒度可调整），每一个区域是当前场景该区域内的AOIEntity集合，当有一个AOIEntity移动时，根据对象移动之前坐标和目的地坐标，算出移动前所在网格SrcGrid和目的地网格DstGrid，根据一个可调的偏移参数，算出受这次移动影响的各个网格所在的一个网格区域（通常是一个包含这些网格的一个大网格），遍历每一个这样的网格里的每一个AOIEntity，与这个移动AOIEntity互相作比较，主要是比较这些事情：<br>1.是不是对方曾经在我的一个AOINode的半径内，移动后就不在了，是则产生离开回调；<br>2.是不是对方曾经不在我的一个AOINode的半径内，移动后就出现了，是则产生进入回调；<br>注意虽然移动是一个AOIEntity在移动，但是这种比较却要是互相的。<br>上面说的是网格算法的最简单实现了，当然实践上有许多地方可以优化和调整，包括使用更高效的数据结构，不细说。</p>
+<p>细分：还可以分为“九宫格法”和“灯塔法”。“九宫格法”——每个区域中记录的是处在本区域的实体。“灯塔法”——每个区域中记录的是会观察到我的实体。“灯塔法”可以看做是“九宫格法”的进一步优化。</p>
+<p>适用范围：多数2DMMORPG。</p>
+<p>游戏实例：天龙八部及其衍生品等。</p>
+<p>缺点：存储空间不仅和对象数量有关，还和场景大小有关。更浪费内存。且当场景规模大过对象数量规模时，性能还会下降。</p>
+<p>优化方案：区域大小根据场景具体情况进行配置，可提高效率。比如5人副本，可以配成整个场景一个区域。</p>
+<h2 id="十字链表算法"><a href="#十字链表算法" class="headerlink" title="十字链表算法"></a>十字链表算法</h2><p>算法基本上就是围绕两个双向链表在转—代表X轴的链表(叫做LinkListX)和代表Y轴的链表(叫做LinkLIstY)。对于每一个AOI单元，以AOIEntity的坐标位置为中心，可以构造出一个AOI矩形(以四元组[xleft,xright,ytop,ybottom]表示)。LinkListX链接的是所有这样的AOI矩形的xleft，xright，LinkListY链接的是所有这样的AOI矩形的ytop，ybottom，并且两者都是按照坐标值从小到大的顺序链接起来的。这样每一个AOI单元都在LinkListX，LinkListY上产生了总共4个节点，特殊的对于每一个可见的AOIEntity，以他们的坐标(XCenter,YCenter)在LinkListX，LinkListY上又产生了总共2个节点。现在当AOIEntity在场景中移动时，他所包含的在LinkList中的节点会相应的更改坐标值，而LinkList为了维护从小到大的顺序，会遍历链表，移动位置，直到重新有序。LinkList在这个过程，会产生AOI事件。</p>
+<ul>
+<li>具体来说，当AOIEntity要移动到(targetX,targetY), 对应的AOI矩形变成[targetX-R, targetX+R, targetY-R, targetY+R]，显然这四个节点值的改变后LinkList不再有序，现在来调整LinkList，可以这样来理解这个过程，对象先在X轴上移动到targetX,对应的是在LinkListX上移动，每次交换两个节点的位置都应该判断：1.两者的拥有者是不是不同的Entity；2.是不是一个是代表Entity的节点，一个是代表AOI矩形边界的节点；3.两者的拥有者整体上能否确实产生AOI进出事件。然后在Y轴上移动到targetY，过程与X轴对称。</li>
+<li>可以总结一下，LinkList的节点的属性：<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">LinkNode</span> &#123;</span></span><br><span class="line">byte _type; <span class="comment">// 代表类型，主要是区分AOI矩形的边界和Entity本身</span></span><br><span class="line">AOINode *_owner; <span class="comment">// 属于哪个AOI单元，这里把代表Entity本身的节点也当作一个R=0的AOI单元</span></span><br><span class="line"><span class="keyword">int</span> _pos_val; <span class="comment">// 坐标值，</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">LinkNode</span> *_<span class="title">next</span>, *<span class="title">prev</span>;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://blog.codingnow.com/2012/03/dev_note_13.html" target="_blank" rel="noopener">云风的 BLOG AOI 服务的设计与实现</a><br><a href="https://blog.codingnow.com/2008/07/aoi.html" target="_blank" rel="noopener">云风的 BLOG AOI</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" rel="tag"># 游戏开发</a>
+              <a href="/tags/%E5%9C%BA%E6%99%AF%E7%AE%A1%E7%90%86/" rel="tag"># 场景管理</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E5%9C%BA%E6%99%AF%E7%AE%A1%E7%90%86/%E5%85%AB%E5%8F%89%E6%A0%91.html" rel="prev" title="八叉树">
+      <i class="fa fa-chevron-left"></i> 八叉树
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OGRE/OGRE.html" rel="next" title="Ogre">
+      Ogre <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#网络游戏中视野范围的处理"><span class="nav-number">1.</span> <span class="nav-text">网络游戏中视野范围的处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#统一接口设计"><span class="nav-number">1.1.</span> <span class="nav-text">统一接口设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#全场景同步法"><span class="nav-number">1.2.</span> <span class="nav-text">全场景同步法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网格算法"><span class="nav-number">1.3.</span> <span class="nav-text">网格算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十字链表算法"><span class="nav-number">1.4.</span> <span class="nav-text">十字链表算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">1.5.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="leeyupeng"
+      src="/images/icon128.jpg">
+  <p class="site-author-name" itemprop="name">leeyupeng</p>
+  <div class="site-description" itemprop="description">leeyupeng@126.com</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">358</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">54</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">141</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="/about" title="QQ → about"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:leeyupeng@126.com" title="E-Mail → mailto:leeyupeng@126.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">leeyupeng</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              Counter('post', '/classes/Counter', { title, url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"wbbpG5Yxg8WKIQmzEeNU9P5G-gzGzoHsz","app_key":"y271idcAENCbz0foGfiEtWOu","server_url":null,"security":false};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('/js/src/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'wbbpG5Yxg8WKIQmzEeNU9P5G-gzGzoHsz',
+      appKey     : 'y271idcAENCbz0foGfiEtWOu',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

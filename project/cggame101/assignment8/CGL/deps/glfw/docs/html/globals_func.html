@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"leeeyupeng.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="GLFW: Globals         $(document).ready(function() { searchBox.OnSelectItem(0); });        	 		GLFW 		 			Documentation 			Download 			Media 			Community 		 	     var searchBox &#x3D; new SearchBox(&quot;">
+<meta property="og:type" content="website">
+<meta property="og:title" content="leeyupeng">
+<meta property="og:url" content="https://leeeyupeng.github.io/project/cggame101/assignment8/CGL/deps/glfw/docs/html/globals_func.html">
+<meta property="og:site_name" content="leeyupeng">
+<meta property="og:description" content="GLFW: Globals         $(document).ready(function() { searchBox.OnSelectItem(0); });        	 		GLFW 		 			Documentation 			Download 			Media 			Community 		 	     var searchBox &#x3D; new SearchBox(&quot;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://leeeyupeng.github.io/project/cggame101/assignment8/CGL/deps/glfw/docs/html/search/mag_sel.png">
+<meta property="og:image" content="https://leeeyupeng.github.io/project/cggame101/assignment8/CGL/deps/glfw/docs/html/search/close.png">
+<meta property="article:published_time" content="2020-07-20T07:14:51.825Z">
+<meta property="article:modified_time" content="2020-03-04T04:24:34.000Z">
+<meta property="article:author" content="leeyupeng">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://leeeyupeng.github.io/project/cggame101/assignment8/CGL/deps/glfw/docs/html/search/mag_sel.png">
+
+<link rel="canonical" href="https://leeeyupeng.github.io/project/cggame101/assignment8/CGL/deps/glfw/docs/html/globals_func.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title> | leeyupeng
+</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">leeyupeng</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">leeyupeng@126.com</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-tagsalgorithm">
+
+    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95" rel="section"><i class="fa fa-book fa-fw"></i>数据结构与算法</a>
+
+  </li>
+        <li class="menu-item menu-item-tagscplusplus">
+
+    <a href="/tags/C-C" rel="section"><i class="fa fa-book fa-fw"></i>C/C++</a>
+
+  </li>
+        <li class="menu-item menu-item-tagsgraphics">
+
+    <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6" rel="section"><i class="fa fa-book fa-fw"></i>图形学</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+  
+  
+
+          <div class="content page posts-expand">
+            
+
+    
+    
+    
+    <div class="post-block" lang="zh-CN">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">
+</h1>
+
+<div class="post-meta">
+  
+  <ul class="breadcrumb">
+          
+            <li><a href="/project/">PROJECT</a></li>
+            <li><a href="/project/cggame101/">CGGAME101</a></li>
+            <li><a href="/project/cggame101/assignment8/">ASSIGNMENT8</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/">CGL</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/deps/">DEPS</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/deps/glfw/">GLFW</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/deps/glfw/docs/">DOCS</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/deps/glfw/docs/html/">HTML</a></li>
+            <li>GLOBALS_FUNC</li>
+          
+  </ul>
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+          <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
+<title>GLFW: Globals</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="extra.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+	<div class="glfwheader">
+		<a href="http://www.glfw.org/" target="_blank" rel="noopener" id="glfwhome">GLFW</a>
+		<ul class="glfwnavbar">
+			<li><a href="http://www.glfw.org/documentation.html" target="_blank" rel="noopener">Documentation</a></li>
+			<li><a href="http://www.glfw.org/download.html" target="_blank" rel="noopener">Download</a></li>
+			<li><a href="http://www.glfw.org/media.html" target="_blank" rel="noopener">Media</a></li>
+			<li><a href="http://www.glfw.org/community.html" target="_blank" rel="noopener">Community</a></li>
+		</ul>
+	</div>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.8.6 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li class="current"><a href="globals.html"><span>Globals</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow3" class="tabs2">
+    <ul class="tablist">
+      <li><a href="globals.html"><span>All</span></a></li>
+      <li class="current"><a href="globals_func.html"><span>Functions</span></a></li>
+      <li><a href="globals_type.html"><span>Typedefs</span></a></li>
+      <li><a href="globals_defs.html"><span>Macros</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow4" class="tabs3">
+    <ul class="tablist">
+      <li><a href="#index_c"><span>c</span></a></li>
+      <li><a href="#index_d"><span>d</span></a></li>
+      <li><a href="#index_e"><span>e</span></a></li>
+      <li><a href="#index_g"><span>g</span></a></li>
+      <li><a href="#index_h"><span>h</span></a></li>
+      <li><a href="#index_i"><span>i</span></a></li>
+      <li><a href="#index_j"><span>j</span></a></li>
+      <li><a href="#index_m"><span>m</span></a></li>
+      <li><a href="#index_p"><span>p</span></a></li>
+      <li><a href="#index_r"><span>r</span></a></li>
+      <li><a href="#index_s"><span>s</span></a></li>
+      <li><a href="#index_t"><span>t</span></a></li>
+      <li class="current"><a href="#index_w"><span>w</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="contents">
+&#160;
+
+<h3><a class="anchor" id="index_c"></a>- c -</h3><ul>
+<li>glfwCreateCursor()
+: <a class="el" href="group__input.html#gafca356935e10135016aa49ffa464c355">glfw3.h</a>
+</li>
+<li>glfwCreateStandardCursor()
+: <a class="el" href="group__input.html#gaa65f416d03ebbbb5b8db71a489fcb894">glfw3.h</a>
+</li>
+<li>glfwCreateWindow()
+: <a class="el" href="group__window.html#ga5c336fddf2cbb5b92f65f10fb6043344">glfw3.h</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_d"></a>- d -</h3><ul>
+<li>glfwDefaultWindowHints()
+: <a class="el" href="group__window.html#gaa77c4898dfb83344a6b4f76aa16b9a4a">glfw3.h</a>
+</li>
+<li>glfwDestroyCursor()
+: <a class="el" href="group__input.html#ga81b952cd1764274d0db7fb3c5a79ba6a">glfw3.h</a>
+</li>
+<li>glfwDestroyWindow()
+: <a class="el" href="group__window.html#gacdf43e51376051d2c091662e9fe3d7b2">glfw3.h</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_e"></a>- e -</h3><ul>
+<li>glfwExtensionSupported()
+: <a class="el" href="group__context.html#ga87425065c011cef1ebd6aac75e059dfa">glfw3.h</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_g"></a>- g -</h3><ul>
+<li>glfwGetClipboardString()
+: <a class="el" href="group__input.html#ga5aba1d704d9ab539282b1fbe9f18bb94">glfw3.h</a>
+</li>
+<li>glfwGetCocoaMonitor()
+: <a class="el" href="group__native.html#gaf22f429aec4b1aab316142d66d9be3e6">glfw3native.h</a>
+</li>
+<li>glfwGetCocoaWindow()
+: <a class="el" href="group__native.html#gac3ed9d495d0c2bb9652de5a50c648715">glfw3native.h</a>
+</li>
+<li>glfwGetCurrentContext()
+: <a class="el" href="group__context.html#gac84759b1f6c2d271a4fea8ae89ec980d">glfw3.h</a>
+</li>
+<li>glfwGetCursorPos()
+: <a class="el" href="group__input.html#ga01d37b6c40133676b9cea60ca1d7c0cc">glfw3.h</a>
+</li>
+<li>glfwGetEGLContext()
+: <a class="el" href="group__native.html#ga671c5072becd085f4ab5771a9c8efcf1">glfw3native.h</a>
+</li>
+<li>glfwGetEGLDisplay()
+: <a class="el" href="group__native.html#ga1cd8d973f47aacb5532d368147cc3138">glfw3native.h</a>
+</li>
+<li>glfwGetEGLSurface()
+: <a class="el" href="group__native.html#ga2199b36117a6a695fec8441d8052eee6">glfw3native.h</a>
+</li>
+<li>glfwGetFramebufferSize()
+: <a class="el" href="group__window.html#ga0e2637a4161afb283f5300c7f94785c9">glfw3.h</a>
+</li>
+<li>glfwGetGammaRamp()
+: <a class="el" href="group__monitor.html#gab7c41deb2219bde3e1eb756ddaa9ec80">glfw3.h</a>
+</li>
+<li>glfwGetGLXContext()
+: <a class="el" href="group__native.html#ga62d884114b0abfcdc2930e89f20867e2">glfw3native.h</a>
+</li>
+<li>glfwGetInputMode()
+: <a class="el" href="group__input.html#gaf5b859dbe19bdf434e42695ea45cc5f4">glfw3.h</a>
+</li>
+<li>glfwGetJoystickAxes()
+: <a class="el" href="group__input.html#ga6271d46a5901ec2c99601ccf4dd14731">glfw3.h</a>
+</li>
+<li>glfwGetJoystickButtons()
+: <a class="el" href="group__input.html#gace54cd930dcd502e118fe4021384ce1b">glfw3.h</a>
+</li>
+<li>glfwGetJoystickName()
+: <a class="el" href="group__input.html#gac8d7f6107e05cfd106cfba973ab51e19">glfw3.h</a>
+</li>
+<li>glfwGetKey()
+: <a class="el" href="group__input.html#gadd341da06bc8d418b4dc3a3518af9ad2">glfw3.h</a>
+</li>
+<li>glfwGetMonitorName()
+: <a class="el" href="group__monitor.html#ga79a34ee22ff080ca954a9663e4679daf">glfw3.h</a>
+</li>
+<li>glfwGetMonitorPhysicalSize()
+: <a class="el" href="group__monitor.html#ga7d8bffc6c55539286a6bd20d32a8d7ea">glfw3.h</a>
+</li>
+<li>glfwGetMonitorPos()
+: <a class="el" href="group__monitor.html#ga102f54e7acc9149edbcf0997152df8c9">glfw3.h</a>
+</li>
+<li>glfwGetMonitors()
+: <a class="el" href="group__monitor.html#ga3fba51c8bd36491d4712aa5bd074a537">glfw3.h</a>
+</li>
+<li>glfwGetMouseButton()
+: <a class="el" href="group__input.html#gac1473feacb5996c01a7a5a33b5066704">glfw3.h</a>
+</li>
+<li>glfwGetNSGLContext()
+: <a class="el" href="group__native.html#ga559e002e3cd63c979881770cd4dc63bc">glfw3native.h</a>
+</li>
+<li>glfwGetPrimaryMonitor()
+: <a class="el" href="group__monitor.html#ga721867d84c6d18d6790d64d2847ca0b1">glfw3.h</a>
+</li>
+<li>glfwGetProcAddress()
+: <a class="el" href="group__context.html#ga35f1837e6f666781842483937612f163">glfw3.h</a>
+</li>
+<li>glfwGetTime()
+: <a class="el" href="group__input.html#gaa6cf4e7a77158a3b8fd00328b1720a4a">glfw3.h</a>
+</li>
+<li>glfwGetVersion()
+: <a class="el" href="group__init.html#ga9f8ffaacf3c269cc48eafbf8b9b71197">glfw3.h</a>
+</li>
+<li>glfwGetVersionString()
+: <a class="el" href="group__init.html#ga23d47dc013fce2bf58036da66079a657">glfw3.h</a>
+</li>
+<li>glfwGetVideoMode()
+: <a class="el" href="group__monitor.html#gafc1bb972a921ad5b3bd5d63a95fc2d52">glfw3.h</a>
+</li>
+<li>glfwGetVideoModes()
+: <a class="el" href="group__monitor.html#ga820b0ce9a5237d645ea7cbb4bd383458">glfw3.h</a>
+</li>
+<li>glfwGetWGLContext()
+: <a class="el" href="group__native.html#gadc4010d91d9cc1134d040eeb1202a143">glfw3native.h</a>
+</li>
+<li>glfwGetWin32Adapter()
+: <a class="el" href="group__native.html#gac84f63a3f9db145b9435e5e0dbc4183d">glfw3native.h</a>
+</li>
+<li>glfwGetWin32Monitor()
+: <a class="el" href="group__native.html#gac408b09a330749402d5d1fa1f5894dd9">glfw3native.h</a>
+</li>
+<li>glfwGetWin32Window()
+: <a class="el" href="group__native.html#gafe5079aa79038b0079fc09d5f0a8e667">glfw3native.h</a>
+</li>
+<li>glfwGetWindowAttrib()
+: <a class="el" href="group__window.html#gacccb29947ea4b16860ebef42c2cb9337">glfw3.h</a>
+</li>
+<li>glfwGetWindowFrameSize()
+: <a class="el" href="group__window.html#ga1a9fd382058c53101b21cf211898f1f1">glfw3.h</a>
+</li>
+<li>glfwGetWindowMonitor()
+: <a class="el" href="group__window.html#gaeac25e64789974ccbe0811766bd91a16">glfw3.h</a>
+</li>
+<li>glfwGetWindowPos()
+: <a class="el" href="group__window.html#ga73cb526c000876fd8ddf571570fdb634">glfw3.h</a>
+</li>
+<li>glfwGetWindowSize()
+: <a class="el" href="group__window.html#gaeea7cbc03373a41fb51cfbf9f2a5d4c6">glfw3.h</a>
+</li>
+<li>glfwGetWindowUserPointer()
+: <a class="el" href="group__window.html#ga17807ce0f45ac3f8bb50d6dcc59a4e06">glfw3.h</a>
+</li>
+<li>glfwGetX11Adapter()
+: <a class="el" href="group__native.html#ga088fbfa80f50569402b41be71ad66e40">glfw3native.h</a>
+</li>
+<li>glfwGetX11Display()
+: <a class="el" href="group__native.html#ga8519b66594ea3ef6eeafaa2e3ee37406">glfw3native.h</a>
+</li>
+<li>glfwGetX11Monitor()
+: <a class="el" href="group__native.html#gab2f8cc043905e9fa9b12bfdbbcfe874c">glfw3native.h</a>
+</li>
+<li>glfwGetX11Window()
+: <a class="el" href="group__native.html#ga90ca676322740842db446999a1b1f21d">glfw3native.h</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_h"></a>- h -</h3><ul>
+<li>glfwHideWindow()
+: <a class="el" href="group__window.html#ga49401f82a1ba5f15db5590728314d47c">glfw3.h</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_i"></a>- i -</h3><ul>
+<li>glfwIconifyWindow()
+: <a class="el" href="group__window.html#ga1bb559c0ebaad63c5c05ad2a066779c4">glfw3.h</a>
+</li>
+<li>glfwInit()
+: <a class="el" href="group__init.html#ga317aac130a235ab08c6db0834907d85e">glfw3.h</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_j"></a>- j -</h3><ul>
+<li>glfwJoystickPresent()
+: <a class="el" href="group__input.html#gaffcbd9ac8ee737fcdd25475123a3c790">glfw3.h</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_m"></a>- m -</h3><ul>
+<li>glfwMakeContextCurrent()
+: <a class="el" href="group__context.html#ga1c04dc242268f827290fe40aa1c91157">glfw3.h</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_p"></a>- p -</h3><ul>
+<li>glfwPollEvents()
+: <a class="el" href="group__window.html#ga37bd57223967b4211d60ca1a0bf3c832">glfw3.h</a>
+</li>
+<li>glfwPostEmptyEvent()
+: <a class="el" href="group__window.html#gab5997a25187e9fd5c6f2ecbbc8dfd7e9">glfw3.h</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_r"></a>- r -</h3><ul>
+<li>glfwRestoreWindow()
+: <a class="el" href="group__window.html#ga52527a5904b47d802b6b4bb519cdebc7">glfw3.h</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_s"></a>- s -</h3><ul>
+<li>glfwSetCharCallback()
+: <a class="el" href="group__input.html#ga556239421c6a5a243c66fca28da9f742">glfw3.h</a>
+</li>
+<li>glfwSetCharModsCallback()
+: <a class="el" href="group__input.html#ga3f55ef5dc03a374e567f068b13c94afc">glfw3.h</a>
+</li>
+<li>glfwSetClipboardString()
+: <a class="el" href="group__input.html#gaba1f022c5eb07dfac421df34cdcd31dd">glfw3.h</a>
+</li>
+<li>glfwSetCursor()
+: <a class="el" href="group__input.html#gad3b4f38c8d5dae036bc8fa959e18343e">glfw3.h</a>
+</li>
+<li>glfwSetCursorEnterCallback()
+: <a class="el" href="group__input.html#gaa299c41dd0a3d171d166354e01279e04">glfw3.h</a>
+</li>
+<li>glfwSetCursorPos()
+: <a class="el" href="group__input.html#ga04b03af936d906ca123c8f4ee08b39e7">glfw3.h</a>
+</li>
+<li>glfwSetCursorPosCallback()
+: <a class="el" href="group__input.html#ga7dad39486f2c7591af7fb25134a2501d">glfw3.h</a>
+</li>
+<li>glfwSetDropCallback()
+: <a class="el" href="group__input.html#ga41291bf15dd3ff564b3143aa6dc74a4b">glfw3.h</a>
+</li>
+<li>glfwSetErrorCallback()
+: <a class="el" href="group__init.html#gaa5d796c3cf7c1a7f02f845486333fb5f">glfw3.h</a>
+</li>
+<li>glfwSetFramebufferSizeCallback()
+: <a class="el" href="group__window.html#ga3203461a5303bf289f2e05f854b2f7cf">glfw3.h</a>
+</li>
+<li>glfwSetGamma()
+: <a class="el" href="group__monitor.html#ga6ac582625c990220785ddd34efa3169a">glfw3.h</a>
+</li>
+<li>glfwSetGammaRamp()
+: <a class="el" href="group__monitor.html#ga583f0ffd0d29613d8cd172b996bbf0dd">glfw3.h</a>
+</li>
+<li>glfwSetInputMode()
+: <a class="el" href="group__input.html#gaa92336e173da9c8834558b54ee80563b">glfw3.h</a>
+</li>
+<li>glfwSetKeyCallback()
+: <a class="el" href="group__input.html#ga7e496507126f35ea72f01b2e6ef6d155">glfw3.h</a>
+</li>
+<li>glfwSetMonitorCallback()
+: <a class="el" href="group__monitor.html#gac3fe0f647f68b731f99756cd81897378">glfw3.h</a>
+</li>
+<li>glfwSetMouseButtonCallback()
+: <a class="el" href="group__input.html#gaef49b72d84d615bca0a6ed65485e035d">glfw3.h</a>
+</li>
+<li>glfwSetScrollCallback()
+: <a class="el" href="group__input.html#gacf02eb10504352f16efda4593c3ce60e">glfw3.h</a>
+</li>
+<li>glfwSetTime()
+: <a class="el" href="group__input.html#gaf59589ef6e8b8c8b5ad184b25afd4dc0">glfw3.h</a>
+</li>
+<li>glfwSetWindowCloseCallback()
+: <a class="el" href="group__window.html#gaade9264e79fae52bdb78e2df11ee8d6a">glfw3.h</a>
+</li>
+<li>glfwSetWindowFocusCallback()
+: <a class="el" href="group__window.html#ga25d1c584edb375d7711c5c3548ba711f">glfw3.h</a>
+</li>
+<li>glfwSetWindowIconifyCallback()
+: <a class="el" href="group__window.html#gab1ea7263081c0e073b8d5b91d6ffd367">glfw3.h</a>
+</li>
+<li>glfwSetWindowPos()
+: <a class="el" href="group__window.html#ga1abb6d690e8c88e0c8cd1751356dbca8">glfw3.h</a>
+</li>
+<li>glfwSetWindowPosCallback()
+: <a class="el" href="group__window.html#ga2837d4d240659feb4268fcb6530a6ba1">glfw3.h</a>
+</li>
+<li>glfwSetWindowRefreshCallback()
+: <a class="el" href="group__window.html#ga4569b76e8ac87c55b53199e6becd97eb">glfw3.h</a>
+</li>
+<li>glfwSetWindowShouldClose()
+: <a class="el" href="group__window.html#ga49c449dde2a6f87d996f4daaa09d6708">glfw3.h</a>
+</li>
+<li>glfwSetWindowSize()
+: <a class="el" href="group__window.html#ga371911f12c74c504dd8d47d832d095cb">glfw3.h</a>
+</li>
+<li>glfwSetWindowSizeCallback()
+: <a class="el" href="group__window.html#gaa40cd24840daa8c62f36cafc847c72b6">glfw3.h</a>
+</li>
+<li>glfwSetWindowTitle()
+: <a class="el" href="group__window.html#ga5d877f09e968cef7a360b513306f17ff">glfw3.h</a>
+</li>
+<li>glfwSetWindowUserPointer()
+: <a class="el" href="group__window.html#ga3d2fc6026e690ab31a13f78bc9fd3651">glfw3.h</a>
+</li>
+<li>glfwShowWindow()
+: <a class="el" href="group__window.html#ga61be47917b72536a148300f46494fc66">glfw3.h</a>
+</li>
+<li>glfwSwapBuffers()
+: <a class="el" href="group__window.html#ga15a5a1ee5b3c2ca6b15ca209a12efd14">glfw3.h</a>
+</li>
+<li>glfwSwapInterval()
+: <a class="el" href="group__context.html#ga6d4e0cdf151b5e579bd67f13202994ed">glfw3.h</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_t"></a>- t -</h3><ul>
+<li>glfwTerminate()
+: <a class="el" href="group__init.html#gaaae48c0a18607ea4a4ba951d939f0901">glfw3.h</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_w"></a>- w -</h3><ul>
+<li>glfwWaitEvents()
+: <a class="el" href="group__window.html#ga554e37d781f0a997656c26b2c56c835e">glfw3.h</a>
+</li>
+<li>glfwWindowHint()
+: <a class="el" href="group__window.html#ga4fd9e504bb937e79588a0ffdca9f620b">glfw3.h</a>
+</li>
+<li>glfwWindowShouldClose()
+: <a class="el" href="group__window.html#ga24e02fbfefbb81fc45320989f8140ab5">glfw3.h</a>
+</li>
+</ul>
+</div><!-- contents -->
+<address class="footer">
+<p>
+Last update on Thu Mar 19 2015 for GLFW 3.1.1
+</p>
+</address>
+</body>
+</html>
+
+      </div>
+      
+      
+      
+    </div>
+    
+  <ul class="breadcrumb">
+          
+            <li><a href="/project/">PROJECT</a></li>
+            <li><a href="/project/cggame101/">CGGAME101</a></li>
+            <li><a href="/project/cggame101/assignment8/">ASSIGNMENT8</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/">CGL</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/deps/">DEPS</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/deps/glfw/">GLFW</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/deps/glfw/docs/">DOCS</a></li>
+            <li><a href="/project/cggame101/assignment8/CGL/deps/glfw/docs/html/">HTML</a></li>
+            <li>GLOBALS_FUNC</li>
+          
+  </ul>
+
+    
+    
+    
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text">- c -</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">2.</span> <span class="nav-text">- d -</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">3.</span> <span class="nav-text">- e -</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">4.</span> <span class="nav-text">- g -</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">5.</span> <span class="nav-text">- h -</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">6.</span> <span class="nav-text">- i -</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">7.</span> <span class="nav-text">- j -</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">8.</span> <span class="nav-text">- m -</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">9.</span> <span class="nav-text">- p -</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">10.</span> <span class="nav-text">- r -</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">11.</span> <span class="nav-text">- s -</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">12.</span> <span class="nav-text">- t -</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">13.</span> <span class="nav-text">- w -</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="leeyupeng"
+      src="/images/icon128.jpg">
+  <p class="site-author-name" itemprop="name">leeyupeng</p>
+  <div class="site-description" itemprop="description">leeyupeng@126.com</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">358</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">54</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">141</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="/about" title="QQ → about"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:leeyupeng@126.com" title="E-Mail → mailto:leeyupeng@126.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">leeyupeng</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              Counter('post', '/classes/Counter', { title, url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"wbbpG5Yxg8WKIQmzEeNU9P5G-gzGzoHsz","app_key":"y271idcAENCbz0foGfiEtWOu","server_url":null,"security":false};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('/js/src/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'wbbpG5Yxg8WKIQmzEeNU9P5G-gzGzoHsz',
+      appKey     : 'y271idcAENCbz0foGfiEtWOu',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

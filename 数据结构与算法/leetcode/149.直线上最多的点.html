@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"leeeyupeng.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="直线上最多的点数问题描述 给定一个二维平面，平面上有 n 个点，求最多有多少个点在同一条直线上。    暴力法思路分析 三个点 (x1,y1),(x2,y2),(x3,y3)是否在一条直线上的判定条件是:$\frac{(y2-y1)}{(x2-x1)}$ &#x3D;   $\frac{(y3-y1)}{(x3-x1)}$   特殊考虑到 x2 &#x3D;&#x3D; x1, y2 &#x3D;&#x3D; y1的情况">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode.149.直线上最多的点数">
+<meta property="og:url" content="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/149.%E7%9B%B4%E7%BA%BF%E4%B8%8A%E6%9C%80%E5%A4%9A%E7%9A%84%E7%82%B9.html">
+<meta property="og:site_name" content="leeyupeng">
+<meta property="og:description" content="直线上最多的点数问题描述 给定一个二维平面，平面上有 n 个点，求最多有多少个点在同一条直线上。    暴力法思路分析 三个点 (x1,y1),(x2,y2),(x3,y3)是否在一条直线上的判定条件是:$\frac{(y2-y1)}{(x2-x1)}$ &#x3D;   $\frac{(y3-y1)}{(x3-x1)}$   特殊考虑到 x2 &#x3D;&#x3D; x1, y2 &#x3D;&#x3D; y1的情况">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-07-13T09:39:07.515Z">
+<meta property="article:modified_time" content="2020-07-13T09:39:07.515Z">
+<meta property="article:author" content="leeyupeng">
+<meta property="article:tag" content="数据结构与算法">
+<meta property="article:tag" content="动态规划">
+<meta property="article:tag" content="leetcode">
+<meta property="article:tag" content="RANSAC算法">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/149.%E7%9B%B4%E7%BA%BF%E4%B8%8A%E6%9C%80%E5%A4%9A%E7%9A%84%E7%82%B9.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>leetcode.149.直线上最多的点数 | leeyupeng</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">leeyupeng</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">leeyupeng@126.com</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-tagsalgorithm">
+
+    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95" rel="section"><i class="fa fa-book fa-fw"></i>数据结构与算法</a>
+
+  </li>
+        <li class="menu-item menu-item-tagscplusplus">
+
+    <a href="/tags/C-C" rel="section"><i class="fa fa-book fa-fw"></i>C/C++</a>
+
+  </li>
+        <li class="menu-item menu-item-tagsgraphics">
+
+    <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6" rel="section"><i class="fa fa-book fa-fw"></i>图形学</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/149.%E7%9B%B4%E7%BA%BF%E4%B8%8A%E6%9C%80%E5%A4%9A%E7%9A%84%E7%82%B9.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          leetcode.149.直线上最多的点数
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-13 17:39:07" itemprop="dateCreated datePublished" datetime="2020-07-13T17:39:07+08:00">2020-07-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/149.%E7%9B%B4%E7%BA%BF%E4%B8%8A%E6%9C%80%E5%A4%9A%E7%9A%84%E7%82%B9.html" class="post-meta-item leancloud_visitors" data-flag-title="leetcode.149.直线上最多的点数" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/149.%E7%9B%B4%E7%BA%BF%E4%B8%8A%E6%9C%80%E5%A4%9A%E7%9A%84%E7%82%B9.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/149.%E7%9B%B4%E7%BA%BF%E4%B8%8A%E6%9C%80%E5%A4%9A%E7%9A%84%E7%82%B9.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="直线上最多的点数"><a href="#直线上最多的点数" class="headerlink" title="直线上最多的点数"></a>直线上最多的点数</h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><hr>
+<p>给定一个二维平面，平面上有 n 个点，求最多有多少个点在同一条直线上。  </p>
+<hr>
+<h2 id="暴力法"><a href="#暴力法" class="headerlink" title="暴力法"></a>暴力法</h2><h3 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h3><hr>
+<p>三个点 (x1,y1),(x2,y2),(x3,y3)是否在一条直线上的判定条件是:<br>$\frac{(y2-y1)}{(x2-x1)}$ =   $\frac{(y3-y1)}{(x3-x1)}$  </p>
+<p>特殊考虑到 x2 == x1, y2 == y1的情况</p>
+<p>完美解决<br>执行用时 :88 ms, 在所有 C++ 提交中击败了14.36%的用户<br>内存消耗 :7.5 MB, 在所有 C++ 提交中击败了100.00%的用户  </p>
+<hr>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">maxPoints</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; points)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (points.size() &lt;= <span class="number">2</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span> points.size();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> n = points.size();</span><br><span class="line">		<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; startPoint;</span><br><span class="line">		<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; endPoint;</span><br><span class="line">		<span class="keyword">int</span> count;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> offsetx;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> offsety;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> offsetkx;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> offsetky;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; n; j++)</span><br><span class="line">			&#123;</span><br><span class="line">				offsetx = points[j][<span class="number">0</span>] - points[i][<span class="number">0</span>];</span><br><span class="line">				offsety = points[j][<span class="number">1</span>] - points[i][<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">				count = <span class="number">0</span>;</span><br><span class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; n; k++)</span><br><span class="line">				&#123;</span><br><span class="line">					offsetkx = points[k][<span class="number">0</span>] - points[i][<span class="number">0</span>];</span><br><span class="line">					offsetky = points[k][<span class="number">1</span>] - points[i][<span class="number">1</span>];</span><br><span class="line">					<span class="keyword">if</span> (offsetx == <span class="number">0</span> &amp;&amp; offsety == <span class="number">0</span>) &#123;</span><br><span class="line">						<span class="keyword">if</span> (offsetkx == <span class="number">0</span> &amp;&amp; offsetky == <span class="number">0</span>) &#123; count++; &#125;</span><br><span class="line">						<span class="keyword">continue</span>;</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="keyword">if</span> (offsetx * offsetky == offsetkx * offsety) &#123; count++; &#125;</span><br><span class="line">				&#125;</span><br><span class="line">				ans = max(ans, count);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> ans;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="暴力算法"><a href="#暴力算法" class="headerlink" title="暴力算法"></a>暴力算法</h2><h3 id="思路分析-1"><a href="#思路分析-1" class="headerlink" title="思路分析"></a>思路分析</h3><hr>
+<p>去除重叠点<br>两点确定一条线，然后计算出所有的在这条直线上的点，更新ans</p>
+<p>完美解决<br>执行用时 :24 ms, 在所有 C++ 提交中击败了70.50%的用户<br>内存消耗 :7.4 MB, 在所有 C++ 提交中击败了100.00%的用户  </p>
+<hr>
+<h3 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">maxPoints</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; points)</span> </span>&#123;</span><br><span class="line">		<span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">nums</span><span class="params">(points.size(),<span class="number">0</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">while</span> (i &lt; points.size())</span><br><span class="line">			&#123;</span><br><span class="line">				nums[i] = <span class="number">1</span>;</span><br><span class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> j = points.size() - <span class="number">1</span>; j &gt; i; j--)</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="keyword">if</span> (points[i][<span class="number">0</span>] == points[j][<span class="number">0</span>] &amp;&amp; points[i][<span class="number">1</span>] == points[j][<span class="number">1</span>]) &#123;</span><br><span class="line">						points.erase(points.begin() + j);</span><br><span class="line">						nums[i]++;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				i++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (points.size() == <span class="number">1</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span> nums[<span class="number">0</span>];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (points.size() == <span class="number">2</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span> nums[<span class="number">0</span>] + nums[<span class="number">1</span>];</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span> n = points.size();</span><br><span class="line">		<span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;&gt; <span class="title">matrix</span><span class="params">(n)</span></span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			matrix[i].insert(matrix[i].begin(), points.size(), <span class="literal">false</span>);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">		<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; startPoint;</span><br><span class="line">		<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; endPoint;</span><br><span class="line">		<span class="keyword">int</span> count;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> offsetx;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> offsety;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> offsetkx;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> offsetky;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; n; j++)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">if</span> (matrix[i][j]) &#123; <span class="keyword">continue</span>; &#125;</span><br><span class="line">				offsetx = points[j][<span class="number">0</span>] - points[i][<span class="number">0</span>];</span><br><span class="line">				offsety = points[j][<span class="number">1</span>] - points[i][<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">				count = nums[i] + nums[j];</span><br><span class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> k = j+<span class="number">1</span>; k &lt; n; k++)</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="keyword">if</span> (matrix[i][k]) &#123; <span class="keyword">break</span>; &#125;</span><br><span class="line">					<span class="keyword">if</span> (matrix[j][k]) &#123; <span class="keyword">break</span>; &#125;</span><br><span class="line">					offsetkx = points[k][<span class="number">0</span>] - points[i][<span class="number">0</span>];</span><br><span class="line">					offsetky = points[k][<span class="number">1</span>] - points[i][<span class="number">1</span>];</span><br><span class="line">					<span class="keyword">if</span> (offsetx * offsetky == offsetkx * offsety) &#123;</span><br><span class="line">						count += nums[k]; matrix[i][k] = <span class="literal">true</span>; matrix[j][k] = <span class="literal">true</span>;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				ans = max(ans, count);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> ans;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="代码实现-2"><a href="#代码实现-2" class="headerlink" title="代码实现"></a>代码实现</h3><hr>
+<p>1.matrix[i][j] 和i,j在一条直线上的点计算过 不再重复计算<br>2.i右侧的点总和也不大于ans时break;<br>3.matrix[i][j] i,j,已经计算过，说明后面的计算不会出现 i，j在同一条直线上，rightnums可以减去两者中的小值</p>
+<p>执行用时 :8 ms, 在所有 C++ 提交中击败了99.73%的用户<br>内存消耗 :7.6 MB, 在所有 C++ 提交中击败了100.00%的用户  </p>
+<hr>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">int</span> <span class="title">maxPoints</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; points)</span> </span>&#123;</span><br><span class="line">			<span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">nums</span><span class="params">(points.size(), <span class="number">0</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">				<span class="keyword">while</span> (i &lt; points.size())</span><br><span class="line">				&#123;</span><br><span class="line">					nums[i] = <span class="number">1</span>;</span><br><span class="line">					<span class="keyword">for</span> (<span class="keyword">int</span> j = points.size() - <span class="number">1</span>; j &gt; i; j--)</span><br><span class="line">					&#123;</span><br><span class="line">						<span class="keyword">if</span> (points[i][<span class="number">0</span>] == points[j][<span class="number">0</span>] &amp;&amp; points[i][<span class="number">1</span>] == points[j][<span class="number">1</span>]) &#123;</span><br><span class="line">							points.erase(points.begin() + j);</span><br><span class="line">							nums[i]++;</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">					i++;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span> (points.size() == <span class="number">1</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">return</span> nums[<span class="number">0</span>];</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (points.size() == <span class="number">2</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">return</span> nums[<span class="number">0</span>] + nums[<span class="number">1</span>];</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">int</span> n = points.size();</span><br><span class="line"></span><br><span class="line">			<span class="keyword">int</span> temp;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; n; j++)</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="keyword">if</span> (nums[i] &lt; nums[j])</span><br><span class="line">					&#123;</span><br><span class="line">						temp = nums[i];</span><br><span class="line">						nums[i] = nums[j];</span><br><span class="line">						nums[j] = temp;</span><br><span class="line"></span><br><span class="line">						temp = points[i][<span class="number">0</span>];</span><br><span class="line">						points[i][<span class="number">0</span>] = points[j][<span class="number">0</span>];</span><br><span class="line">						points[j][<span class="number">0</span>] = temp;</span><br><span class="line"></span><br><span class="line">						temp = points[i][<span class="number">1</span>];</span><br><span class="line">						points[i][<span class="number">1</span>] = points[j][<span class="number">1</span>];</span><br><span class="line">						points[j][<span class="number">1</span>] = temp;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">int</span> maxnums = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">			&#123;</span><br><span class="line">				maxnums += nums[i];</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;&gt; <span class="title">matrix</span><span class="params">(n)</span></span>;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">			&#123;</span><br><span class="line">				matrix[i].insert(matrix[i].begin(), points.size(), <span class="literal">false</span>);</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">int</span> count;</span><br><span class="line">			<span class="keyword">long</span> <span class="keyword">long</span> offsetx;</span><br><span class="line">			<span class="keyword">long</span> <span class="keyword">long</span> offsety;</span><br><span class="line">			<span class="keyword">long</span> <span class="keyword">long</span> offsetkx;</span><br><span class="line">			<span class="keyword">long</span> <span class="keyword">long</span> offsetky;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">int</span> rightnums = maxnums;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; n; j++)</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="keyword">if</span> (matrix[i][j]) &#123; <span class="keyword">continue</span>; &#125;</span><br><span class="line">					offsetx = points[j][<span class="number">0</span>] - points[i][<span class="number">0</span>];</span><br><span class="line">					offsety = points[j][<span class="number">1</span>] - points[i][<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">					count = nums[i] + nums[j];</span><br><span class="line">					<span class="keyword">for</span> (<span class="keyword">int</span> k = j + <span class="number">1</span>; k &lt; n; k++)</span><br><span class="line">					&#123;</span><br><span class="line">						<span class="keyword">if</span> (matrix[i][k]) &#123; <span class="keyword">break</span>; &#125;</span><br><span class="line">						<span class="keyword">if</span> (matrix[j][k]) &#123; <span class="keyword">break</span>; &#125;</span><br><span class="line">						offsetkx = points[k][<span class="number">0</span>] - points[i][<span class="number">0</span>];</span><br><span class="line">						offsetky = points[k][<span class="number">1</span>] - points[i][<span class="number">1</span>];</span><br><span class="line">						<span class="keyword">if</span> (offsetx * offsetky == offsetkx * offsety) &#123;</span><br><span class="line">							count += nums[k]; matrix[i][k] = <span class="literal">true</span>; matrix[j][k] = <span class="literal">true</span>;</span><br><span class="line">							rightnums -= min(nums[j], nums[k]);</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">					ans = max(ans, count);</span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">				rightnums -= nums[i];</span><br><span class="line">				<span class="keyword">if</span> (ans &gt;= rightnums) &#123; <span class="keyword">break</span>; &#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> ans;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><h3 id="思路分析-2"><a href="#思路分析-2" class="headerlink" title="思路分析"></a>思路分析</h3><hr>
+<p>dp[i][j] 代表以i，j为起始点的线段，和i，j在同一个直线上的点的最大数量<br>dp[i][j]=max(dp[i][j],dp[i][k]+dp[k][j]-1)<br>要求 i k j 在一条直线上  </p>
+<p>需要考虑到i,k,j共点的情况   </p>
+<hr>
+<h3 id="代码实现-3"><a href="#代码实现-3" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">maxPoints</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; points)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (points.size() &lt;= <span class="number">2</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span> points.size();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> n = points.size();</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> offsetx;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> offsety;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> offsetikx;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> offsetiky;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> offsetkjx;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> offsetkjy;</span><br><span class="line">		<span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; <span class="title">dp</span><span class="params">(n)</span></span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			dp[i].insert(dp[i].begin(), n, <span class="number">0</span>);</span><br><span class="line">			dp[i][i] = <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> i, j, dis;</span><br><span class="line">		<span class="keyword">int</span> k;</span><br><span class="line">		<span class="keyword">for</span> (dis = <span class="number">1</span>; dis &lt; n; dis++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n - dis; i++)</span><br><span class="line">			&#123;</span><br><span class="line">				j = i + dis;</span><br><span class="line">				offsetx = points[j][<span class="number">0</span>] - points[i][<span class="number">0</span>];</span><br><span class="line">				offsety = points[j][<span class="number">1</span>] - points[i][<span class="number">1</span>];</span><br><span class="line">				dp[i][j] = <span class="number">2</span>;</span><br><span class="line">				<span class="keyword">for</span> (k = i + <span class="number">1</span>; k &lt; j; k++)</span><br><span class="line">				&#123;</span><br><span class="line">					offsetikx = points[k][<span class="number">0</span>] - points[i][<span class="number">0</span>];</span><br><span class="line">					offsetiky = points[k][<span class="number">1</span>] - points[i][<span class="number">1</span>];</span><br><span class="line">					offsetkjx = points[j][<span class="number">0</span>] - points[k][<span class="number">0</span>];</span><br><span class="line">					offsetkjy = points[j][<span class="number">1</span>] - points[k][<span class="number">1</span>];</span><br><span class="line">					<span class="keyword">if</span> (offsetx == <span class="number">0</span> &amp;&amp; offsety == <span class="number">0</span>) &#123;</span><br><span class="line">						<span class="keyword">if</span> (offsetikx == <span class="number">0</span> &amp;&amp; offsetiky == <span class="number">0</span>) &#123;</span><br><span class="line">							<span class="keyword">if</span> (i + <span class="number">1</span> == k &amp;&amp; k + <span class="number">1</span> == j) &#123;&#125;</span><br><span class="line">							<span class="keyword">else</span> &#123; <span class="keyword">continue</span>; &#125;</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="keyword">else</span> <span class="keyword">if</span> (offsetikx == <span class="number">0</span> &amp;&amp; offsetiky == <span class="number">0</span> &amp;&amp; i + <span class="number">1</span> != k) &#123;</span><br><span class="line">						dp[i][j] = max(dp[i][j], <span class="number">1</span> + dp[k][j]); <span class="keyword">continue</span>;</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="keyword">else</span> <span class="keyword">if</span> (offsetkjx == <span class="number">0</span> &amp;&amp; offsetkjy == <span class="number">0</span> &amp;&amp; k + <span class="number">1</span> != j) &#123;</span><br><span class="line">						dp[i][j] = max(dp[i][j], dp[i][k] + <span class="number">1</span>); <span class="keyword">continue</span>;</span><br><span class="line">					&#125;</span><br><span class="line"></span><br><span class="line">					<span class="keyword">if</span> (offsetx * offsetiky == offsetikx * offsety) &#123;</span><br><span class="line">						dp[i][j] = max(dp[i][j], dp[i][k] + dp[k][j] - <span class="number">1</span>);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; n; j++)</span><br><span class="line">			&#123;</span><br><span class="line">				ans = max(ans, dp[i][j]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> ans;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="动态规划-1"><a href="#动态规划-1" class="headerlink" title="动态规划"></a>动态规划</h2><h3 id="思路分析-3"><a href="#思路分析-3" class="headerlink" title="思路分析"></a>思路分析</h3><hr>
+<p>dp[i][j] 代表以i，j为起始点的线段，和i，j在同一个直线上的点的最大数量<br>转移方程<br>dp[i][j]=max(dp[i][j],dp[i][k]+dp[k][j]-1)<br>要求 i k j 在一条直线上  </p>
+<p>需要考虑到i,k,j共点的情况<br>去除相同点</p>
+<p>完美解决<br>执行用时 :16 ms, 在所有 C++ 提交中击败了89.02%的用户<br>内存消耗 :7.9 MB, 在所有 C++ 提交中击败了100.00%的用户  </p>
+<hr>
+<h3 id="代码实现-4"><a href="#代码实现-4" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">maxPoints</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; points)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (points.size() &lt;= <span class="number">2</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span> points.size();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; <span class="title">dp</span><span class="params">(points.size())</span></span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; points.size(); i++)</span><br><span class="line">		&#123;</span><br><span class="line">			dp[i].insert(dp[i].begin(), points.size(), <span class="number">0</span>);</span><br><span class="line">			dp[i][i] = <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">while</span> (i &lt; points.size())</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> j = points.size() - <span class="number">1</span>; j &gt; i; j--)</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="keyword">if</span> (points[i][<span class="number">0</span>] == points[j][<span class="number">0</span>] &amp;&amp; points[i][<span class="number">1</span>] == points[j][<span class="number">1</span>]) &#123;</span><br><span class="line">						points.erase(points.begin() + j);</span><br><span class="line">						dp[i][i]++;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				i++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> n = points.size();</span><br><span class="line">		<span class="keyword">if</span> (n == <span class="number">1</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span> dp[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> offsetx;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> offsety;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> offsetikx;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> offsetiky;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span> i, j, dis;</span><br><span class="line">		<span class="keyword">int</span> k;</span><br><span class="line">		<span class="keyword">for</span> (dis = <span class="number">1</span>; dis &lt; n; dis++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n - dis; i++)</span><br><span class="line">			&#123;</span><br><span class="line">				j = i + dis;</span><br><span class="line">				offsetx = points[j][<span class="number">0</span>] - points[i][<span class="number">0</span>];</span><br><span class="line">				offsety = points[j][<span class="number">1</span>] - points[i][<span class="number">1</span>];</span><br><span class="line">				dp[i][j] = dp[i][i] + dp[j][j];</span><br><span class="line">				<span class="keyword">for</span> (k = i + <span class="number">1</span>; k &lt; j; k++)</span><br><span class="line">				&#123;</span><br><span class="line">					offsetikx = points[k][<span class="number">0</span>] - points[i][<span class="number">0</span>];</span><br><span class="line">					offsetiky = points[k][<span class="number">1</span>] - points[i][<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">					<span class="keyword">if</span> (offsetx * offsetiky == offsetikx * offsety) &#123;</span><br><span class="line">						dp[i][j] = max(dp[i][j], dp[i][k] + dp[k][j] - dp[k][k]);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; n; j++)</span><br><span class="line">			&#123;</span><br><span class="line">				ans = max(ans, dp[i][j]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> ans;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="RANSAC算法"><a href="#RANSAC算法" class="headerlink" title="RANSAC算法"></a>RANSAC算法</h2><h3 id="思路分析-4"><a href="#思路分析-4" class="headerlink" title="思路分析"></a>思路分析</h3><hr>
+<p>每次从数组中抽取两点组成一点直线，计算在这条直线上点，更新ans</p>
+<p>RANSAC能得出一个仅仅用局内点计算出模型，并且概率还足够高。但是，RANSAC并不能保证结果一定正确，为了保证算法有足够高的合理概率，我们必须小心的选择算法的参数。</p>
+<p>迭代次数：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> p = <span class="number">0.9</span>;</span><br><span class="line"><span class="keyword">double</span> p_inliers = <span class="keyword">double</span>(ans) / <span class="keyword">double</span>(maxnums);</span><br><span class="line"><span class="keyword">int</span> N = <span class="built_in">ceil</span>(<span class="built_in">log</span>(<span class="number">1</span> - p) / <span class="built_in">log</span>(<span class="number">1</span> - <span class="built_in">pow</span>(p_inliers, <span class="number">2</span>)));</span><br></pre></td></tr></table></figure></p>
+<p>有小概率  WA</p>
+<p>执行用时 :4 ms, 在所有 C++ 提交中击败了100.00%的用户<br>内存消耗 :8.3 MB, 在所有 C++ 提交中击败了100.00%的用户   </p>
+<hr>
+<h3 id="代码实现-5"><a href="#代码实现-5" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">maxPoints</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; points)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (points.size() &lt;= <span class="number">2</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span> points.size();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">nums</span><span class="params">(points.size(), <span class="number">0</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">while</span> (i &lt; points.size())</span><br><span class="line">			&#123;</span><br><span class="line">				nums[i] = <span class="number">1</span>;</span><br><span class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> j = points.size() - <span class="number">1</span>; j &gt; i; j--)</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="keyword">if</span> (points[i][<span class="number">0</span>] == points[j][<span class="number">0</span>] &amp;&amp; points[i][<span class="number">1</span>] == points[j][<span class="number">1</span>]) &#123;</span><br><span class="line">						points.erase(points.begin() + j);</span><br><span class="line">						nums[i]++;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				i++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (points.size() == <span class="number">1</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span> nums[<span class="number">0</span>];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (points.size() == <span class="number">2</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span> nums[<span class="number">0</span>] + nums[<span class="number">1</span>];</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span> n = points.size();</span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span> maxnums = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			maxnums += nums[i];</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;&gt; <span class="title">matrix</span><span class="params">(n)</span></span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			matrix[i].insert(matrix[i].begin(), points.size(), <span class="literal">false</span>);</span><br><span class="line">			matrix[i][i] = <span class="literal">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span> ans = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span> count;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> offsetx;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> offsety;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> offsetkx;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> offsetky;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">double</span> p = <span class="number">0.9</span>;</span><br><span class="line">		<span class="keyword">double</span> p_inliers = <span class="keyword">double</span>(ans) / <span class="keyword">double</span>(maxnums);</span><br><span class="line">		<span class="keyword">int</span> N = <span class="built_in">ceil</span>(<span class="built_in">log</span>(<span class="number">1</span> - p) / <span class="built_in">log</span>(<span class="number">1</span> - <span class="built_in">pow</span>(p_inliers, <span class="number">2</span>)));</span><br><span class="line">		<span class="keyword">int</span> kk = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span> temp;</span><br><span class="line">		<span class="keyword">int</span> i, j, k;</span><br><span class="line">		srand((<span class="keyword">unsigned</span>)time(<span class="literal">NULL</span>));</span><br><span class="line">		<span class="keyword">while</span> (kk++ &lt; N)</span><br><span class="line">		&#123;</span><br><span class="line"></span><br><span class="line">			i = rand() % n;</span><br><span class="line">			j = rand() % n;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span> (matrix[i][j] == <span class="literal">true</span> || matrix[j][i] == <span class="literal">true</span>) &#123; <span class="keyword">continue</span>; &#125;</span><br><span class="line"></span><br><span class="line">			offsetx = points[j][<span class="number">0</span>] - points[i][<span class="number">0</span>];</span><br><span class="line">			offsety = points[j][<span class="number">1</span>] - points[i][<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">			count = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; n; k++)</span><br><span class="line">			&#123;</span><br><span class="line">				offsetkx = points[k][<span class="number">0</span>] - points[i][<span class="number">0</span>];</span><br><span class="line">				offsetky = points[k][<span class="number">1</span>] - points[i][<span class="number">1</span>];</span><br><span class="line">				<span class="keyword">if</span> (offsetx * offsetky == offsetkx * offsety) &#123;</span><br><span class="line">					count += nums[k];</span><br><span class="line">					matrix[i][k] = <span class="literal">true</span>; matrix[j][k] = <span class="literal">true</span>;</span><br><span class="line">					matrix[k][i] = <span class="literal">true</span>; matrix[k][j] = <span class="literal">true</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (count &gt; ans)</span><br><span class="line">			&#123;</span><br><span class="line">				ans = count;</span><br><span class="line"></span><br><span class="line">				p_inliers = <span class="keyword">double</span>(ans) / <span class="keyword">double</span>(maxnums);</span><br><span class="line">				N = <span class="built_in">ceil</span>(<span class="built_in">log</span>(<span class="number">1</span> - p) / <span class="built_in">log</span>(<span class="number">1</span> - <span class="built_in">pow</span>(p_inliers, <span class="number">2</span>)));</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> ans;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="空间压缩"><a href="#空间压缩" class="headerlink" title="空间压缩"></a>空间压缩</h2><h3 id="思路分析-5"><a href="#思路分析-5" class="headerlink" title="思路分析"></a>思路分析</h3><hr>
+<p>根据每个点的x，排序<br>根据每个点的y，排序</p>
+<p>思路错误<br>超时  </p>
+<hr>
+<h3 id="代码实现-6"><a href="#代码实现-6" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">maxPoints</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; points)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">		<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; matrixx;</span><br><span class="line">		<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; matrixy;</span><br><span class="line">		<span class="built_in">map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; xmap;</span><br><span class="line">		<span class="built_in">map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; ymap;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; points.size(); i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (xmap.find(points[i][<span class="number">0</span>]) == xmap.end()) &#123; xmap.insert(&#123; points[i][<span class="number">0</span>],<span class="number">0</span> &#125;); matrixx.push_back(points[i][<span class="number">0</span>]); &#125;</span><br><span class="line">			<span class="keyword">if</span> (ymap.find(points[i][<span class="number">1</span>]) == ymap.end()) &#123; ymap.insert(&#123; points[i][<span class="number">1</span>],<span class="number">0</span> &#125;); matrixy.push_back(points[i][<span class="number">1</span>]); &#125;</span><br><span class="line">		&#125;</span><br><span class="line">		sort(matrixx.begin(), matrixx.end());</span><br><span class="line">		sort(matrixy.begin(), matrixy.end());</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; matrixx.size(); i++)</span><br><span class="line">		&#123;</span><br><span class="line">			xmap[matrixx[i]] = i;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; matrixy.size(); i++)</span><br><span class="line">		&#123;</span><br><span class="line">			ymap[matrixy[i]] = i;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; <span class="title">matrix</span><span class="params">(xmap.size())</span></span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; xmap.size(); i++)</span><br><span class="line">		&#123;</span><br><span class="line">			matrix[i].insert(matrix[i].begin(), ymap.size(), <span class="number">0</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> x, y;</span><br><span class="line">		<span class="keyword">int</span> indexx, indexy;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; points.size(); i++)</span><br><span class="line">		&#123;</span><br><span class="line">			x = points[i][<span class="number">0</span>];</span><br><span class="line">			y = points[i][<span class="number">1</span>];</span><br><span class="line">			indexx = xmap[x];</span><br><span class="line">			indexy = ymap[y];</span><br><span class="line">			matrix[indexx][indexy] ++;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span> n = matrixx.size();</span><br><span class="line">		<span class="keyword">int</span> m = matrixy.size();</span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> offsetx;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> offsety;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> temp;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; m; j++)</span><br><span class="line">			&#123;				</span><br><span class="line">				<span class="keyword">if</span> (matrix[i][j] == <span class="number">0</span>)</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="keyword">continue</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> ii = <span class="number">0</span>; ii &lt; n-i; ii++)</span><br><span class="line">				&#123;</span><br><span class="line">					offsetx = matrixx[i + ii] - matrixx[i];</span><br><span class="line">					<span class="comment">//if (offsetx != 0  &amp;&amp; ans &gt; (matrixx[n - 1] - matrixx[i] + 1) / offsetx)&#123;break; &#125;</span></span><br><span class="line">					<span class="keyword">for</span> (<span class="keyword">int</span> jj = -j; jj &lt; m-j; jj++)</span><br><span class="line">					&#123;						</span><br><span class="line">						offsety = matrixy[j + jj] - matrixy[j];</span><br><span class="line">						<span class="comment">//if (offsety &gt; 0 &amp;&amp; ans &gt; (matrixy[m - 1] - matrixy[j] + 1) / offsety) &#123; break; &#125;</span></span><br><span class="line">						indexx = i; indexy = j;</span><br><span class="line">						count = <span class="number">0</span>;</span><br><span class="line">						<span class="keyword">while</span> (indexx &lt; n &amp;&amp; indexy &lt; m)</span><br><span class="line">						&#123;</span><br><span class="line">							<span class="keyword">if</span> (offsetx == <span class="number">0</span>)&#123;</span><br><span class="line">								count += matrix[indexx][indexy];</span><br><span class="line">								indexy ++;</span><br><span class="line">							&#125;</span><br><span class="line">							<span class="keyword">else</span> <span class="keyword">if</span> (offsety == <span class="number">0</span>)&#123;</span><br><span class="line">								count += matrix[indexx][indexy];</span><br><span class="line">								indexx++;</span><br><span class="line">							&#125;</span><br><span class="line">							<span class="keyword">else</span>&#123;</span><br><span class="line">								temp = (matrixx[indexx] - matrixx[i]);</span><br><span class="line">								<span class="keyword">if</span> ((temp * offsety) % offsetx != <span class="number">0</span>) &#123;indexx++;<span class="keyword">continue</span>;&#125;</span><br><span class="line">								y =(temp * offsety) / offsetx + matrixy[j];</span><br><span class="line">								<span class="keyword">if</span> (y &lt;= matrixy[m<span class="number">-1</span>] &amp;&amp; ymap.find(y) != ymap.end())</span><br><span class="line">								&#123;</span><br><span class="line">									indexy = ymap[y];</span><br><span class="line">									count += matrix[indexx][indexy];</span><br><span class="line">								&#125;</span><br><span class="line">								indexx++;</span><br><span class="line">							&#125;</span><br><span class="line"></span><br><span class="line">						&#125;</span><br><span class="line">						ans = max(ans, count);</span><br><span class="line">						<span class="comment">//if (offsetx != 0 &amp;&amp; ans &gt;= (matrixx[n - 1] - matrixx[i] + 1) / offsetx) &#123; break; &#125;</span></span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> ans;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag"># 数据结构与算法</a>
+              <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag"># 动态规划</a>
+              <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+              <a href="/tags/RANSAC%E7%AE%97%E6%B3%95/" rel="tag"># RANSAC算法</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/188.%20%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA%20IV.html" rel="prev" title="leetcode.188. 买卖股票的最佳时机 IV">
+      <i class="fa fa-chevron-left"></i> leetcode.188. 买卖股票的最佳时机 IV
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/123.%20%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA%20III.html" rel="next" title="leetcode.123. 买卖股票的最佳时机 III">
+      leetcode.123. 买卖股票的最佳时机 III <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#直线上最多的点数"><span class="nav-number">1.</span> <span class="nav-text">直线上最多的点数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述"><span class="nav-number">1.1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#暴力法"><span class="nav-number">1.2.</span> <span class="nav-text">暴力法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路分析"><span class="nav-number">1.2.1.</span> <span class="nav-text">思路分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-number">1.2.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#暴力算法"><span class="nav-number">1.3.</span> <span class="nav-text">暴力算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路分析-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">思路分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现-1"><span class="nav-number">1.3.2.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现-2"><span class="nav-number">1.3.3.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态规划"><span class="nav-number">1.4.</span> <span class="nav-text">动态规划</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路分析-2"><span class="nav-number">1.4.1.</span> <span class="nav-text">思路分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现-3"><span class="nav-number">1.4.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态规划-1"><span class="nav-number">1.5.</span> <span class="nav-text">动态规划</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路分析-3"><span class="nav-number">1.5.1.</span> <span class="nav-text">思路分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现-4"><span class="nav-number">1.5.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RANSAC算法"><span class="nav-number">1.6.</span> <span class="nav-text">RANSAC算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路分析-4"><span class="nav-number">1.6.1.</span> <span class="nav-text">思路分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现-5"><span class="nav-number">1.6.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#空间压缩"><span class="nav-number">1.7.</span> <span class="nav-text">空间压缩</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路分析-5"><span class="nav-number">1.7.1.</span> <span class="nav-text">思路分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现-6"><span class="nav-number">1.7.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="leeyupeng"
+      src="/images/icon128.jpg">
+  <p class="site-author-name" itemprop="name">leeyupeng</p>
+  <div class="site-description" itemprop="description">leeyupeng@126.com</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">358</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">54</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">141</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="/about" title="QQ → about"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:leeyupeng@126.com" title="E-Mail → mailto:leeyupeng@126.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">leeyupeng</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              Counter('post', '/classes/Counter', { title, url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"wbbpG5Yxg8WKIQmzEeNU9P5G-gzGzoHsz","app_key":"y271idcAENCbz0foGfiEtWOu","server_url":null,"security":false};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('/js/src/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'wbbpG5Yxg8WKIQmzEeNU9P5G-gzGzoHsz',
+      appKey     : 'y271idcAENCbz0foGfiEtWOu',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

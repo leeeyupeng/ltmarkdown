@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"leeeyupeng.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="cmake 跨平台的安装（编译）工具CMake是一个跨平台的安装（编译）工具，可以用简单的语句来描述所有平台的安装(编译过程)。他能够输出各种各样的makefile或者project文件，能测试编译器所支持的C++特性,类似UNIX下的automake。只是 CMake 的组态档取名为 CMakeLists.txt。Cmake 并不直接建构出最终的软件，而是产生标准的建构档（如 Unix 的 Ma">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cmake">
+<meta property="og:url" content="https://leeeyupeng.github.io/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/cmake.html">
+<meta property="og:site_name" content="leeyupeng">
+<meta property="og:description" content="cmake 跨平台的安装（编译）工具CMake是一个跨平台的安装（编译）工具，可以用简单的语句来描述所有平台的安装(编译过程)。他能够输出各种各样的makefile或者project文件，能测试编译器所支持的C++特性,类似UNIX下的automake。只是 CMake 的组态档取名为 CMakeLists.txt。Cmake 并不直接建构出最终的软件，而是产生标准的建构档（如 Unix 的 Ma">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-09-14T02:31:01.727Z">
+<meta property="article:modified_time" content="2020-09-14T02:31:01.727Z">
+<meta property="article:author" content="leeyupeng">
+<meta property="article:tag" content="软件工程">
+<meta property="article:tag" content="cmake">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://leeeyupeng.github.io/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/cmake.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>cmake | leeyupeng</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">leeyupeng</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">leeyupeng@126.com</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-tagsalgorithm">
+
+    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95" rel="section"><i class="fa fa-book fa-fw"></i>数据结构与算法</a>
+
+  </li>
+        <li class="menu-item menu-item-tagscplusplus">
+
+    <a href="/tags/C-C" rel="section"><i class="fa fa-book fa-fw"></i>C/C++</a>
+
+  </li>
+        <li class="menu-item menu-item-tagsgraphics">
+
+    <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6" rel="section"><i class="fa fa-book fa-fw"></i>图形学</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/cmake.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          cmake
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-14 10:31:01" itemprop="dateCreated datePublished" datetime="2020-09-14T10:31:01+08:00">2020-09-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">软件工程</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/cmake.html" class="post-meta-item leancloud_visitors" data-flag-title="cmake" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/cmake.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/cmake.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="cmake"><a href="#cmake" class="headerlink" title="cmake"></a>cmake</h1><hr>
+<p>跨平台的安装（编译）工具<br>CMake是一个跨平台的安装（编译）工具，可以用简单的语句来描述所有平台的安装(编译过程)。他能够输出各种各样的makefile或者project文件，能测试编译器所支持的C++特性,类似UNIX下的automake。只是 CMake 的组态档取名为 CMakeLists.txt。Cmake 并不直接建构出最终的软件，而是产生标准的建构档（如 Unix 的 Makefile 或 Windows Visual C++ 的 projects/workspaces），然后再依一般的建构方式使用。这使得熟悉某个集成开发环境（IDE）的开发者可以用标准的方式建构他的软件，这种可以使用各平台的原生建构系统的能力是 CMake 和 SCons 等其他类似系统的区别之处。  </p>
+<hr>
+<h2 id="单项目构建"><a href="#单项目构建" class="headerlink" title="单项目构建"></a>单项目构建</h2><h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">cmake_minimum_required(VERSION <span class="number">3.3</span><span class="number">.0</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta"># specify the C++ standard</span></span><br><span class="line"><span class="built_in">set</span>(CMAKE_CXX_STANDARD <span class="number">11</span>)</span><br><span class="line"></span><br><span class="line">project(TESTCMAKE VERSION <span class="number">1.12</span><span class="number">.7</span>)</span><br><span class="line"><span class="built_in">set</span>(TESTCMAKE_SOVERSION $&#123;TESTCMAKE_VERSION&#125;)</span><br><span class="line"></span><br><span class="line">INCLUDE_DIRECTORIES($&#123;PROJECT_SOURCE_DIR&#125;/include)	   </span><br><span class="line">INCLUDE_DIRECTORIES($&#123;PROJECT_SOURCE_DIR&#125;/include2)</span><br><span class="line"></span><br><span class="line">FILE(GLOB testgroup <span class="string">"./testgroup/src\/*.cpp"</span> <span class="string">"./testgroup/include\/*.h"</span>)</span><br><span class="line">source_group(testgroup FILES $&#123;testgroup&#125;)</span><br><span class="line">add_executable(TESTCMAKE src/TESTCMAKE.cpp include/TESTCMAKE.h $&#123;testgroup&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="模快组织"><a href="#模快组织" class="headerlink" title="模快组织"></a>模快组织</h3><h3 id="文件目录结构"><a href="#文件目录结构" class="headerlink" title="文件目录结构"></a>文件目录结构</h3><h4 id="头文件和源文件分离"><a href="#头文件和源文件分离" class="headerlink" title="头文件和源文件分离"></a>头文件和源文件分离</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">option(USE_SOLUTION_FOLDERS <span class="string">"USE_SOLUTION_FOLDERS"</span> ON)</span><br><span class="line">option(GROUP_BY_EXPLORER <span class="string">"GROUP_BY_EXPLORER"</span> OFF)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (USE_SOLUTION_FOLDERS AND (NOT GROUP_BY_EXPLORER))    # 在 IDE 中对文件进行分组，源文件和头文件分开</span><br><span class="line">    foreach(FILE $&#123;allfiles&#125;)       </span><br><span class="line">       # Get the directory of the source file</span><br><span class="line">       get_filename_component(PARENT_DIR <span class="string">"$&#123;FILE&#125;"</span> DIRECTORY)</span><br><span class="line">		   MESSAGE( STATUS <span class="string">"this var FILE = $&#123;FILE&#125;."</span>)</span><br><span class="line">       # Remove common directory prefix to make the group</span><br><span class="line">       <span class="built_in">string</span>(REPLACE <span class="string">"$&#123;CMAKE_CURRENT_SOURCE_DIR&#125;/"</span> <span class="string">""</span> GROUP <span class="string">"$&#123;PARENT_DIR&#125;"</span>)</span><br><span class="line"></span><br><span class="line">      # Make sure we are <span class="keyword">using</span> windows slashes</span><br><span class="line">       <span class="built_in">string</span>(REPLACE <span class="string">"/"</span> <span class="string">"\\"</span> GROUP <span class="string">"$&#123;GROUP&#125;"</span>)</span><br><span class="line">	     MESSAGE( STATUS <span class="string">"this var GROUP = $&#123;GROUP&#125;."</span>)</span><br><span class="line"></span><br><span class="line">       # Group into <span class="string">"Source Files"</span> <span class="keyword">and</span> <span class="string">"Header Files"</span></span><br><span class="line">       <span class="keyword">if</span> (<span class="string">"$&#123;FILE&#125;"</span> MATCHES <span class="string">".*\\.cpp"</span>)</span><br><span class="line">          <span class="built_in">set</span>(GROUP <span class="string">"Source Files$&#123;GROUP&#125;"</span>)</span><br><span class="line">       elseif(<span class="string">"$&#123;FILE&#125;"</span> MATCHES <span class="string">".*\\.h"</span>)</span><br><span class="line">          <span class="built_in">set</span>(GROUP <span class="string">"Header Files$&#123;GROUP&#125;"</span>)</span><br><span class="line">       endif()</span><br><span class="line">       source_group(<span class="string">"$&#123;GROUP&#125;"</span> FILES <span class="string">"$&#123;FILE&#125;"</span>)</span><br><span class="line">    endforeach()</span><br><span class="line">endif()</span><br><span class="line"></span><br><span class="line">add_executable(TESTCMAKEGROUP src/TESTCMAKE.cpp include/TESTCMAKE.h $&#123;allfiles&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="头文件和源文件不分离"><a href="#头文件和源文件不分离" class="headerlink" title="头文件和源文件不分离"></a>头文件和源文件不分离</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="多项目依赖"><a href="#多项目依赖" class="headerlink" title="多项目依赖"></a>多项目依赖</h2><p>lib库的CMakeLists文件<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">FILE(GLOB allfiles <span class="string">"./src\/*.cpp"</span> <span class="string">"./include\/*.h"</span>)</span><br><span class="line"></span><br><span class="line">add_library(lib1 $&#123;allfiles&#125;)</span><br><span class="line">target_include_directories(lib1 PUBLIC  </span><br><span class="line">							$&#123;CMAKE_CURRENT_SOURCE_DIR&#125;/include</span><br><span class="line">          )</span><br></pre></td></tr></table></figure><br>主项目的CmakeLists文件<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">cmake_minimum_required(VERSION <span class="number">3.3</span><span class="number">.0</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta"># specify the C++ standard</span></span><br><span class="line"><span class="built_in">set</span>(CMAKE_CXX_STANDARD <span class="number">11</span>)</span><br><span class="line"></span><br><span class="line">project(CMAKELIB VERSION <span class="number">1.12</span><span class="number">.7</span>)</span><br><span class="line"><span class="built_in">set</span>(CMAKELIB_SOVERSION $&#123;CMAKELIB_VERSION&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">FILE(GLOB allfiles <span class="string">"./src\/*.cpp"</span> <span class="string">"./include\/*.h"</span>)</span><br><span class="line"></span><br><span class="line">add_subdirectory(lib1)</span><br><span class="line"><span class="built_in">list</span>(APPEND EXTRA_LIBS lib1)</span><br><span class="line"><span class="built_in">list</span>(APPEND EXTRA_INCLUDES <span class="string">"$&#123;PROJECT_SOURCE_DIR&#125;/lib1/include"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">INCLUDE_DIRECTORIES($&#123;PROJECT_SOURCE_DIR&#125;/include)</span><br><span class="line">add_executable(CMAKELIB src/cmakemain.cpp include/cmakemain.h $&#123;allfiles&#125;)</span><br><span class="line"></span><br><span class="line">target_link_libraries(CMAKELIB PUBLIC $&#123;EXTRA_LIBS&#125;)</span><br><span class="line">target_include_directories(CMAKELIB PUBLIC</span><br><span class="line">                          <span class="string">"$&#123;PROJECT_BINARY_DIR&#125;"</span></span><br><span class="line">                          $&#123;EXTRA_INCLUDES&#125;</span><br><span class="line">                          )</span><br></pre></td></tr></table></figure></p>
+<h2 id="引用库"><a href="#引用库" class="headerlink" title="引用库"></a>引用库</h2><h2 id="筛选器"><a href="#筛选器" class="headerlink" title="筛选器"></a>筛选器</h2><h2 id="文件夹遍历"><a href="#文件夹遍历" class="headerlink" title="文件夹遍历"></a>文件夹遍历</h2><h2 id="DEBUG和RELEASE"><a href="#DEBUG和RELEASE" class="headerlink" title="DEBUG和RELEASE"></a>DEBUG和RELEASE</h2><p>cmake .. -DCMAKE_BUILD_TYPE=Debug</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" rel="tag"># 软件工程</a>
+              <a href="/tags/cmake/" rel="tag"># cmake</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/make.html" rel="prev" title="make">
+      <i class="fa fa-chevron-left"></i> make
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%9B%BE%E8%AE%BA/%E5%9B%BE/%E5%9B%BE%E7%9A%84%E7%8E%AF.html" rel="next" title="图的环">
+      图的环 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#cmake"><span class="nav-number">1.</span> <span class="nav-text">cmake</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#单项目构建"><span class="nav-number">1.1.</span> <span class="nav-text">单项目构建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基础"><span class="nav-number">1.1.1.</span> <span class="nav-text">基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模快组织"><span class="nav-number">1.1.2.</span> <span class="nav-text">模快组织</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件目录结构"><span class="nav-number">1.1.3.</span> <span class="nav-text">文件目录结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#头文件和源文件分离"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">头文件和源文件分离</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#头文件和源文件不分离"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">头文件和源文件不分离</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多项目依赖"><span class="nav-number">1.2.</span> <span class="nav-text">多项目依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用库"><span class="nav-number">1.3.</span> <span class="nav-text">引用库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#筛选器"><span class="nav-number">1.4.</span> <span class="nav-text">筛选器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件夹遍历"><span class="nav-number">1.5.</span> <span class="nav-text">文件夹遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DEBUG和RELEASE"><span class="nav-number">1.6.</span> <span class="nav-text">DEBUG和RELEASE</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="leeyupeng"
+      src="/images/icon128.jpg">
+  <p class="site-author-name" itemprop="name">leeyupeng</p>
+  <div class="site-description" itemprop="description">leeyupeng@126.com</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">358</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">54</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">141</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="/about" title="QQ → about"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:leeyupeng@126.com" title="E-Mail → mailto:leeyupeng@126.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">leeyupeng</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              Counter('post', '/classes/Counter', { title, url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"wbbpG5Yxg8WKIQmzEeNU9P5G-gzGzoHsz","app_key":"y271idcAENCbz0foGfiEtWOu","server_url":null,"security":false};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('/js/src/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'wbbpG5Yxg8WKIQmzEeNU9P5G-gzGzoHsz',
+      appKey     : 'y271idcAENCbz0foGfiEtWOu',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"leeeyupeng.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="CHAPTER 1 usaco Problem Types 问题类型：   Dynamic Programming Greedy Complete Search Flood Fill Shortest Path Recursive Search Techniques Minimum Spanning Tree Knapsack Computational Geometry Network Flo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="usaco CHAPTER 1">
+<meta property="og:url" content="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/CHAPTER1.html">
+<meta property="og:site_name" content="leeyupeng">
+<meta property="og:description" content="CHAPTER 1 usaco Problem Types 问题类型：   Dynamic Programming Greedy Complete Search Flood Fill Shortest Path Recursive Search Techniques Minimum Spanning Tree Knapsack Computational Geometry Network Flo">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://leeeyupeng.github.io/images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/usaco.jpg">
+<meta property="article:published_time" content="2020-09-11T09:13:46.868Z">
+<meta property="article:modified_time" content="2020-09-11T09:13:46.868Z">
+<meta property="article:author" content="leeyupeng">
+<meta property="article:tag" content="数据结构与算法">
+<meta property="article:tag" content="usaco">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://leeeyupeng.github.io/images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/usaco.jpg">
+
+<link rel="canonical" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/CHAPTER1.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>usaco CHAPTER 1 | leeyupeng</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">leeyupeng</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">leeyupeng@126.com</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-tagsalgorithm">
+
+    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95" rel="section"><i class="fa fa-book fa-fw"></i>数据结构与算法</a>
+
+  </li>
+        <li class="menu-item menu-item-tagscplusplus">
+
+    <a href="/tags/C-C" rel="section"><i class="fa fa-book fa-fw"></i>C/C++</a>
+
+  </li>
+        <li class="menu-item menu-item-tagsgraphics">
+
+    <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6" rel="section"><i class="fa fa-book fa-fw"></i>图形学</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/CHAPTER1.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          usaco CHAPTER 1
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-11 17:13:46" itemprop="dateCreated datePublished" datetime="2020-09-11T17:13:46+08:00">2020-09-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/" itemprop="url" rel="index"><span itemprop="name">usaco</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/CHAPTER1.html" class="post-meta-item leancloud_visitors" data-flag-title="usaco CHAPTER 1" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/CHAPTER1.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/CHAPTER1.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="/images/数据结构与算法/usaco/usaco.jpg" alt=""></p>
+<h1 id="CHAPTER-1"><a href="#CHAPTER-1" class="headerlink" title="CHAPTER 1"></a>CHAPTER 1</h1><hr>
+<p><a href="https://train.usaco.org/" target="_blank" rel="noopener">usaco</a></p>
+<p>Problem Types 问题类型：  </p>
+<pre><code>Dynamic Programming
+Greedy
+Complete Search
+Flood Fill
+Shortest Path
+Recursive Search Techniques
+Minimum Spanning Tree
+Knapsack
+Computational Geometry
+Network Flow
+Eulerian Path
+Two-Dimensional Convex Hull
+BigNums
+Heuristic Search
+Approximate Search
+Ad Hoc Problems  
+</code></pre><hr>
+<h2 id="Section-1-1"><a href="#Section-1-1" class="headerlink" title="Section 1.1"></a>Section 1.1</h2><h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><h2 id="Section-1-2"><a href="#Section-1-2" class="headerlink" title="Section 1.2"></a>Section 1.2</h2><h3 id="Ad-Hoc-Problems"><a href="#Ad-Hoc-Problems" class="headerlink" title="Ad Hoc Problems"></a>Ad Hoc Problems</h3><hr>
+<p>`Ad hoc’ problems are those whose algorithms do not fall into standard categories with well-studied solutions. Each ad hoc problem is different; no specific or general techniques exist to solve them.</p>
+<p>Of course, this makes the problems the `fun’ ones, since each one presents a new challenge. The solutions might require a novel data structure or an unusual set of loops or conditionals. Sometimes they require special combinations that are rare or at least rarely encountered.</p>
+<p>Ad hoc problems usually require careful reading and usually yield to an attack that revolves around carefully sequencing the instructions given in the problem.</p>
+<p>Ad hoc problems can still require reasonable optimizations and at least a degree of analysis that enables one to avoid loops nested five deep, for example.</p>
+<p>More ad hoc problems appear on this web site than any other kind of problem. Always be ready for an ad hoc problem if you can not classify a problem as one of the other standard types (to be listed later).  </p>
+<hr>
+<h3 id="Greedy-Gift-Givers"><a href="#Greedy-Gift-Givers" class="headerlink" title="Greedy Gift Givers"></a>Greedy Gift Givers</h3><hr>
+<p>A group of NP (2 ≤ NP ≤ 10) uniquely named friends has decided to exchange gifts of money. Each of these friends might or might not give some money to some or all of the other friends (although some might be cheap and give to no one). Likewise, each friend might or might not receive money from any or all of the other friends. Your goal is to deduce how much more money each person receives than they give.</p>
+<p>The rules for gift-giving are potentially different than you might expect. Each person goes to the bank (or any other source of money) to get a certain amount of money to give and divides this money evenly among all those to whom he or she is giving a gift. No fractional money is available, so dividing 7 among 2 friends would be 3 each for the friends with 1 left over – that 1 left over goes into the giver’s “account”. All the participants’ gift accounts start at 0 and are decreased by money given and increased by money received.</p>
+<p>In any group of friends, some people are more giving than others (or at least may have more acquaintances) and some people have more money than others.</p>
+<p>Given:</p>
+<p>a group of friends, no one of whom has a name longer than 14 characters,<br>the money each person in the group spends on gifts, and<br>a (sub)list of friends to whom each person gives gifts,<br>determine how much money each person ends up with.  </p>
+<p>N个小朋友相互送礼物，计算每个小朋友的得失  </p>
+<hr>
+<p><a href="/project/algorithm/usaco/src/gift1.cpp">源码</a>  </p>
+<h3 id="Friday-the-Thirteenth"><a href="#Friday-the-Thirteenth" class="headerlink" title="Friday the Thirteenth"></a>Friday the Thirteenth</h3><hr>
+<p>Is Friday the 13th really an unusual event?</p>
+<p>That is, does the 13th of the month land on a Friday less often than on any other day of the week? To answer this question, write a program that will compute the frequency that the 13th of each month lands on Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, and Saturday over a given period of N years. The time period to test will be from January 1, 1900 to December 31, 1900+N-1 for a given number of years, N. N is positive and will not exceed 400.</p>
+<p>Note that the start year is NINETEEN HUNDRED, not NINETEEN NINETY.</p>
+<p>There are few facts you need to know before you can solve this problem:</p>
+<p>January 1, 1900 was on a Monday.<br>Thirty days has September, April, June, and November, all the rest have 31 except for February which has 28 except in leap years when it has 29.<br>Every year evenly divisible by 4 is a leap year (1992 = 4*498 so 1992 will be a leap year, but the year 1990 is not a leap year)<br>The rule above does not hold for century years. Century years divisible by 400 are leap years, all others are not. Thus, the century years 1700, 1800, 1900 and 2100 are not leap years, but 2000 is a leap year.<br>Do not use any built-in date functions in your computer language.</p>
+<p>Don’t just precompute the answers, either, please.  </p>
+<p>黑色星期五，计算N个年份每个月的13号是星期几，然后统计出来  </p>
+<hr>
+<p><a href="/project/algorithm/usaco/src/friday.cpp">源码</a></p>
+<h3 id="Broken-Necklace"><a href="#Broken-Necklace" class="headerlink" title="Broken Necklace"></a>Broken Necklace</h3><hr>
+<p>You have a necklace of N red, white, or blue beads (3&lt;=N&lt;=350) some of which are red, others blue, and others white, arranged at random. Here are two examples for n=29:<br>The beads considered first and second in the text that follows have been marked in the picture.</p>
+<p>The configuration in Figure A may be represented as a string of b’s and r’s, where b represents a blue bead and r represents a red one, as follows: brbrrrbbbrrrrrbrrbbrbbbbrrrrb .</p>
+<p>Suppose you are to break the necklace at some point, lay it out straight, and then collect beads of the same color from one end until you reach a bead of a different color, and do the same for the other end (which might not be of the same color as the beads collected before this).</p>
+<p>Determine the point where the necklace should be broken so that the most number of beads can be collected.  </p>
+<p>项链有三个颜色 rwb，w是通配颜色，可以充当r或者b<br>求从一个点截断项链，头尾分别可以获得的同一颜色的珠子数量，两者相加的最大值    </p>
+<hr>
+<p><a href="/project/algorithm/usaco/src/beads.cpp">源码</a></p>
+<h2 id="Section-1-3"><a href="#Section-1-3" class="headerlink" title="Section 1.3"></a>Section 1.3</h2><h3 id="Complete-Search"><a href="#Complete-Search" class="headerlink" title="Complete Search"></a>Complete Search</h3><hr>
+<p>brute force  暴力法  </p>
+<p>The Idea<br>Solving a problem using complete search is based on the ``Keep It Simple, Stupid’’ principle. The goal of solving contest problems is to write programs that work in the time allowed, whether or not there is a faster algorithm.  </p>
+<p>Complete search exploits the brute force, straight-forward, try-them-all method of finding the answer. This method should almost always be the first algorithm/solution you consider. If this works within time and space constraints, then do it: it’s easy to code and usually easy to debug. This means you’ll have more time to work on all the hard problems, where brute force doesn’t work quickly enough.</p>
+<p>In the case of a problem with only fewer than a couple million possibilities, iterate through each one of them, and see if the answer works.  </p>
+<p>Careful, Careful<br>Sometimes, it’s not obvious that you use this methodology.  </p>
+<hr>
+<h3 id="Milking-Cows"><a href="#Milking-Cows" class="headerlink" title="Milking Cows"></a>Milking Cows</h3><hr>
+<p>Three farmers rise at 5 am each morning and head for the barn to milk three cows. The first farmer begins milking his cow at time 300 (measured in seconds after 5 am) and ends at time 1000. The second farmer begins at time 700 and ends at time 1200. The third farmer begins at time 1500 and ends at time 2100. The longest continuous time during which at least one farmer was milking a cow was 900 seconds (from 300 to 1200). The longest time no milking was done, between the beginning and the ending of all milking, was 300 seconds (1500 minus 1200).  </p>
+<p>Your job is to write a program that will examine a list of beginning and ending times for N (1 &lt;= N &lt;= 5000) farmers milking N cows and compute (in seconds):  </p>
+<ul>
+<li>The longest time interval at least one cow was milked.  </li>
+<li>The longest time interval (after milking starts) during which no cows were being milked.</li>
+</ul>
+<p>农民挤奶牛,每个农民有各自的挤奶时间段<br>求至少有一名农民在挤奶的最长连续时间段<br>求没有一个农民在挤奶的最长时间间隔  </p>
+<hr>
+<p><a href="/project/algorithm/usaco/src/milk2.cpp">源码</a></p>
+<h3 id="Transformations"><a href="#Transformations" class="headerlink" title="Transformations"></a>Transformations</h3><hr>
+<p>A square pattern of size N x N (1 &lt;= N &lt;= 10) black and white square tiles is transformed into another square pattern. Write a program that will recognize the minimum transformation that has been applied to the original pattern given the following list of possible transformations:</p>
+<pre><code>#1: 90 Degree Rotation: The pattern was rotated clockwise 90 degrees.
+#2: 180 Degree Rotation: The pattern was rotated clockwise 180 degrees.
+#3: 270 Degree Rotation: The pattern was rotated clockwise 270 degrees.
+#4: Reflection: The pattern was reflected horizontally (turned into a mirror image of itself by reflecting around a vertical line in the middle of the image).
+#5: Combination: The pattern was reflected horizontally and then subjected to one of the rotations (#1-#3).
+#6: No Change: The original pattern was not changed.
+#7: Invalid Transformation: The new pattern was not obtained by any of the above methods.
+</code></pre><p>In the case that more than one transform could have been used, choose the one with the minimum number above.  </p>
+<p>从矩阵A是否可以转换到矩阵B  </p>
+<ul>
+<li>1.旋转90度</li>
+<li>2.旋转180度</li>
+<li>3.旋转270度</li>
+<li>4.水平方向反转</li>
+<li>5.先水平方向反转，然后旋转1，2，3中的角度</li>
+<li>6.A B相同</li>
+<li>7.无法转换  </li>
+</ul>
+<hr>
+<p><a href="/project/algorithm/usaco/src/transform.cpp">源码</a>  </p>
+<h3 id="Palindromic-Squares"><a href="#Palindromic-Squares" class="headerlink" title="Palindromic Squares"></a>Palindromic Squares</h3><hr>
+<p>Palindromes are numbers that read the same forwards as backwards. The number 12321 is a typical palindrome.</p>
+<p>Given a number base B (2 &lt;= B &lt;= 20 base 10), print all the integers N (1 &lt;= N &lt;= 300 base 10) such that the square of N is palindromic when expressed in base B; also print the value of that palindromic square. Use the letters ‘A’, ‘B’, and so on to represent the digits 10, 11, and so on.</p>
+<p>Print both the number and its square in base B.</p>
+<p>求[1,300]之间的数字平方按照B进制是回文串的数字  </p>
+<hr>
+<p><a href="/project/algorithm/usaco/src/palsquare.cpp">源码</a></p>
+<h3 id="Dual-Palindromes"><a href="#Dual-Palindromes" class="headerlink" title="Dual Palindromes"></a>Dual Palindromes</h3><hr>
+<p>A number that reads the same from right to left as when read from left to right is called a palindrome. The number 12321 is a palindrome; the number 77778 is not. Of course, palindromes have neither leading nor trailing zeroes, so 0220 is not a palindrome.</p>
+<p>The number 21 (base 10) is not palindrome in base 10, but the number 21 (base 10) is, in fact, a palindrome in base 2 (10101).</p>
+<p>Write a program that reads two numbers (expressed in base 10):</p>
+<p>N (1 &lt;= N &lt;= 15)<br>S (0 &lt; S &lt; 10000)<br>and then finds and prints (in base 10) the first N numbers strictly greater than S that are palindromic when written in two or more number bases (2 &lt;= base &lt;= 10).<br>Solutions to this problem do not require manipulating integers larger than the standard 32 bits.  </p>
+<p>求大于S的N个数，这N个数满足在[2,10]进制下，至少有两个回文串  </p>
+<hr>
+<p><a href="/project/algorithm/usaco/src/dualpal.cpp">源码</a></p>
+<h2 id="Section-1-4"><a href="#Section-1-4" class="headerlink" title="Section 1.4"></a>Section 1.4</h2><h3 id="Greedy-Algorithm"><a href="#Greedy-Algorithm" class="headerlink" title="Greedy Algorithm"></a>Greedy Algorithm</h3><hr>
+<p>The Idea<br>The basic idea behind greedy algorithms is to build large solutions up from smaller ones. Unlike other approaches, however, greedy algorithms keep only the best solution they find as they go along. Thus, for the sample problem, to build the answer for N = 5, they find the best solution for N = 4, and then alter it to get a solution for N = 5. No other solution for N = 4 is ever considered.</p>
+<p>Greedy algorithms are fast, generally linear to quadratic and require little extra memory. Unfortunately, they usually aren’t correct. But when they do work, they are often easy to implement and fast enough to execute.  </p>
+<hr>
+<h3 id="Mixing-Milk"><a href="#Mixing-Milk" class="headerlink" title="Mixing Milk"></a>Mixing Milk</h3><hr>
+<p>The Merry Milk Makers company buys milk from farmers, packages it into attractive 1- and 2-Unit bottles, and then sells that milk to grocery stores so we can each start our day with delicious cereal and milk.</p>
+<p>Since milk packaging is such a difficult business in which to make money, it is important to keep the costs as low as possible. Help Merry Milk Makers purchase the farmers’ milk in the cheapest possible manner. The MMM company has an extraordinarily talented marketing department and knows precisely how much milk they need each day to package for their customers.</p>
+<p>The company has contracts with several farmers from whom they may purchase milk, and each farmer has a (potentially) different price at which they sell milk to the packing plant. Of course, a herd of cows can only produce so much milk each day, so the farmers already know how much milk they will have available.</p>
+<p>Each day, Merry Milk Makers can purchase an integer number of units of milk from each farmer, a number that is always less than or equal to the farmer’s limit (and might be the entire production from that farmer, none of the production, or any integer in between).</p>
+<p>Given:</p>
+<ul>
+<li>The Merry Milk Makers’ daily requirement of milk</li>
+<li>The cost per unit for milk from each farmer</li>
+<li>The amount of milk available from each farmer  </li>
+</ul>
+<p>calculate the minimum amount of money that Merry Milk Makers must spend to meet their daily need for milk.<br>Note: The total milk produced per day by the farmers will always be sufficient to meet the demands of the Merry Milk Makers even if the prices are high.  </p>
+<hr>
+<hr>
+<p>公司需要从农民手中买N份牛奶;每个农民有自己的出售单价和生产量;<br>求公司需要的最小花费  </p>
+<hr>
+<p><a href="/project/algorithm/usaco/src/milk.cpp">源码</a></p>
+<h3 id="Barn-Repair"><a href="#Barn-Repair" class="headerlink" title="Barn Repair"></a>Barn Repair</h3><hr>
+<p>It was a dark and stormy night that ripped the roof and gates off the stalls that hold Farmer John’s cows. Happily, many of the cows were on vacation, so the barn was not completely full.</p>
+<p>The cows spend the night in stalls that are arranged adjacent to each other in a long line. Some stalls have cows in them; some do not. All stalls are the same width.</p>
+<p>Farmer John must quickly erect new boards in front of the stalls, since the doors were lost. His new lumber supplier will supply him boards of any length he wishes, but the supplier can only deliver a small number of total boards. Farmer John wishes to minimize the total length of the boards he must purchase.</p>
+<p>Given M (1 &lt;= M &lt;= 50), the maximum number of boards that can be purchased; S (1 &lt;= S &lt;= 200), the total number of stalls; C (1 &lt;= C &lt;= S) the number of cows in the stalls, and the C occupied stall numbers (1 &lt;= stall_number &lt;= S), calculate the minimum number of stalls that must be blocked in order to block all the stalls that have cows in them.</p>
+<p>Print your answer as the total number of stalls blocked.  </p>
+<hr>
+<hr>
+<p>在一个夜黑风高、下着暴风雨的夜晚，farmer John的牛棚的屋顶、门都被吹飞了。所幸，许多牛都在度假，所以牛棚并没有住满。<br>牛棚一个挨着一个相邻排列成一行，牛就在里面过夜。一些牛棚里面有牛，而一些没有。所有的牛棚都有相同的宽度。<br>自从门被吹走后，farmer John必须尽快地在牛棚前建立新的木板。他的新木料供应商将会供应给他任意他想要长度的木板，但是供应商只能够提供少量的木板。Farmer John想要将木板的总长度减到最少。<br>给出可能买到的木板的最大数目M(1&lt;= M&lt;=50)，每块长度任意；牛棚的总数S(1&lt;= S&lt;=200); 牛棚里牛的总数C(1 &lt;= C &lt;=S);以及牛所在牛棚的编号stall_number(1 &lt;= stall_number &lt;= S),计算拦住所有有牛的牛棚所需木板的最小总长度。<br>输出你所计算得到的所需木板的最小总长度作为答案。  </p>
+<hr>
+<p><a href="/project/algorithm/usaco/src/barn1.cpp">源码</a></p>
+<h3 id="Prime-Cryptarithm"><a href="#Prime-Cryptarithm" class="headerlink" title="Prime Cryptarithm"></a>Prime Cryptarithm</h3><hr>
+<p>牛式  </p>
+<hr>
+<p><a href="/project/algorithm/usaco/src/crypt1.cpp">源码</a></p>
+<h3 id="Combination-Lock"><a href="#Combination-Lock" class="headerlink" title="Combination Lock"></a>Combination Lock</h3><hr>
+<hr>
+<p><a href="/project/algorithm/usaco/src/combo.cpp">源码</a></p>
+<h3 id="Wormholes"><a href="#Wormholes" class="headerlink" title="Wormholes"></a>Wormholes</h3><hr>
+<p>虫洞  </p>
+<p>农夫约翰爱好在周末进行高能物理实验的结果却适得其反，导致N个虫洞在农场上（2&lt;=N&lt;=12，n是偶数），每个在农场二维地图的一个不同点。</p>
+<p>根据他的计算，约翰知道他的虫洞将形成 N/2 连接配对。例如，如果A和B的虫洞连接成一对，进入虫洞A的任何对象体将从虫洞B出去，朝着同一个方向，而且进入虫洞B的任何对象将同样从虫洞A出去，朝着相同的方向前进。这可能发生相当令人不快的后果。</p>
+<p>例如，假设有两个成对的虫洞A(1，1) 和 B(3，1)，贝茜从(2，1)开始朝着 +x 方向（右）的位置移动。贝茜将进入虫洞 B（在(3,1)），从A出去（在(1,1)），然后再次进入B，困在一个无限循环中！</p>
+<pre><code>| . . . .  
+| A &gt; B .      贝茜会穿过B，A，  
++ . . . .      然后再次穿过B  
+</code></pre><p>农夫约翰知道他的农场里每个虫洞的确切位置。他知道贝茜总是向 +x 方向走进来，虽然他不记得贝茜的当前位置。请帮助农夫约翰计算不同的虫洞配对（情况），使贝茜可能被困在一个无限循环中，如果她从不幸的位置开始。</p>
+<hr>
+<p><a href="/project/algorithm/usaco/src/wormhole.cpp">源码</a></p>
+<h3 id="Ski-Course-Design"><a href="#Ski-Course-Design" class="headerlink" title="Ski Course Design"></a>Ski Course Design</h3><hr>
+<p>Farmer John has N hills on his farm (1 &lt;= N &lt;= 1,000), each with an integer elevation in the range 0 .. 100. In the winter, since there is abundant snow on these hills, FJ routinely operates a ski training camp.</p>
+<p>Unfortunately, FJ has just found out about a new tax that will be assessed next year on farms used as ski training camps. Upon careful reading of the law, however, he discovers that the official definition of a ski camp requires the difference between the highest and lowest hill on his property to be strictly larger than 17. Therefore, if he shortens his tallest hills and adds mass to increase the height of his shorter hills, FJ can avoid paying the tax as long as the new difference between the highest and lowest hill is at most 17.</p>
+<p>If it costs x^2 units of money to change the height of a hill by x units, what is the minimum amount of money FJ will need to pay? FJ can change the height of a hill only once, so the total cost for each hill is the square of the difference between its original and final height. FJ is only willing to change the height of each hill by an integer amount.  </p>
+<hr>
+<hr>
+<p>农民约翰的农场里有N座山峰(1&lt;=N&lt;=1000),每座山都有一个在0到100之间的整数的海拔高度。在冬天,因为山上有丰富的积雪,约翰经常开办滑雪训练营。</p>
+<p>不幸的是,约翰刚刚得知税法在滑雪训练营方面有新变化,明年开始实施。在仔细阅读法律后,他发现如果滑雪训练营的最高和最低的山峰海拔高度差大于17就要收税。因此,如果他改变山峰的高度（使最高与最低的山峰海拔高度差不超过17）,约翰可以避免支付税收。</p>
+<p>如果改变一座山x单位的高度成本是x^2单位,约翰最少需要付多少钱?约翰只愿意改变整数单位的高度。</p>
+<hr>
+<p><a href="/project/algorithm/usaco/src/skidesign.cpp">源码</a></p>
+<h2 id="Section-1-5"><a href="#Section-1-5" class="headerlink" title="Section 1.5"></a>Section 1.5</h2><h3 id="Search-Techniques"><a href="#Search-Techniques" class="headerlink" title="Search Techniques"></a>Search Techniques</h3><hr>
+<hr>
+<h3 id="Arithmetic-Progressions"><a href="#Arithmetic-Progressions" class="headerlink" title="Arithmetic Progressions"></a>Arithmetic Progressions</h3><hr>
+<hr>
+<hr>
+<p>stl set 檢索  </p>
+<p>不加此条件会超时<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (N == <span class="number">3</span>)jbase = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (N &lt; <span class="number">6</span>)jbase = <span class="number">4</span>;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (N &lt; <span class="number">12</span>)jbase = <span class="number">12</span>;</span><br><span class="line"><span class="keyword">else</span> &#123; jbase = <span class="number">84</span>; &#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p><a href="/project/algorithm/usaco/src/ariprog.cpp">源码</a></p>
+<hr>
+<p>數組 檢索   </p>
+<hr>
+<p><a href="/project/algorithm/usaco/src/ariprog_2.cpp">源码</a></p>
+<h3 id="Mother’s-Milk"><a href="#Mother’s-Milk" class="headerlink" title="Mother’s Milk"></a>Mother’s Milk</h3><hr>
+<p>三个杯子ABC 来回倒腾牛奶<br>输入三个杯子ABC的容量<br>初始AB杯子是空的，C杯子是满的<br>每次倒腾要么将杯子倒空，要么将目标杯子倒满<br>求A杯子保持是空的，C杯子的可能牛奶量</p>
+<hr>
+<p><a href="/project/algorithm/usaco/src/milk3.cpp">源码</a></p>
+<h2 id="Section-1-6"><a href="#Section-1-6" class="headerlink" title="Section 1.6"></a>Section 1.6</h2><h3 id="Binary-Numbers"><a href="#Binary-Numbers" class="headerlink" title="Binary Numbers"></a>Binary Numbers</h3><hr>
+<hr>
+<h3 id="Number-Triangles"><a href="#Number-Triangles" class="headerlink" title="Number Triangles"></a>Number Triangles</h3><hr>
+<p>Consider the number triangle shown below. Write a program that calculates the highest sum of numbers that can be passed on a route that starts at the top and ends somewhere on the base. Each step can go either diagonally down to the left or diagonally down to the right.</p>
+<pre><code>          7
+
+        3   8
+
+      8   1   0
+
+    2   7   4   4
+
+  4   5   2   6   5
+</code></pre><p>In the sample above, the route from 7 to 3 to 8 to 7 to 5 produces the highest sum: 30.</p>
+<hr>
+<p><a href="/project/algorithm/usaco/src/numtri.cpp">源码</a></p>
+<h3 id="Prime-Palindromes"><a href="#Prime-Palindromes" class="headerlink" title="Prime Palindromes"></a>Prime Palindromes</h3><hr>
+<p>The number 151 is a prime palindrome because it is both a prime number and a palindrome (it is the same number when read forward as backward). Write a program that finds all prime palindromes in the range of two supplied numbers a and b (5 &lt;= a &lt; b &lt;= 100,000,000); both a and b are considered to be within the range .  </p>
+<hr>
+<hr>
+<p>统计a-b之间的数 既是素数，又是回文的数<br>b的最大值是10的八次方  枚举会超时<br>先求出所有的回文组合，然后判断是不是素数  </p>
+<hr>
+<p><a href="/project/algorithm/usaco/src/pprime.cpp">源码</a></p>
+<hr>
+<p>b最大时10的八次方<br>数字格式 abcdedcba<br>数字的前半部分随意组合  也就是  0-100000 之间<br>然后生成回文数字，判断数字是否时素数  </p>
+<hr>
+<p><a href="/project/algorithm/usaco/src/pprime_2.cpp">源码</a></p>
+<h3 id="Superprime-Rib"><a href="#Superprime-Rib" class="headerlink" title="Superprime Rib"></a>Superprime Rib</h3><hr>
+<p>Butchering Farmer John’s cows always yields the best prime rib. You can tell prime ribs by looking at the digits lovingly stamped across them, one by one, by FJ and the USDA. Farmer John ensures that a purchaser of his prime ribs gets really prime ribs because when sliced from the right, the numbers on the ribs continue to stay prime right down to the last rib, e.g.:</p>
+<pre><code> 7  3  3  1
+</code></pre><p>The set of ribs denoted by 7331 is prime; the three ribs 733 are prime; the two ribs 73 are prime, and, of course, the last rib, 7, is prime. The number 7331 is called a superprime of length 4.</p>
+<p>Write a program that accepts a number N 1 &lt;=N&lt;=8 of ribs and prints all the superprimes of that length.</p>
+<p>The number 1 (by itself) is not a prime number.  </p>
+<hr>
+<hr>
+<p>超级素数<br>n位的超级素数等于 (n-1)*10+{ 1,3,5,7,9 } 的组合中的的素数<br>f(n)=IsPrime(f(n-1)+{ 1,3,5,7,9 })  </p>
+<hr>
+<p><a href="/project/algorithm/usaco/src/sprime.cpp">源码</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag"># 数据结构与算法</a>
+              <a href="/tags/usaco/" rel="tag"># usaco</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/CHAPTER2.html" rel="prev" title="usaco CHAPTER 2">
+      <i class="fa fa-chevron-left"></i> usaco CHAPTER 2
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/2985.The%20k-th%20Largest%20Group.html" rel="next" title="poj.2985.The k-th Largest Group">
+      poj.2985.The k-th Largest Group <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CHAPTER-1"><span class="nav-number">1.</span> <span class="nav-text">CHAPTER 1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Section-1-1"><span class="nav-number">1.1.</span> <span class="nav-text">Section 1.1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.1.</span> <span class="nav-text">Introduction</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Section-1-2"><span class="nav-number">1.2.</span> <span class="nav-text">Section 1.2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ad-Hoc-Problems"><span class="nav-number">1.2.1.</span> <span class="nav-text">Ad Hoc Problems</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Greedy-Gift-Givers"><span class="nav-number">1.2.2.</span> <span class="nav-text">Greedy Gift Givers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Friday-the-Thirteenth"><span class="nav-number">1.2.3.</span> <span class="nav-text">Friday the Thirteenth</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Broken-Necklace"><span class="nav-number">1.2.4.</span> <span class="nav-text">Broken Necklace</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Section-1-3"><span class="nav-number">1.3.</span> <span class="nav-text">Section 1.3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Complete-Search"><span class="nav-number">1.3.1.</span> <span class="nav-text">Complete Search</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Milking-Cows"><span class="nav-number">1.3.2.</span> <span class="nav-text">Milking Cows</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Transformations"><span class="nav-number">1.3.3.</span> <span class="nav-text">Transformations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Palindromic-Squares"><span class="nav-number">1.3.4.</span> <span class="nav-text">Palindromic Squares</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dual-Palindromes"><span class="nav-number">1.3.5.</span> <span class="nav-text">Dual Palindromes</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Section-1-4"><span class="nav-number">1.4.</span> <span class="nav-text">Section 1.4</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Greedy-Algorithm"><span class="nav-number">1.4.1.</span> <span class="nav-text">Greedy Algorithm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mixing-Milk"><span class="nav-number">1.4.2.</span> <span class="nav-text">Mixing Milk</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Barn-Repair"><span class="nav-number">1.4.3.</span> <span class="nav-text">Barn Repair</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Prime-Cryptarithm"><span class="nav-number">1.4.4.</span> <span class="nav-text">Prime Cryptarithm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Combination-Lock"><span class="nav-number">1.4.5.</span> <span class="nav-text">Combination Lock</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Wormholes"><span class="nav-number">1.4.6.</span> <span class="nav-text">Wormholes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ski-Course-Design"><span class="nav-number">1.4.7.</span> <span class="nav-text">Ski Course Design</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Section-1-5"><span class="nav-number">1.5.</span> <span class="nav-text">Section 1.5</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Search-Techniques"><span class="nav-number">1.5.1.</span> <span class="nav-text">Search Techniques</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Arithmetic-Progressions"><span class="nav-number">1.5.2.</span> <span class="nav-text">Arithmetic Progressions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mother’s-Milk"><span class="nav-number">1.5.3.</span> <span class="nav-text">Mother’s Milk</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Section-1-6"><span class="nav-number">1.6.</span> <span class="nav-text">Section 1.6</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Binary-Numbers"><span class="nav-number">1.6.1.</span> <span class="nav-text">Binary Numbers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Number-Triangles"><span class="nav-number">1.6.2.</span> <span class="nav-text">Number Triangles</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Prime-Palindromes"><span class="nav-number">1.6.3.</span> <span class="nav-text">Prime Palindromes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Superprime-Rib"><span class="nav-number">1.6.4.</span> <span class="nav-text">Superprime Rib</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="leeyupeng"
+      src="/images/icon128.jpg">
+  <p class="site-author-name" itemprop="name">leeyupeng</p>
+  <div class="site-description" itemprop="description">leeyupeng@126.com</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">358</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">54</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">141</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="/about" title="QQ → about"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:leeyupeng@126.com" title="E-Mail → mailto:leeyupeng@126.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">leeyupeng</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              Counter('post', '/classes/Counter', { title, url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"wbbpG5Yxg8WKIQmzEeNU9P5G-gzGzoHsz","app_key":"y271idcAENCbz0foGfiEtWOu","server_url":null,"security":false};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('/js/src/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'wbbpG5Yxg8WKIQmzEeNU9P5G-gzGzoHsz',
+      appKey     : 'y271idcAENCbz0foGfiEtWOu',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

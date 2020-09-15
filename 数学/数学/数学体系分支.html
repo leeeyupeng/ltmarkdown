@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"leeeyupeng.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="数学 基础：包括集合，逻辑和算术。思考和计算，这两个过关就能学好数学。集合是基础概念。结构：代数，包括数论，组合。典型如线性代数，群环域等。学矩阵时研究矩阵间的关系，学群时研究子群，都是对结构的研究。空间：几何，拓扑。各种测量，各种空间，各种几何体及其性质。变化：分析。研究变化趋势，比如微积分，函数，泛函等。  数学学科 14 逻辑与基础▪ 1410:演绎逻辑学     ▪ 1420:证明论">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数学体系分支">
+<meta property="og:url" content="https://leeeyupeng.github.io/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E4%BD%93%E7%B3%BB%E5%88%86%E6%94%AF.html">
+<meta property="og:site_name" content="leeyupeng">
+<meta property="og:description" content="数学 基础：包括集合，逻辑和算术。思考和计算，这两个过关就能学好数学。集合是基础概念。结构：代数，包括数论，组合。典型如线性代数，群环域等。学矩阵时研究矩阵间的关系，学群时研究子群，都是对结构的研究。空间：几何，拓扑。各种测量，各种空间，各种几何体及其性质。变化：分析。研究变化趋势，比如微积分，函数，泛函等。  数学学科 14 逻辑与基础▪ 1410:演绎逻辑学     ▪ 1420:证明论">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-07-15T04:39:25.006Z">
+<meta property="article:modified_time" content="2020-07-15T04:39:25.006Z">
+<meta property="article:author" content="leeyupeng">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="math">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://leeeyupeng.github.io/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E4%BD%93%E7%B3%BB%E5%88%86%E6%94%AF.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>数学体系分支 | leeyupeng</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">leeyupeng</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">leeyupeng@126.com</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-tagsalgorithm">
+
+    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95" rel="section"><i class="fa fa-book fa-fw"></i>数据结构与算法</a>
+
+  </li>
+        <li class="menu-item menu-item-tagscplusplus">
+
+    <a href="/tags/C-C" rel="section"><i class="fa fa-book fa-fw"></i>C/C++</a>
+
+  </li>
+        <li class="menu-item menu-item-tagsgraphics">
+
+    <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6" rel="section"><i class="fa fa-book fa-fw"></i>图形学</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E4%BD%93%E7%B3%BB%E5%88%86%E6%94%AF.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数学体系分支
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-15 12:39:25" itemprop="dateCreated datePublished" datetime="2020-07-15T12:39:25+08:00">2020-07-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E4%BD%93%E7%B3%BB%E5%88%86%E6%94%AF.html" class="post-meta-item leancloud_visitors" data-flag-title="数学体系分支" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E4%BD%93%E7%B3%BB%E5%88%86%E6%94%AF.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E4%BD%93%E7%B3%BB%E5%88%86%E6%94%AF.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="数学"><a href="#数学" class="headerlink" title="数学"></a>数学</h1><hr>
+<p>基础：包括集合，逻辑和算术。思考和计算，这两个过关就能学好数学。集合是基础概念。<br>结构：代数，包括数论，组合。典型如线性代数，群环域等。学矩阵时研究矩阵间的关系，学群时研究子群，都是对结构的研究。<br>空间：几何，拓扑。各种测量，各种空间，各种几何体及其性质。<br>变化：分析。研究变化趋势，比如微积分，函数，泛函等。</p>
+<hr>
+<h1 id="数学学科"><a href="#数学学科" class="headerlink" title="数学学科"></a>数学学科</h1><hr>
+<p>14 逻辑与基础<br>▪ 1410:演绎逻辑学     ▪ 1420:证明论     ▪ 1430:递归论<br>▪ 1440:模型论     ▪ 1450:公理集合论     ▪ 1460:数学基础<br>▪ 1499:数理逻辑与数学基础其他学科<br>17 数论<br>▪ 1710:初等数论     ▪ 1720:解析数论     ▪ 1730:代数数论<br>▪ 1740:超越数论     ▪ 1750:丢番图逼近     ▪ 1760:数的几何<br>▪ 1770:概率数论     ▪ 1780:计算数论     ▪ 1799:数论其他学科<br>21 代数学<br>▪ 2110:线性代数     ▪ 2115:群论     ▪ 2120:域论<br>▪ 2125:李群     ▪ 2130:李代数     ▪ 2135:Kac-Moody代数<br>▪ 2140:环论     ▪ 2145:模论     ▪ 2150:格论<br>▪ 2155:泛代数理论     ▪ 2160:范畴论     ▪ 2165:同调代数<br>▪ 2170:代数K理论     ▪ 2175:微分代数     ▪ 2180:代数编码理论<br>▪ 2199:代数学其他学科<br>27 几何学<br>▪ 2710:几何学基础     ▪ 2715:欧氏几何学     ▪ 2720:非欧几何学<br>▪ 2725:球面几何学     ▪ 2730:向量和张量分析     ▪ 2735:仿射几何学<br>▪ 2750:分数维几何     ▪ 2740:射影几何学     ▪ 2745:微分几何学<br>▪ 2755:计算几何学     ▪ 2799:几何学其他学科<br>31 拓扑学<br>▪ 3110:点集拓扑学     ▪ 3115:代数拓扑学     ▪ 3120:同伦论<br>▪ 3125:低维拓扑学     ▪ 3130:同调论     ▪ 3135:维数论<br>▪ 3140:格上拓扑学     ▪ 3145:纤维丛论     ▪ 3150:几何拓扑学<br>▪ 3155:奇点理论     ▪ 3160:微分拓扑学     ▪ 3199:拓扑学其他学科<br>34 数学分析<br>▪ 3410:微分学     ▪ 3420:积分学     ▪ 3430:级数论<br>▪ 3499:数学分析其他学科<br>41 函数论<br>▪ 4110:实变函数论     ▪ 4120:单复变函数论     ▪ 4130:多复变函数论<br>▪ 4140:函数逼近论     ▪ 4150:调和分析     ▪ 4160:复流形<br>▪ 4170:特殊函数论     ▪ 4199:函数论其他学科<br>44 常微分方程<br>▪ 4410:定性理论     ▪ 4420:稳定性理论     ▪ 4430:解析理论<br>▪ 4499:常微分方程其他学科<br>47 偏微分方程<br>▪ 4710:椭圆型偏微分方程     ▪ 4720:双曲型偏微分方程     ▪ 4730:抛物型偏微分方程<br>▪ 4740:非线性偏微分方程     ▪ 4799:偏微分方程其他学科<br>51 动力系统<br>▪ 5110:微分动力系统     ▪ 5120:拓扑动力系统     ▪ 5130:复动力系统<br>▪ 5199:动力系统其他学科<br>57 泛函分析<br>▪ 5710:线性算子理论     ▪ 5715:变分法     ▪ 5720:拓扑线性空间<br>▪ 5725:希尔伯特空间     ▪ 5730:函数空间     ▪ 5735:巴拿赫空间<br>▪ 5740:算子代数     ▪ 5745:测度与积分     ▪ 5750:广义函数论<br>▪ 5755:非线性泛函分析     ▪ 5799:泛函分析其他学科<br>61 计算数学<br>▪ 6110:插值法与逼近论     ▪ 6120:常微分方程数值解     ▪ 6130:偏微分方程数值解<br>▪ 6140:积分方程数值解     ▪ 6150:数值代数     ▪ 6160:连续问题离散化方法<br>▪ 6170:随机数值实验     ▪ 6180:误差分析     ▪ 6199:计算数学其他学科<br>64 概率论<br>▪ 6410:几何概率     ▪ 6420:概率分布     ▪ 6430:极限理论<br>▪ 6440:随机过程     ▪ 6450:马尔可夫过程     ▪ 6460:随机分析<br>▪ 6470:鞅论     ▪ 6480:应用概率论     ▪ 6499:概率论其他学科<br>67 数理统计学<br>▪ 6710:抽样理论     ▪ 6715:假设检验     ▪ 6720:非参数统计<br>▪ 6725:方差分析     ▪ 6730:相关回归分析     ▪ 6735:统计推断<br>▪ 6740:贝叶斯统计     ▪ 6745:试验设计     ▪ 6750:多元分析<br>▪ 6755:统计判决理论     ▪ 6760:时间序列分析     ▪ 6799:数理统计学其他学科<br>71 应用统计数学<br>▪ 7110:统计质量控制     ▪ 7120:可靠性数学     ▪ 7130:保险数学<br>▪ 7140:统计模拟     ▪ 7199:应用统计数学其他学科<br>74 运筹学<br>▪ 7410:线性规划     ▪ 7415:非线性规划     ▪ 7420:动态规划<br>▪ 7425:组合最优化     ▪ 7430:参数规划     ▪ 7435:整数规划<br>▪ 7440:随机规划     ▪ 7445:排队论     ▪ 7450:对策论<br>▪ 7460:决策论     ▪ 7455:库存论     ▪ 7465:搜索论<br>▪ 7470:图论     ▪ 7475:统筹论     ▪ 7480:最优化<br>▪ 7499:运筹学其他学科<br>其他二级学科<br>▪ 11:数学史     ▪ 24:代数几何学     ▪ 37:非标准分析<br>▪ 54:积分方程     ▪ 77:组合数学     ▪ 81:离散数学<br>▪ 84:模糊数学     ▪ 87:应用数学     ▪ 99:数学其他学科</p>
+<hr>
+<h1 id="几何"><a href="#几何" class="headerlink" title="几何"></a>几何</h1><hr>
+<p>平面几何<br>立体几何<br>非欧几何<br>罗氏几何<br>黎曼几何<br>解析几何<br>射影几何<br>仿射几何<br>代数几何<br>微分几何<br>计算几何<br>拓扑学  </p>
+<hr>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag"># 数学</a>
+              <a href="/tags/math/" rel="tag"># math</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E8%AE%A1%E7%AE%97.html" rel="prev" title="数学/数学/数学计算">
+      <i class="fa fa-chevron-left"></i> 数学/数学/数学计算
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6/%E5%BF%AB%E9%80%9F%E5%B9%82.html" rel="next" title="快速幂">
+      快速幂 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数学"><span class="nav-number">1.</span> <span class="nav-text">数学</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数学学科"><span class="nav-number">2.</span> <span class="nav-text">数学学科</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#几何"><span class="nav-number">3.</span> <span class="nav-text">几何</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="leeyupeng"
+      src="/images/icon128.jpg">
+  <p class="site-author-name" itemprop="name">leeyupeng</p>
+  <div class="site-description" itemprop="description">leeyupeng@126.com</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">358</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">54</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">141</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="/about" title="QQ → about"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:leeyupeng@126.com" title="E-Mail → mailto:leeyupeng@126.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">leeyupeng</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              Counter('post', '/classes/Counter', { title, url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"wbbpG5Yxg8WKIQmzEeNU9P5G-gzGzoHsz","app_key":"y271idcAENCbz0foGfiEtWOu","server_url":null,"security":false};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('/js/src/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'wbbpG5Yxg8WKIQmzEeNU9P5G-gzGzoHsz',
+      appKey     : 'y271idcAENCbz0foGfiEtWOu',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

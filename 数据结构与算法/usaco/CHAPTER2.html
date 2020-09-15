@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"leeeyupeng.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="CHAPTER 2  Section 2.1Graph Theory  The Castle">
+<meta property="og:type" content="article">
+<meta property="og:title" content="usaco CHAPTER 2">
+<meta property="og:url" content="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/CHAPTER2.html">
+<meta property="og:site_name" content="leeyupeng">
+<meta property="og:description" content="CHAPTER 2  Section 2.1Graph Theory  The Castle">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://leeeyupeng.github.io/images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/usaco.jpg">
+<meta property="article:published_time" content="2020-09-11T09:13:46.868Z">
+<meta property="article:modified_time" content="2020-09-11T09:13:46.868Z">
+<meta property="article:author" content="leeyupeng">
+<meta property="article:tag" content="数据结构与算法">
+<meta property="article:tag" content="usaco">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://leeeyupeng.github.io/images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/usaco.jpg">
+
+<link rel="canonical" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/CHAPTER2.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>usaco CHAPTER 2 | leeyupeng</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">leeyupeng</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">leeyupeng@126.com</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-tagsalgorithm">
+
+    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95" rel="section"><i class="fa fa-book fa-fw"></i>数据结构与算法</a>
+
+  </li>
+        <li class="menu-item menu-item-tagscplusplus">
+
+    <a href="/tags/C-C" rel="section"><i class="fa fa-book fa-fw"></i>C/C++</a>
+
+  </li>
+        <li class="menu-item menu-item-tagsgraphics">
+
+    <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6" rel="section"><i class="fa fa-book fa-fw"></i>图形学</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/CHAPTER2.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          usaco CHAPTER 2
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-11 17:13:46" itemprop="dateCreated datePublished" datetime="2020-09-11T17:13:46+08:00">2020-09-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/" itemprop="url" rel="index"><span itemprop="name">usaco</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/CHAPTER2.html" class="post-meta-item leancloud_visitors" data-flag-title="usaco CHAPTER 2" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/CHAPTER2.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/CHAPTER2.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="/images/数据结构与算法/usaco/usaco.jpg" alt=""></p>
+<h1 id="CHAPTER-2"><a href="#CHAPTER-2" class="headerlink" title="CHAPTER 2"></a>CHAPTER 2</h1><hr>
+<hr>
+<h2 id="Section-2-1"><a href="#Section-2-1" class="headerlink" title="Section 2.1"></a>Section 2.1</h2><h3 id="Graph-Theory"><a href="#Graph-Theory" class="headerlink" title="Graph Theory"></a>Graph Theory</h3><hr>
+<hr>
+<h3 id="The-Castle"><a href="#The-Castle" class="headerlink" title="The Castle"></a>The Castle</h3><hr>
+<p>In a stroke of luck almost beyond imagination, Farmer John was sent a ticket to the Irish Sweepstakes (really a lottery) for his birthday. This ticket turned out to have only the winning number for the lottery! Farmer John won a fabulous castle in the Irish countryside.</p>
+<p>Bragging rights being what they are in Wisconsin, Farmer John wished to tell his cows all about the castle. He wanted to know how many rooms it has and how big the largest room was. In fact, he wants to take out a single wall to make an even bigger room.</p>
+<p>Your task is to help Farmer John know the exact room count and sizes.</p>
+<p>The castle floorplan is divided into M (wide) by N (1 &lt;=M,N&lt;=50) square modules. Each such module can have between zero and four walls. Castles always have walls on their “outer edges” to keep out the wind and rain.</p>
+<p>Consider this annotated floorplan of a castle:</p>
+<pre><code>       1   2   3   4   5   6   7
+     #############################
+   1 #   |   #   |   #   |   |   #
+     #####---#####---#---#####---#   
+   2 #   #   |   #   #   #   #   #
+     #---#####---#####---#####---#
+   3 #   |   |   #   #   #   #   #   
+     #---#########---#####---#---#
+   4 # -&gt;#   |   |   |   |   #   #   
+     #############################
+
+  #  = Wall     -,|  = No wall
+  -&gt; = Points to the wall to remove to
+       make the largest possible new room
+</code></pre><p>By way of example, this castle sits on a 7 x 4 base. A “room” includes any set of connected “squares” in the floor plan. This floorplan contains five rooms (whose sizes are 9, 7, 3, 1, and 8 in no particular order).</p>
+<p>Removing the wall marked by the arrow merges a pair of rooms to make the largest possible room that can be made by removing a single wall.</p>
+<p>The castle always has at least two rooms and always has a wall that can be removed.  </p>
+<hr>
+<hr>
+<p>一个矩形由N*M个房间组成，每个房间之间有墙或者没墙，房间之间的连通性，<br>求最大有多少房间联通<br>拆掉一堵墙，可以获得的最大房间联通  </p>
+<hr>
+<p><a href="/project/algorithm/usaco/src/castle.cpp">源码</a></p>
+<h3 id="Ordered-Fractions"><a href="#Ordered-Fractions" class="headerlink" title="Ordered Fractions"></a>Ordered Fractions</h3><hr>
+<p>Consider the set of all reduced fractions between 0 and 1 inclusive with denominators less than or equal to N.</p>
+<p>Here is the set when N = 5:</p>
+<p>0/1 1/5 1/4 1/3 2/5 1/2 3/5 2/3 3/4 4/5 1/1<br>Write a program that, given an integer N between 1 and 160 inclusive, prints the fractions in order of increasing magnitude.  </p>
+<hr>
+<hr>
+<p>有顺序的分数  </p>
+<hr>
+<p><a href="/project/algorithm/usaco/src/frac1.cpp">源码</a></p>
+<h3 id="Sorting-a-Three-Valued-Sequence"><a href="#Sorting-a-Three-Valued-Sequence" class="headerlink" title="Sorting a Three-Valued Sequence"></a>Sorting a Three-Valued Sequence</h3><hr>
+<p>Sorting is one of the most frequently performed computational tasks. Consider the special sorting problem in which the records to be sorted have at most three different key values. This happens for instance when we sort medalists of a competition according to medal value, that is, gold medalists come first, followed by silver, and bronze medalists come last.</p>
+<p>In this task the possible key values are the integers 1, 2 and 3. The required sorting order is non-decreasing. However, sorting has to be accomplished by a sequence of exchange operations. An exchange operation, defined by two position numbers p and q, exchanges the elements in positions p and q.</p>
+<p>You are given a sequence of key values. Write a program that computes the minimal number of exchange operations that are necessary to make the sequence sorted.  </p>
+<hr>
+<hr>
+<p>数组中只有[1,2,3],将数组排序需要的最小两两交换次数<br>DFS剪枝</p>
+<hr>
+<p><a href="/project/algorithm/usaco/src/sort3.cpp">源码</a></p>
+<h3 id="Healthy-Holsteins"><a href="#Healthy-Holsteins" class="headerlink" title="Healthy Holsteins"></a>Healthy Holsteins</h3><hr>
+<p>Farmer John prides himself on having the healthiest dairy cows in the world. He knows the vitamin content for one scoop of each feed type and the minimum daily vitamin requirement for his cows. Help Farmer John feed the cows so they stay healthy while minimizing the number of scoops that a cow is fed.</p>
+<p>Given the daily requirements of each kind of vitamin that a cow needs, identify the smallest combination of scoops of feed a cow can be fed in order to meet at least the minimum vitamin requirements.</p>
+<p>Vitamins are measured in integer units. Cows can be fed at most one scoop of any feed type. It is guaranteed that a solution exists for all contest input data.</p>
+<p>PROGRAM NAME: holstein<br>INPUT FORMAT<br>Line 1:    integer V (1 &lt;= V &lt;= 25), the number of types of vitamins<br>Line 2:    V integers (1 &lt;= each one &lt;= 1000), the minimum requirement for each of the V vitamins that a cow requires each day<br>Line 3:    integer G (1 &lt;= G &lt;= 15), the number of types of feeds available<br>Lines 4..G+3:    V integers (0 &lt;= each one &lt;= 1000), the amount of each vitamin that one scoop of this feed contains. The first line of these G lines describes feed #1; the second line describes feed #2; and so on.</p>
+<p>SAMPLE INPUT (file holstein.in)<br>4<br>100 200 300 400<br>3<br>50   50  50  50<br>200 300 200 300<br>900 150 389 399<br>OUTPUT FORMAT<br>The output is a single line of output that contains:</p>
+<p>the minimum number of scoops a cow must eat, followed by:<br>a SORTED list (from smallest to largest) of the feed types the cow is given<br>If more than one set of feedtypes yield a minimum of scoops, choose the set with the smallest feedtype numbers.<br>SAMPLE OUTPUT (file holstein.out)<br>2 1 3  </p>
+<hr>
+<hr>
+<p>用勺子喂奶牛维生素<br>一共有V种维生素，奶牛每一种维生素有一个最小需求量<br>每勺中含有不同的维生素量，求至少需要几勺，并且每一勺都只能出现一次<br>有多种方案时，取勺的id最小的<br>BFS 广度搜索</p>
+<hr>
+<p><a href="/project/algorithm/usaco/src/holstein.cpp">源码</a></p>
+<h3 id="Hamming-Codes"><a href="#Hamming-Codes" class="headerlink" title="Hamming Codes"></a>Hamming Codes</h3><hr>
+<p>Given N, B, and D: Find a set of N codewords (1 &lt;= N &lt;= 64), each of length B bits (1 &lt;= B &lt;= 8), such that each of the codewords is at least Hamming distance of D (1 &lt;= D &lt;= 7) away from each of the other codewords.</p>
+<p>The Hamming distance between a pair of codewords is the number of binary bits that differ in their binary notation. Consider the two codewords 0x554 and 0x234 and their differences (0x554 means the hexadecimal number with hex digits 5, 5, and 4)(a hex digit requires four bits):</p>
+<pre><code>       0x554 = 0101 0101 0100
+       0x234 = 0010 0011 0100
+</code></pre><p>Bit differences:   -XXX -XX- ——<br>Since five bits were different, the Hamming distance is 5.  </p>
+<hr>
+<p><a href="/project/algorithm/usaco/src/hamming.cpp">源码</a></p>
+<h2 id="Section-2-2"><a href="#Section-2-2" class="headerlink" title="Section 2.2"></a>Section 2.2</h2><h3 id="Data-Structures"><a href="#Data-Structures" class="headerlink" title="Data Structures"></a>Data Structures</h3><hr>
+<hr>
+<h3 id="Dynamic-Programming"><a href="#Dynamic-Programming" class="headerlink" title="Dynamic Programming"></a>Dynamic Programming</h3><hr>
+<hr>
+<h3 id="Preface-Numbering"><a href="#Preface-Numbering" class="headerlink" title="Preface Numbering"></a>Preface Numbering</h3><hr>
+<p>A certain book’s prefaces are numbered in upper case Roman numerals. Traditional Roman numeral values use a single letter to represent a certain subset of decimal numbers. Here is the standard set:</p>
+<pre><code>    I   1     L   50    M  1000
+    V   5     C  100
+    X  10     D  500
+</code></pre><p>As many as three of the same marks that represent 10n may be placed consecutively to form other numbers:</p>
+<p>III is 3<br>CCC is 300<br>Any mark that has the value 5x10n can not be used consecutively.</p>
+<p>Generally (with the exception of the next rule), marks are connected together and written in descending order to form even more numbers:</p>
+<p>CCLXVIII = 100+100+50+10+5+1+1+1 = 268<br>Sometimes, a mark that represents 10^n is placed before a mark of one of the two next higher values (I before V or X; X before L or C; etc.). In this case, the value of the smaller mark is SUBTRACTED from the mark it precedes:</p>
+<p>IV = 4<br>IX = 9<br>XL = 40<br>This compound mark forms a unit and may not be combined to make another compound mark (e.g., IXL is wrong for 39; XXXIX is correct).<br>Compound marks like XD, IC, and XM are not legal, since the smaller mark is too much smaller than the larger one. For XD (wrong for 490), one would use CDXC; for IC (wrong for 99), one would use XCIX; for XM (wrong for 990), one would use CMXC. 90 is expressed XC and not LXL, since L followed by X connotes that successive marks are X or smaller (probably, anyway).</p>
+<p>Given N (1 &lt;= N &lt; 3,500), the number of pages in the preface of a book, calculate and print the number of I’s, V’s, etc. (in order from lowest to highest) required to typeset all the page numbers (in Roman numerals) from 1 through N. Do not print letters that do not appear in the page numbers specified.</p>
+<p>If N = 5, then the page numbers are: I, II, III, IV, V. The total number of I’s is 7 and the total number of V’s is 2.  </p>
+<hr>
+<hr>
+<p>罗马数字编码<br>分别计算 个位数  十位数 百位数的 编码</p>
+<hr>
+<p><a href="/project/algorithm/usaco/src/preface.cpp">源码</a><br><a href="/project/algorithm/usaco/src/preface_2.cpp">源码</a></p>
+<h3 id="Subset-Sums"><a href="#Subset-Sums" class="headerlink" title="Subset Sums"></a>Subset Sums</h3><hr>
+<p>For many sets of consecutive integers from 1 through N (1 &lt;= N &lt;= 39), one can partition the set into two sets whose sums are identical.</p>
+<p>For example, if N=3, one can partition the set {1, 2, 3} in one way so that the sums of both subsets are identical:</p>
+<p>{3} and {1,2}<br>This counts as a single partitioning (i.e., reversing the order counts as the same partitioning and thus does not increase the count of partitions).</p>
+<p>If N=7, there are four ways to partition the set {1, 2, 3, … 7} so that each partition has the same sum:</p>
+<p>{1,6,7} and {2,3,4,5}<br>{2,5,7} and {1,3,4,6}<br>{3,4,7} and {1,2,5,6}<br>{1,2,4,7} and {3,5,6}<br>Given N, your program should print the number of ways a set containing the integers from 1 through N can be partitioned into two sets whose sums are identical. Print 0 if there are no such ways.</p>
+<p>Your program must calculate the answer, not look it up from a table.  </p>
+<hr>
+<hr>
+<p>Subset Sums 问题  </p>
+<hr>
+<p>动态规划<br><a href="/project/algorithm/usaco/src/subset.cpp">源码</a><br>折半搜索<br><a href="/project/algorithm/usaco/src/subset_2.cpp">源码</a><br>折半搜索<br><a href="/project/algorithm/usaco/src/subset_3.cpp">源码</a><br>折半搜索<br><a href="/project/algorithm/usaco/src/subset_4.cpp">源码</a></p>
+<h3 id="Runaround-Numbers"><a href="#Runaround-Numbers" class="headerlink" title="Runaround Numbers"></a>Runaround Numbers</h3><hr>
+<p>Runaround numbers are integers with unique digits, none of which is zero (e.g., 81362) that also have an interesting property, exemplified by this demonstration:</p>
+<pre><code>  * If you start at the left digit (8 in our number) and count that number of digits to the right (wrapping back to the first digit when no digits on the right are available), you&#39;ll end up at a new digit (a number which does not end up at a new digit is not a Runaround Number). Consider: 8 1 3 6 2 which cycles through eight digits: 1 3 6 2 8 1 3 6 so the next digit is 6.
+  * Repeat this cycle (this time for the six counts designed by the \`6&#39;) and you should end on a new digit: 2 8 1 3 6 2, namely 2.
+  * Repeat again (two digits this time): 8 1
+  * Continue again (one digit this time): 3
+  * One more time: 6 2 8 and you have ended up back where you started, after touching each digit once. If you don&#39;t end up back where you started after touching each digit once, your number is not a Runaround number.
+</code></pre><p>Given a number M (that has anywhere from 1 through 9 digits), find and print the next runaround number higher than M, which will always fit into an unsigned long integer for the given test data.  </p>
+<hr>
+<hr>
+<p>全排列 从小到大的顺序<br>然后判断是否是 Runaround Numbers</p>
+<p>标记位<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">9</span>; i++) &#123;</span><br><span class="line">  <span class="keyword">if</span> (vFlag[i] == <span class="literal">false</span>) &#123;</span><br><span class="line">    vFlag[i] = <span class="literal">true</span>;</span><br><span class="line">    vChar[index] = i + <span class="string">'0'</span>;</span><br><span class="line">    permutation(index + <span class="number">1</span>, n);</span><br><span class="line">    vFlag[i] = <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p><a href="/project/algorithm/usaco/src/runround.cpp">源码</a><br><a href="/project/algorithm/usaco/src/runround_2.cpp">源码</a><br><a href="/project/algorithm/usaco/src/runround_3.cpp">源码</a><br><a href="/project/algorithm/usaco/src/runround_4.cpp">源码</a></p>
+<h3 id="Party-Lamps"><a href="#Party-Lamps" class="headerlink" title="Party Lamps"></a>Party Lamps</h3><hr>
+<p>To brighten up the gala dinner of the IOI’98 we have a set of N (10 &lt;= N &lt;= 100) colored lamps numbered from 1 to N.</p>
+<p>The lamps are connected to four buttons:</p>
+<ul>
+<li>Button 1: When this button is pressed, all the lamps change their state: those that are ON are turned OFF and those that are OFF are turned ON.</li>
+<li>Button 2: Changes the state of all the odd numbered lamps.</li>
+<li>Button 3: Changes the state of all the even numbered lamps.</li>
+<li>Button 4: Changes the state of the lamps whose number is of the form 3xK+1 (with K&gt;=0), i.e., 1,4,7,…  </li>
+</ul>
+<p>A counter C records the total number of button presses.</p>
+<p>When the party starts, all the lamps are ON and the counter C is set to zero.</p>
+<p>You are given the value of counter C (0 &lt;= C &lt;= 10000) and the final state of some of the lamps after some operations have been executed. Write a program to determine all the possible final configurations of the N lamps that are consistent with the given information, without repetitions.  </p>
+<hr>
+<hr>
+<p>在IOI98 的节日宴会上,我们有N(10&lt;=N&lt;=100)盏彩色灯,他们分别从1 到N 被标上号码.</p>
+<p>这些灯都连接到四个按钮:<br>按钮1:当按下此按钮,将改变所有的灯:本来亮着的灯就熄灭,本来是关着的灯被点亮.<br>按钮2:当按下此按钮,将改变所有奇数号的灯.<br>按钮3:当按下此按钮,将改变所有偶数号的灯.<br>按钮4:当按下此按钮,将改变所有序号是3*K+1(K&gt;=0)的灯.例如:1,4,7…<br>一个计数器C 记录按钮被按下的次数.<br>当宴会开始,所有的灯都亮着,此时计数器C 为0.<br>你将得到计数器C(0&lt;=C&lt;=10000)上的数值和经过若干操作后某些灯的状态. 写一个程序去找出所有的灯最后可能的与所给出信息相符的状态,并且没有重复.</p>
+<p>全排列  </p>
+<ul>
+<li><p>每个开关按钮按2次和没按效果是一样的。所以每个按钮或者按或者不按，一共有2^4=16中开关状态。枚举每个按钮是否按下，然后生成结果，看是否满足条件，排序输出即可（注意判重）。</p>
+</li>
+<li><p>另外，根据四种开关的操作效果，灯状态的周期为6，因此当N&gt;=6时只需处理前6个灯, 排序时转换为10进制数, 输出时反复输出二进制的前6个的状态.</p>
+</li>
+</ul>
+<hr>
+<p><a href="/project/algorithm/usaco/src/lamps.cpp">源码</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag"># 数据结构与算法</a>
+              <a href="/tags/usaco/" rel="tag"># usaco</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/sort.html" rel="prev" title="排序">
+      <i class="fa fa-chevron-left"></i> 排序
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/CHAPTER1.html" rel="next" title="usaco CHAPTER 1">
+      usaco CHAPTER 1 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CHAPTER-2"><span class="nav-number">1.</span> <span class="nav-text">CHAPTER 2</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Section-2-1"><span class="nav-number">1.1.</span> <span class="nav-text">Section 2.1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Graph-Theory"><span class="nav-number">1.1.1.</span> <span class="nav-text">Graph Theory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Castle"><span class="nav-number">1.1.2.</span> <span class="nav-text">The Castle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ordered-Fractions"><span class="nav-number">1.1.3.</span> <span class="nav-text">Ordered Fractions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sorting-a-Three-Valued-Sequence"><span class="nav-number">1.1.4.</span> <span class="nav-text">Sorting a Three-Valued Sequence</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Healthy-Holsteins"><span class="nav-number">1.1.5.</span> <span class="nav-text">Healthy Holsteins</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hamming-Codes"><span class="nav-number">1.1.6.</span> <span class="nav-text">Hamming Codes</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Section-2-2"><span class="nav-number">1.2.</span> <span class="nav-text">Section 2.2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Structures"><span class="nav-number">1.2.1.</span> <span class="nav-text">Data Structures</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dynamic-Programming"><span class="nav-number">1.2.2.</span> <span class="nav-text">Dynamic Programming</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Preface-Numbering"><span class="nav-number">1.2.3.</span> <span class="nav-text">Preface Numbering</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Subset-Sums"><span class="nav-number">1.2.4.</span> <span class="nav-text">Subset Sums</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Runaround-Numbers"><span class="nav-number">1.2.5.</span> <span class="nav-text">Runaround Numbers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Party-Lamps"><span class="nav-number">1.2.6.</span> <span class="nav-text">Party Lamps</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="leeyupeng"
+      src="/images/icon128.jpg">
+  <p class="site-author-name" itemprop="name">leeyupeng</p>
+  <div class="site-description" itemprop="description">leeyupeng@126.com</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">358</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">54</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">141</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="/about" title="QQ → about"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:leeyupeng@126.com" title="E-Mail → mailto:leeyupeng@126.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">leeyupeng</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              Counter('post', '/classes/Counter', { title, url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"wbbpG5Yxg8WKIQmzEeNU9P5G-gzGzoHsz","app_key":"y271idcAENCbz0foGfiEtWOu","server_url":null,"security":false};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('/js/src/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'wbbpG5Yxg8WKIQmzEeNU9P5G-gzGzoHsz',
+      appKey     : 'y271idcAENCbz0foGfiEtWOu',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
