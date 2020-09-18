@@ -1,13 +1,6 @@
-
 #pragma once
-#include <iostream>
-#include <vector>
-#include <stack>
-#include <queue>
-#include <map>
-#include <algorithm>
-#include <ctime>
-using namespace std;
+#include "graph.h"
+
 class Solution {
 public:
 	vector<vector<int>> matrix;
@@ -57,3 +50,8 @@ public:
 		}
 	}
 };
+
+void dijkstra(vector<vector<int>>& graph,int start,vector<int>& dist){
+	minheap<pair<int,int>> heap;
+}
+

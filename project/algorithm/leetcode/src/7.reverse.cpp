@@ -20,12 +20,3 @@ public:
 	}
 };
 
-int main() {
-
-	Solution s;
-	int ans = s.reverse(-123);
-	cout << "ans:" << ans << endl;
-	system("PAUSE");
-
-	return 0;
-}

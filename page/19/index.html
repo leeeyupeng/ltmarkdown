@@ -244,6 +244,211 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/cpp/template/%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%A3%B0%E6%98%8E%E5%92%8C%E5%AE%9A%E4%B9%89.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/cpp/template/%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%A3%B0%E6%98%8E%E5%92%8C%E5%AE%9A%E4%B9%89.html" class="post-title-link" itemprop="url">模板的声明和定义</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-17 11:00:21" itemprop="dateCreated datePublished" datetime="2020-07-17T11:00:21+08:00">2020-07-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-C/" itemprop="url" rel="index"><span itemprop="name">C/C++</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-C/template/" itemprop="url" rel="index"><span itemprop="name">template</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/cpp/template/%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%A3%B0%E6%98%8E%E5%92%8C%E5%AE%9A%E4%B9%89.html" class="post-meta-item leancloud_visitors" data-flag-title="模板的声明和定义" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/cpp/template/%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%A3%B0%E6%98%8E%E5%92%8C%E5%AE%9A%E4%B9%89.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/cpp/template/%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%A3%B0%E6%98%8E%E5%92%8C%E5%AE%9A%E4%B9%89.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="声明和定义都放在-hpp中"><a href="#声明和定义都放在-hpp中" class="headerlink" title="声明和定义都放在.hpp中"></a>声明和定义都放在.hpp中</h2><details>
+<summary>演示代码</summary>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> lt &#123;</span><br><span class="line">	<span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class">	<span class="title">class</span> <span class="title">Stack</span> &#123;</span></span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		T* arr;</span><br><span class="line">		<span class="keyword">int</span> top;</span><br><span class="line">		<span class="keyword">int</span> size;</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">resize</span><span class="params">(<span class="keyword">int</span> size)</span></span>;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		Stack();</span><br><span class="line">		Stack(<span class="keyword">int</span> size);</span><br><span class="line">		~Stack();</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">Push</span><span class="params">(T e)</span></span>;</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">Pop</span><span class="params">()</span></span>;</span><br><span class="line">		<span class="function">T <span class="title">Top</span><span class="params">()</span></span>;</span><br><span class="line">		<span class="function"><span class="keyword">bool</span> <span class="title">Empty</span><span class="params">()</span></span>;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">"datastructure/Stack.hpp"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> lt;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MALLOCSIZE 256</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">Stack</span>&lt;T&gt;:</span>:Stack() :size(MALLOCSIZE), top(<span class="number">0</span>), arr(<span class="literal">NULL</span>) &#123;</span><br><span class="line">	arr = (T*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(T) * size);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">Stack</span>&lt;T&gt;:</span>:Stack(<span class="keyword">int</span> _size) : size(_size), top(<span class="number">0</span>), arr(<span class="literal">NULL</span>) &#123;</span><br><span class="line">	arr = (T*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(T) * size);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">Stack</span>&lt;T&gt;:</span>:~Stack() &#123;</span><br><span class="line">	<span class="built_in">free</span>(arr);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">Stack</span>&lt;T&gt;:</span>:Push(T e) &#123;</span><br><span class="line">	<span class="keyword">if</span> (size &lt;= top) &#123;</span><br><span class="line">		resize(size + MALLOCSIZE);</span><br><span class="line">	&#125;</span><br><span class="line">	arr[top++] = e;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">Stack</span>&lt;T&gt;:</span>:Pop() &#123;</span><br><span class="line">	top--;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">T</span> <span class="title">Stack</span>&lt;T&gt;:</span>:Top() &#123;</span><br><span class="line">	<span class="keyword">return</span> arr[top - <span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">bool</span> <span class="title">Stack</span>&lt;T&gt;:</span>:Empty() &#123;</span><br><span class="line">	<span class="keyword">return</span> top == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">Stack</span>&lt;T&gt;:</span>:resize(<span class="keyword">int</span> _size) &#123;</span><br><span class="line">	arr = (T*)<span class="built_in">realloc</span>(arr, <span class="keyword">sizeof</span>(T) * _size);</span><br><span class="line">	size = _size;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+
+<h2 id="声明放在-hpp文件中，定义放在-cpp文件中"><a href="#声明放在-hpp文件中，定义放在-cpp文件中" class="headerlink" title="声明放在.hpp文件中，定义放在.cpp文件中"></a>声明放在.hpp文件中，定义放在.cpp文件中</h2><p>声明放在.hpp文件中，定义放在.cpp文件中,需要在.cpp文件中将所有用到的类型显示实例化<br>编译器怎么处理模板呢？本质上来说，模板可被编译器产生多种多样函数和类的代码。只有当被使用的时候，编译器才会产生用于这种类型的代码。模板不是直接编译成以后需要的各种类的实现，而是将模板代码解析放入内存中，当编译某个编译单元需要用到该模板，则会按需产生相应的代码。实例化是编译器确定特定模板与特定参数集一起使用并在模板上执行参数替换以生成要编译的类或函数以及最终编译为模板的二进制代码的过程。</p>
+<details>
+<summary>.hpp演示代码</summary>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> lt &#123;</span><br><span class="line">	<span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class">	<span class="title">class</span> <span class="title">Stack</span> &#123;</span></span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		T* arr;</span><br><span class="line">		<span class="keyword">int</span> top;</span><br><span class="line">		<span class="keyword">int</span> size;</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">resize</span><span class="params">(<span class="keyword">int</span> size)</span></span>;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		Stack();</span><br><span class="line">		Stack(<span class="keyword">int</span> size);</span><br><span class="line">		~Stack();</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">Push</span><span class="params">(T e)</span></span>;</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">Pop</span><span class="params">()</span></span>;</span><br><span class="line">		<span class="function">T <span class="title">Top</span><span class="params">()</span></span>;</span><br><span class="line">		<span class="function"><span class="keyword">bool</span> <span class="title">Empty</span><span class="params">()</span></span>;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+
+<details>
+<summary>.cpp演示代码</summary>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">"datastructure/Stack.hpp"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> lt;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MALLOCSIZE 64</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">lt</span>:</span>:Stack&lt;T&gt;::Stack():size(MALLOCSIZE),top(<span class="number">0</span>),arr(<span class="literal">NULL</span>) &#123;</span><br><span class="line">	arr = (T*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(T) * size);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">lt</span>:</span>:Stack&lt;T&gt;::Stack(<span class="keyword">int</span> _size):size(_size), top(<span class="number">0</span>), arr(<span class="literal">NULL</span>) &#123;</span><br><span class="line">	arr = (T*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(T) * size);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">lt</span>:</span>:Stack&lt;T&gt;::~Stack() &#123;</span><br><span class="line">	<span class="built_in">free</span>(arr);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">lt</span>:</span>:Stack&lt;T&gt;::Push(T e) &#123;</span><br><span class="line">	<span class="keyword">if</span> (size &lt;= top) &#123;</span><br><span class="line">		resize(size+ MALLOCSIZE);</span><br><span class="line">	&#125;</span><br><span class="line">	arr[top++] = e;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">lt</span>:</span>:Stack&lt;T&gt;::Pop() &#123;</span><br><span class="line">	top--;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">T</span> <span class="title">lt</span>:</span>:Stack&lt;T&gt;::Top() &#123;</span><br><span class="line">	<span class="keyword">return</span> arr[top<span class="number">-1</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">bool</span> <span class="title">lt</span>:</span>:Stack&lt;T&gt;::Empty() &#123;</span><br><span class="line">	<span class="keyword">return</span> top == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">lt</span>:</span>:Stack&lt;T&gt;::resize(<span class="keyword">int</span> _size) &#123;</span><br><span class="line">	arr = (T*)<span class="built_in">realloc</span>(arr,<span class="keyword">sizeof</span>(T) * _size);</span><br><span class="line">	size = _size;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> <span class="class"><span class="keyword">class</span> <span class="title">Stack</span>&lt;int&gt;;</span></span><br></pre></td></tr></table></figure>
+</details>
+
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/cpp/template/%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%A3%B0%E6%98%8E%E5%92%8C%E5%AE%9A%E4%B9%89.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/cpp/optimize/%E5%86%85%E5%AD%98%E5%AF%B9%E8%B1%A1%E6%B1%A0.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/cpp/optimize/%E5%86%85%E5%AD%98%E5%AF%B9%E8%B1%A1%E6%B1%A0.html" class="post-title-link" itemprop="url">内存对象池</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-17 11:00:21" itemprop="dateCreated datePublished" datetime="2020-07-17T11:00:21+08:00">2020-07-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-C/" itemprop="url" rel="index"><span itemprop="name">C/C++</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-C/optimize/" itemprop="url" rel="index"><span itemprop="name">optimize</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/cpp/optimize/%E5%86%85%E5%AD%98%E5%AF%B9%E8%B1%A1%E6%B1%A0.html" class="post-meta-item leancloud_visitors" data-flag-title="内存对象池" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/cpp/optimize/%E5%86%85%E5%AD%98%E5%AF%B9%E8%B1%A1%E6%B1%A0.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/cpp/optimize/%E5%86%85%E5%AD%98%E5%AF%B9%E8%B1%A1%E6%B1%A0.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/cpp/optimize/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -344,7 +549,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/cpp/template/%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%A3%B0%E6%98%8E%E5%92%8C%E5%AE%9A%E4%B9%89.html">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E7%82%B9%E6%98%AF%E5%90%A6%E5%9C%A8%E7%9F%A9%E5%BD%A2%E5%8C%BA%E5%9F%9F%E5%86%85.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/icon128.jpg">
@@ -358,7 +563,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/cpp/template/%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%A3%B0%E6%98%8E%E5%92%8C%E5%AE%9A%E4%B9%89.html" class="post-title-link" itemprop="url">模板的声明和定义</a>
+            <a href="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E7%82%B9%E6%98%AF%E5%90%A6%E5%9C%A8%E7%9F%A9%E5%BD%A2%E5%8C%BA%E5%9F%9F%E5%86%85.html" class="post-title-link" itemprop="url">判断一个点是否在矩形区域内</a>
         </h2>
 
         <div class="post-meta">
@@ -368,7 +573,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-07-17 11:00:21" itemprop="dateCreated datePublished" datetime="2020-07-17T11:00:21+08:00">2020-07-17</time>
+              <time title="创建时间：2020-07-16 18:15:12" itemprop="dateCreated datePublished" datetime="2020-07-16T18:15:12+08:00">2020-07-16</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -376,16 +581,20 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C-C/" itemprop="url" rel="index"><span itemprop="name">C/C++</span></a>
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C-C/template/" itemprop="url" rel="index"><span itemprop="name">template</span></a>
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/" itemprop="url" rel="index"><span itemprop="name">线性代数与几何</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/" itemprop="url" rel="index"><span itemprop="name">计算几何</span></a>
                 </span>
             </span>
 
           
-            <span id="/cpp/template/%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%A3%B0%E6%98%8E%E5%92%8C%E5%AE%9A%E4%B9%89.html" class="post-meta-item leancloud_visitors" data-flag-title="模板的声明和定义" title="阅读次数">
+            <span id="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E7%82%B9%E6%98%AF%E5%90%A6%E5%9C%A8%E7%9F%A9%E5%BD%A2%E5%8C%BA%E5%9F%9F%E5%86%85.html" class="post-meta-item leancloud_visitors" data-flag-title="判断一个点是否在矩形区域内" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -400,8 +609,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/cpp/template/%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%A3%B0%E6%98%8E%E5%92%8C%E5%AE%9A%E4%B9%89.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/cpp/template/%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%A3%B0%E6%98%8E%E5%92%8C%E5%AE%9A%E4%B9%89.html" itemprop="commentCount"></span>
+    <a title="valine" href="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E7%82%B9%E6%98%AF%E5%90%A6%E5%9C%A8%E7%9F%A9%E5%BD%A2%E5%8C%BA%E5%9F%9F%E5%86%85.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E7%82%B9%E6%98%AF%E5%90%A6%E5%9C%A8%E7%9F%A9%E5%BD%A2%E5%8C%BA%E5%9F%9F%E5%86%85.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -416,25 +625,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="声明和定义都放在-hpp中"><a href="#声明和定义都放在-hpp中" class="headerlink" title="声明和定义都放在.hpp中"></a>声明和定义都放在.hpp中</h2><details>
-<summary>演示代码</summary>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> lt &#123;</span><br><span class="line">	<span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class">	<span class="title">class</span> <span class="title">Stack</span> &#123;</span></span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		T* arr;</span><br><span class="line">		<span class="keyword">int</span> top;</span><br><span class="line">		<span class="keyword">int</span> size;</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">resize</span><span class="params">(<span class="keyword">int</span> size)</span></span>;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		Stack();</span><br><span class="line">		Stack(<span class="keyword">int</span> size);</span><br><span class="line">		~Stack();</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">Push</span><span class="params">(T e)</span></span>;</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">Pop</span><span class="params">()</span></span>;</span><br><span class="line">		<span class="function">T <span class="title">Top</span><span class="params">()</span></span>;</span><br><span class="line">		<span class="function"><span class="keyword">bool</span> <span class="title">Empty</span><span class="params">()</span></span>;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">"datastructure/Stack.hpp"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> lt;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MALLOCSIZE 256</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">Stack</span>&lt;T&gt;:</span>:Stack() :size(MALLOCSIZE), top(<span class="number">0</span>), arr(<span class="literal">NULL</span>) &#123;</span><br><span class="line">	arr = (T*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(T) * size);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">Stack</span>&lt;T&gt;:</span>:Stack(<span class="keyword">int</span> _size) : size(_size), top(<span class="number">0</span>), arr(<span class="literal">NULL</span>) &#123;</span><br><span class="line">	arr = (T*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(T) * size);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">Stack</span>&lt;T&gt;:</span>:~Stack() &#123;</span><br><span class="line">	<span class="built_in">free</span>(arr);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">Stack</span>&lt;T&gt;:</span>:Push(T e) &#123;</span><br><span class="line">	<span class="keyword">if</span> (size &lt;= top) &#123;</span><br><span class="line">		resize(size + MALLOCSIZE);</span><br><span class="line">	&#125;</span><br><span class="line">	arr[top++] = e;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">Stack</span>&lt;T&gt;:</span>:Pop() &#123;</span><br><span class="line">	top--;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">T</span> <span class="title">Stack</span>&lt;T&gt;:</span>:Top() &#123;</span><br><span class="line">	<span class="keyword">return</span> arr[top - <span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">bool</span> <span class="title">Stack</span>&lt;T&gt;:</span>:Empty() &#123;</span><br><span class="line">	<span class="keyword">return</span> top == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">Stack</span>&lt;T&gt;:</span>:resize(<span class="keyword">int</span> _size) &#123;</span><br><span class="line">	arr = (T*)<span class="built_in">realloc</span>(arr, <span class="keyword">sizeof</span>(T) * _size);</span><br><span class="line">	size = _size;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</details>
-
-<h2 id="声明放在-hpp文件中，定义放在-cpp文件中"><a href="#声明放在-hpp文件中，定义放在-cpp文件中" class="headerlink" title="声明放在.hpp文件中，定义放在.cpp文件中"></a>声明放在.hpp文件中，定义放在.cpp文件中</h2><p>声明放在.hpp文件中，定义放在.cpp文件中,需要在.cpp文件中将所有用到的类型显示实例化<br>编译器怎么处理模板呢？本质上来说，模板可被编译器产生多种多样函数和类的代码。只有当被使用的时候，编译器才会产生用于这种类型的代码。模板不是直接编译成以后需要的各种类的实现，而是将模板代码解析放入内存中，当编译某个编译单元需要用到该模板，则会按需产生相应的代码。实例化是编译器确定特定模板与特定参数集一起使用并在模板上执行参数替换以生成要编译的类或函数以及最终编译为模板的二进制代码的过程。</p>
-<details>
-<summary>.hpp演示代码</summary>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> lt &#123;</span><br><span class="line">	<span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class">	<span class="title">class</span> <span class="title">Stack</span> &#123;</span></span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		T* arr;</span><br><span class="line">		<span class="keyword">int</span> top;</span><br><span class="line">		<span class="keyword">int</span> size;</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">resize</span><span class="params">(<span class="keyword">int</span> size)</span></span>;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		Stack();</span><br><span class="line">		Stack(<span class="keyword">int</span> size);</span><br><span class="line">		~Stack();</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">Push</span><span class="params">(T e)</span></span>;</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">Pop</span><span class="params">()</span></span>;</span><br><span class="line">		<span class="function">T <span class="title">Top</span><span class="params">()</span></span>;</span><br><span class="line">		<span class="function"><span class="keyword">bool</span> <span class="title">Empty</span><span class="params">()</span></span>;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</details>
-
-<details>
-<summary>.cpp演示代码</summary>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">"datastructure/Stack.hpp"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> lt;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MALLOCSIZE 64</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">lt</span>:</span>:Stack&lt;T&gt;::Stack():size(MALLOCSIZE),top(<span class="number">0</span>),arr(<span class="literal">NULL</span>) &#123;</span><br><span class="line">	arr = (T*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(T) * size);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">lt</span>:</span>:Stack&lt;T&gt;::Stack(<span class="keyword">int</span> _size):size(_size), top(<span class="number">0</span>), arr(<span class="literal">NULL</span>) &#123;</span><br><span class="line">	arr = (T*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(T) * size);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">lt</span>:</span>:Stack&lt;T&gt;::~Stack() &#123;</span><br><span class="line">	<span class="built_in">free</span>(arr);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">lt</span>:</span>:Stack&lt;T&gt;::Push(T e) &#123;</span><br><span class="line">	<span class="keyword">if</span> (size &lt;= top) &#123;</span><br><span class="line">		resize(size+ MALLOCSIZE);</span><br><span class="line">	&#125;</span><br><span class="line">	arr[top++] = e;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">lt</span>:</span>:Stack&lt;T&gt;::Pop() &#123;</span><br><span class="line">	top--;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">T</span> <span class="title">lt</span>:</span>:Stack&lt;T&gt;::Top() &#123;</span><br><span class="line">	<span class="keyword">return</span> arr[top<span class="number">-1</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">bool</span> <span class="title">lt</span>:</span>:Stack&lt;T&gt;::Empty() &#123;</span><br><span class="line">	<span class="keyword">return</span> top == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">lt</span>:</span>:Stack&lt;T&gt;::resize(<span class="keyword">int</span> _size) &#123;</span><br><span class="line">	arr = (T*)<span class="built_in">realloc</span>(arr,<span class="keyword">sizeof</span>(T) * _size);</span><br><span class="line">	size = _size;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> <span class="class"><span class="keyword">class</span> <span class="title">Stack</span>&lt;int&gt;;</span></span><br></pre></td></tr></table></figure>
-</details>
-
+          <h1 id="判断一个点是否在矩形区域内"><a href="#判断一个点是否在矩形区域内" class="headerlink" title="判断一个点是否在矩形区域内"></a>判断一个点是否在矩形区域内</h1>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/cpp/template/%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%A3%B0%E6%98%8E%E5%92%8C%E5%AE%9A%E4%B9%89.html#more" rel="contents">
+              <a class="btn" href="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E7%82%B9%E6%98%AF%E5%90%A6%E5%9C%A8%E7%9F%A9%E5%BD%A2%E5%8C%BA%E5%9F%9F%E5%86%85.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -568,7 +762,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E7%82%B9%E6%98%AF%E5%90%A6%E5%9C%A8%E7%9F%A9%E5%BD%A2%E5%8C%BA%E5%9F%9F%E5%86%85.html">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E8%A3%81%E5%89%AA%E7%AE%97%E6%B3%95.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/icon128.jpg">
@@ -582,7 +776,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E7%82%B9%E6%98%AF%E5%90%A6%E5%9C%A8%E7%9F%A9%E5%BD%A2%E5%8C%BA%E5%9F%9F%E5%86%85.html" class="post-title-link" itemprop="url">判断一个点是否在矩形区域内</a>
+            <a href="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E8%A3%81%E5%89%AA%E7%AE%97%E6%B3%95.html" class="post-title-link" itemprop="url">裁剪算法</a>
         </h2>
 
         <div class="post-meta">
@@ -613,7 +807,7 @@
             </span>
 
           
-            <span id="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E7%82%B9%E6%98%AF%E5%90%A6%E5%9C%A8%E7%9F%A9%E5%BD%A2%E5%8C%BA%E5%9F%9F%E5%86%85.html" class="post-meta-item leancloud_visitors" data-flag-title="判断一个点是否在矩形区域内" title="阅读次数">
+            <span id="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E8%A3%81%E5%89%AA%E7%AE%97%E6%B3%95.html" class="post-meta-item leancloud_visitors" data-flag-title="裁剪算法" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -628,8 +822,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E7%82%B9%E6%98%AF%E5%90%A6%E5%9C%A8%E7%9F%A9%E5%BD%A2%E5%8C%BA%E5%9F%9F%E5%86%85.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E7%82%B9%E6%98%AF%E5%90%A6%E5%9C%A8%E7%9F%A9%E5%BD%A2%E5%8C%BA%E5%9F%9F%E5%86%85.html" itemprop="commentCount"></span>
+    <a title="valine" href="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E8%A3%81%E5%89%AA%E7%AE%97%E6%B3%95.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E8%A3%81%E5%89%AA%E7%AE%97%E6%B3%95.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -644,10 +838,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="判断一个点是否在矩形区域内"><a href="#判断一个点是否在矩形区域内" class="headerlink" title="判断一个点是否在矩形区域内"></a>判断一个点是否在矩形区域内</h1>
+          <h1 id="裁剪算法"><a href="#裁剪算法" class="headerlink" title="裁剪算法"></a>裁剪算法</h1><h2 id="Sutherland－Hodgeman算法"><a href="#Sutherland－Hodgeman算法" class="headerlink" title="Sutherland－Hodgeman算法"></a>Sutherland－Hodgeman算法</h2><h2 id="Cohen—Sutherland算法"><a href="#Cohen—Sutherland算法" class="headerlink" title="Cohen—Sutherland算法"></a>Cohen—Sutherland算法</h2>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E7%82%B9%E6%98%AF%E5%90%A6%E5%9C%A8%E7%9F%A9%E5%BD%A2%E5%8C%BA%E5%9F%9F%E5%86%85.html#more" rel="contents">
+              <a class="btn" href="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E8%A3%81%E5%89%AA%E7%AE%97%E6%B3%95.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -757,109 +951,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E7%BA%BF%E6%AE%B5%E7%9B%B8%E4%BA%A4.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E8%A3%81%E5%89%AA%E7%AE%97%E6%B3%95.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E8%A3%81%E5%89%AA%E7%AE%97%E6%B3%95.html" class="post-title-link" itemprop="url">裁剪算法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-16 18:15:12" itemprop="dateCreated datePublished" datetime="2020-07-16T18:15:12+08:00">2020-07-16</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/" itemprop="url" rel="index"><span itemprop="name">线性代数与几何</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/" itemprop="url" rel="index"><span itemprop="name">计算几何</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E8%A3%81%E5%89%AA%E7%AE%97%E6%B3%95.html" class="post-meta-item leancloud_visitors" data-flag-title="裁剪算法" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E8%A3%81%E5%89%AA%E7%AE%97%E6%B3%95.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E8%A3%81%E5%89%AA%E7%AE%97%E6%B3%95.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="裁剪算法"><a href="#裁剪算法" class="headerlink" title="裁剪算法"></a>裁剪算法</h1><h2 id="Sutherland－Hodgeman算法"><a href="#Sutherland－Hodgeman算法" class="headerlink" title="Sutherland－Hodgeman算法"></a>Sutherland－Hodgeman算法</h2><h2 id="Cohen—Sutherland算法"><a href="#Cohen—Sutherland算法" class="headerlink" title="Cohen—Sutherland算法"></a>Cohen—Sutherland算法</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E8%A3%81%E5%89%AA%E7%AE%97%E6%B3%95.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1091,134 +1182,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/Transformation.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/Transformation.html" class="post-title-link" itemprop="url">Transformation</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-16 13:43:01" itemprop="dateCreated datePublished" datetime="2020-07-16T13:43:01+08:00">2020-07-16</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">图形学</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/" itemprop="url" rel="index"><span itemprop="name">Transformation</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/Transformation.html" class="post-meta-item leancloud_visitors" data-flag-title="Transformation" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/Transformation.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/Transformation.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Transformation"><a href="#Transformation" class="headerlink" title="Transformation"></a>Transformation</h1><h2 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h2><script type="math/tex; mode=display">R_{xyz}(\alpha,\beta,\gamma)=R_{x}(\alpha)R_{y}(\beta)R_{z}(\gamma)</script><script type="math/tex; mode=display">R_{x}(\alpha)=
-\begin{bmatrix}
-1&0&0&0\\
-0&cos{\alpha}&-sin{\alpha}&0\\
-0&sin{\alpha}&cos{\alpha}&0\\
-0&0&0&1\\
-\end{bmatrix}</script><script type="math/tex; mode=display">R_{y}(\beta)=
-\begin{bmatrix}
-cos{\beta}&0&sin{\beta}&0\\
-0&0&0&0\\
--sin{\beta}&0&cos{\beta}&0\\
-0&0&0&1\\
-\end{bmatrix}</script><script type="math/tex; mode=display">R_{z}(\gamma)=
-\begin{bmatrix}
-cos{\gamma}&-sin{\gamma}&0&0\\
-sin{\gamma}&cos{\gamma}&0&0\\
-0&0&0&0\\
-0&0&0&1\\
-\end{bmatrix}</script><h2 id="缩放"><a href="#缩放" class="headerlink" title="缩放"></a>缩放</h2><script type="math/tex; mode=display">S_{(s_x,s_y,s_z)}\begin{bmatrix}
-s_x&0&0&0\\
-0&s_y&0&0\\
-0&0&s_z&0\\
-0&0&0&1\\
-\end{bmatrix}</script><h2 id="齐次坐标"><a href="#齐次坐标" class="headerlink" title="齐次坐标"></a>齐次坐标</h2><h2 id="平移"><a href="#平移" class="headerlink" title="平移"></a>平移</h2><script type="math/tex; mode=display">T_{(t_x,t_y,t_z)}=\begin{bmatrix}
-1&0&0&t_x\\
-0&1&0&t_y\\
-0&0&1&t_z\\
-0&0&0&1\\
-\end{bmatrix}</script><h2 id="模型变换Modeling"><a href="#模型变换Modeling" class="headerlink" title="模型变换Modeling"></a>模型变换Modeling</h2><h2 id="视图变换View"><a href="#视图变换View" class="headerlink" title="视图变换View"></a>视图变换View</h2><p>Camera Position<br>Camera LookAt<br>Camera UpDirection</p>
-<h2 id="投影变换Projection"><a href="#投影变换Projection" class="headerlink" title="投影变换Projection"></a>投影变换Projection</h2><h3 id="Orthographic-Projection"><a href="#Orthographic-Projection" class="headerlink" title="Orthographic Projection"></a>Orthographic Projection</h3>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/Transformation.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1289,13 +1252,13 @@ s_x&0&0&0\\
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">362</span>
+          <span class="site-state-item-count">363</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-count">55</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">

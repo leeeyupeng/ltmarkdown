@@ -20,20 +20,21 @@
     var CONFIG = {"hostname":"leeeyupeng.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="背包系统背包插入物品背包删除物品背包查询物品背包修改物品背包使用物品背包玩家之间交易物品背包强化物品背包镶嵌物品背包物品叠加背包容量背包整理 背包是一个Rect时，每个物品有自己的Rect,物品的摆放 服务器端不对背包物品排序，客户端做排序表现只关注物品数量服务器端每个物品只记录相对应的物品数量客户端做排序表现 关注物品数量，和每个物品的唯一id当物品可以交易或者可强化时物品可交易时，每个物品需要">
+  <meta name="description" content="leeyupeng@126.com">
 <meta property="og:type" content="article">
-<meta property="og:title" content="背包系统">
-<meta property="og:url" content="https://leeeyupeng.github.io/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E8%83%8C%E5%8C%85%E7%B3%BB%E7%BB%9F/%E8%83%8C%E5%8C%85%E7%B3%BB%E7%BB%9F.html">
+<meta property="og:title" content="递归与栈">
+<meta property="og:url" content="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/%E9%80%92%E5%BD%92%E4%B8%8E%E6%A0%88.html">
 <meta property="og:site_name" content="leeyupeng">
-<meta property="og:description" content="背包系统背包插入物品背包删除物品背包查询物品背包修改物品背包使用物品背包玩家之间交易物品背包强化物品背包镶嵌物品背包物品叠加背包容量背包整理 背包是一个Rect时，每个物品有自己的Rect,物品的摆放 服务器端不对背包物品排序，客户端做排序表现只关注物品数量服务器端每个物品只记录相对应的物品数量客户端做排序表现 关注物品数量，和每个物品的唯一id当物品可以交易或者可强化时物品可交易时，每个物品需要">
+<meta property="og:description" content="leeyupeng@126.com">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-09-17T07:08:40.135Z">
-<meta property="article:modified_time" content="2020-09-17T07:26:45.937Z">
+<meta property="article:published_time" content="2020-09-18T04:31:40.057Z">
+<meta property="article:modified_time" content="2020-09-18T04:31:57.117Z">
 <meta property="article:author" content="leeyupeng">
-<meta property="article:tag" content="游戏开发">
+<meta property="article:tag" content="数据结构与算法">
+<meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://leeeyupeng.github.io/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E8%83%8C%E5%8C%85%E7%B3%BB%E7%BB%9F/%E8%83%8C%E5%8C%85%E7%B3%BB%E7%BB%9F.html">
+<link rel="canonical" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/%E9%80%92%E5%BD%92%E4%B8%8E%E6%A0%88.html">
 
 
 <script id="page-configurations">
@@ -46,7 +47,7 @@
   };
 </script>
 
-  <title>背包系统 | leeyupeng</title>
+  <title>递归与栈 | leeyupeng</title>
   
 
 
@@ -157,7 +158,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E8%83%8C%E5%8C%85%E7%B3%BB%E7%BB%9F/%E8%83%8C%E5%8C%85%E7%B3%BB%E7%BB%9F.html">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/%E9%80%92%E5%BD%92%E4%B8%8E%E6%A0%88.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/icon128.jpg">
@@ -170,7 +171,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          背包系统
+          递归与栈
         </h1>
 
         <div class="post-meta">
@@ -180,14 +181,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-09-17 15:08:40" itemprop="dateCreated datePublished" datetime="2020-09-17T15:08:40+08:00">2020-09-17</time>
+              <time title="创建时间：2020-09-18 12:31:40" itemprop="dateCreated datePublished" datetime="2020-09-18T12:31:40+08:00">2020-09-18</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-17 15:26:45" itemprop="dateModified" datetime="2020-09-17T15:26:45+08:00">2020-09-17</time>
+                <time title="修改时间：2020-09-18 12:31:57" itemprop="dateModified" datetime="2020-09-18T12:31:57+08:00">2020-09-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -195,16 +196,16 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">游戏开发</span></a>
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E8%83%8C%E5%8C%85%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">背包系统</span></a>
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
                 </span>
             </span>
 
           
-            <span id="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E8%83%8C%E5%8C%85%E7%B3%BB%E7%BB%9F/%E8%83%8C%E5%8C%85%E7%B3%BB%E7%BB%9F.html" class="post-meta-item leancloud_visitors" data-flag-title="背包系统" title="阅读次数">
+            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/%E9%80%92%E5%BD%92%E4%B8%8E%E6%A0%88.html" class="post-meta-item leancloud_visitors" data-flag-title="递归与栈" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -219,8 +220,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E8%83%8C%E5%8C%85%E7%B3%BB%E7%BB%9F/%E8%83%8C%E5%8C%85%E7%B3%BB%E7%BB%9F.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E8%83%8C%E5%8C%85%E7%B3%BB%E7%BB%9F/%E8%83%8C%E5%8C%85%E7%B3%BB%E7%BB%9F.html" itemprop="commentCount"></span>
+    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/%E9%80%92%E5%BD%92%E4%B8%8E%E6%A0%88.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/%E9%80%92%E5%BD%92%E4%B8%8E%E6%A0%88.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -235,13 +236,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="背包系统"><a href="#背包系统" class="headerlink" title="背包系统"></a>背包系统</h1><p>背包插入物品<br>背包删除物品<br>背包查询物品<br>背包修改物品<br>背包使用物品<br>背包玩家之间交易物品<br>背包强化物品<br>背包镶嵌物品<br>背包物品叠加<br>背包容量<br>背包整理</p>
-<p>背包是一个Rect时，每个物品有自己的Rect,物品的摆放</p>
-<h2 id="服务器端不对背包物品排序，客户端做排序表现"><a href="#服务器端不对背包物品排序，客户端做排序表现" class="headerlink" title="服务器端不对背包物品排序，客户端做排序表现"></a>服务器端不对背包物品排序，客户端做排序表现</h2><h3 id="只关注物品数量"><a href="#只关注物品数量" class="headerlink" title="只关注物品数量"></a>只关注物品数量</h3><p>服务器端每个物品只记录相对应的物品数量<br>客户端做排序表现</p>
-<h3 id="关注物品数量，和每个物品的唯一id"><a href="#关注物品数量，和每个物品的唯一id" class="headerlink" title="关注物品数量，和每个物品的唯一id"></a>关注物品数量，和每个物品的唯一id</h3><p>当物品可以交易或者可强化时<br>物品可交易时，每个物品需要一个唯一id;<br>物品可强化时，每个物品也需要一个唯一id;</p>
-<p>当物品需要有一个唯一id时<br>服务器端记录格子信息并且不进行排序<br>客户端根据格子信息数组，对格子进行排序表现<br>进行修改，使用操作时，根据物品的唯一id进行操作</p>
-<h2 id="服务器端管理背包的排序，客户端只做表现"><a href="#服务器端管理背包的排序，客户端只做表现" class="headerlink" title="服务器端管理背包的排序，客户端只做表现"></a>服务器端管理背包的排序，客户端只做表现</h2><p>服务器端维护背包排序</p>
-
+        
     </div>
 
     
@@ -250,7 +245,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" rel="tag"># 游戏开发</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag"># 数据结构与算法</a>
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
           </div>
 
         
@@ -259,13 +255,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E9%81%93%E5%85%B7%E7%B3%BB%E7%BB%9F/%E8%83%8C%E5%8C%85%E7%B3%BB%E7%BB%9F.html" rel="prev" title="背包系统">
-      <i class="fa fa-chevron-left"></i> 背包系统
+    <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/%E9%80%92%E5%BD%92%E4%B8%8E%E8%BF%AD%E4%BB%A3.html" rel="prev" title="递归与迭代">
+      <i class="fa fa-chevron-left"></i> 递归与迭代
     </a></div>
-      <div class="post-nav-item">
-    <a href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/Unity/UI/RectTransform.html" rel="next" title="RectTransform">
-      RectTransform <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -325,7 +318,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背包系统"><span class="nav-number">1.</span> <span class="nav-text">背包系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器端不对背包物品排序，客户端做排序表现"><span class="nav-number">1.1.</span> <span class="nav-text">服务器端不对背包物品排序，客户端做排序表现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#只关注物品数量"><span class="nav-number">1.1.1.</span> <span class="nav-text">只关注物品数量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关注物品数量，和每个物品的唯一id"><span class="nav-number">1.1.2.</span> <span class="nav-text">关注物品数量，和每个物品的唯一id</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器端管理背包的排序，客户端只做表现"><span class="nav-number">1.2.</span> <span class="nav-text">服务器端管理背包的排序，客户端只做表现</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -340,13 +332,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">362</span>
+          <span class="site-state-item-count">363</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-count">55</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">

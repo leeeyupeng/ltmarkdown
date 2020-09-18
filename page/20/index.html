@@ -153,6 +153,134 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/Transformation.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/Transformation.html" class="post-title-link" itemprop="url">Transformation</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-16 13:43:01" itemprop="dateCreated datePublished" datetime="2020-07-16T13:43:01+08:00">2020-07-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">图形学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/" itemprop="url" rel="index"><span itemprop="name">Transformation</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/Transformation.html" class="post-meta-item leancloud_visitors" data-flag-title="Transformation" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/Transformation.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/Transformation.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Transformation"><a href="#Transformation" class="headerlink" title="Transformation"></a>Transformation</h1><h2 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h2><script type="math/tex; mode=display">R_{xyz}(\alpha,\beta,\gamma)=R_{x}(\alpha)R_{y}(\beta)R_{z}(\gamma)</script><script type="math/tex; mode=display">R_{x}(\alpha)=
+\begin{bmatrix}
+1&0&0&0\\
+0&cos{\alpha}&-sin{\alpha}&0\\
+0&sin{\alpha}&cos{\alpha}&0\\
+0&0&0&1\\
+\end{bmatrix}</script><script type="math/tex; mode=display">R_{y}(\beta)=
+\begin{bmatrix}
+cos{\beta}&0&sin{\beta}&0\\
+0&0&0&0\\
+-sin{\beta}&0&cos{\beta}&0\\
+0&0&0&1\\
+\end{bmatrix}</script><script type="math/tex; mode=display">R_{z}(\gamma)=
+\begin{bmatrix}
+cos{\gamma}&-sin{\gamma}&0&0\\
+sin{\gamma}&cos{\gamma}&0&0\\
+0&0&0&0\\
+0&0&0&1\\
+\end{bmatrix}</script><h2 id="缩放"><a href="#缩放" class="headerlink" title="缩放"></a>缩放</h2><script type="math/tex; mode=display">S_{(s_x,s_y,s_z)}\begin{bmatrix}
+s_x&0&0&0\\
+0&s_y&0&0\\
+0&0&s_z&0\\
+0&0&0&1\\
+\end{bmatrix}</script><h2 id="齐次坐标"><a href="#齐次坐标" class="headerlink" title="齐次坐标"></a>齐次坐标</h2><h2 id="平移"><a href="#平移" class="headerlink" title="平移"></a>平移</h2><script type="math/tex; mode=display">T_{(t_x,t_y,t_z)}=\begin{bmatrix}
+1&0&0&t_x\\
+0&1&0&t_y\\
+0&0&1&t_z\\
+0&0&0&1\\
+\end{bmatrix}</script><h2 id="模型变换Modeling"><a href="#模型变换Modeling" class="headerlink" title="模型变换Modeling"></a>模型变换Modeling</h2><h2 id="视图变换View"><a href="#视图变换View" class="headerlink" title="视图变换View"></a>视图变换View</h2><p>Camera Position<br>Camera LookAt<br>Camera UpDirection</p>
+<h2 id="投影变换Projection"><a href="#投影变换Projection" class="headerlink" title="投影变换Projection"></a>投影变换Projection</h2><h3 id="Orthographic-Projection"><a href="#Orthographic-Projection" class="headerlink" title="Orthographic Projection"></a>Orthographic Projection</h3>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/Transformation.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -663,102 +791,6 @@ R(\theta)
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/history.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/history.html" class="post-title-link" itemprop="url">OPENGL History</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-15 12:39:25" itemprop="dateCreated datePublished" datetime="2020-07-15T12:39:25+08:00">2020-07-15</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/OpenGL/" itemprop="url" rel="index"><span itemprop="name">OpenGL</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/history.html" class="post-meta-item leancloud_visitors" data-flag-title="OPENGL History" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/history.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/history.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="/images/opengl/opengl.jpg" alt><br><img src="/images/opengl/history.jpg" alt>  </p>
-<h1 id="OpenGL-2-0"><a href="#OpenGL-2-0" class="headerlink" title="OpenGL 2.0"></a>OpenGL 2.0</h1><h1 id="OpenGL-3-0"><a href="#OpenGL-3-0" class="headerlink" title="OpenGL 3.0"></a>OpenGL 3.0</h1><h1 id="OpenGL-3-3"><a href="#OpenGL-3-3" class="headerlink" title="OpenGL 3.3"></a>OpenGL 3.3</h1><h1 id="OpenGL-4-0"><a href="#OpenGL-4-0" class="headerlink" title="OpenGL 4.0"></a>OpenGL 4.0</h1>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/history.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/learn.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -951,7 +983,7 @@ GL_TRIANGLE_FAN：以一个原点为中心呈扇形排列，公共相邻顶点�
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93/RenderDoc.html">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/history.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/icon128.jpg">
@@ -965,7 +997,7 @@ GL_TRIANGLE_FAN：以一个原点为中心呈扇形排列，公共相邻顶点�
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93/RenderDoc.html" class="post-title-link" itemprop="url">RenderDoc</a>
+            <a href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/history.html" class="post-title-link" itemprop="url">OPENGL History</a>
         </h2>
 
         <div class="post-meta">
@@ -983,16 +1015,12 @@ GL_TRIANGLE_FAN：以一个原点为中心呈扇形排列，公共相邻顶点�
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">游戏开发</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93/" itemprop="url" rel="index"><span itemprop="name">图形渲染</span></a>
+                  <a href="/categories/OpenGL/" itemprop="url" rel="index"><span itemprop="name">OpenGL</span></a>
                 </span>
             </span>
 
           
-            <span id="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93/RenderDoc.html" class="post-meta-item leancloud_visitors" data-flag-title="RenderDoc" title="阅读次数">
+            <span id="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/history.html" class="post-meta-item leancloud_visitors" data-flag-title="OPENGL History" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -1007,8 +1035,8 @@ GL_TRIANGLE_FAN：以一个原点为中心呈扇形排列，公共相邻顶点�
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93/RenderDoc.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93/RenderDoc.html" itemprop="commentCount"></span>
+    <a title="valine" href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/history.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/history.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1023,13 +1051,11 @@ GL_TRIANGLE_FAN：以一个原点为中心呈扇形排列，公共相邻顶点�
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="RenderDoc"><a href="#RenderDoc" class="headerlink" title="RenderDoc"></a>RenderDoc</h1><hr>
-<p>RenderDoc is a free MIT licensed stand-alone graphics debugger that allows quick and easy single-frame capture and detailed introspection of any application using Vulkan, D3D11, OpenGL &amp; OpenGL ES or D3D12 across Windows 7 - 10, Linux, Android, Stadia, or Nintendo Switch™.  </p>
-<hr>
-
+          <p><img src="/images/opengl/opengl.jpg" alt><br><img src="/images/opengl/history.jpg" alt>  </p>
+<h1 id="OpenGL-2-0"><a href="#OpenGL-2-0" class="headerlink" title="OpenGL 2.0"></a>OpenGL 2.0</h1><h1 id="OpenGL-3-0"><a href="#OpenGL-3-0" class="headerlink" title="OpenGL 3.0"></a>OpenGL 3.0</h1><h1 id="OpenGL-3-3"><a href="#OpenGL-3-3" class="headerlink" title="OpenGL 3.3"></a>OpenGL 3.3</h1><h1 id="OpenGL-4-0"><a href="#OpenGL-4-0" class="headerlink" title="OpenGL 4.0"></a>OpenGL 4.0</h1>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93/RenderDoc.html#more" rel="contents">
+              <a class="btn" href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/history.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1053,7 +1079,7 @@ GL_TRIANGLE_FAN：以一个原点为中心呈扇形排列，公共相邻顶点�
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93/fov.html">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/opengl.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/icon128.jpg">
@@ -1067,7 +1093,7 @@ GL_TRIANGLE_FAN：以一个原点为中心呈扇形排列，公共相邻顶点�
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93/fov.html" class="post-title-link" itemprop="url">fov</a>
+            <a href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/opengl.html" class="post-title-link" itemprop="url">OPENGL</a>
         </h2>
 
         <div class="post-meta">
@@ -1085,16 +1111,12 @@ GL_TRIANGLE_FAN：以一个原点为中心呈扇形排列，公共相邻顶点�
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">游戏开发</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93/" itemprop="url" rel="index"><span itemprop="name">图形渲染</span></a>
+                  <a href="/categories/OpenGL/" itemprop="url" rel="index"><span itemprop="name">OpenGL</span></a>
                 </span>
             </span>
 
           
-            <span id="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93/fov.html" class="post-meta-item leancloud_visitors" data-flag-title="fov" title="阅读次数">
+            <span id="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/opengl.html" class="post-meta-item leancloud_visitors" data-flag-title="OPENGL" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -1109,8 +1131,8 @@ GL_TRIANGLE_FAN：以一个原点为中心呈扇形排列，公共相邻顶点�
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93/fov.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93/fov.html" itemprop="commentCount"></span>
+    <a title="valine" href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/opengl.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/opengl.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1125,7 +1147,39 @@ GL_TRIANGLE_FAN：以一个原点为中心呈扇形排列，公共相邻顶点�
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <h2 id="Welcome-to-OpenGL"><a href="#Welcome-to-OpenGL" class="headerlink" title="Welcome to OpenGL"></a>Welcome to OpenGL</h2><p><img alt="OpenGL Logo" src="/images/opengl/opengl.jpg" class="right"></p>
+<h3 id="learn"><a href="#learn" class="headerlink" title="learn"></a><a href="learn/learn.html">learn</a></h3><video src="/images/opengl/movie.mp4" controls="controls" width="100%" height="100%"></video>
+
+<h3 id="Books"><a href="#Books" class="headerlink" title="Books"></a>Books</h3><ul>
+<li><a href="https://books.google.it/books?id=OVpsAQAAQBAJ" target="_blank" rel="noopener">Computer Graphics: Principles and Practice</a></li>
+<li><a href="http://www.opengl-redbook.com/" target="_blank" rel="noopener">redbook</a></li>
+<li><a href="http://www.openglsuperbible.com/" target="_blank" rel="noopener">openglsuperbible</a></li>
+<li><a href="https://learnopengl-cn.github.io/" target="_blank" rel="noopener">learnopengl</a></li>
+</ul>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a href="https://www.opengl.org/" target="_blank" rel="noopener">opengl.org</a>：OpenGL官方网站。</li>
+<li><a href="https://www.opengl.org/registry/" target="_blank" rel="noopener">OpenGL registry</a>：包含OpenGL各版本的规范和扩展。</li>
+<li><a href="https://www.khronos.org/" target="_blank" rel="noopener">khronos</a></li>
+<li><a href="https://github.khronos.org/" target="_blank" rel="noopener">khronos github</a></li>
+<li><a href="https://www.khronos.org/opengl/wiki" target="_blank" rel="noopener">khronos opengl wiki</a></li>
+<li><a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/" target="_blank" rel="noopener">khronos opengl reference</a> api</li>
+<li><a href="http://www.opengl-redbook.com/" target="_blank" rel="noopener">opengl redbook</a></li>
+<li><a href="http://www.openglsuperbible.com/" target="_blank" rel="noopener">openglsuperbible</a></li>
+<li><a href="https://learnopengl-cn.github.io/" target="_blank" rel="noopener">learnopengl</a></li>
+<li><a href="https://www.mesa3d.org/install.html" target="_blank" rel="noopener">mesa3d</a></li>
+</ul>
+<h2 id="聯係方式"><a href="#聯係方式" class="headerlink" title="聯係方式"></a>聯係方式</h2><ul>
+<li>QQ:418846793</li>
+<li>email:leeyupeng@126.com</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/opengl.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1210,13 +1264,13 @@ GL_TRIANGLE_FAN：以一个原点为中心呈扇形排列，公共相邻顶点�
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">362</span>
+          <span class="site-state-item-count">363</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-count">55</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">

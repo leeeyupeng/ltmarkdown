@@ -76,14 +76,14 @@ public:
     }
 };
 
-int main(){
-    Solution s;
-    vector<vector<int>> edges={
-{1,2},{2,3},{3,1},{3,6},{2,4},{4,5},{5,8},{4,7},{8,9}
-    };
-    int startA=9;
-    int startB=7;
-    int ans = s.chaseGame(edges,startA,startB);
-    cout<<"ans:"<<ans<<endl;
-    return 0;
-}
+// int main(){
+//     Solution s;
+//     vector<vector<int>> edges={
+// {1,2},{2,3},{3,1},{3,6},{2,4},{4,5},{5,8},{4,7},{8,9}
+//     };
+//     int startA=9;
+//     int startB=7;
+//     int ans = s.chaseGame(edges,startA,startB);
+//     cout<<"ans:"<<ans<<endl;
+//     return 0;
+// }

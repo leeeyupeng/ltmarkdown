@@ -17,3 +17,6 @@
 #include<limits.h>
 #endif
 using namespace std;
+
+template<typename T>
+using minheap = priority_queue<T>;

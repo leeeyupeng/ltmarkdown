@@ -14,7 +14,7 @@ private:
         return father(v1) == father(v2);
     }
     void unionset(int v1,int v2){
-        us[v2] = father(v1);
+        us[father(v2)] = father(v1);
     }
 public:
     vector<int> findRedundantDirectedConnection(vector<vector<int>>& edges) {
