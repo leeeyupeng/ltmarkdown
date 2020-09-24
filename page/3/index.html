@@ -153,6 +153,221 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/SubsetSumProblem.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/SubsetSumProblem.html" class="post-title-link" itemprop="url">Subset Sum Problem(子集和问题)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-11 17:13:46" itemprop="dateCreated datePublished" datetime="2020-09-11T17:13:46+08:00">2020-09-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">问题</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/SubsetSumProblem.html" class="post-meta-item leancloud_visitors" data-flag-title="Subset Sum Problem(子集和问题)" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/SubsetSumProblem.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/SubsetSumProblem.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Subset-Sum-Problem"><a href="#Subset-Sum-Problem" class="headerlink" title="Subset Sum Problem"></a>Subset Sum Problem</h1><h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><hr>
+<p>In computer science, the subset sum problem is an important problem in complexity theory and cryptography. The problem is this: given a set of integers, is there a non-empty subset whose sum is zero? For example, given the set { −7, −3, −2, 5, 8}, the answer is yes because the subset { −3, −2, 5} sums to zero. The problem is NP-complete.<br>An equivalent problem is this: given a set of integers and an integer s, does any non-empty subset sum to s? Subset sum can also be thought of as a special case of the knapsack problem. One interesting special case of subset sum is the partition problem, in which s is half of the sum of all elements in the set.  </p>
+<hr>
+<p>Subset-sum Problem<br>The subset sum problem, is a special case of the decision and 0-1 problems where each kind of item, the weight equals the value: . In the field of cryptography, the term knapsack problem is often used to refer specifically to the subset sum problem and is commonly known as one of Karp’s 21 NP-complete problems.<br>The generalization of subset-sum problem is called multiple subset-sum problem, in which multiple bins exist with the same capacity. It has been shown that the generalization does not have an FPTAS.  </p>
+<hr>
+<hr>
+<p>N个数的集合，是否存在子集，它的和满足一定条件<br>1.子集的和等于0<br>2.子集和 等于N个数的和的一半(将集合分成两个相等的子集)<br>3.N个数为非负数<br>4.N个数有负数<br>5.N个数的大小区间 N个数最大是多少，最小是多少  </p>
+<hr>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/SubsetSumProblem.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/Top%20K%E9%97%AE%E9%A2%98.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/Top%20K%E9%97%AE%E9%A2%98.html" class="post-title-link" itemprop="url">Top K 问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-11 17:13:46" itemprop="dateCreated datePublished" datetime="2020-09-11T17:13:46+08:00">2020-09-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">问题</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/Top%20K%E9%97%AE%E9%A2%98.html" class="post-meta-item leancloud_visitors" data-flag-title="Top K 问题" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/Top%20K%E9%97%AE%E9%A2%98.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/Top%20K%E9%97%AE%E9%A2%98.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Top-K-问题"><a href="#Top-K-问题" class="headerlink" title="Top K 问题"></a>Top K 问题</h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><ul>
+<li>1.什么是 Top K 问题？简单来说就是在一堆数据里面找到前 K 大（当然也可以是前 K 小）的数。</li>
+<li>2.可修改的Top K问题，数据数组内容可修改,每次修改后的Top K</li>
+</ul>
+<h2 id="分布式"><a href="#分布式" class="headerlink" title="分布式"></a>分布式</h2><blockquote>
+<p>面对海量数据，我们就可以放分布式的方向去思考了<br>我们可以将数据分散在多台机器中，然后每台机器并行计算各自的 TopK 数据，最后汇总，再计算得到最终的 TopK 数据  </p>
+</blockquote>
+<h2 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h2><blockquote>
+<p>维护一个大小为 K 的小顶堆，依次将数据放入堆中，当堆的大小满了的时候，只需要将堆顶元素与下一个数比较：如果大于堆顶元素，则将当前的堆顶元素抛弃，并将该元素插入堆中。遍历完全部数据，Top K 的元素也自然都在堆里面了。</p>
+</blockquote>
+<h2 id="树状数组"><a href="#树状数组" class="headerlink" title="树状数组"></a>树状数组</h2><h2 id="快速选择算法"><a href="#快速选择算法" class="headerlink" title="快速选择算法"></a>快速选择算法</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/Top%20K%E9%97%AE%E9%A2%98.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E7%AC%ACK%E5%B0%8F%E7%9A%84%E5%85%83%E7%B4%A0%E9%97%AE%E9%A2%98.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -234,105 +449,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E7%AC%ACK%E5%B0%8F%E7%9A%84%E5%85%83%E7%B4%A0%E9%97%AE%E9%A2%98.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E5%A4%A7%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE%E6%8E%92%E5%BA%8F.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E5%A4%A7%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE%E6%8E%92%E5%BA%8F.html" class="post-title-link" itemprop="url">大文件排序</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-09-11 17:13:46" itemprop="dateCreated datePublished" datetime="2020-09-11T17:13:46+08:00">2020-09-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">问题</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E5%A4%A7%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE%E6%8E%92%E5%BA%8F.html" class="post-meta-item leancloud_visitors" data-flag-title="大文件排序" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E5%A4%A7%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE%E6%8E%92%E5%BA%8F.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E5%A4%A7%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE%E6%8E%92%E5%BA%8F.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="大文件排序"><a href="#大文件排序" class="headerlink" title="大文件排序"></a>大文件排序</h1>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E5%A4%A7%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE%E6%8E%92%E5%BA%8F.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -563,7 +679,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98.html">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E5%A4%A7%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE%E6%8E%92%E5%BA%8F.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/icon128.jpg">
@@ -577,7 +693,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98.html" class="post-title-link" itemprop="url">旅行商問題</a>
+            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E5%A4%A7%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE%E6%8E%92%E5%BA%8F.html" class="post-title-link" itemprop="url">大文件排序</a>
         </h2>
 
         <div class="post-meta">
@@ -604,7 +720,7 @@
             </span>
 
           
-            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98.html" class="post-meta-item leancloud_visitors" data-flag-title="旅行商問題" title="阅读次数">
+            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E5%A4%A7%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE%E6%8E%92%E5%BA%8F.html" class="post-meta-item leancloud_visitors" data-flag-title="大文件排序" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -619,8 +735,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98.html" itemprop="commentCount"></span>
+    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E5%A4%A7%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE%E6%8E%92%E5%BA%8F.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E5%A4%A7%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE%E6%8E%92%E5%BA%8F.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -635,108 +751,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E6%9C%80%E5%A4%A7%E5%8C%96%E6%9C%80%E5%B0%8F%E5%80%BC%E9%97%AE%E9%A2%98.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E6%9C%80%E5%A4%A7%E5%8C%96%E6%9C%80%E5%B0%8F%E5%80%BC%E9%97%AE%E9%A2%98.html" class="post-title-link" itemprop="url">最大化最小值问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-09-11 17:13:46" itemprop="dateCreated datePublished" datetime="2020-09-11T17:13:46+08:00">2020-09-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">问题</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E6%9C%80%E5%A4%A7%E5%8C%96%E6%9C%80%E5%B0%8F%E5%80%BC%E9%97%AE%E9%A2%98.html" class="post-meta-item leancloud_visitors" data-flag-title="最大化最小值问题" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E6%9C%80%E5%A4%A7%E5%8C%96%E6%9C%80%E5%B0%8F%E5%80%BC%E9%97%AE%E9%A2%98.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E6%9C%80%E5%A4%A7%E5%8C%96%E6%9C%80%E5%B0%8F%E5%80%BC%E9%97%AE%E9%A2%98.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="最大化最小值问题"><a href="#最大化最小值问题" class="headerlink" title="最大化最小值问题"></a>最大化最小值问题</h1><h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><hr>
-<p>有一类常见问题叫做最小值最大化或者最大值最小化。这类问题一般是用二分搜索来解决。</p>
-<p>　　首先二分搜索解决的问题必须具备单调性这个性质，这是使用二分搜索的必要条件，我们分析两个问题。</p>
-<p>　　1.最小值最大化：我们假设x为最大的最小值，那么x-1是满足条件的，但他并不满足最大，x+1是不满足条件的，假设我们左边界是L,右边界是R，我们二分一个答案ans，ans为最后一个满足条件的数，我们是不是可以类比二分搜索（一）中的last_less_equal()或者last_less()这个问题和这两者是差不多的。</p>
-<p>　　2.最大值最小化：我们假设x为最小的最大值，那么x-1是不满足条件的，x+1是满足条件的，但他不满足最小，假设我们左边界是L,右边界是R，我们二分一个答案ans，ans为第一个满足条件的数，我们是不是可以类比二分搜索（一）中的lower_bound()或者upper_bound()这个问题和这两者是差不多的。</p>
-<p>　　所以综上所述并根据我在二分搜索（一）——各种二分中的描述：最小值最大化的二分区间是右闭左开(L,R]，每次二分的中心为M=(L+R+1)/2；最大值最小化的二分区间是左闭右开，[L,R),每次二分的中心为M=(L+R)/2。</p>
-<hr>
-<h2 id="相关题目"><a href="#相关题目" class="headerlink" title="相关题目"></a>相关题目</h2>
+          <h1 id="大文件排序"><a href="#大文件排序" class="headerlink" title="大文件排序"></a>大文件排序</h1>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E6%9C%80%E5%A4%A7%E5%8C%96%E6%9C%80%E5%B0%8F%E5%80%BC%E9%97%AE%E9%A2%98.html#more" rel="contents">
+              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E5%A4%A7%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE%E6%8E%92%E5%BA%8F.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -864,7 +882,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E7%A1%AC%E5%B8%81%E9%97%AE%E9%A2%98.html">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E6%9C%80%E5%A4%A7%E7%9F%A9%E5%BD%A2.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/icon128.jpg">
@@ -878,7 +896,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E7%A1%AC%E5%B8%81%E9%97%AE%E9%A2%98.html" class="post-title-link" itemprop="url">硬币问题</a>
+            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E6%9C%80%E5%A4%A7%E7%9F%A9%E5%BD%A2.html" class="post-title-link" itemprop="url">最大矩形</a>
         </h2>
 
         <div class="post-meta">
@@ -905,7 +923,7 @@
             </span>
 
           
-            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E7%A1%AC%E5%B8%81%E9%97%AE%E9%A2%98.html" class="post-meta-item leancloud_visitors" data-flag-title="硬币问题" title="阅读次数">
+            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E6%9C%80%E5%A4%A7%E7%9F%A9%E5%BD%A2.html" class="post-meta-item leancloud_visitors" data-flag-title="最大矩形" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -920,8 +938,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E7%A1%AC%E5%B8%81%E9%97%AE%E9%A2%98.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E7%A1%AC%E5%B8%81%E9%97%AE%E9%A2%98.html" itemprop="commentCount"></span>
+    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E6%9C%80%E5%A4%A7%E7%9F%A9%E5%BD%A2.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E6%9C%80%E5%A4%A7%E7%9F%A9%E5%BD%A2.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -936,22 +954,120 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><blockquote>
-<p>有n种硬币，面值分别为 V1,V2,…,Vn。每种都有无限多。给定非负整数S，问可以选用多少个硬币，使得面值之和恰好为S？输出硬币数目的最小值  </p>
-</blockquote>
-<h3 id="贪心算法"><a href="#贪心算法" class="headerlink" title="贪心算法"></a>贪心算法</h3><blockquote>
-<p>贪心算法的解不一定是最优解<br>但是贪心算法的解有用途，可以作为DFS的剪枝条件,搜索过程中解大于贪心算法的解时break<br>参考DFS实现  </p>
-</blockquote>
-<h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><blockquote>
-<p>公式<br> dp[i] = Math.min(dp[i], dp[i - coin] + 1)<br><a href="../leetcode/code/322.动态规划.html">动态规划实现</a></p>
-</blockquote>
-<h3 id="DFS"><a href="#DFS" class="headerlink" title="DFS"></a>DFS</h3><blockquote>
-<p>当 amount==0amount==0 时剪枝，因为大面值硬币需要更多小面值硬币替换，继续减少一枚或几枚大硬币搜索出来的答案【如果有】肯定不会更优。<br>当 amount!=0，但已经使用的硬币数 cnt 满足了 cnt+1&gt;=ans 时剪枝，因 amount 不为 0，至少还要使用 1 枚硬币，则继续搜索得到的答案不会更优。是 break 不是 continue，因为少用几枚面值大的硬币搜索出的方案【如果有】肯定需要更多枚面值小的硬币来替换掉这枚大的硬币【同剪枝 1 理由】，而使用这几枚大的硬币都搜索不到更好的解，故应该是 break。<br>使用贪心算法先算出一个解，作为剪枝条件<br><a href="../leetcode/code/322.DFS.html">DFS实现</a></p>
-</blockquote>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://leetcode-cn.com/problems/coin-change/" target="_blank" rel="noopener">leetcode题目</a><br><a href="https://leetcode-cn.com/problems/coin-change/solution/dfsjian-zhi-2ms-ji-bai-100bi-dphuan-kuai-by-iejepw/" target="_blank" rel="noopener">题解</a>  </p>
+          <h1 id="最大矩形"><a href="#最大矩形" class="headerlink" title="最大矩形"></a>最大矩形</h1><h2 id="一维最大矩形"><a href="#一维最大矩形" class="headerlink" title="一维最大矩形"></a>一维最大矩形</h2><h3 id="一维0-1最大矩形"><a href="#一维0-1最大矩形" class="headerlink" title="一维0/1最大矩形"></a>一维0/1最大矩形</h3><hr>
+<p>0 1 1 0 1 1，高度为0或者1，求可以组成的最大面积</p>
+<hr>
+<h3 id="柱状图中最大的矩形"><a href="#柱状图中最大的矩形" class="headerlink" title="柱状图中最大的矩形"></a>柱状图中最大的矩形</h3><h4 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h4><hr>
+<p><a href="https://leetcode-cn.com/problems/largest-rectangle-in-histogram/" target="_blank" rel="noopener">leetcode题目</a>  </p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E7%A1%AC%E5%B8%81%E9%97%AE%E9%A2%98.html#more" rel="contents">
+              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E6%9C%80%E5%A4%A7%E7%9F%A9%E5%BD%A2.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E6%9C%80%E5%A4%A7%E5%8C%96%E6%9C%80%E5%B0%8F%E5%80%BC%E9%97%AE%E9%A2%98.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E6%9C%80%E5%A4%A7%E5%8C%96%E6%9C%80%E5%B0%8F%E5%80%BC%E9%97%AE%E9%A2%98.html" class="post-title-link" itemprop="url">最大化最小值问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-11 17:13:46" itemprop="dateCreated datePublished" datetime="2020-09-11T17:13:46+08:00">2020-09-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">问题</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E6%9C%80%E5%A4%A7%E5%8C%96%E6%9C%80%E5%B0%8F%E5%80%BC%E9%97%AE%E9%A2%98.html" class="post-meta-item leancloud_visitors" data-flag-title="最大化最小值问题" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E6%9C%80%E5%A4%A7%E5%8C%96%E6%9C%80%E5%B0%8F%E5%80%BC%E9%97%AE%E9%A2%98.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E6%9C%80%E5%A4%A7%E5%8C%96%E6%9C%80%E5%B0%8F%E5%80%BC%E9%97%AE%E9%A2%98.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="最大化最小值问题"><a href="#最大化最小值问题" class="headerlink" title="最大化最小值问题"></a>最大化最小值问题</h1><h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><hr>
+<p>有一类常见问题叫做最小值最大化或者最大值最小化。这类问题一般是用二分搜索来解决。</p>
+<p>　　首先二分搜索解决的问题必须具备单调性这个性质，这是使用二分搜索的必要条件，我们分析两个问题。</p>
+<p>　　1.最小值最大化：我们假设x为最大的最小值，那么x-1是满足条件的，但他并不满足最大，x+1是不满足条件的，假设我们左边界是L,右边界是R，我们二分一个答案ans，ans为最后一个满足条件的数，我们是不是可以类比二分搜索（一）中的last_less_equal()或者last_less()这个问题和这两者是差不多的。</p>
+<p>　　2.最大值最小化：我们假设x为最小的最大值，那么x-1是不满足条件的，x+1是满足条件的，但他不满足最小，假设我们左边界是L,右边界是R，我们二分一个答案ans，ans为第一个满足条件的数，我们是不是可以类比二分搜索（一）中的lower_bound()或者upper_bound()这个问题和这两者是差不多的。</p>
+<p>　　所以综上所述并根据我在二分搜索（一）——各种二分中的描述：最小值最大化的二分区间是右闭左开(L,R]，每次二分的中心为M=(L+R+1)/2；最大值最小化的二分区间是左闭右开，[L,R),每次二分的中心为M=(L+R)/2。</p>
+<hr>
+<h2 id="相关题目"><a href="#相关题目" class="headerlink" title="相关题目"></a>相关题目</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E6%9C%80%E5%A4%A7%E5%8C%96%E6%9C%80%E5%B0%8F%E5%80%BC%E9%97%AE%E9%A2%98.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1080,7 +1196,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E6%9C%80%E5%A4%A7%E7%9F%A9%E5%BD%A2.html">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E7%BB%84%E5%90%88%E4%BC%98%E5%8C%96.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/icon128.jpg">
@@ -1094,7 +1210,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E6%9C%80%E5%A4%A7%E7%9F%A9%E5%BD%A2.html" class="post-title-link" itemprop="url">最大矩形</a>
+            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E7%BB%84%E5%90%88%E4%BC%98%E5%8C%96.html" class="post-title-link" itemprop="url">组合优化</a>
         </h2>
 
         <div class="post-meta">
@@ -1121,7 +1237,7 @@
             </span>
 
           
-            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E6%9C%80%E5%A4%A7%E7%9F%A9%E5%BD%A2.html" class="post-meta-item leancloud_visitors" data-flag-title="最大矩形" title="阅读次数">
+            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E7%BB%84%E5%90%88%E4%BC%98%E5%8C%96.html" class="post-meta-item leancloud_visitors" data-flag-title="组合优化" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -1136,8 +1252,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E6%9C%80%E5%A4%A7%E7%9F%A9%E5%BD%A2.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E6%9C%80%E5%A4%A7%E7%9F%A9%E5%BD%A2.html" itemprop="commentCount"></span>
+    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E7%BB%84%E5%90%88%E4%BC%98%E5%8C%96.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E7%BB%84%E5%90%88%E4%BC%98%E5%8C%96.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1152,125 +1268,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="最大矩形"><a href="#最大矩形" class="headerlink" title="最大矩形"></a>最大矩形</h1><h2 id="一维最大矩形"><a href="#一维最大矩形" class="headerlink" title="一维最大矩形"></a>一维最大矩形</h2><h3 id="一维0-1最大矩形"><a href="#一维0-1最大矩形" class="headerlink" title="一维0/1最大矩形"></a>一维0/1最大矩形</h3><hr>
-<p>0 1 1 0 1 1，高度为0或者1，求可以组成的最大面积</p>
-<hr>
-<h3 id="柱状图中最大的矩形"><a href="#柱状图中最大的矩形" class="headerlink" title="柱状图中最大的矩形"></a>柱状图中最大的矩形</h3><h4 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h4><hr>
-<p><a href="https://leetcode-cn.com/problems/largest-rectangle-in-histogram/" target="_blank" rel="noopener">leetcode题目</a>  </p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E6%9C%80%E5%A4%A7%E7%9F%A9%E5%BD%A2.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
           
-            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98.html" class="post-title-link" itemprop="url">背包问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-09-11 17:13:46" itemprop="dateCreated datePublished" datetime="2020-09-11T17:13:46+08:00">2020-09-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">问题</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98.html" class="post-meta-item leancloud_visitors" data-flag-title="背包问题" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="背包问题-Knapsack-problem"><a href="#背包问题-Knapsack-problem" class="headerlink" title="背包问题(Knapsack problem)"></a>背包问题(Knapsack problem)</h1><blockquote>
-<p>背包问题指这样一类问题，题意往往可以抽象成：给定一组物品，每种物品都有自己的重量和价格，在限定的总重量内，我们如何选择，才能使得物品的总价格最高。<br><img src="/images/数据结构与算法/背包问题.png" alt><br><a href="https://en.wikipedia.org/wiki/Knapsack_problem" target="_blank" rel="noopener">维基百科</a>  </p>
-</blockquote>
-<h2 id="部分背包问题"><a href="#部分背包问题" class="headerlink" title="部分背包问题"></a>部分背包问题</h2><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><blockquote>
-<h4 id="部分背包问题和0-1背包问题的区别就是：部分背包问题中的单个物品，可以取一部分装入背包。而0-1背包问题则是要么全部拿走，要么一无所有"><a href="#部分背包问题和0-1背包问题的区别就是：部分背包问题中的单个物品，可以取一部分装入背包。而0-1背包问题则是要么全部拿走，要么一无所有" class="headerlink" title="部分背包问题和0/1背包问题的区别就是：部分背包问题中的单个物品，可以取一部分装入背包。而0/1背包问题则是要么全部拿走，要么一无所有"></a>部分背包问题和0/1背包问题的区别就是：部分背包问题中的单个物品，可以取一部分装入背包。而0/1背包问题则是要么全部拿走，要么一无所有</h4></blockquote>
-<h2 id="Subset-Sum-Problem"><a href="#Subset-Sum-Problem" class="headerlink" title="Subset Sum Problem"></a>Subset Sum Problem</h2><h3 id="问题描述-1"><a href="#问题描述-1" class="headerlink" title="问题描述"></a>问题描述</h3><blockquote>
-<h4 id="If-for-each-item-the-profit-and-weight-are-equal-we-get-the-subset-sum-problem"><a href="#If-for-each-item-the-profit-and-weight-are-equal-we-get-the-subset-sum-problem" class="headerlink" title="If for each item the profit and weight are equal, we get the subset sum problem"></a>If for each item the profit and weight are equal, we get the subset sum problem</h4><h4 id="Given-a-set-of-N-N≤40-integers-each-of-them-is-at-most-1012-determine-the-largest-sum-subset-having-sum-less-than-or-equal-S-S≤1018"><a href="#Given-a-set-of-N-N≤40-integers-each-of-them-is-at-most-1012-determine-the-largest-sum-subset-having-sum-less-than-or-equal-S-S≤1018" class="headerlink" title="Given a set of N (N≤40) integers each of them is at most 1012 determine the largest sum subset having sum less than or equal S (S≤1018)"></a>Given a set of N (N≤40) integers each of them is at most 1012 determine the largest sum subset having sum less than or equal S (S≤1018)</h4></blockquote>
-<h2 id="0-1背包问题"><a href="#0-1背包问题" class="headerlink" title="0/1背包问题"></a>0/1背包问题</h2><h3 id="问题描述-2"><a href="#问题描述-2" class="headerlink" title="问题描述"></a>问题描述</h3>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%97%AE%E9%A2%98/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 
@@ -1355,7 +1353,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">366</span>
+          <span class="site-state-item-count">368</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
