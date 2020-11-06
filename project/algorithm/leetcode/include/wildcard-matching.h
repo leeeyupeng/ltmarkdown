@@ -22,6 +22,7 @@ namespace wildcardmatchingDP
 			{
 				if (p[j - 1] == '*')
 				{
+					
 					dp[0][j] = dp[0][j - 1];
 				}
 			}
@@ -207,7 +208,7 @@ namespace wildcardmatchingKMP
 
 					//j = next[j];
 
-					//ÑéÖ¤?
+					//ï¿½ï¿½Ö¤?
 					k = next[j];
 					while (k > 0)
 					{						

@@ -4,18 +4,18 @@
 #include <atomic>
 #include <time.h>
 
-#define TEST_DATA_LENGTH 10000000 //Ã¿¸öÏß³Ì²Ù×÷´ÎÊı
-#define THREAD_NUM 8 //Ïß³Ì¸öÊı
+#define TEST_DATA_LENGTH 10000000 //ÿ??
+#define THREAD_NUM 8 //??
 
-using namespace std;//ÒıÈëstdÃüÃû¿Õ¼ä
+using namespace std;//std?
 
-mutex m;//ÉùÃ÷»¥³âËøm
+mutex m;//m
 
 long n_total = 0;
 long m_total = 0;
-atomic<long> a_total = 0;//Ô­×ÓÁ¿µÄ³õÊ¼»¯
+atomic<long> a_total = 0;//???
 
-//ÔÚ²»²ÉÓÃ»¥³âËøºÍÔ­×ÓÀàµÄÇé¿öÏÂ
+//?û?
 void test_f_normal()
 {
 	for (int i = 0; i < TEST_DATA_LENGTH; i++)
@@ -25,7 +25,7 @@ void test_f_normal()
 	}
 }
 
-//Ê¹ÓÃmutex»¥³âËø
+//?mutex
 void test_f_mutex()
 {
 	for (int i = 0; i < TEST_DATA_LENGTH; i++)
@@ -35,7 +35,7 @@ void test_f_mutex()
 		m.unlock();
 	}
 }
-//Ê¹ÓÃÔ­×Ó²Ù×÷
+//???
 void test_f_atomic()
 {
 	for (int i = 0; i < TEST_DATA_LENGTH; i++)

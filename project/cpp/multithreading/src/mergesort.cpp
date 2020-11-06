@@ -6,7 +6,7 @@
 using namespace std;
 
 void merge(vector<int>& nums, int s, int mid, int e) {
-	vector<int> lnums, rnums; // lnums, rnumsÎªÁ½¸ö×ÓĞòÁĞ£¬numsÓÃÓÚ´æ·ÅºÏ²¢ºóµÄĞòÁĞ
+	vector<int> lnums, rnums; // lnums, rnumsä¸ºä¸¤ä¸ªå­åºåˆ—ï¼Œnumsç”¨äºå­˜æ”¾åˆå¹¶åçš„åºåˆ—
 	for (int i = s; i <= e; i++) {
 		if (i <= mid) {
 			lnums.push_back(nums[i]);
@@ -17,8 +17,8 @@ void merge(vector<int>& nums, int s, int mid, int e) {
 	}
 
 	int l = 0, r = 0, k = s;
-	// ±È½ÏÁ½¸öÖ¸Õë(lºÍr)ËùÖ¸ÏòµÄÔªËØ£¬Ñ¡ÔñÏà¶ÔĞ¡µÄÔªËØ(ÉıĞò)·ÅÈëµ½ºÏ²¢¿Õ¼ä£¬
-	// ²¢ÒÆ¶¯Ö¸Õëµ½ÏÂÒ»Î»ÖÃ£¬Ö±µ½ÆäÖĞÒ»¸öÖ¸Õë³¬³öĞòÁĞÎ²
+	// æ¯”è¾ƒä¸¤ä¸ªæŒ‡é’ˆ(lå’Œr)æ‰€æŒ‡å‘çš„å…ƒç´ ï¼Œé€‰æ‹©ç›¸å¯¹å°çš„å…ƒç´ (å‡åº)æ”¾å…¥åˆ°åˆå¹¶ç©ºé—´ï¼Œ
+	// å¹¶ç§»åŠ¨æŒ‡é’ˆåˆ°ä¸‹ä¸€ä½ç½®ï¼Œç›´åˆ°å…¶ä¸­ä¸€ä¸ªæŒ‡é’ˆè¶…å‡ºåºåˆ—å°¾
 	while (l < lnums.size() && r < rnums.size()) {
 		if (lnums[l] < rnums[r]) {
 			nums[k++] = lnums[l++];
@@ -27,7 +27,7 @@ void merge(vector<int>& nums, int s, int mid, int e) {
 			nums[k++] = rnums[r++];
 		}
 	}
-	// ½«ÁíÒ»ĞòÁĞÊ£ÏÂµÄËùÓĞÔªËØÖ±½Ó¸´ÖÆµ½ºÏ²¢ĞòÁĞÎ²
+	// å°†å¦ä¸€åºåˆ—å‰©ä¸‹çš„æ‰€æœ‰å…ƒç´ ç›´æ¥å¤åˆ¶åˆ°åˆå¹¶åºåˆ—å°¾
 	while (l < lnums.size()) {
 		nums[k++] = lnums[l++];
 	}
@@ -42,22 +42,22 @@ void mergeSort(vector<int>& nums, int s, int e) {
 	}
 
 	int mid = (s + e) / 2;
-	// ÏòÏÂ²ğ·Ö£¬¶ÀÁ¢½øĞĞ£¬¿ÉÒÔ¶àÏß³Ì
-	// ÒÉÎÊ£ºÎªÊ²Ã´ÒªÓÃbind()£¬thread t1(mergeSort,std::ref(nums),s,mid);±àÒë´íÎó£¿
-	// std::bindÄ¬ÈÏ²ÉÓÃ²ÎÊıµÄ¿½±´¶ø²»ÊÇÒıÓÃ£¬ÓÃstd::ref×ª»¯ÎªÒıÓÃ
+	// å‘ä¸‹æ‹†åˆ†ï¼Œç‹¬ç«‹è¿›è¡Œï¼Œå¯ä»¥å¤šçº¿ç¨‹
+	// ç–‘é—®ï¼šä¸ºä»€ä¹ˆè¦ç”¨bind()ï¼Œthread t1(mergeSort,std::ref(nums),s,mid);ç¼–è¯‘é”™è¯¯ï¼Ÿ
+	// std::bindé»˜è®¤é‡‡ç”¨å‚æ•°çš„æ‹·è´è€Œä¸æ˜¯å¼•ç”¨ï¼Œç”¨std::refè½¬åŒ–ä¸ºå¼•ç”¨
 	thread t1(std::bind(mergeSort, std::ref(nums), s, mid));
 	thread t2(std::bind(mergeSort, std::ref(nums), mid + 1, e));
 	t1.join();
 	t2.join();
 	// mergeSort(nums,s,mid);
 	// mergeSort(nums,mid+1,e);
-	// ÏòÉÏºÏ²¢
+	// å‘ä¸Šåˆå¹¶
 	merge(nums, s, mid, e);
 }
 
 vector<int> sortArray(vector<int>& nums) {
-	// ¹é²¢ÅÅĞò
-	vector<int> arr = nums; // ÎªÁË²»¸Ä±äÔ­Êı×é
+	// å½’å¹¶æ’åº
+	vector<int> arr = nums; // ä¸ºäº†ä¸æ”¹å˜åŸæ•°ç»„
 	mergeSort(arr, 0, arr.size() - 1);
 	return arr;
 }

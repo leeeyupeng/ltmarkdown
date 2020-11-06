@@ -1,9 +1,9 @@
 #include <iostream>
 #include <string>
 
-#include <any.hpp>
+//#include <any.hpp>
 
 int main()
 {
-	main_test();
+	//main_test();
 }

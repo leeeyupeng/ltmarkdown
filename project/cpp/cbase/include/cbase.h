@@ -1,5 +1,5 @@
-#ifndef SHAPE_H
-#define SHAPE_H
+#ifndef CBASE_H
+#define CBASE_H
 #define CFUNC(c,func) c->func(c)
 typedef struct
 {

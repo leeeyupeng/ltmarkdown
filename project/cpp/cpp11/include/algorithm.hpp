@@ -1,6 +1,10 @@
 #pragma once
 #include <algorithm>
 namespace lt {
+	template<class IT, class T>
+	void mergesortmerge(IT begin1, IT end1, IT begin2, IT end2);
+
+
 	template<class T>
 	inline void swap(T &a, T &b) {
 		T temp;
@@ -97,7 +101,7 @@ namespace lt {
 		int n2 = distance(begin2,end2);
 		vector<T> v(n1+n2);
 		IT i = begin1, j = begin2;
-		vector<T>::iterator s = v.begin();
+		typename vector<T>::iterator s = v.begin();
 		while (i != end1 || j != end2) {
 			if (i != end1 && j != end2) {
 				if (*i <= *j) { *s = *i; s++; i++; }

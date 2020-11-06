@@ -1,3 +1,12 @@
+#include<iostream>
+#include<algorithm>
+using namespace std;
+
+template<typename T>
+void _merge_sort(T* arr,int left,int right, T* arrtemp);
+
+template<typename T>
+void _merge_sort_merge(T* arr, int left, int mid, int right, T* arrtemp);
 template<typename T>
 inline void swap(T &a, T &b) {
 	a ^= b;
@@ -49,7 +58,7 @@ void _merge_sort_merge(T* arr, int left, int mid, int right, T* arrtemp) {
 			arrtemp[index++] = arr[r++];
 		}
 	}
-	// 将另一序列剩下的所有元素直接复制到合并序列尾
+	// 锟斤拷锟斤拷一锟斤拷锟斤拷剩锟铰碉拷锟斤拷锟斤拷元锟斤拷直锟接革拷锟狡碉拷锟较诧拷锟斤拷锟斤拷尾
 	while (l < mid) {
 		arrtemp[index++] = arr[l++];
 	}

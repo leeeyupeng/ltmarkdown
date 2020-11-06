@@ -1,4 +1,4 @@
-////future1.cpp Ê¹ÓÃÈ«¾Ö±äÁ¿´«µİ±»µ÷ÓÃÏß³Ì·µ»Ø½á¹û£¬Ê¹ÓÃÌõ¼ş±äÁ¿Í¨Öªµ÷ÓÃÏß³ÌÒÑ»ñµÃ½á¹û
+////future1.cpp ä½¿ç”¨å…¨å±€å˜é‡ä¼ é€’è¢«è°ƒç”¨çº¿ç¨‹è¿”å›ç»“æœï¼Œä½¿ç”¨æ¡ä»¶å˜é‡é€šçŸ¥è°ƒç”¨çº¿ç¨‹å·²è·å¾—ç»“æœ
 //
 //#include <vector>
 //#include <numeric>
@@ -8,21 +8,21 @@
 //#include <mutex>
 //#include <condition_variable>
 //
-//int res = 0;						//±£´æ½á¹ûµÄÈ«¾Ö±äÁ¿
-//std::mutex mu;						//»¥³âËøÈ«¾Ö±äÁ¿
-//std::condition_variable cond;       //È«¾ÖÌõ¼ş±äÁ¿
+//int res = 0;						//ä¿å­˜ç»“æœçš„å…¨å±€å˜é‡
+//std::mutex mu;						//äº’æ–¥é”å…¨å±€å˜é‡
+//std::condition_variable cond;       //å…¨å±€æ¡ä»¶å˜é‡
 //
 //void accumulate(std::vector<int>::iterator first,
 //	std::vector<int>::iterator last)
 //{
-//	int sum = std::accumulate(first, last, 0);      //±ê×¼¿âÇóºÍº¯Êı
+//	int sum = std::accumulate(first, last, 0);      //æ ‡å‡†åº“æ±‚å’Œå‡½æ•°
 //	std::unique_lock<std::mutex> locker(mu);
 //	res = sum;
 //	std::cout << "accumulate" << std::endl;
 //	std::this_thread::sleep_for(std::chrono::seconds(1));
 //	std::cout << "accumulate" << std::endl;
 //	locker.unlock();
-//	cond.notify_one();              // ÏòÒ»¸öµÈ´ıÏß³Ì·¢³ö¡°Ìõ¼şÒÑÂú×ã¡±µÄÍ¨Öª
+//	cond.notify_one();              // å‘ä¸€ä¸ªç­‰å¾…çº¿ç¨‹å‘å‡ºâ€œæ¡ä»¶å·²æ»¡è¶³â€çš„é€šçŸ¥
 //}
 //
 //int main()
@@ -32,11 +32,11 @@
 //
 //	std::cout << "work_thread" << std::endl;
 //	std::unique_lock<std::mutex> locker(mu);
-//	cond.wait(locker, []() { return res; });   //Èç¹ûÌõ¼ş±äÁ¿±»»½ĞÑ£¬¼ì²é½á¹ûÊÇ·ñ±»¸Ä±ä£¬ÎªÕæÔòÖ±½Ó·µ»Ø£¬Îª¼ÙÔò¼ÌĞøµÈ´ı
+//	cond.wait(locker, []() { return res; });   //å¦‚æœæ¡ä»¶å˜é‡è¢«å”¤é†’ï¼Œæ£€æŸ¥ç»“æœæ˜¯å¦è¢«æ”¹å˜ï¼Œä¸ºçœŸåˆ™ç›´æ¥è¿”å›ï¼Œä¸ºå‡åˆ™ç»§ç»­ç­‰å¾…
 //	std::cout << "result=" << res << '\n';
 //	std::cout << "work_thread" << std::endl;
 //	locker.unlock();
-//	work_thread.join();         //×èÈûµÈ´ıÏß³ÌÖ´ĞĞÍê³É
+//	work_thread.join();         //é˜»å¡ç­‰å¾…çº¿ç¨‹æ‰§è¡Œå®Œæˆ
 //
 //	getchar();
 //	return 0;

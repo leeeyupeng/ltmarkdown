@@ -3,6 +3,7 @@
 #include <vector>
 #include <functional>
 #include <algorithm>
+#include<string.h>
 
 #include "algorithm_sort.hpp"
 using namespace std;
@@ -29,7 +30,7 @@ int main() {
 	}
 
 
-	cout << "Êý¾Ý¸öÊý:" << NUMS << endl;
+	cout << "ï¿½ï¿½ï¿½Ý¸ï¿½ï¿½ï¿½:" << NUMS << endl;
 	int *arralgorithm = (int*)malloc(sizeof(int) * NUMS);
 	{
 		cout << "algorithm_sort:" << endl;
@@ -37,7 +38,7 @@ int main() {
 		clock_t start = clock();
 		sort(arralgorithm, arralgorithm+NUMS);
 		clock_t end = clock();
-		cout << "algorithm_sort ºÄÊ±: " << end - start << "ºÁÃë" << endl;
+		cout << "algorithm_sort ï¿½ï¿½Ê±: " << end - start << "ï¿½ï¿½ï¿½ï¿½" << endl;
 		//print(arralgorithm, NUMS);
 	}
 
@@ -48,9 +49,9 @@ int main() {
 	//	clock_t start = clock();
 	//	insert_sort(arrtemp,NUMS);
 	//	clock_t end = clock();
-	//	cout << "insert_sort ºÄÊ±: " << end - start <<"ºÁÃë"<< endl;
+	//	cout << "insert_sort ï¿½ï¿½Ê±: " << end - start <<"ï¿½ï¿½ï¿½ï¿½"<< endl;
 	//	if (!check(arralgorithm, arrtemp, NUMS)) {
-	//		cout << "insert_sort:ÅÅÐò´íÎó" << endl;
+	//		cout << "insert_sort:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" << endl;
 	//		print(arrtemp, NUMS);
 	//	}
 	//	
@@ -62,10 +63,10 @@ int main() {
 		clock_t start = clock();
 		merge_sort(arrtemp, NUMS);
 		clock_t end = clock();
-		cout << "merge_sort ºÄÊ±: " << end - start << "ºÁÃë" << endl;
+		cout << "merge_sort ï¿½ï¿½Ê±: " << end - start << "ï¿½ï¿½ï¿½ï¿½" << endl;
 		
 		if (!check(arralgorithm, arrtemp, NUMS)) {
-			cout << "merge_sort:ÅÅÐò´íÎó" << endl;
+			cout << "merge_sort:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" << endl;
 			print(arrtemp, NUMS);
 		}		
 	}
@@ -77,11 +78,11 @@ int main() {
 		clock_t start = clock();
 		parallel_merge_sort(arrtemp, NUMS, threadnums);
 		clock_t end = clock();
-		cout << "parallel_merge_sort Ïß³ÌÊýÁ¿:" << threadnums << endl;
-		cout << "parallel_merge_sort ºÄÊ±: " << end - start << "ºÁÃë" << endl;
+		cout << "parallel_merge_sort ï¿½ß³ï¿½ï¿½ï¿½ï¿½ï¿½:" << threadnums << endl;
+		cout << "parallel_merge_sort ï¿½ï¿½Ê±: " << end - start << "ï¿½ï¿½ï¿½ï¿½" << endl;
 
 		if (!check(arralgorithm, arrtemp, NUMS)) {
-			cout << "parallel_merge_sort:ÅÅÐò´íÎó" << endl;
+			cout << "parallel_merge_sort:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" << endl;
 			print(arrtemp, NUMS);
 		}
 		

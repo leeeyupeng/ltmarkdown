@@ -1,4 +1,4 @@
-////cond_var2.cppÓÃÌõ¼þ±äÁ¿½â¾öÂÖÑ¯¼ä¸ôÄÑÌâ
+////cond_var2.cppç”¨æ¡ä»¶å˜é‡è§£å†³è½®è¯¢é—´éš”éš¾é¢˜
 //
 //#include <iostream>
 //#include <deque>
@@ -6,35 +6,35 @@
 //#include <mutex>
 //#include <condition_variable>
 //
-//std::deque<int> q;						//Ë«¶Ë¶ÓÁÐ±ê×¼ÈÝÆ÷È«¾Ö±äÁ¿
-//std::mutex mu;							//»¥³âËøÈ«¾Ö±äÁ¿
-//std::condition_variable cond;           //È«¾ÖÌõ¼þ±äÁ¿
-////Éú²úÕß£¬Íù¶ÓÁÐ·ÅÈëÊý¾Ý
+//std::deque<int> q;						//åŒç«¯é˜Ÿåˆ—æ ‡å‡†å®¹å™¨å…¨å±€å˜é‡
+//std::mutex mu;							//äº’æ–¥é”å…¨å±€å˜é‡
+//std::condition_variable cond;           //å…¨å±€æ¡ä»¶å˜é‡
+////ç”Ÿäº§è€…ï¼Œå¾€é˜Ÿåˆ—æ”¾å…¥æ•°æ®
 //void function_1() {
 //	int count = 10;
 //	while (count > 0) {
 //		std::unique_lock<std::mutex> locker(mu);
-//		q.push_front(count);			//Êý¾ÝÈë¶ÓËø±£»¤
+//		q.push_front(count);			//æ•°æ®å…¥é˜Ÿé”ä¿æŠ¤
 //		locker.unlock();
 //
-//		cond.notify_one();              // ÏòÒ»¸öµÈ´ýÏß³Ì·¢³ö¡°Ìõ¼þÒÑÂú×ã¡±µÄÍ¨Öª
+//		cond.notify_one();              // å‘ä¸€ä¸ªç­‰å¾…çº¿ç¨‹å‘å‡ºâ€œæ¡ä»¶å·²æ»¡è¶³â€çš„é€šçŸ¥
 //
-//		std::this_thread::sleep_for(std::chrono::seconds(1));		//ÑÓÊ±1Ãë
+//		std::this_thread::sleep_for(std::chrono::seconds(1));		//å»¶æ—¶1ç§’
 //		count--;
 //	}
 //}
-////Ïû·ÑÕß£¬´Ó¶ÓÁÐÌáÈ¡Êý¾Ý
+////æ¶ˆè´¹è€…ï¼Œä»Žé˜Ÿåˆ—æå–æ•°æ®
 //void function_2() {
 //	int data = 0;
 //	while (data != 1) {
 //		std::unique_lock<std::mutex> locker(mu);
 //
-//		//ÔÚfunction_2ÖÐ£¬ÔÚÅÐ¶Ï¶ÓÁÐÊÇ·ñÎª¿ÕµÄÊ±ºò£¬Ê¹ÓÃµÄÊÇwhile(q.empty())£¬¶ø²»ÊÇif(q.empty())£¬ÕâÊÇÒòÎªwait()´Ó×èÈûµ½·µ»Ø£¬²»Ò»¶¨¾ÍÊÇÓÉÓÚnotify_one()º¯ÊýÔì³ÉµÄ£¬»¹ÓÐ¿ÉÄÜÓÉÓÚÏµÍ³µÄ²»È·¶¨Ô­Òò»½ÐÑ£¨¿ÉÄÜºÍÌõ¼þ±äÁ¿µÄÊµÏÖ»úÖÆÓÐ¹Ø£©£¬Õâ¸öµÄÊ±»úºÍÆµÂÊ¶¼ÊÇ²»È·¶¨µÄ£¬±»³Æ×÷Î±»½ÐÑ¡£Èç¹ûÔÚ´íÎóµÄÊ±ºò±»»½ÐÑÁË£¬Ö´ÐÐºóÃæµÄÓï¾ä¾Í»á´íÎó£¬ËùÒÔÐèÒªÔÙ´ÎÅÐ¶Ï¶ÓÁÐÊÇ·ñÎª¿Õ£¬Èç¹û»¹ÊÇÎª¿Õ£¬¾Í¼ÌÐøwait()×èÈû£»
-//		while (q.empty())        //ÅÐ¶Ï¶ÓÁÐÊÇ·ñÎª¿Õ
-//			cond.wait(locker); // ½âËø»¥³âÁ¿²¢ÏÝÈëÐÝÃßÒÔµÈ´ýÍ¨Öª±»»½ÐÑ£¬±»»½ÐÑºó¼ÓËøÒÔ±£»¤¹²ÏíÊý¾Ý
+//		//åœ¨function_2ä¸­ï¼Œåœ¨åˆ¤æ–­é˜Ÿåˆ—æ˜¯å¦ä¸ºç©ºçš„æ—¶å€™ï¼Œä½¿ç”¨çš„æ˜¯while(q.empty())ï¼Œè€Œä¸æ˜¯if(q.empty())ï¼Œè¿™æ˜¯å› ä¸ºwait()ä»Žé˜»å¡žåˆ°è¿”å›žï¼Œä¸ä¸€å®šå°±æ˜¯ç”±äºŽnotify_one()å‡½æ•°é€ æˆçš„ï¼Œè¿˜æœ‰å¯èƒ½ç”±äºŽç³»ç»Ÿçš„ä¸ç¡®å®šåŽŸå› å”¤é†’ï¼ˆå¯èƒ½å’Œæ¡ä»¶å˜é‡çš„å®žçŽ°æœºåˆ¶æœ‰å…³ï¼‰ï¼Œè¿™ä¸ªçš„æ—¶æœºå’Œé¢‘çŽ‡éƒ½æ˜¯ä¸ç¡®å®šçš„ï¼Œè¢«ç§°ä½œä¼ªå”¤é†’ã€‚å¦‚æžœåœ¨é”™è¯¯çš„æ—¶å€™è¢«å”¤é†’äº†ï¼Œæ‰§è¡ŒåŽé¢çš„è¯­å¥å°±ä¼šé”™è¯¯ï¼Œæ‰€ä»¥éœ€è¦å†æ¬¡åˆ¤æ–­é˜Ÿåˆ—æ˜¯å¦ä¸ºç©ºï¼Œå¦‚æžœè¿˜æ˜¯ä¸ºç©ºï¼Œå°±ç»§ç»­wait()é˜»å¡žï¼›
+//		while (q.empty())        //åˆ¤æ–­é˜Ÿåˆ—æ˜¯å¦ä¸ºç©º
+//			cond.wait(locker); // è§£é”äº’æ–¥é‡å¹¶é™·å…¥ä¼‘çœ ä»¥ç­‰å¾…é€šçŸ¥è¢«å”¤é†’ï¼Œè¢«å”¤é†’åŽåŠ é”ä»¥ä¿æŠ¤å…±äº«æ•°æ®
 //		
 //		data = q.back();
-//		q.pop_back();			//Êý¾Ý³ö¶ÓËø±£»¤
+//		q.pop_back();			//æ•°æ®å‡ºé˜Ÿé”ä¿æŠ¤
 //		locker.unlock();
 //		std::cout << "t2 got a value from t1: " << data << std::endl;
 //	}

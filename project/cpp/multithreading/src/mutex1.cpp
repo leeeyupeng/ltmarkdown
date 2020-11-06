@@ -1,4 +1,4 @@
-//// mutex1.cpp 		Í¨¹ı»¥³âÌålockÓëunlock±£»¤¹²ÏíÈ«¾Ö±äÁ¿
+//// mutex1.cpp 		é€šè¿‡äº’æ–¥ä½“lockä¸unlockä¿æŠ¤å…±äº«å…¨å±€å˜é‡
 //
 //#include <chrono>
 //#include <mutex>
@@ -8,39 +8,39 @@
 //std::chrono::milliseconds interval(100);
 //
 //std::mutex mutex;
-//int job_shared = 0; //Á½¸öÏß³Ì¶¼ÄÜĞŞ¸Ä'job_shared',mutex½«±£»¤´Ë±äÁ¿
-//int job_exclusive = 0; //Ö»ÓĞÒ»¸öÏß³ÌÄÜĞŞ¸Ä'job_exclusive',²»ĞèÒª±£»¤
+//int job_shared = 0; //ä¸¤ä¸ªçº¿ç¨‹éƒ½èƒ½ä¿®æ”¹'job_shared',mutexå°†ä¿æŠ¤æ­¤å˜é‡
+//int job_exclusive = 0; //åªæœ‰ä¸€ä¸ªçº¿ç¨‹èƒ½ä¿®æ”¹'job_exclusive',ä¸éœ€è¦ä¿æŠ¤
 //
-////´ËÏß³ÌÖ»ÄÜĞŞ¸Ä 'job_shared'
+////æ­¤çº¿ç¨‹åªèƒ½ä¿®æ”¹ 'job_shared'
 //void job_1()
 //{
 //	mutex.lock();
-//	std::this_thread::sleep_for(5 * interval);  //Áî¡®job_1¡¯³ÖËøµÈ´ı
+//	std::this_thread::sleep_for(5 * interval);  //ä»¤â€˜job_1â€™æŒé”ç­‰å¾…
 //	++job_shared;
 //	std::cout << "job_1 shared (" << job_shared << ")\n";
 //	mutex.unlock();
 //}
 //
-////´ËÏß³ÌÖ»ÄÜĞŞ¸Ä 'job_shared'
+////æ­¤çº¿ç¨‹åªèƒ½ä¿®æ”¹ 'job_shared'
 //void job_12()
 //{
 //	mutex.lock();
-//	std::this_thread::sleep_for(5 * interval);  //Áî¡®job_1¡¯³ÖËøµÈ´ı
+//	std::this_thread::sleep_for(5 * interval);  //ä»¤â€˜job_1â€™æŒé”ç­‰å¾…
 //	++job_shared;
 //	std::cout << "job_12 shared (" << job_shared << ")\n";
 //	mutex.unlock();
 //}
-//// ´ËÏß³ÌÄÜĞŞ¸Ä'job_shared'ºÍ'job_exclusive'
+//// æ­¤çº¿ç¨‹èƒ½ä¿®æ”¹'job_shared'å’Œ'job_exclusive'
 //void job_2()
 //{
-//	while (true) {    //ÎŞÏŞÑ­»·£¬Ö±µ½»ñµÃËø²¢ĞŞ¸Ä'job_shared'
-//		if (mutex.try_lock()) {     //³¢ÊÔ»ñµÃËø³É¹¦ÔòĞŞ¸Ä'job_shared'
+//	while (true) {    //æ— é™å¾ªç¯ï¼Œç›´åˆ°è·å¾—é”å¹¶ä¿®æ”¹'job_shared'
+//		if (mutex.try_lock()) {     //å°è¯•è·å¾—é”æˆåŠŸåˆ™ä¿®æ”¹'job_shared'
 //			++job_shared;
 //			std::cout << "job_2 shared (" << job_shared << ")\n";
 //			mutex.unlock();
 //			return;
 //		}
-//		else {      //³¢ÊÔ»ñµÃËøÊ§°Ü,½Ó×ÅĞŞ¸Ä'job_exclusive'
+//		else {      //å°è¯•è·å¾—é”å¤±è´¥,æ¥ç€ä¿®æ”¹'job_exclusive'
 //			++job_exclusive;
 //			std::cout << "job_2 exclusive (" << job_exclusive << ")\n";
 //			std::this_thread::sleep_for(interval);
@@ -50,23 +50,23 @@
 //
 //void job_11()
 //{
-//	std::lock_guard<std::mutex> lockg(mutex);    //»ñÈ¡RAIIÖÇÄÜËø£¬Àë¿ª×÷ÓÃÓò»á×Ô¶¯Îö¹¹½âËø
-//	std::this_thread::sleep_for(5 * interval);  //Áî¡®job_1¡¯³ÖËøµÈ´ı
+//	std::lock_guard<std::mutex> lockg(mutex);    //è·å–RAIIæ™ºèƒ½é”ï¼Œç¦»å¼€ä½œç”¨åŸŸä¼šè‡ªåŠ¨ææ„è§£é”
+//	std::this_thread::sleep_for(5 * interval);  //ä»¤â€˜job_1â€™æŒé”ç­‰å¾…
 //	++job_shared;
 //	std::cout << "job_1 shared (" << job_shared << ")\n";
 //}
 //
 //void job_22()
 //{
-//	while (true) {    //ÎŞÏŞÑ­»·£¬Ö±µ½»ñµÃËø²¢ĞŞ¸Ä'job_shared'
-//		std::unique_lock<std::mutex> ulock(mutex, std::try_to_lock);		//ÒÔ³¢ÊÔËø²ßÂÔ´´½¨ÖÇÄÜËø
-//		//³¢ÊÔ»ñµÃËø³É¹¦ÔòĞŞ¸Ä'job_shared'
+//	while (true) {    //æ— é™å¾ªç¯ï¼Œç›´åˆ°è·å¾—é”å¹¶ä¿®æ”¹'job_shared'
+//		std::unique_lock<std::mutex> ulock(mutex, std::try_to_lock);		//ä»¥å°è¯•é”ç­–ç•¥åˆ›å»ºæ™ºèƒ½é”
+//		//å°è¯•è·å¾—é”æˆåŠŸåˆ™ä¿®æ”¹'job_shared'
 //		if (ulock) {
 //			++job_shared;
 //			std::cout << "job_2 shared (" << job_shared << ")\n";
 //			return;
 //		}
-//		else {      //³¢ÊÔ»ñµÃËøÊ§°Ü,½Ó×ÅĞŞ¸Ä'job_exclusive'
+//		else {      //å°è¯•è·å¾—é”å¤±è´¥,æ¥ç€ä¿®æ”¹'job_exclusive'
 //			++job_exclusive;
 //			std::cout << "job_2 exclusive (" << job_exclusive << ")\n";
 //			std::this_thread::sleep_for(interval);

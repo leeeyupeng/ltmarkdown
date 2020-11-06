@@ -49,11 +49,11 @@ int main_nullptr()
 		char *ch = NULL;
 		A * ptra1 = NULL;
 		foo(ch);
-		foo(NULL); 
+		foo((char*)NULL); 
 		foo((char*)MYNULL);
-		foo((int)MYNULL);
+		//foo((int)MYNULL);
 		foo(nullptr);
-		foo((int)nullptr);
+		//foo((int)nullptr);
 		foo((char *)(void *)NULL);
 	}
 
@@ -92,8 +92,8 @@ int main_nullptr()
 		A *a1 = (A*)MYNULL;
 		A *a2 = nullptr;
 		A *a3 = 0;
-		int i = (int)nullptr;
-		int i2 = (int)MYNULL;
+		//int i = (int)nullptr;
+		//int i2 = (int)MYNULL;
 		//int i3 = nullptr;
 
 
@@ -102,7 +102,7 @@ int main_nullptr()
 		foo4(a1);
 		foo4(a2);
 		foo4(a3);
-		foo4((void*)i);
+		//foo4((void*)i);
 	}
 
 	{

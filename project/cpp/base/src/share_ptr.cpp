@@ -1,4 +1,5 @@
-#include <iostream>
+#include<iostream>
+#include<memory>
 #include"A.hpp"
 #include"B.hpp"
 using namespace std;

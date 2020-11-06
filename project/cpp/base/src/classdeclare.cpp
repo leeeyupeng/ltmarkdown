@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-//¾Ž×gˆóåe
+//ç·¨è­¯å ±éŒ¯
 //class A;
 //class B;
 //class A {

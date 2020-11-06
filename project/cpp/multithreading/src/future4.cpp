@@ -1,4 +1,4 @@
-////future4.cpp Ê¹ÓÃasync´«µİ±»µ÷ÓÃÏß³Ì·µ»Ø½á¹û
+////future4.cpp ä½¿ç”¨asyncä¼ é€’è¢«è°ƒç”¨çº¿ç¨‹è¿”å›ç»“æœ
 //
 //#include <vector>
 //#include <thread>
@@ -18,9 +18,9 @@
 //
 //int main()
 //{
-//	// ÑİÊ¾ÓÃ async ÔÚÏß³Ì¼ä´«µİ½á¹û¡£
+//	// æ¼”ç¤ºç”¨ async åœ¨çº¿ç¨‹é—´ä¼ é€’ç»“æœã€‚
 //	std::vector<int> numbers = { 1, 2, 3, 4, 5, 6 };
-//	auto accumulate_future = std::async(std::launch::async, accumulate, numbers.begin(), numbers.end());		//auto¿ÉÒÔ×Ô¶¯ÍÆ¶Ï±äÁ¿µÄÀàĞÍ
+//	auto accumulate_future = std::async(std::launch::async, accumulate, numbers.begin(), numbers.end());		//autoå¯ä»¥è‡ªåŠ¨æ¨æ–­å˜é‡çš„ç±»å‹
 //	
 //	std::cout << "wait" << std::endl;
 //

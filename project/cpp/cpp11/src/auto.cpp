@@ -30,7 +30,7 @@ public:
 };
 
 template<class T1,class T2>
-auto add(T1 a, T2 b) {
+auto add(T1 a, T2 b)->decltype(a+b) {
 	return a + b;
 }
 int main_auto() {

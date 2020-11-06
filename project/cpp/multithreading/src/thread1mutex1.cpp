@@ -1,4 +1,4 @@
-////thread2.cpp  Ôö¼Ó¶ÔcoutÏÔÊ¾ÖÕ¶Ë×ÊÔ´²¢·¢·ÃÎÊµÄ»¥³âËø±£»¤
+////thread2.cpp  å¢åŠ å¯¹coutæ˜¾ç¤ºç»ˆç«¯èµ„æºå¹¶å‘è®¿é—®çš„äº’æ–¥é”ä¿æŠ¤
 //
 //#include <iostream>
 //#include <thread>
@@ -11,20 +11,20 @@
 //
 //void thread_function(int n)
 //{
-//	std::thread::id this_id = std::this_thread::get_id();       //»ñÈ¡Ïß³ÌID
+//	std::thread::id this_id = std::this_thread::get_id();       //è·å–çº¿ç¨‹ID
 //
 //	for (int i = 0; i < 5; i++) {
 //		mutex1.lock();
 //		cout << "Child function thread " << this_id << " running : " << i + 1 << endl;
 //		mutex1.unlock();
-//		std::this_thread::sleep_for(std::chrono::seconds(n));   //½ø³ÌË¯ÃßnÃë
+//		std::this_thread::sleep_for(std::chrono::seconds(n));   //è¿›ç¨‹ç¡çœ nç§’
 //	}
 //}
 //
 //class Thread_functor
 //{
 //public:
-//	// functorĞĞÎªÀàËÆº¯Êı,C++ÖĞµÄ·Âº¯ÊıÊÇÍ¨¹ıÔÚÀàÖĞÖØÔØ()ÔËËã·ûÊµÏÖ£¬Ê¹Äã¿ÉÒÔÏñÊ¹ÓÃº¯ÊıÒ»ÑùÀ´´´½¨ÀàµÄ¶ÔÏó
+//	// functorè¡Œä¸ºç±»ä¼¼å‡½æ•°,C++ä¸­çš„ä»¿å‡½æ•°æ˜¯é€šè¿‡åœ¨ç±»ä¸­é‡è½½()è¿ç®—ç¬¦å®ç°ï¼Œä½¿ä½ å¯ä»¥åƒä½¿ç”¨å‡½æ•°ä¸€æ ·æ¥åˆ›å»ºç±»çš„å¯¹è±¡
 //	void operator()(int n)
 //	{
 //		std::thread::id this_id = std::this_thread::get_id();
@@ -34,7 +34,7 @@
 //				std::lock_guard<std::mutex> lockg(mutex1);
 //				cout << "Child functor thread " << this_id << " running: " << i + 1 << endl;
 //			}
-//			std::this_thread::sleep_for(std::chrono::seconds(n));   //½ø³ÌË¯ÃßnÃë
+//			std::this_thread::sleep_for(std::chrono::seconds(n));   //è¿›ç¨‹ç¡çœ nç§’
 //		}
 //	}
 //};
@@ -42,14 +42,14 @@
 //
 //int main()
 //{
-//	thread mythread1(thread_function, 1);      // ´«µİ³õÊ¼º¯Êı×÷ÎªÏß³ÌµÄ²ÎÊı
-//	if (mythread1.joinable())                  //ÅĞ¶ÏÊÇ·ñ¿ÉÒÔ³É¹¦Ê¹ÓÃjoin()»òÕßdetach()£¬·µ»ØtrueÔò¿ÉÒÔ£¬·µ»ØfalseÔò²»¿ÉÒÔ
-//		mythread1.join();                     // Ê¹ÓÃjoin()º¯Êı×èÈûÖ÷Ïß³ÌÖ±ÖÁ×ÓÏß³ÌÖ´ĞĞÍê±Ï
+//	thread mythread1(thread_function, 1);      // ä¼ é€’åˆå§‹å‡½æ•°ä½œä¸ºçº¿ç¨‹çš„å‚æ•°
+//	if (mythread1.joinable())                  //åˆ¤æ–­æ˜¯å¦å¯ä»¥æˆåŠŸä½¿ç”¨join()æˆ–è€…detach()ï¼Œè¿”å›trueåˆ™å¯ä»¥ï¼Œè¿”å›falseåˆ™ä¸å¯ä»¥
+//		mythread1.join();                     // ä½¿ç”¨join()å‡½æ•°é˜»å¡ä¸»çº¿ç¨‹ç›´è‡³å­çº¿ç¨‹æ‰§è¡Œå®Œæ¯•
 //
 //	Thread_functor thread_functor;
-//	thread mythread2(thread_functor, 3);     // ´«µİ³õÊ¼º¯Êı×÷ÎªÏß³ÌµÄ²ÎÊı
+//	thread mythread2(thread_functor, 3);     // ä¼ é€’åˆå§‹å‡½æ•°ä½œä¸ºçº¿ç¨‹çš„å‚æ•°
 //	if (mythread2.joinable())
-//		mythread2.detach();                  // Ê¹ÓÃdetach()º¯ÊıÈÃ×ÓÏß³ÌºÍÖ÷Ïß³Ì²¢ĞĞÔËĞĞ£¬Ö÷Ïß³ÌÒ²²»ÔÙµÈ´ı×ÓÏß³Ì
+//		mythread2.detach();                  // ä½¿ç”¨detach()å‡½æ•°è®©å­çº¿ç¨‹å’Œä¸»çº¿ç¨‹å¹¶è¡Œè¿è¡Œï¼Œä¸»çº¿ç¨‹ä¹Ÿä¸å†ç­‰å¾…å­çº¿ç¨‹
 //
 //	auto thread_lambda = [](int n) {
 //		std::thread::id this_id = std::this_thread::get_id();
@@ -58,15 +58,15 @@
 //			mutex1.lock();
 //			cout << "Child lambda thread " << this_id << " running: " << i + 1 << endl;
 //			mutex1.unlock();
-//			std::this_thread::sleep_for(std::chrono::seconds(n));   //½ø³ÌË¯ÃßnÃë
+//			std::this_thread::sleep_for(std::chrono::seconds(n));   //è¿›ç¨‹ç¡çœ nç§’
 //		}
 //	};
 //
-//	thread mythread3(thread_lambda, 4);     // ´«µİ³õÊ¼º¯Êı×÷ÎªÏß³ÌµÄ²ÎÊı
+//	thread mythread3(thread_lambda, 4);     // ä¼ é€’åˆå§‹å‡½æ•°ä½œä¸ºçº¿ç¨‹çš„å‚æ•°
 //	if (mythread3.joinable())
-//		mythread3.join();                     // Ê¹ÓÃjoin()º¯Êı×èÈûÖ÷Ïß³ÌÖ±ÖÁ×ÓÏß³ÌÖ´ĞĞÍê±Ï
+//		mythread3.join();                     // ä½¿ç”¨join()å‡½æ•°é˜»å¡ä¸»çº¿ç¨‹ç›´è‡³å­çº¿ç¨‹æ‰§è¡Œå®Œæ¯•
 //
-//	unsigned int n = std::thread::hardware_concurrency();       //»ñÈ¡¿ÉÓÃµÄÓ²¼ş²¢·¢ºËĞÄÊı
+//	unsigned int n = std::thread::hardware_concurrency();       //è·å–å¯ç”¨çš„ç¡¬ä»¶å¹¶å‘æ ¸å¿ƒæ•°
 //	mutex1.lock();
 //	std::cout << n << " concurrent threads are supported." << endl;
 //	mutex1.unlock();

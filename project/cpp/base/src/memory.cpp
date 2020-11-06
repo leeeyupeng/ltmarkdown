@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-int main() {
+int main_test() {
 	int* a = (int*)malloc(sizeof(int) * 101);
 	
 	cout << "a[99]:" << a[99] << endl;

@@ -1,10 +1,13 @@
 #include <iostream>
+#include<memory>
 #include<vector>
 #include<stdio.h>
 #include<assert.h>
+#include<stdlib.h>
+#include<string.h>
 using namespace std;
 
-//Éî¿½±´
+//ï¿½î¿½ï¿½ï¿½
 class HasPtrMem {
 public:
 	int *intptr;
@@ -32,13 +35,13 @@ int main(){
 	}
 	{
 		std::vector<int> v{ 1,2,3,4,5 };
-		std::vector<int> v2(std::move(v)); // °ó¶¨ÓÒÖµÒýÓÃµ½ v
+		std::vector<int> v2(std::move(v)); // ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½Ãµï¿½ v
 		assert(v.empty());
 	}
 
 	{
 		vector<vector<int>> v{ { 1,2,3,4,5 } ,{1,2,3},{4,5} };
-		vector<vector<int>> v2(std::move(v)); // °ó¶¨ÓÒÖµÒýÓÃµ½ v
+		vector<vector<int>> v2(std::move(v)); // ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½Ãµï¿½ v
 		assert(v.empty());
 	}
 
@@ -61,16 +64,16 @@ int main(){
 		//assert(v3.empty());
 	}
 
-	{
-		std::vector<int>& v3 = getvector();
-		std::vector<int> v2 = v3;
-		//assert(v3.empty());
+	// {
+	// 	std::vector<int>& v3 = getvector();
+	// 	std::vector<int> v2 = v3;
+	// 	//assert(v3.empty());
 
-		int i = 42;
-		int &l = i;
-		//int &&r = i;
-		//int &l2 = i+42;
-	}
+	// 	int i = 42;
+	// 	int &l = i;
+	// 	//int &&r = i;
+	// 	//int &l2 = i+42;
+	// }
 
 	{
 		const std::vector<int>&& v3 = getvector();

@@ -14,7 +14,7 @@ void circleconstruct(void *self,double r) {
 static double circlearea(void *self) {
 	Circle* c = (Circle*)self;
 	CircleData* d = (CircleData*)c->shapedata;
-	return PI * pow(d->radius,2);
+	return PI * d->radius * d->radius;
 }
 void circledestruct(void *self) {
 	Circle* c = (Circle*)self;
@@ -31,7 +31,7 @@ Circle* CreateCircle(double r)
 	circle->area = circlearea;
 	circle->release = circledestruct;
 
-	circle->circle(circle,r);
+	circle->circle(circle);
 	return circle;
 }
 
