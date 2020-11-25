@@ -177,13 +177,13 @@ public:
     }
 };
 
-int main(){
-    Solution solution;
-    int m = 3;
-    int n = 4;
-    int introvertsCount = 4;
-    int extrovertsCount = 3;
+// int main(){
+//     Solution solution;
+//     int m = 3;
+//     int n = 4;
+//     int introvertsCount = 4;
+//     int extrovertsCount = 3;
     
-    int ans = solution.getMaxGridHappiness(m,n,introvertsCount,extrovertsCount);
-    return 0;
-}
+//     int ans = solution.getMaxGridHappiness(m,n,introvertsCount,extrovertsCount);
+//     return 0;
+// }

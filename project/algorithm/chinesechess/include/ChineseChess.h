@@ -1,7 +1,10 @@
 ﻿#pragma once
 #include <iostream>
 #include <sstream>
-#include<Windows.h>
+#ifdef WIN32
+	#include <windows.h>
+#else
+#endif
 #include <string>
 using namespace std;
 #define ROW 10

@@ -153,6 +153,424 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/codeforces/1363F_Rotating%20Substrings.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/codeforces/1363F_Rotating%20Substrings.html" class="post-title-link" itemprop="url">codeforces.1363F_Rotating Substrings</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-13 17:39:07" itemprop="dateCreated datePublished" datetime="2020-07-13T17:39:07+08:00">2020-07-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/codeforces/" itemprop="url" rel="index"><span itemprop="name">codeforces</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/codeforces/1363F_Rotating%20Substrings.html" class="post-meta-item leancloud_visitors" data-flag-title="codeforces.1363F_Rotating Substrings" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/codeforces/1363F_Rotating%20Substrings.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/codeforces/1363F_Rotating%20Substrings.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1363F-Rotating-Substrings"><a href="#1363F-Rotating-Substrings" class="headerlink" title="1363F Rotating Substrings"></a>1363F Rotating Substrings</h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><hr>
+<p>You are given two strings s and t, each of length n and consisting of lowercase Latin alphabets. You want to make s equal to t.</p>
+<p>You can perform the following operation on s any number of times to achieve it —</p>
+<p>Choose any substring of s and rotate it clockwise once, that is, if the selected substring is s[l,l+1…r], then it becomes s[r,l,l+1…r−1]. All the remaining characters of s stay in their position.<br>For example, on rotating the substring [2,4] , string “abcde” becomes “adbce”.</p>
+<p>A string a is a substring of a string b if a can be obtained from b by deletion of several (possibly, zero or all) characters from the beginning and several (possibly, zero or all) characters from the end.</p>
+<p>Find the minimum number of operations required to convert s to t, or determine that it’s impossible.</p>
+<p>Input<br>The first line of the input contains a single integer t (1≤t≤2000) — the number of test cases. The description of the test cases follows.</p>
+<p>The first line of each test case contains a single integer n (1≤n≤2000) — the length of the strings.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/codeforces/1363F_Rotating%20Substrings.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/123.%20%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA%20III.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/123.%20%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA%20III.html" class="post-title-link" itemprop="url">leetcode.123. 买卖股票的最佳时机 III</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-13 17:39:07" itemprop="dateCreated datePublished" datetime="2020-07-13T17:39:07+08:00">2020-07-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/123.%20%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA%20III.html" class="post-meta-item leancloud_visitors" data-flag-title="leetcode.123. 买卖股票的最佳时机 III" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/123.%20%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA%20III.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/123.%20%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA%20III.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="买卖股票的最佳时机-III"><a href="#买卖股票的最佳时机-III" class="headerlink" title="买卖股票的最佳时机 III"></a>买卖股票的最佳时机 III</h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><hr>
+<p>给定一个数组，它的第 i 个元素是一支给定的股票在第 i 天的价格。</p>
+<p>设计一个算法来计算你所能获取的最大利润。你最多可以完成 两笔 交易。</p>
+<p>注意: 你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。  </p>
+<hr>
+<h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><h3 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h3><hr>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/123.%20%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA%20III.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/149.%E7%9B%B4%E7%BA%BF%E4%B8%8A%E6%9C%80%E5%A4%9A%E7%9A%84%E7%82%B9.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/149.%E7%9B%B4%E7%BA%BF%E4%B8%8A%E6%9C%80%E5%A4%9A%E7%9A%84%E7%82%B9.html" class="post-title-link" itemprop="url">leetcode.149.直线上最多的点数</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-13 17:39:07" itemprop="dateCreated datePublished" datetime="2020-07-13T17:39:07+08:00">2020-07-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/149.%E7%9B%B4%E7%BA%BF%E4%B8%8A%E6%9C%80%E5%A4%9A%E7%9A%84%E7%82%B9.html" class="post-meta-item leancloud_visitors" data-flag-title="leetcode.149.直线上最多的点数" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/149.%E7%9B%B4%E7%BA%BF%E4%B8%8A%E6%9C%80%E5%A4%9A%E7%9A%84%E7%82%B9.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/149.%E7%9B%B4%E7%BA%BF%E4%B8%8A%E6%9C%80%E5%A4%9A%E7%9A%84%E7%82%B9.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="直线上最多的点数"><a href="#直线上最多的点数" class="headerlink" title="直线上最多的点数"></a>直线上最多的点数</h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><hr>
+<p>给定一个二维平面，平面上有 n 个点，求最多有多少个点在同一条直线上。  </p>
+<hr>
+<h2 id="暴力法"><a href="#暴力法" class="headerlink" title="暴力法"></a>暴力法</h2><h3 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h3><hr>
+<p>三个点 (x1,y1),(x2,y2),(x3,y3)是否在一条直线上的判定条件是:<br>$\frac{(y2-y1)}{(x2-x1)}$ =   $\frac{(y3-y1)}{(x3-x1)}$  </p>
+<p>特殊考虑到 x2 == x1, y2 == y1的情况</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/149.%E7%9B%B4%E7%BA%BF%E4%B8%8A%E6%9C%80%E5%A4%9A%E7%9A%84%E7%82%B9.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/188.%20%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA%20IV.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/188.%20%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA%20IV.html" class="post-title-link" itemprop="url">leetcode.188. 买卖股票的最佳时机 IV</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-13 17:39:07" itemprop="dateCreated datePublished" datetime="2020-07-13T17:39:07+08:00">2020-07-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/188.%20%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA%20IV.html" class="post-meta-item leancloud_visitors" data-flag-title="leetcode.188. 买卖股票的最佳时机 IV" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/188.%20%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA%20IV.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/188.%20%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA%20IV.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="买卖股票的最佳时机-IV"><a href="#买卖股票的最佳时机-IV" class="headerlink" title="买卖股票的最佳时机 IV"></a>买卖股票的最佳时机 IV</h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><hr>
+<p>给定一个数组，它的第 i 个元素是一支给定的股票在第 i 天的价格。</p>
+<p>设计一个算法来计算你所能获取的最大利润。你最多可以完成 k 笔交易。</p>
+<p>注意: 你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。</p>
+<hr>
+<h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><h3 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h3><hr>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/188.%20%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA%20IV.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/224.%E8%AE%A1%E7%AE%97%E5%99%A8-%E6%A0%88.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -253,7 +671,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/224.%E8%AE%A1%E7%AE%97%E5%99%A8-%E9%80%86%E6%B3%A2%E5%85%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F.html">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/224.%E8%AE%A1%E7%AE%97%E5%99%A8-%E8%AF%AD%E6%B3%95%E6%A0%91.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/icon128.jpg">
@@ -267,7 +685,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/224.%E8%AE%A1%E7%AE%97%E5%99%A8-%E9%80%86%E6%B3%A2%E5%85%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F.html" class="post-title-link" itemprop="url">leetcode.224.基本计算器(逆波兰表达式)</a>
+            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/224.%E8%AE%A1%E7%AE%97%E5%99%A8-%E8%AF%AD%E6%B3%95%E6%A0%91.html" class="post-title-link" itemprop="url">leetcode.224.基本计算器(语法树)</a>
         </h2>
 
         <div class="post-meta">
@@ -294,7 +712,7 @@
             </span>
 
           
-            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/224.%E8%AE%A1%E7%AE%97%E5%99%A8-%E9%80%86%E6%B3%A2%E5%85%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F.html" class="post-meta-item leancloud_visitors" data-flag-title="leetcode.224.基本计算器(逆波兰表达式)" title="阅读次数">
+            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/224.%E8%AE%A1%E7%AE%97%E5%99%A8-%E8%AF%AD%E6%B3%95%E6%A0%91.html" class="post-meta-item leancloud_visitors" data-flag-title="leetcode.224.基本计算器(语法树)" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -309,8 +727,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/224.%E8%AE%A1%E7%AE%97%E5%99%A8-%E9%80%86%E6%B3%A2%E5%85%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/224.%E8%AE%A1%E7%AE%97%E5%99%A8-%E9%80%86%E6%B3%A2%E5%85%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F.html" itemprop="commentCount"></span>
+    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/224.%E8%AE%A1%E7%AE%97%E5%99%A8-%E8%AF%AD%E6%B3%95%E6%A0%91.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/224.%E8%AE%A1%E7%AE%97%E5%99%A8-%E8%AF%AD%E6%B3%95%E6%A0%91.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -325,11 +743,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="计算器"><a href="#计算器" class="headerlink" title="计算器"></a>计算器</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><h3 id="leetcode-224-基本计算器"><a href="#leetcode-224-基本计算器" class="headerlink" title="- leetcode 224. 基本计算器"></a>- <a href="https://leetcode-cn.com/problems/basic-calculator/" target="_blank" rel="noopener">leetcode 224. 基本计算器</a></h3><h2 id="逆波兰表达式"><a href="#逆波兰表达式" class="headerlink" title="逆波兰表达式"></a>逆波兰表达式</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"></span><br><span class="line">	<span class="comment">//词素</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">morpheme</span></span></span><br><span class="line"><span class="class">	&#123;</span></span><br><span class="line">		<span class="keyword">long</span> digital;</span><br><span class="line">		<span class="keyword">char</span> ops;</span><br><span class="line">		<span class="keyword">int</span> type;</span><br><span class="line">		<span class="keyword">int</span> priority = <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">		morpheme(<span class="keyword">int</span> t, <span class="keyword">int</span> d, <span class="keyword">char</span> o, <span class="keyword">int</span> p)</span><br><span class="line">		&#123;</span><br><span class="line">			type = t;</span><br><span class="line">			digital = d;</span><br><span class="line">			ops = o;</span><br><span class="line">			priority = p;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		morpheme()</span><br><span class="line">		&#123;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="built_in">string</span> <span class="title">skipspace</span><span class="params">(<span class="built_in">string</span> s)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">string</span> ans;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.size(); i++) &#123;</span><br><span class="line">			<span class="keyword">char</span> c = s[i];</span><br><span class="line">			<span class="keyword">if</span> (c != <span class="string">' '</span>) &#123;</span><br><span class="line">				ans.push_back(c);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> ans;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">scanning</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> str, <span class="built_in">vector</span>&lt;morpheme&gt;&amp; v)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">char</span> morphemetype[] = &#123; <span class="string">')'</span>,<span class="string">'+'</span>,<span class="string">'-'</span>,<span class="string">'*'</span>,<span class="string">'/'</span>,<span class="string">'('</span> &#125;;</span><br><span class="line">		<span class="keyword">int</span> priority[] = &#123; <span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">5</span> &#125;;</span><br><span class="line">		<span class="keyword">int</span> morphemetypelength = <span class="number">6</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">long</span> digit = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> len = str.length();</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">char</span> c = str[i];</span><br><span class="line">			<span class="keyword">if</span> (c == <span class="string">' '</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; morphemetypelength; j++)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">if</span> (c == morphemetype[j])</span><br><span class="line">				&#123;</span><br><span class="line">					v.push_back(morpheme(j, <span class="number">0</span>, c, priority[j]));</span><br><span class="line">					flag = <span class="literal">true</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span> (flag == <span class="literal">false</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				digit = digit * <span class="number">10</span> + (<span class="keyword">int</span>)c - <span class="number">0x30</span>;</span><br><span class="line"></span><br><span class="line">				<span class="keyword">if</span> (i == len - <span class="number">1</span> || (str[i + <span class="number">1</span>] &lt; <span class="string">'0'</span> || str[i + <span class="number">1</span>] &gt; <span class="string">'9'</span>))</span><br><span class="line">				&#123;</span><br><span class="line">					v.push_back(morpheme(<span class="number">-1</span>, digit, <span class="string">'\0'</span>, <span class="number">-1</span>));</span><br><span class="line">					digit = <span class="number">0</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="built_in">vector</span>&lt;morpheme&gt; <span class="title">rpn</span><span class="params">(<span class="built_in">vector</span>&lt;morpheme&gt;&amp; v)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">stack</span>&lt;morpheme&gt; r;</span><br><span class="line">		<span class="built_in">stack</span>&lt;morpheme&gt; opera;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; v.size(); i++)</span><br><span class="line">		&#123;</span><br><span class="line">			morpheme m = v[i];</span><br><span class="line">			<span class="keyword">if</span> (m.type == <span class="number">-1</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				r.push(m);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (m.priority == <span class="number">5</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				opera.push(m);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">while</span> (!opera.empty() &amp;&amp; opera.top().priority != <span class="number">5</span> &amp;&amp; opera.top().priority &gt;= m.priority)</span><br><span class="line">				&#123;</span><br><span class="line">					r.push(opera.top());</span><br><span class="line">					opera.pop();</span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">				<span class="keyword">if</span> (!opera.empty() &amp;&amp; opera.top().priority == <span class="number">5</span> &amp;&amp; m.priority == <span class="number">0</span>)</span><br><span class="line">				&#123;</span><br><span class="line">					opera.pop();</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">if</span>(m.priority != <span class="number">0</span>)</span><br><span class="line">				&#123;</span><br><span class="line">					opera.push(m);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">while</span> (!opera.empty())</span><br><span class="line">		&#123;</span><br><span class="line">			r.push(opera.top());</span><br><span class="line">			opera.pop();</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="built_in">vector</span>&lt;morpheme&gt; <span class="title">vv</span><span class="params">(r.size())</span></span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = r.size() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">		&#123;</span><br><span class="line">			vv[i] = r.top();</span><br><span class="line">			r.pop();</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> vv;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">long</span> <span class="title">calcu</span><span class="params">(<span class="built_in">vector</span>&lt;morpheme&gt;&amp; rpn)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">stack</span>&lt;morpheme&gt; s;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; rpn.size(); i++)</span><br><span class="line">		&#123;</span><br><span class="line">			morpheme m = rpn[i];</span><br><span class="line">			<span class="keyword">if</span> (m.type == <span class="number">-1</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				s.push(m);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">long</span> left, right;</span><br><span class="line">				right = s.top().digital;</span><br><span class="line">				s.pop();</span><br><span class="line">				left = s.top().digital;</span><br><span class="line">				s.pop();</span><br><span class="line">				<span class="keyword">long</span> value = <span class="number">0</span>;</span><br><span class="line">				<span class="keyword">if</span> (m.type == <span class="number">1</span>)</span><br><span class="line">				&#123;</span><br><span class="line">					value = left + right;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">else</span> <span class="keyword">if</span> (m.type == <span class="number">2</span>)</span><br><span class="line">				&#123;</span><br><span class="line">					value = left - right;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">else</span> <span class="keyword">if</span> (m.type == <span class="number">3</span>)</span><br><span class="line">				&#123;</span><br><span class="line">					value = left * right;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">else</span> <span class="keyword">if</span> (m.type == <span class="number">4</span>)</span><br><span class="line">				&#123;</span><br><span class="line">					value = left / right;</span><br><span class="line">				&#125;</span><br><span class="line">				s.push(morpheme(<span class="number">-1</span>,value,<span class="string">'\0'</span>,<span class="number">-1</span>));</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> s.top().digital;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">calculate</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">		<span class="built_in">string</span> str = s;</span><br><span class="line">		str = skipspace(str);</span><br><span class="line">		<span class="built_in">vector</span>&lt;morpheme&gt; in;</span><br><span class="line">		scanning(str, in);</span><br><span class="line">		<span class="built_in">vector</span>&lt;morpheme&gt; out;</span><br><span class="line">		out = rpn(in);</span><br><span class="line">		<span class="keyword">long</span> result = calcu(out);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+          <h1 id="计算器"><a href="#计算器" class="headerlink" title="计算器"></a>计算器</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><h3 id="leetcode-224-基本计算器"><a href="#leetcode-224-基本计算器" class="headerlink" title="- leetcode 224. 基本计算器"></a>- <a href="https://leetcode-cn.com/problems/basic-calculator/" target="_blank" rel="noopener">leetcode 224. 基本计算器</a></h3><h2 id="语法树"><a href="#语法树" class="headerlink" title="语法树"></a>语法树</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line"></span><br><span class="line">  	<span class="comment">//词素</span></span><br><span class="line">  	<span class="class"><span class="keyword">struct</span> <span class="title">morpheme</span></span></span><br><span class="line"><span class="class">  	&#123;</span></span><br><span class="line">  		<span class="keyword">long</span> digital;</span><br><span class="line">  		<span class="keyword">char</span> operatorcharacter;</span><br><span class="line">  		<span class="keyword">int</span> type;</span><br><span class="line">  		<span class="keyword">int</span> priority = <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">  		morpheme(<span class="keyword">int</span> t, <span class="keyword">int</span> d, <span class="keyword">char</span> o,<span class="keyword">int</span> p)</span><br><span class="line">  		&#123;</span><br><span class="line">  			type = t;</span><br><span class="line">  			digital = d;</span><br><span class="line">  			operatorcharacter = o;</span><br><span class="line">  			priority = p;</span><br><span class="line">  		&#125;</span><br><span class="line"></span><br><span class="line">  		morpheme()</span><br><span class="line">  		&#123;</span><br><span class="line">  		&#125;</span><br><span class="line">  	&#125;;</span><br><span class="line"></span><br><span class="line">  	<span class="class"><span class="keyword">struct</span> <span class="title">SyntaxTreeNode</span></span></span><br><span class="line"><span class="class">  	&#123;</span></span><br><span class="line">  		<span class="keyword">int</span> index;</span><br><span class="line">  		<span class="comment">//long value;</span></span><br><span class="line">  		SyntaxTreeNode * parent;</span><br><span class="line">  		SyntaxTreeNode * left;</span><br><span class="line">  		SyntaxTreeNode * right;</span><br><span class="line"></span><br><span class="line">  		SyntaxTreeNode(<span class="keyword">int</span> idx)</span><br><span class="line">  		&#123;</span><br><span class="line">  			index = idx;</span><br><span class="line">  		&#125;</span><br><span class="line">  	&#125;;</span><br><span class="line">      <span class="function"><span class="keyword">void</span> <span class="title">scanning</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> str, <span class="built_in">vector</span>&lt;morpheme&gt;&amp; v)</span></span></span><br><span class="line"><span class="function">  	</span>&#123;</span><br><span class="line">          <span class="keyword">char</span> morphemetype[<span class="number">6</span>] = &#123; <span class="string">')'</span>,<span class="string">'+'</span>,<span class="string">'-'</span>,<span class="string">'*'</span>,<span class="string">'/'</span>,<span class="string">'('</span> &#125;;</span><br><span class="line">  	    <span class="keyword">int</span> morphemetypelength = <span class="number">6</span>;</span><br><span class="line"></span><br><span class="line">  		<span class="keyword">long</span> digit = <span class="number">0</span>;</span><br><span class="line">  		<span class="keyword">int</span> len = str.length();</span><br><span class="line">  		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">  		&#123;</span><br><span class="line">  			<span class="keyword">char</span> c = str[i];</span><br><span class="line">              <span class="keyword">if</span> (c == <span class="string">' '</span>)</span><br><span class="line">  			&#123;</span><br><span class="line">  				<span class="keyword">continue</span>;</span><br><span class="line">  			&#125;</span><br><span class="line">  			<span class="keyword">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line">  			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; morphemetypelength; j++)</span><br><span class="line">  			&#123;</span><br><span class="line">  				<span class="keyword">if</span> (c == morphemetype[j])</span><br><span class="line">  				&#123;</span><br><span class="line">  					v.push_back(morpheme(j, <span class="number">0</span>, c,j));</span><br><span class="line">  					flag = <span class="literal">true</span>;</span><br><span class="line">  				&#125;</span><br><span class="line">  			&#125;</span><br><span class="line"></span><br><span class="line">  			<span class="keyword">if</span> (flag == <span class="literal">false</span>)</span><br><span class="line">  			&#123;</span><br><span class="line">  				digit = digit * <span class="number">10</span> + (<span class="keyword">int</span>)c - <span class="number">0x30</span>;</span><br><span class="line"></span><br><span class="line">  				<span class="keyword">if</span> (i == len - <span class="number">1</span> || (str[i + <span class="number">1</span>] &lt; <span class="string">'0'</span> || str[i + <span class="number">1</span>] &gt; <span class="string">'9'</span>))</span><br><span class="line">  				&#123;</span><br><span class="line">  					v.push_back(morpheme(<span class="number">-1</span>, digit, <span class="string">'\0'</span>,<span class="number">-1</span>));</span><br><span class="line">  					digit = <span class="number">0</span>;</span><br><span class="line">  				&#125;</span><br><span class="line">  			&#125;</span><br><span class="line">  		&#125;</span><br><span class="line">  	&#125;</span><br><span class="line">      <span class="function">SyntaxTreeNode* <span class="title">syntaxtree</span><span class="params">(<span class="built_in">vector</span>&lt;morpheme&gt;&amp; v)</span></span></span><br><span class="line"><span class="function">  	</span>&#123;</span><br><span class="line">  		SyntaxTreeNode* root = <span class="keyword">new</span> SyntaxTreeNode(<span class="number">-1</span>);</span><br><span class="line">  		SyntaxTreeNode* pre = <span class="literal">NULL</span>;</span><br><span class="line">  		pre = root;</span><br><span class="line"></span><br><span class="line">  		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; v.size(); i++)</span><br><span class="line">  		&#123;</span><br><span class="line">  			SyntaxTreeNode* node = <span class="keyword">new</span> SyntaxTreeNode(i);</span><br><span class="line"></span><br><span class="line">  			<span class="keyword">int</span> priority = v[i].priority;</span><br><span class="line">  			<span class="keyword">if</span> (priority == <span class="number">-1</span>)</span><br><span class="line">  			&#123;</span><br><span class="line">  				pre-&gt;right = node;</span><br><span class="line">  				node-&gt;parent = pre;</span><br><span class="line">  				<span class="keyword">continue</span>;</span><br><span class="line">  			&#125;</span><br><span class="line">  			SyntaxTreeNode* smallnode = pre;</span><br><span class="line">  			<span class="keyword">while</span> (smallnode-&gt;index != <span class="number">-1</span>)</span><br><span class="line">  			&#123;</span><br><span class="line">  				<span class="keyword">if</span> (v[smallnode-&gt;index].priority == <span class="number">5</span>)</span><br><span class="line">  				&#123;</span><br><span class="line">  					<span class="keyword">break</span>;</span><br><span class="line">  				&#125;</span><br><span class="line">  				<span class="keyword">if</span> (v[smallnode-&gt;index].priority &gt;= priority)</span><br><span class="line">  				&#123;</span><br><span class="line">  					smallnode = smallnode-&gt;parent;</span><br><span class="line">  				&#125;</span><br><span class="line">  				<span class="keyword">else</span></span><br><span class="line">  				&#123;</span><br><span class="line">  					<span class="keyword">break</span>;</span><br><span class="line">  				&#125;</span><br><span class="line">  			&#125;</span><br><span class="line"></span><br><span class="line">  			node-&gt;left = smallnode-&gt;right;</span><br><span class="line">  			smallnode-&gt;right = node;</span><br><span class="line">  			node-&gt;parent = smallnode;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  			<span class="keyword">if</span> (v[node-&gt;index].priority == <span class="number">0</span> &amp;&amp; smallnode-&gt;index != <span class="number">-1</span> &amp;&amp; v[smallnode-&gt;index].priority == <span class="number">5</span>)</span><br><span class="line">  			&#123;</span><br><span class="line">  				pre = smallnode-&gt;parent;</span><br><span class="line">  			&#125;</span><br><span class="line">  			<span class="keyword">else</span></span><br><span class="line">  			&#123;</span><br><span class="line">  				pre = node;</span><br><span class="line">  			&#125;</span><br><span class="line">  		&#125;</span><br><span class="line"></span><br><span class="line">  		<span class="keyword">return</span> root;</span><br><span class="line">  	&#125;</span><br><span class="line">      <span class="function"><span class="keyword">int</span> <span class="title">order</span><span class="params">(SyntaxTreeNode* node, <span class="built_in">vector</span>&lt;morpheme&gt;&amp; v)</span></span></span><br><span class="line"><span class="function">  	</span>&#123;</span><br><span class="line">  		<span class="keyword">int</span> value;</span><br><span class="line">  		<span class="keyword">int</span> priority = v[node-&gt;index].priority;</span><br><span class="line">  		<span class="keyword">if</span> (priority == <span class="number">-1</span>)</span><br><span class="line">  		&#123;</span><br><span class="line">  			value = v[node-&gt;index].digital;</span><br><span class="line">  		&#125;</span><br><span class="line">  		<span class="keyword">else</span> <span class="keyword">if</span> (priority == <span class="number">0</span>)</span><br><span class="line">  		&#123;</span><br><span class="line">  			value = order(node-&gt;left, v);</span><br><span class="line">  		&#125;</span><br><span class="line">  		<span class="keyword">else</span> <span class="keyword">if</span> (priority == <span class="number">1</span>)</span><br><span class="line">  		&#123;</span><br><span class="line">  			value = order(node-&gt;left, v) + order(node-&gt;right, v);</span><br><span class="line">  		&#125;</span><br><span class="line">  		<span class="keyword">else</span> <span class="keyword">if</span> (priority == <span class="number">2</span>)</span><br><span class="line">  		&#123;</span><br><span class="line">  			value = order(node-&gt;left, v) - order(node-&gt;right, v);</span><br><span class="line">  		&#125;</span><br><span class="line">  		<span class="keyword">else</span> <span class="keyword">if</span> (priority == <span class="number">3</span>)</span><br><span class="line">  		&#123;</span><br><span class="line">  			value = order(node-&gt;left, v) * order(node-&gt;right, v);</span><br><span class="line">  		&#125;</span><br><span class="line">  		<span class="keyword">else</span> <span class="keyword">if</span> (priority == <span class="number">4</span>)</span><br><span class="line">  		&#123;</span><br><span class="line">  			value = order(node-&gt;left, v) / order(node-&gt;right, v);</span><br><span class="line">  		&#125;</span><br><span class="line">  		<span class="keyword">else</span> <span class="keyword">if</span> (priority == <span class="number">5</span>)</span><br><span class="line">  		&#123;</span><br><span class="line">  			value = order(node-&gt;right, v);</span><br><span class="line">  		&#125;</span><br><span class="line"></span><br><span class="line">  		<span class="comment">//node-&gt;value = value;</span></span><br><span class="line">  		<span class="keyword">return</span> value;</span><br><span class="line">  	&#125;</span><br><span class="line">      <span class="function"><span class="keyword">int</span> <span class="title">calculate</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">          <span class="built_in">vector</span>&lt;morpheme&gt; v;</span><br><span class="line">          scanning(s,v);</span><br><span class="line">          SyntaxTreeNode* tree = syntaxtree(v);</span><br><span class="line">          <span class="keyword">int</span> result = order(tree-&gt;right,v);</span><br><span class="line">          <span class="keyword">return</span> result;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/224.%E8%AE%A1%E7%AE%97%E5%99%A8-%E9%80%86%E6%B3%A2%E5%85%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F.html#more" rel="contents">
+              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/224.%E8%AE%A1%E7%AE%97%E5%99%A8-%E8%AF%AD%E6%B3%95%E6%A0%91.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -430,6 +848,106 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/224.%E8%AE%A1%E7%AE%97%E5%99%A8-%E9%80%92%E5%BD%92.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/224.%E8%AE%A1%E7%AE%97%E5%99%A8-%E9%80%86%E6%B3%A2%E5%85%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/224.%E8%AE%A1%E7%AE%97%E5%99%A8-%E9%80%86%E6%B3%A2%E5%85%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F.html" class="post-title-link" itemprop="url">leetcode.224.基本计算器(逆波兰表达式)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-13 17:39:07" itemprop="dateCreated datePublished" datetime="2020-07-13T17:39:07+08:00">2020-07-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/224.%E8%AE%A1%E7%AE%97%E5%99%A8-%E9%80%86%E6%B3%A2%E5%85%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F.html" class="post-meta-item leancloud_visitors" data-flag-title="leetcode.224.基本计算器(逆波兰表达式)" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/224.%E8%AE%A1%E7%AE%97%E5%99%A8-%E9%80%86%E6%B3%A2%E5%85%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/224.%E8%AE%A1%E7%AE%97%E5%99%A8-%E9%80%86%E6%B3%A2%E5%85%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="计算器"><a href="#计算器" class="headerlink" title="计算器"></a>计算器</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><h3 id="leetcode-224-基本计算器"><a href="#leetcode-224-基本计算器" class="headerlink" title="- leetcode 224. 基本计算器"></a>- <a href="https://leetcode-cn.com/problems/basic-calculator/" target="_blank" rel="noopener">leetcode 224. 基本计算器</a></h3><h2 id="逆波兰表达式"><a href="#逆波兰表达式" class="headerlink" title="逆波兰表达式"></a>逆波兰表达式</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"></span><br><span class="line">	<span class="comment">//词素</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">morpheme</span></span></span><br><span class="line"><span class="class">	&#123;</span></span><br><span class="line">		<span class="keyword">long</span> digital;</span><br><span class="line">		<span class="keyword">char</span> ops;</span><br><span class="line">		<span class="keyword">int</span> type;</span><br><span class="line">		<span class="keyword">int</span> priority = <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">		morpheme(<span class="keyword">int</span> t, <span class="keyword">int</span> d, <span class="keyword">char</span> o, <span class="keyword">int</span> p)</span><br><span class="line">		&#123;</span><br><span class="line">			type = t;</span><br><span class="line">			digital = d;</span><br><span class="line">			ops = o;</span><br><span class="line">			priority = p;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		morpheme()</span><br><span class="line">		&#123;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="built_in">string</span> <span class="title">skipspace</span><span class="params">(<span class="built_in">string</span> s)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">string</span> ans;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.size(); i++) &#123;</span><br><span class="line">			<span class="keyword">char</span> c = s[i];</span><br><span class="line">			<span class="keyword">if</span> (c != <span class="string">' '</span>) &#123;</span><br><span class="line">				ans.push_back(c);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> ans;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">scanning</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> str, <span class="built_in">vector</span>&lt;morpheme&gt;&amp; v)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">char</span> morphemetype[] = &#123; <span class="string">')'</span>,<span class="string">'+'</span>,<span class="string">'-'</span>,<span class="string">'*'</span>,<span class="string">'/'</span>,<span class="string">'('</span> &#125;;</span><br><span class="line">		<span class="keyword">int</span> priority[] = &#123; <span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">5</span> &#125;;</span><br><span class="line">		<span class="keyword">int</span> morphemetypelength = <span class="number">6</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">long</span> digit = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> len = str.length();</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">char</span> c = str[i];</span><br><span class="line">			<span class="keyword">if</span> (c == <span class="string">' '</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; morphemetypelength; j++)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">if</span> (c == morphemetype[j])</span><br><span class="line">				&#123;</span><br><span class="line">					v.push_back(morpheme(j, <span class="number">0</span>, c, priority[j]));</span><br><span class="line">					flag = <span class="literal">true</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span> (flag == <span class="literal">false</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				digit = digit * <span class="number">10</span> + (<span class="keyword">int</span>)c - <span class="number">0x30</span>;</span><br><span class="line"></span><br><span class="line">				<span class="keyword">if</span> (i == len - <span class="number">1</span> || (str[i + <span class="number">1</span>] &lt; <span class="string">'0'</span> || str[i + <span class="number">1</span>] &gt; <span class="string">'9'</span>))</span><br><span class="line">				&#123;</span><br><span class="line">					v.push_back(morpheme(<span class="number">-1</span>, digit, <span class="string">'\0'</span>, <span class="number">-1</span>));</span><br><span class="line">					digit = <span class="number">0</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="built_in">vector</span>&lt;morpheme&gt; <span class="title">rpn</span><span class="params">(<span class="built_in">vector</span>&lt;morpheme&gt;&amp; v)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">stack</span>&lt;morpheme&gt; r;</span><br><span class="line">		<span class="built_in">stack</span>&lt;morpheme&gt; opera;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; v.size(); i++)</span><br><span class="line">		&#123;</span><br><span class="line">			morpheme m = v[i];</span><br><span class="line">			<span class="keyword">if</span> (m.type == <span class="number">-1</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				r.push(m);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (m.priority == <span class="number">5</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				opera.push(m);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">while</span> (!opera.empty() &amp;&amp; opera.top().priority != <span class="number">5</span> &amp;&amp; opera.top().priority &gt;= m.priority)</span><br><span class="line">				&#123;</span><br><span class="line">					r.push(opera.top());</span><br><span class="line">					opera.pop();</span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">				<span class="keyword">if</span> (!opera.empty() &amp;&amp; opera.top().priority == <span class="number">5</span> &amp;&amp; m.priority == <span class="number">0</span>)</span><br><span class="line">				&#123;</span><br><span class="line">					opera.pop();</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">if</span>(m.priority != <span class="number">0</span>)</span><br><span class="line">				&#123;</span><br><span class="line">					opera.push(m);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">while</span> (!opera.empty())</span><br><span class="line">		&#123;</span><br><span class="line">			r.push(opera.top());</span><br><span class="line">			opera.pop();</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="built_in">vector</span>&lt;morpheme&gt; <span class="title">vv</span><span class="params">(r.size())</span></span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = r.size() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">		&#123;</span><br><span class="line">			vv[i] = r.top();</span><br><span class="line">			r.pop();</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> vv;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">long</span> <span class="title">calcu</span><span class="params">(<span class="built_in">vector</span>&lt;morpheme&gt;&amp; rpn)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">stack</span>&lt;morpheme&gt; s;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; rpn.size(); i++)</span><br><span class="line">		&#123;</span><br><span class="line">			morpheme m = rpn[i];</span><br><span class="line">			<span class="keyword">if</span> (m.type == <span class="number">-1</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				s.push(m);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">long</span> left, right;</span><br><span class="line">				right = s.top().digital;</span><br><span class="line">				s.pop();</span><br><span class="line">				left = s.top().digital;</span><br><span class="line">				s.pop();</span><br><span class="line">				<span class="keyword">long</span> value = <span class="number">0</span>;</span><br><span class="line">				<span class="keyword">if</span> (m.type == <span class="number">1</span>)</span><br><span class="line">				&#123;</span><br><span class="line">					value = left + right;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">else</span> <span class="keyword">if</span> (m.type == <span class="number">2</span>)</span><br><span class="line">				&#123;</span><br><span class="line">					value = left - right;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">else</span> <span class="keyword">if</span> (m.type == <span class="number">3</span>)</span><br><span class="line">				&#123;</span><br><span class="line">					value = left * right;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">else</span> <span class="keyword">if</span> (m.type == <span class="number">4</span>)</span><br><span class="line">				&#123;</span><br><span class="line">					value = left / right;</span><br><span class="line">				&#125;</span><br><span class="line">				s.push(morpheme(<span class="number">-1</span>,value,<span class="string">'\0'</span>,<span class="number">-1</span>));</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> s.top().digital;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">calculate</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">		<span class="built_in">string</span> str = s;</span><br><span class="line">		str = skipspace(str);</span><br><span class="line">		<span class="built_in">vector</span>&lt;morpheme&gt; in;</span><br><span class="line">		scanning(str, in);</span><br><span class="line">		<span class="built_in">vector</span>&lt;morpheme&gt; out;</span><br><span class="line">		out = rpn(in);</span><br><span class="line">		<span class="keyword">long</span> result = calcu(out);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/224.%E8%AE%A1%E7%AE%97%E5%99%A8-%E9%80%86%E6%B3%A2%E5%85%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -652,514 +1170,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/322.%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2-DFS.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/322.%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2-DFS.html" class="post-title-link" itemprop="url">leetcode.322.零钱兑换(分支裁剪法)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-13 17:39:07" itemprop="dateCreated datePublished" datetime="2020-07-13T17:39:07+08:00">2020-07-13</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/322.%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2-DFS.html" class="post-meta-item leancloud_visitors" data-flag-title="leetcode.322.零钱兑换(分支裁剪法)" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/322.%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2-DFS.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/322.%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2-DFS.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="零钱兑换"><a href="#零钱兑换" class="headerlink" title="零钱兑换"></a>零钱兑换</h2><h3 id="322-零钱兑换"><a href="#322-零钱兑换" class="headerlink" title="322.零钱兑换"></a><a href="https://leetcode-cn.com/problems/coin-change/" target="_blank" rel="noopener">322.零钱兑换</a></h3><h2 id="剪枝"><a href="#剪枝" class="headerlink" title="剪枝"></a>剪枝</h2><blockquote>
-<h4 id="当-amount-0amount-0-时剪枝，因为大面值硬币需要更多小面值硬币替换，继续减少一枚或几枚大硬币搜索出来的答案【如果有】肯定不会更优。"><a href="#当-amount-0amount-0-时剪枝，因为大面值硬币需要更多小面值硬币替换，继续减少一枚或几枚大硬币搜索出来的答案【如果有】肯定不会更优。" class="headerlink" title="当 amount==0amount==0 时剪枝，因为大面值硬币需要更多小面值硬币替换，继续减少一枚或几枚大硬币搜索出来的答案【如果有】肯定不会更优。"></a>当 amount==0amount==0 时剪枝，因为大面值硬币需要更多小面值硬币替换，继续减少一枚或几枚大硬币搜索出来的答案【如果有】肯定不会更优。</h4><h4 id="当-amount-0，但已经使用的硬币数-cnt-满足了-cnt-1-gt-ans-时剪枝，因-amount-不为-0，至少还要使用-1-枚硬币，则继续搜索得到的答案不会更优。是-break-不是-continue，因为少用几枚面值大的硬币搜索出的方案【如果有】肯定需要更多枚面值小的硬币来替换掉这枚大的硬币【同剪枝-1-理由】，而使用这几枚大的硬币都搜索不到更好的解，故应该是-break。"><a href="#当-amount-0，但已经使用的硬币数-cnt-满足了-cnt-1-gt-ans-时剪枝，因-amount-不为-0，至少还要使用-1-枚硬币，则继续搜索得到的答案不会更优。是-break-不是-continue，因为少用几枚面值大的硬币搜索出的方案【如果有】肯定需要更多枚面值小的硬币来替换掉这枚大的硬币【同剪枝-1-理由】，而使用这几枚大的硬币都搜索不到更好的解，故应该是-break。" class="headerlink" title="当 amount!=0，但已经使用的硬币数 cnt 满足了 cnt+1&gt;=ans 时剪枝，因 amount 不为 0，至少还要使用 1 枚硬币，则继续搜索得到的答案不会更优。是 break 不是 continue，因为少用几枚面值大的硬币搜索出的方案【如果有】肯定需要更多枚面值小的硬币来替换掉这枚大的硬币【同剪枝 1 理由】，而使用这几枚大的硬币都搜索不到更好的解，故应该是 break。"></a>当 amount!=0，但已经使用的硬币数 cnt 满足了 cnt+1&gt;=ans 时剪枝，因 amount 不为 0，至少还要使用 1 枚硬币，则继续搜索得到的答案不会更优。是 break 不是 continue，因为少用几枚面值大的硬币搜索出的方案【如果有】肯定需要更多枚面值小的硬币来替换掉这枚大的硬币【同剪枝 1 理由】，而使用这几枚大的硬币都搜索不到更好的解，故应该是 break。</h4></blockquote>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="keyword">int</span> ans = INT_MAX;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">( <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; coins, <span class="keyword">int</span> amount,<span class="keyword">int</span> index,<span class="keyword">int</span> cnt)</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (index &lt; <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> c = amount / coins[index]; c &gt;= <span class="number">0</span>; c--)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">int</span> na = amount - c * coins[index];</span><br><span class="line">      <span class="keyword">int</span> ncnt = cnt + c;</span><br><span class="line">      <span class="keyword">if</span> (na == <span class="number">0</span>) &#123;</span><br><span class="line">        ans = ncnt &lt; ans ? ncnt : ans;</span><br><span class="line">        <span class="keyword">break</span>;<span class="comment">//剪枝1</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (ncnt + <span class="number">1</span> &gt;= ans) &#123;</span><br><span class="line">        <span class="keyword">break</span>; <span class="comment">//剪枝2</span></span><br><span class="line">      &#125;</span><br><span class="line">      dfs(coins, na, index - <span class="number">1</span>, ncnt);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">coinChange</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; coins, <span class="keyword">int</span> amount)</span> </span>&#123;</span><br><span class="line">    sort(coins.begin(), coins.end());</span><br><span class="line"></span><br><span class="line">    dfs( coins, amount, coins.size() - <span class="number">1</span>,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (ans == INT_MAX)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/322.%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2-DFS.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/322.%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2-%E9%80%92%E5%BD%92%E5%BC%8F%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/322.%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2-%E9%80%92%E5%BD%92%E5%BC%8F%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.html" class="post-title-link" itemprop="url">leetcode.322.零钱兑换(动态规划)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-13 17:39:07" itemprop="dateCreated datePublished" datetime="2020-07-13T17:39:07+08:00">2020-07-13</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/322.%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2-%E9%80%92%E5%BD%92%E5%BC%8F%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.html" class="post-meta-item leancloud_visitors" data-flag-title="leetcode.322.零钱兑换(动态规划)" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/322.%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2-%E9%80%92%E5%BD%92%E5%BC%8F%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/322.%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2-%E9%80%92%E5%BD%92%E5%BC%8F%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="零钱兑换"><a href="#零钱兑换" class="headerlink" title="零钱兑换"></a>零钱兑换</h2><h3 id="322-零钱兑换"><a href="#322-零钱兑换" class="headerlink" title="322.零钱兑换"></a><a href="https://leetcode-cn.com/problems/coin-change/" target="_blank" rel="noopener">322.零钱兑换</a></h3><h2 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h2><p>dp[i] = Math.min(dp[i], dp[i - coin] + 1)</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">int</span> <span class="title">dp</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; d, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; coins,<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function">		</span>&#123;</span><br><span class="line">			<span class="keyword">if</span> (d[n] != <span class="number">-2</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">return</span> d[n];</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">				d[n] = <span class="number">-1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">for</span> (i = coins.size() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">			&#123;</span><br><span class="line">				j = n - coins[i];</span><br><span class="line">				<span class="keyword">if</span> (j &gt;= <span class="number">0</span>)</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="keyword">int</span> dpj = dp(d,coins,j);</span><br><span class="line">					<span class="keyword">if</span> (dpj != <span class="number">-1</span>)</span><br><span class="line">					&#123;</span><br><span class="line">						<span class="keyword">if</span> (d[n] == <span class="number">-1</span>)</span><br><span class="line">						&#123;</span><br><span class="line">							d[n] = dpj + <span class="number">1</span>;</span><br><span class="line">						&#125;</span><br><span class="line">						<span class="keyword">else</span> <span class="keyword">if</span> (d[n] &gt; dpj + <span class="number">1</span>)</span><br><span class="line">						&#123;</span><br><span class="line">							d[n] = dpj + <span class="number">1</span>;</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">return</span> d[n];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="keyword">int</span> <span class="title">coinChange</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; coins, <span class="keyword">int</span> amount)</span> </span>&#123;</span><br><span class="line">			<span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">d</span><span class="params">(amount + <span class="number">1</span>)</span></span>;</span><br><span class="line">			d[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; amount + <span class="number">1</span>; i++)</span><br><span class="line">			&#123;</span><br><span class="line">				d[i] = <span class="number">-2</span>;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">return</span> dp(d,coins,amount);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br></pre></td></tr></table></figure>
-
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/322.%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2-%E9%80%92%E5%BD%92%E5%BC%8F%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/322.%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/322.%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.html" class="post-title-link" itemprop="url">leetcode.322.零钱兑换(动态规划)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-13 17:39:07" itemprop="dateCreated datePublished" datetime="2020-07-13T17:39:07+08:00">2020-07-13</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/322.%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.html" class="post-meta-item leancloud_visitors" data-flag-title="leetcode.322.零钱兑换(动态规划)" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/322.%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/322.%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="零钱兑换"><a href="#零钱兑换" class="headerlink" title="零钱兑换"></a>零钱兑换</h2><h3 id="322-零钱兑换"><a href="#322-零钱兑换" class="headerlink" title="322.零钱兑换"></a><a href="https://leetcode-cn.com/problems/coin-change/" target="_blank" rel="noopener">322.零钱兑换</a></h3><h2 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h2><p>dp[i] = Math.min(dp[i], dp[i - coin] + 1)</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">coinChange</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; coins, <span class="keyword">int</span> amount)</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">dp</span><span class="params">(amount + <span class="number">1</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">    dp[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> n = <span class="number">1</span>; n &lt;= amount; n++)</span><br><span class="line">    &#123;</span><br><span class="line">      dp[n] = <span class="number">-1</span>;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; coins.size(); i++)</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">if</span> (n - coins[i] &gt;= <span class="number">0</span> &amp;&amp; dp[n - coins[i]] != <span class="number">-1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="keyword">if</span> (dp[n] == <span class="number">-1</span>)</span><br><span class="line">          &#123;</span><br><span class="line">            dp[n] = dp[n - coins[i]] + <span class="number">1</span>;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">else</span> <span class="keyword">if</span> (dp[n] &gt; dp[n - coins[i]] + <span class="number">1</span>)</span><br><span class="line">          &#123;</span><br><span class="line">            dp[n] = dp[n - coins[i]] + <span class="number">1</span>;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> dp[amount];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/322.%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/44.%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/44.%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.html" class="post-title-link" itemprop="url">leetcode.44.通配符匹配(动态规划)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-13 17:39:07" itemprop="dateCreated datePublished" datetime="2020-07-13T17:39:07+08:00">2020-07-13</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/44.%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.html" class="post-meta-item leancloud_visitors" data-flag-title="leetcode.44.通配符匹配(动态规划)" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/44.%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/44.%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><h3 id="44-通配符匹配"><a href="#44-通配符匹配" class="headerlink" title="- 44. 通配符匹配"></a>- <a href="https://leetcode-cn.com/problems/wildcard-matching/" target="_blank" rel="noopener">44. 通配符匹配</a></h3><h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isMatch</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">string</span> p)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;&gt; dp;</span><br><span class="line">		dp.resize(s.length() + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;(p.length() + <span class="number">1</span>));</span><br><span class="line"></span><br><span class="line">		dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; p.length() + <span class="number">1</span>; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (p[j - <span class="number">1</span>] == <span class="string">'*'</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				dp[<span class="number">0</span>][j] = dp[<span class="number">0</span>][j - <span class="number">1</span>];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; s.length() + <span class="number">1</span>; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; p.length() + <span class="number">1</span>; j++)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">if</span> (p[j - <span class="number">1</span>] == <span class="string">'*'</span>)</span><br><span class="line">				&#123;</span><br><span class="line">					dp[i][j] = dp[i - <span class="number">1</span>][j - <span class="number">1</span>] || dp[i][j - <span class="number">1</span>] || dp[i - <span class="number">1</span>][j];</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">else</span> <span class="keyword">if</span> (s[i - <span class="number">1</span>] == p[j - <span class="number">1</span>] || p[j - <span class="number">1</span>] == <span class="string">'?'</span>)</span><br><span class="line">				&#123;</span><br><span class="line">					dp[i][j] = dp[i - <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">else</span></span><br><span class="line">				&#123;</span><br><span class="line">					dp[i][j] = <span class="literal">false</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> dp[s.length()][p.length()];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/44.%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/44.%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D-%E9%80%92%E5%BD%92%E5%BC%8F%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/44.%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D-%E9%80%92%E5%BD%92%E5%BC%8F%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.html" class="post-title-link" itemprop="url">leetcode.44.通配符匹配(动态规划)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-13 17:39:07" itemprop="dateCreated datePublished" datetime="2020-07-13T17:39:07+08:00">2020-07-13</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/44.%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D-%E9%80%92%E5%BD%92%E5%BC%8F%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.html" class="post-meta-item leancloud_visitors" data-flag-title="leetcode.44.通配符匹配(动态规划)" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/44.%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D-%E9%80%92%E5%BD%92%E5%BC%8F%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/44.%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D-%E9%80%92%E5%BD%92%E5%BC%8F%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><h3 id="44-通配符匹配"><a href="#44-通配符匹配" class="headerlink" title="- 44. 通配符匹配"></a>- <a href="https://leetcode-cn.com/problems/wildcard-matching/" target="_blank" rel="noopener">44. 通配符匹配</a></h3><h2 id="递归式动态规划"><a href="#递归式动态规划" class="headerlink" title="递归式动态规划"></a>递归式动态规划</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">string</span> ss;</span><br><span class="line">  <span class="built_in">string</span> pp;</span><br><span class="line">  <span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="keyword">bool</span>&gt;* m=<span class="keyword">new</span> <span class="built_in">std</span>::<span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="keyword">bool</span>&gt;();</span><br><span class="line">  <span class="function"><span class="keyword">bool</span> <span class="title">isMatchRecursive</span><span class="params">( <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> key = i * (ss.length() + <span class="number">10</span>) * (pp.length() + <span class="number">10</span>)+ j;</span><br><span class="line">    <span class="keyword">if</span> (m-&gt;find(key) != m-&gt;end())</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">return</span> m-&gt;at(key);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">bool</span> value = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (j &lt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span> (i &lt; <span class="number">0</span>)</span><br><span class="line">      &#123;</span><br><span class="line">        value = <span class="literal">true</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">      &#123;</span><br><span class="line">        value = <span class="literal">false</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (i &lt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span> (pp[j] == <span class="string">'*'</span>)</span><br><span class="line">      &#123;</span><br><span class="line">        value = isMatchRecursive( i, j - <span class="number">1</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">      &#123;</span><br><span class="line">        value = <span class="literal">false</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (pp[j] == <span class="string">'*'</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      value = isMatchRecursive(i,j - <span class="number">1</span>) || isMatchRecursive(i - <span class="number">1</span>,j);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (ss[i] == pp[j] || pp[j] == <span class="string">'?'</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      value = isMatchRecursive( i - <span class="number">1</span>, j - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      value = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    m-&gt;insert(&#123; key,value &#125;);</span><br><span class="line">    <span class="keyword">return</span> value;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">bool</span> <span class="title">isMatch</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">string</span> p)</span> </span>&#123;</span><br><span class="line">    ss = s;</span><br><span class="line">    pp = p;</span><br><span class="line">    <span class="keyword">bool</span> result = isMatchRecursive( ss.length() - <span class="number">1</span>, pp.length() - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/44.%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D-%E9%80%92%E5%BD%92%E5%BC%8F%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/36/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><span class="page-number current">37</span><a class="page-number" href="/page/38/">38</a><a class="page-number" href="/page/39/">39</a><a class="extend next" rel="next" href="/page/38/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/36/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><span class="page-number current">37</span><a class="page-number" href="/page/38/">38</a><span class="space">&hellip;</span><a class="page-number" href="/page/40/">40</a><a class="extend next" rel="next" href="/page/38/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1226,18 +1240,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">386</span>
+          <span class="site-state-item-count">391</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-count">57</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">147</span>
+        <span class="site-state-item-count">149</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
