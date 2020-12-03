@@ -153,6 +153,934 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/wormhole.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/wormhole.html" class="post-title-link" itemprop="url">Wormholes</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-13 17:39:07" itemprop="dateCreated datePublished" datetime="2020-07-13T17:39:07+08:00">2020-07-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/" itemprop="url" rel="index"><span itemprop="name">usaco</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/wormhole.html" class="post-meta-item leancloud_visitors" data-flag-title="Wormholes" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/wormhole.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/wormhole.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Wormholes"><a href="#Wormholes" class="headerlink" title="Wormholes"></a>Wormholes</h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><hr>
+<p>Farmer John’s hobby of conducting high-energy physics experiments on weekends has backfired, causing N wormholes (2 &lt;= N &lt;= 12, N even) to materialize on his farm, each located at a distinct point on the 2D map of his farm (the x,y coordinates are both integers).</p>
+<p>According to his calculations, Farmer John knows that his wormholes will form N/2 connected pairs. For example, if wormholes A and B are connected as a pair, then any object entering wormhole A will exit wormhole B moving in the same direction, and any object entering wormhole B will similarly exit from wormhole A moving in the same direction. This can have rather unpleasant consequences.</p>
+<p>For example, suppose there are two paired wormholes A at (1,1) and B at (3,1), and that Bessie the cow starts from position (2,1) moving in the +x direction. Bessie will enter wormhole B [at (3,1)], exit from A [at (1,1)], then enter B again, and so on, getting trapped in an infinite cycle!</p>
+<pre><code>   | . . . .
+   | A &gt; B .      Bessie will travel to B then
+   + . . . .      A then across to B again
+</code></pre><p>Farmer John knows the exact location of each wormhole on his farm. He knows that Bessie the cow always walks in the +x direction, although he does not remember where Bessie is currently located.</p>
+<p>Please help Farmer John count the number of distinct pairings of the wormholes such that Bessie could possibly get trapped in an infinite cycle if she starts from an unlucky position. FJ doesn’t know which wormhole pairs with any other wormhole, so \fBfind all the possibilities (i.e., all the different ways that N wormholes could be paired such that Bessie can, in some way, get in a cycle\fP). Note that a loop with a smaller number of wormholes might contribute a number of different sets of pairings to the total count as those wormholes that are not in the loop are paired in many different ways.  </p>
+<hr>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/wormhole.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E6%95%B4%E6%95%B0%E6%8B%86%E5%88%86.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E6%95%B4%E6%95%B0%E6%8B%86%E5%88%86.html" class="post-title-link" itemprop="url">整数拆分</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-13 17:39:07" itemprop="dateCreated datePublished" datetime="2020-07-13T17:39:07+08:00">2020-07-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" itemprop="url" rel="index"><span itemprop="name">动态规划</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E6%95%B4%E6%95%B0%E6%8B%86%E5%88%86.html" class="post-meta-item leancloud_visitors" data-flag-title="整数拆分" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E6%95%B4%E6%95%B0%E6%8B%86%E5%88%86.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E6%95%B4%E6%95%B0%E6%8B%86%E5%88%86.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="整数拆分"><a href="#整数拆分" class="headerlink" title="整数拆分"></a>整数拆分</h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><hr>
+<p>一个正整数N,将其拆分成任意个正整数，使得所有的正整数乘机最大化<br>N=n1+n2+n3+…+n(i-1) + ni; (0&lt;i&lt;=N)<br>n1<em>n2</em>n3<em>…n(i-1) </em> ni 乘积最大  </p>
+<hr>
+<h2 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h2><hr>
+<p>递归性质<br>f代表数字n分成i个正整数可以获得的最大乘积<br>f(n,i) = f(n-j,i-1) * j  (0&lt;j&lt;n-i)<br>f(n) = max(f(n,1),f(n,2),… f(n,i-1),f(n,(i)))  </p>
+<p>f代表数字n可以获得的最大乘积<br>fi代表数字n获得最大乘积时要拆分的个数<br>f(n)=max(f(n-j) * j)  (0&lt;j&lt;n-j)<br>fi(n)=fi(n-j) + 1  </p>
+<hr>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E6%95%B4%E6%95%B0%E6%8B%86%E5%88%86.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E7%9F%A9%E9%98%B5%E8%BF%9E%E4%B9%98.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E7%9F%A9%E9%98%B5%E8%BF%9E%E4%B9%98.html" class="post-title-link" itemprop="url">矩阵连乘</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-13 17:39:07" itemprop="dateCreated datePublished" datetime="2020-07-13T17:39:07+08:00">2020-07-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" itemprop="url" rel="index"><span itemprop="name">动态规划</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E7%9F%A9%E9%98%B5%E8%BF%9E%E4%B9%98.html" class="post-meta-item leancloud_visitors" data-flag-title="矩阵连乘" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E7%9F%A9%E9%98%B5%E8%BF%9E%E4%B9%98.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E7%9F%A9%E9%98%B5%E8%BF%9E%E4%B9%98.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="矩阵连乘"><a href="#矩阵连乘" class="headerlink" title="矩阵连乘"></a>矩阵连乘</h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><hr>
+<p> 给定n个矩阵｛A1,A2,…,An｝，其中，Ai与Ai+1是可乘的，(i=1,2 ,…,n-1)。用加括号的方法表示矩阵连乘的次序，不同的计算次序计算量（乘法次数）是不同的，找出一种加括号的方法，使得矩阵连乘的次数最小。  </p>
+<p> 例如：</p>
+<pre><code> A1是A（5*10）的方阵；
+
+ A2是A（10*100）的方阵；
+
+ A3是A（100*2）的方阵；
+</code></pre><p>那么有两种加括号的方法：</p>
+<pre><code>  1. （A1A2）A3；
+  2.   A1（A2A3）；
+
+  第一种方法的计算量：5*10*100+5*100*2=6000；
+
+  第二种方法的计算量：10*100*2+5*10*2=2100；  
+</code></pre><hr>
+<h2 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E7%9F%A9%E9%98%B5%E8%BF%9E%E4%B9%98.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/BM%E7%AE%97%E6%B3%95.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/BM%E7%AE%97%E6%B3%95.html" class="post-title-link" itemprop="url">BM算法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-13 17:39:07" itemprop="dateCreated datePublished" datetime="2020-07-13T17:39:07+08:00">2020-07-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/" itemprop="url" rel="index"><span itemprop="name">字符串</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/BM%E7%AE%97%E6%B3%95.html" class="post-meta-item leancloud_visitors" data-flag-title="BM算法" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/BM%E7%AE%97%E6%B3%95.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/BM%E7%AE%97%E6%B3%95.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="BM算法"><a href="#BM算法" class="headerlink" title="BM算法"></a>BM算法</h1><h2 id="1-The-bad-character-rule"><a href="#1-The-bad-character-rule" class="headerlink" title="1.The bad character rule"></a>1.The bad character rule</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">badCharHeuristic</span><span class="params">( <span class="built_in">string</span> str, <span class="keyword">int</span> size,  </span></span></span><br><span class="line"><span class="function"><span class="params">                        <span class="keyword">int</span> badchar[NO_OF_CHARS])</span>  </span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line">    <span class="keyword">int</span> i;  </span><br><span class="line"></span><br><span class="line">    <span class="comment">// Initialize all occurrences as -1  </span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; NO_OF_CHARS; i++)  </span><br><span class="line">        badchar[i] = <span class="number">-1</span>;  </span><br><span class="line"></span><br><span class="line">    <span class="comment">// Fill the actual value of last occurrence  </span></span><br><span class="line">    <span class="comment">// of a character  </span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; size; i++)  </span><br><span class="line">        badchar[(<span class="keyword">int</span>) str[i]] = i;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-The-good-suffix-rule"><a href="#2-The-good-suffix-rule" class="headerlink" title="2.The good suffix rule"></a>2.The good suffix rule</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// preprocessing for strong good suffix rule</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">preprocess_strong_suffix</span><span class="params">(<span class="keyword">int</span> *shift, <span class="keyword">int</span> *bpos,</span></span></span><br><span class="line"><span class="function"><span class="params">                                <span class="keyword">char</span> *pat, <span class="keyword">int</span> m)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// m is the length of pattern  </span></span><br><span class="line">    <span class="keyword">int</span> i=m, j=m+<span class="number">1</span>;</span><br><span class="line">    bpos[i]=j;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(i&gt;<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">/*if character at position i-1 is not equivalent to</span></span><br><span class="line"><span class="comment">          character at j-1, then continue searching to right</span></span><br><span class="line"><span class="comment">          of the pattern for border */</span></span><br><span class="line">        <span class="keyword">while</span>(j&lt;=m &amp;&amp; pat[i<span class="number">-1</span>] != pat[j<span class="number">-1</span>])</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">/* the character preceding the occurrence of t in  </span></span><br><span class="line"><span class="comment">               pattern P is different than the mismatching character in P,  </span></span><br><span class="line"><span class="comment">               we stop skipping the occurrences and shift the pattern</span></span><br><span class="line"><span class="comment">               from i to j */</span></span><br><span class="line">            <span class="keyword">if</span> (shift[j]==<span class="number">0</span>)</span><br><span class="line">                shift[j] = j-i;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//Update the position of next border  </span></span><br><span class="line">            j = bpos[j];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/* p[i-1] matched with p[j-1], border is found.</span></span><br><span class="line"><span class="comment">           store the  beginning position of border */</span></span><br><span class="line">        i--;j--;</span><br><span class="line">        bpos[i] = j;  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Preprocessing for case 2</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">preprocess_case2</span><span class="params">(<span class="keyword">int</span> *shift, <span class="keyword">int</span> *bpos,</span></span></span><br><span class="line"><span class="function"><span class="params">                      <span class="keyword">char</span> *pat, <span class="keyword">int</span> m)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i, j;</span><br><span class="line">    j = bpos[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;=m; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">/* set the border position of the first character of the pattern</span></span><br><span class="line"><span class="comment">           to all indices in array shift having shift[i] = 0 */</span></span><br><span class="line">        <span class="keyword">if</span>(shift[i]==<span class="number">0</span>)</span><br><span class="line">            shift[i] = j;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* suffix becomes shorter than bpos[0], use the position of  </span></span><br><span class="line"><span class="comment">           next widest border as value of j */</span></span><br><span class="line">        <span class="keyword">if</span> (i==j)</span><br><span class="line">            j = bpos[j];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/BM%E7%AE%97%E6%B3%95.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/KMP%E7%AE%97%E6%B3%95.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/KMP%E7%AE%97%E6%B3%95.html" class="post-title-link" itemprop="url">KMP算法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-13 17:39:07" itemprop="dateCreated datePublished" datetime="2020-07-13T17:39:07+08:00">2020-07-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/" itemprop="url" rel="index"><span itemprop="name">字符串</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/KMP%E7%AE%97%E6%B3%95.html" class="post-meta-item leancloud_visitors" data-flag-title="KMP算法" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/KMP%E7%AE%97%E6%B3%95.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/KMP%E7%AE%97%E6%B3%95.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="KMP算法"><a href="#KMP算法" class="headerlink" title="KMP算法"></a>KMP算法</h1><hr>
+<p>next函数<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">GetNext</span><span class="params">(<span class="keyword">char</span>* p,<span class="keyword">int</span> next[])</span>  </span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line">    <span class="keyword">int</span> pLen = <span class="built_in">strlen</span>(p);  </span><br><span class="line">    next[<span class="number">0</span>] = <span class="number">-1</span>;  </span><br><span class="line">    <span class="keyword">int</span> k = <span class="number">-1</span>;  </span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">0</span>;  </span><br><span class="line">    <span class="keyword">while</span> (j &lt; pLen - <span class="number">1</span>)  </span><br><span class="line">    &#123;  </span><br><span class="line">        <span class="comment">//p[k]表示前缀，p[j]表示后缀  </span></span><br><span class="line">        <span class="keyword">if</span> (k == <span class="number">-1</span> || p[j] == p[k])   </span><br><span class="line">        &#123;  </span><br><span class="line">            ++k;  </span><br><span class="line">            ++j;  </span><br><span class="line">            next[j] = k;  </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="keyword">else</span>   </span><br><span class="line">        &#123;  </span><br><span class="line">            k = next[k];  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//优化过后的next 数组求法  </span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">GetNextval</span><span class="params">(<span class="keyword">char</span>* p, <span class="keyword">int</span> next[])</span>  </span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line">    <span class="keyword">int</span> pLen = <span class="built_in">strlen</span>(p);  </span><br><span class="line">    next[<span class="number">0</span>] = <span class="number">-1</span>;  </span><br><span class="line">    <span class="keyword">int</span> k = <span class="number">-1</span>;  </span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">0</span>;  </span><br><span class="line">    <span class="keyword">while</span> (j &lt; pLen - <span class="number">1</span>)  </span><br><span class="line">    &#123;  </span><br><span class="line">        <span class="comment">//p[k]表示前缀，p[j]表示后缀    </span></span><br><span class="line">        <span class="keyword">if</span> (k == <span class="number">-1</span> || p[j] == p[k])  </span><br><span class="line">        &#123;  </span><br><span class="line">            ++j;  </span><br><span class="line">            ++k;  </span><br><span class="line">            <span class="comment">//较之前next数组求法，改动在下面4行  </span></span><br><span class="line">            <span class="keyword">if</span> (p[j] != p[k])  </span><br><span class="line">                next[j] = k;   <span class="comment">//之前只有这一行  </span></span><br><span class="line">            <span class="keyword">else</span>  </span><br><span class="line">                <span class="comment">//因为不能出现p[j] = p[ next[j ]]，所以当出现时需要继续递归，k = next[k] = next[next[k]]  </span></span><br><span class="line">                next[j] = next[k];  </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="keyword">else</span>  </span><br><span class="line">        &#123;  </span><br><span class="line">            k = next[k];  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">KmpSearch</span><span class="params">(<span class="keyword">char</span>* s, <span class="keyword">char</span>* p)</span>  </span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;  </span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">0</span>;  </span><br><span class="line">    <span class="keyword">int</span> sLen = <span class="built_in">strlen</span>(s);  </span><br><span class="line">    <span class="keyword">int</span> pLen = <span class="built_in">strlen</span>(p);  </span><br><span class="line">    <span class="keyword">while</span> (i &lt; sLen &amp;&amp; j &lt; pLen)  </span><br><span class="line">    &#123;  </span><br><span class="line">        <span class="comment">//①如果j = -1，或者当前字符匹配成功（即S[i] == P[j]），都令i++，j++      </span></span><br><span class="line">        <span class="keyword">if</span> (j == <span class="number">-1</span> || s[i] == p[j])  </span><br><span class="line">        &#123;  </span><br><span class="line">            i++;  </span><br><span class="line">            j++;  </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="keyword">else</span>  </span><br><span class="line">        &#123;  </span><br><span class="line">            <span class="comment">//②如果j != -1，且当前字符匹配失败（即S[i] != P[j]），则令 i 不变，j = next[j]      </span></span><br><span class="line">            <span class="comment">//next[j]即为j所对应的next值        </span></span><br><span class="line">            j = next[j];  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">if</span> (j == pLen)  </span><br><span class="line">        <span class="keyword">return</span> i - j;  </span><br><span class="line">    <span class="keyword">else</span>  </span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="正则表达式-模式匹配-静态KMP"><a href="#正则表达式-模式匹配-静态KMP" class="headerlink" title="正则表达式 模式匹配 静态KMP"></a>正则表达式 模式匹配 静态KMP</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">GetNextval</span><span class="params">(<span class="built_in">string</span> p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> pLen = p.length();</span><br><span class="line">  <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">next</span><span class="params">(pLen, <span class="number">0</span>)</span></span>;</span><br><span class="line">  next[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">  <span class="keyword">int</span> k = <span class="number">-1</span>;</span><br><span class="line">  <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (j &lt; pLen - <span class="number">1</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> (p[j] == <span class="string">'*'</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      k = j;</span><br><span class="line">      ++j;</span><br><span class="line">      next[j] = k;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (k == <span class="number">-1</span> || (p[j] == p[k] || p[j] == <span class="string">'?'</span> || p[k] == <span class="string">'?'</span> || p[j] == <span class="string">'*'</span> || p[k] == <span class="string">'*'</span>))</span><br><span class="line">    &#123;</span><br><span class="line">      ++j;</span><br><span class="line">      ++k;</span><br><span class="line">      <span class="keyword">if</span> (p[j] != p[k] || p[j] == <span class="string">'?'</span> || p[k] == <span class="string">'?'</span> || p[j] == <span class="string">'*'</span> || p[k] == <span class="string">'*'</span>)</span><br><span class="line">      &#123;</span><br><span class="line">        next[j] = k;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">if</span> (k != <span class="number">0</span> &amp;&amp; p[k - <span class="number">1</span>] == <span class="string">'*'</span>)</span><br><span class="line">        &#123;</span><br><span class="line">          next[j] = k - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">          next[j] = next[k];</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      k = next[k];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isMatch</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">string</span> p)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (p.empty())</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> (s.empty())</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">string</span> pp =p;</span><br><span class="line">  pp.push_back(<span class="string">'?'</span>);</span><br><span class="line">  <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; next = GetNextval(pp);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> k = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> kk = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> sLen = s.length();</span><br><span class="line">  <span class="keyword">int</span> pLen = p.length();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">bool</span> starFlag = <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">while</span> (i &lt; sLen)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> (j == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (j &lt; pLen &amp;&amp; p[j] == <span class="string">'*'</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      starFlag = <span class="literal">true</span>;</span><br><span class="line">      j++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (j &lt; pLen &amp;&amp; (s[i] == p[j] || p[j] == <span class="string">'?'</span> || p[j] == <span class="string">'*'</span>))</span><br><span class="line">    &#123;</span><br><span class="line">      i++;</span><br><span class="line">      j++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;   </span><br><span class="line">      <span class="keyword">if</span> (starFlag == <span class="literal">false</span>)</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">//j = next[j];</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">//验证?</span></span><br><span class="line">      k = next[j];</span><br><span class="line">      <span class="keyword">while</span> (k &gt; <span class="number">0</span>)</span><br><span class="line">      &#123;						</span><br><span class="line">        kk = k;</span><br><span class="line">        <span class="keyword">while</span> (kk &gt;= <span class="number">0</span> &amp;&amp; p[kk] != <span class="string">'*'</span>)</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="keyword">if</span> (p[j - (k - kk)] == <span class="string">'?'</span> &amp;&amp; p[kk] != <span class="string">'?'</span>)</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="keyword">if</span> (s[i - (k - kk)] != p[kk])</span><br><span class="line">            &#123;</span><br><span class="line">              <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">          kk--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (kk &lt; <span class="number">0</span> || p[kk] == <span class="string">'*'</span>)</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">          k = next[k];</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      j = k;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (p[j] == <span class="string">'*'</span>)</span><br><span class="line">      &#123;</span><br><span class="line">        i++;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (j &lt; pLen &amp;&amp; p[j] == <span class="string">'*'</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    j++;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (i == sLen &amp;&amp; j == pLen)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/KMP%E7%AE%97%E6%B3%95.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/string.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/string.html" class="post-title-link" itemprop="url">数据结构与算法/字符串/string</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-13 17:39:07" itemprop="dateCreated datePublished" datetime="2020-07-13T17:39:07+08:00">2020-07-13</time>
+            </span>
+
+          
+            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/string.html" class="post-meta-item leancloud_visitors" data-flag-title="数据结构与算法/字符串/string" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/string.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/string.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="string"><a href="#string" class="headerlink" title="string"></a>string</h1><p><img src="/images/数据结构与算法/string.png" alt></p>
+<h2 id="string-metric"><a href="#string-metric" class="headerlink" title="string metric"></a>string metric</h2><h2 id="string-searching-algorithm"><a href="#string-searching-algorithm" class="headerlink" title="string searching algorithm"></a>string searching algorithm</h2><h2 id="multiple-string-searching"><a href="#multiple-string-searching" class="headerlink" title="multiple string searching"></a>multiple string searching</h2><h2 id="regular-expression"><a href="#regular-expression" class="headerlink" title="regular expression"></a>regular expression</h2><h2 id="sequence-alignment"><a href="#sequence-alignment" class="headerlink" title="sequence alignment"></a>sequence alignment</h2><h2 id="data-structure"><a href="#data-structure" class="headerlink" title="data structure"></a>data structure</h2><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><h3 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a><a href="正则表达式.html">正则表达式</a></h3>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/string.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.html" class="post-title-link" itemprop="url">正则表达式</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-13 17:39:07" itemprop="dateCreated datePublished" datetime="2020-07-13T17:39:07+08:00">2020-07-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/" itemprop="url" rel="index"><span itemprop="name">字符串</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.html" class="post-meta-item leancloud_visitors" data-flag-title="正则表达式" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h1><hr>
+<ul>
+<li>1.字符串s是否可以匹配字符串p  </li>
+<li>2.字符串s匹配到的字符串p的子字符串信息</li>
+</ul>
+<hr>
+<h2 id="模式匹配"><a href="#模式匹配" class="headerlink" title="模式匹配"></a>模式匹配</h2><hr>
+<p>字符串s是否可以匹配字符串p<br>isMatch(s,p)  </p>
+<hr>
+<h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><hr>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/Shaping%20Regions.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/Shaping%20Regions.html" class="post-title-link" itemprop="url">Shaping Regions</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-13 17:39:07" itemprop="dateCreated datePublished" datetime="2020-07-13T17:39:07+08:00">2020-07-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/" itemprop="url" rel="index"><span itemprop="name">usaco</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/Shaping%20Regions.html" class="post-meta-item leancloud_visitors" data-flag-title="Shaping Regions" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/Shaping%20Regions.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/Shaping%20Regions.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Shaping-Regions"><a href="#Shaping-Regions" class="headerlink" title="Shaping Regions"></a>Shaping Regions</h1>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/Shaping%20Regions.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F.html" class="post-title-link" itemprop="url">冒泡排序</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-13 17:39:07" itemprop="dateCreated datePublished" datetime="2020-07-13T17:39:07+08:00">2020-07-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/" itemprop="url" rel="index"><span itemprop="name">排序</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F.html" class="post-meta-item leancloud_visitors" data-flag-title="冒泡排序" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h1>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E5%A0%86%E6%8E%92%E5%BA%8F.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -248,893 +1176,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F.html" class="post-title-link" itemprop="url">快速排序</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-13 17:39:07" itemprop="dateCreated datePublished" datetime="2020-07-13T17:39:07+08:00">2020-07-13</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/" itemprop="url" rel="index"><span itemprop="name">排序</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F.html" class="post-meta-item leancloud_visitors" data-flag-title="快速排序" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="快速排序-QuickSort"><a href="#快速排序-QuickSort" class="headerlink" title="快速排序 QuickSort"></a>快速排序 QuickSort</h1><h2 id="算法思想"><a href="#算法思想" class="headerlink" title="算法思想"></a>算法思想</h2><h2 id="算法应用"><a href="#算法应用" class="headerlink" title="算法应用"></a>算法应用</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E5%BF%AB%E9%80%9F%E9%80%89%E6%8B%A9%E7%AE%97%E6%B3%95.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E5%BF%AB%E9%80%9F%E9%80%89%E6%8B%A9%E7%AE%97%E6%B3%95.html" class="post-title-link" itemprop="url">快速选择算法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-13 17:39:07" itemprop="dateCreated datePublished" datetime="2020-07-13T17:39:07+08:00">2020-07-13</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/" itemprop="url" rel="index"><span itemprop="name">排序</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E5%BF%AB%E9%80%9F%E9%80%89%E6%8B%A9%E7%AE%97%E6%B3%95.html" class="post-meta-item leancloud_visitors" data-flag-title="快速选择算法" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E5%BF%AB%E9%80%9F%E9%80%89%E6%8B%A9%E7%AE%97%E6%B3%95.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E5%BF%AB%E9%80%9F%E9%80%89%E6%8B%A9%E7%AE%97%E6%B3%95.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="快速选择算法"><a href="#快速选择算法" class="headerlink" title="快速选择算法"></a>快速选择算法</h1>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E5%BF%AB%E9%80%9F%E9%80%89%E6%8B%A9%E7%AE%97%E6%B3%95.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F.html" class="post-title-link" itemprop="url">插入排序</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-13 17:39:07" itemprop="dateCreated datePublished" datetime="2020-07-13T17:39:07+08:00">2020-07-13</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/" itemprop="url" rel="index"><span itemprop="name">排序</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F.html" class="post-meta-item leancloud_visitors" data-flag-title="插入排序" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h1>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/LCS%E7%AE%97%E6%B3%95.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/LCS%E7%AE%97%E6%B3%95.html" class="post-title-link" itemprop="url">LCS算法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-13 17:39:07" itemprop="dateCreated datePublished" datetime="2020-07-13T17:39:07+08:00">2020-07-13</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/LCS%E7%AE%97%E6%B3%95.html" class="post-meta-item leancloud_visitors" data-flag-title="LCS算法" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/LCS%E7%AE%97%E6%B3%95.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/LCS%E7%AE%97%E6%B3%95.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="LCS算法"><a href="#LCS算法" class="headerlink" title="LCS算法"></a>LCS算法</h1><hr>
-<p>最长公共子序列</p>
-<hr>
-
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/LCS%E7%AE%97%E6%B3%95.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/LIS%E7%AE%97%E6%B3%95.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/LIS%E7%AE%97%E6%B3%95.html" class="post-title-link" itemprop="url">LIS算法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-13 17:39:07" itemprop="dateCreated datePublished" datetime="2020-07-13T17:39:07+08:00">2020-07-13</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/LIS%E7%AE%97%E6%B3%95.html" class="post-meta-item leancloud_visitors" data-flag-title="LIS算法" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/LIS%E7%AE%97%E6%B3%95.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/LIS%E7%AE%97%E6%B3%95.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="LIS算法"><a href="#LIS算法" class="headerlink" title="LIS算法"></a>LIS算法</h1><hr>
-<p>最长上升子序列  </p>
-<hr>
-
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/LIS%E7%AE%97%E6%B3%95.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/RANSAC%E7%AE%97%E6%B3%95.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/RANSAC%E7%AE%97%E6%B3%95.html" class="post-title-link" itemprop="url">RANSAC算法（随机抽样一致性算法）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-13 17:39:07" itemprop="dateCreated datePublished" datetime="2020-07-13T17:39:07+08:00">2020-07-13</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/RANSAC%E7%AE%97%E6%B3%95.html" class="post-meta-item leancloud_visitors" data-flag-title="RANSAC算法（随机抽样一致性算法）" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/RANSAC%E7%AE%97%E6%B3%95.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/RANSAC%E7%AE%97%E6%B3%95.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="RANSAC算法"><a href="#RANSAC算法" class="headerlink" title="RANSAC算法"></a>RANSAC算法</h1><h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><hr>
-<p>Random sample consensus （随机抽样一致性算法）<br><a href="https://en.wikipedia.org/wiki/Random_sample_consensus" target="_blank" rel="noopener">wiki</a>  </p>
-<hr>
-
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/RANSAC%E7%AE%97%E6%B3%95.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%88%86%E6%B3%95.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%88%86%E6%B3%95.html" class="post-title-link" itemprop="url">二分法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-13 17:39:07" itemprop="dateCreated datePublished" datetime="2020-07-13T17:39:07+08:00">2020-07-13</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%88%86%E6%B3%95.html" class="post-meta-item leancloud_visitors" data-flag-title="二分法" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%88%86%E6%B3%95.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%88%86%E6%B3%95.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="二分法"><a href="#二分法" class="headerlink" title="二分法"></a>二分法</h1><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.cnblogs.com/xiaowuga/p/8604750.html" target="_blank" rel="noopener">二分搜索</a></p>
-
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%88%86%E6%B3%95.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/%E4%BA%94%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/%E4%BA%94%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95.html" class="post-title-link" itemprop="url">数据结构与算法/算法/五大经典算法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-13 17:39:07" itemprop="dateCreated datePublished" datetime="2020-07-13T17:39:07+08:00">2020-07-13</time>
-            </span>
-
-          
-            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/%E4%BA%94%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95.html" class="post-meta-item leancloud_visitors" data-flag-title="数据结构与算法/算法/五大经典算法" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/%E4%BA%94%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/%E4%BA%94%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="五大经典算法"><a href="#五大经典算法" class="headerlink" title="五大经典算法"></a>五大经典算法</h1><ul>
-<li><h2 id="分治法"><a href="#分治法" class="headerlink" title="分治法"></a><a href="分治法.html">分治法</a></h2></li>
-<li><h2 id="贪心算法"><a href="#贪心算法" class="headerlink" title="贪心算法"></a><a href="贪心算法.html">贪心算法</a></h2></li>
-<li><h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a><a href="动态规划.html">动态规划</a></h2></li>
-<li><h2 id="回溯法"><a href="#回溯法" class="headerlink" title="回溯法"></a><a href="回溯算法.html">回溯法</a></h2></li>
-<li><h2 id="分支限界法"><a href="#分支限界法" class="headerlink" title="分支限界法"></a><a href="分支限界法.html">分支限界法</a></h2></li>
-</ul>
-
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/%E4%BA%94%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/%E5%87%B8%E5%8C%85%E7%AE%97%E6%B3%95.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/%E5%87%B8%E5%8C%85%E7%AE%97%E6%B3%95.html" class="post-title-link" itemprop="url">凸包算法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-13 17:39:07" itemprop="dateCreated datePublished" datetime="2020-07-13T17:39:07+08:00">2020-07-13</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/%E5%87%B8%E5%8C%85%E7%AE%97%E6%B3%95.html" class="post-meta-item leancloud_visitors" data-flag-title="凸包算法" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/%E5%87%B8%E5%8C%85%E7%AE%97%E6%B3%95.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/%E5%87%B8%E5%8C%85%E7%AE%97%E6%B3%95.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1205,7 +1246,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">391</span>
+          <span class="site-state-item-count">400</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

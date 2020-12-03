@@ -153,6 +153,898 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/cpp/compile/C++%E7%9A%84%E7%BC%96%E8%AF%91.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/cpp/compile/C++%E7%9A%84%E7%BC%96%E8%AF%91.html" class="post-title-link" itemprop="url">C++的编译</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-17 11:00:21" itemprop="dateCreated datePublished" datetime="2020-07-17T11:00:21+08:00">2020-07-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-C/" itemprop="url" rel="index"><span itemprop="name">C/C++</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-C/compile/" itemprop="url" rel="index"><span itemprop="name">compile</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/cpp/compile/C++%E7%9A%84%E7%BC%96%E8%AF%91.html" class="post-meta-item leancloud_visitors" data-flag-title="C++的编译" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/cpp/compile/C++%E7%9A%84%E7%BC%96%E8%AF%91.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/cpp/compile/C++%E7%9A%84%E7%BC%96%E8%AF%91.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="预处理器"><a href="#预处理器" class="headerlink" title="预处理器"></a>预处理器</h1><h1 id="编译器"><a href="#编译器" class="headerlink" title="编译器"></a>编译器</h1><h1 id="汇编程序"><a href="#汇编程序" class="headerlink" title="汇编程序"></a>汇编程序</h1><h1 id="目标程序"><a href="#目标程序" class="headerlink" title="目标程序"></a>目标程序</h1><h1 id="链接器"><a href="#链接器" class="headerlink" title="链接器"></a>链接器</h1><h1 id="可执行程序"><a href="#可执行程序" class="headerlink" title="可执行程序"></a>可执行程序</h1><h1 id="链接之前，所有的源文件都是单独编译的"><a href="#链接之前，所有的源文件都是单独编译的" class="headerlink" title="链接之前，所有的源文件都是单独编译的"></a>链接之前，所有的源文件都是单独编译的</h1><hr>
+<p>C++ 语言支持”分别编译”（separatecompilation）。也就是说，一个程序所有的内容，可以分成不同的部分分别放在不同的 .cpp 文件里。.cpp 文件里的东西都是相对独立的，在编译（compile）时不需要与其他文件互通，只需要在编译成目标文件后再与其他的目标文件做一次链接（link）就行了。比如，在文件 a.cpp 中定义了一个全局函数 “void a(){}”，而在文件 b.cpp 中需要调用这个函数。即使这样，文件 a.cpp 和文件 b.cpp 并不需要相互知道对方的存在，而是可以分别地对它们进行编译，编译成目标文件之后再链接，整个程序就可以运行了。<br>这是怎么实现的呢？从写程序的角度来讲，很简单。在文件 b.cpp 中，在调用 “void a()” 函数之前，先声明一下这个函数 “voida();”，就可以了。这是因为编译器在编译 b.cpp 的时候会生成一个符号表（symbol table），像 “void a()” 这样的看不到定义的符号，就会被存放在这个表中。再进行链接的时候，编译器就会在别的目标文件中去寻找这个符号的定义。一旦找到了，程序也就可以顺利地生成了。  </p>
+<p>注意这里提到了两个概念，一个是”定义”，一个是”声明”。简单地说，”定义”就是把一个符号完完整整地描述出来：它是变量还是函数，返回什么类型，需要什么参数等等。而”声明”则只是声明这个符号的存在，即告诉编译器，这个符号是在其他文件中定义的，我这里先用着，你链接的时候再到别的地方去找找看它到底是什么吧。定义的时候要按 C++ 语法完整地定义一个符号（变量或者函数），而声明的时候就只需要写出这个符号的原型了。需要注意的是，一个符号，在整个程序中可以被声明多次，但却要且仅要被定义一次。试想，如果一个符号出现了两种不同的定义，编译器该听谁的？  </p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/cpp/compile/C++%E7%9A%84%E7%BC%96%E8%AF%91.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/cpp/compile/%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E8%BF%87%E7%A8%8B.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/cpp/compile/%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E8%BF%87%E7%A8%8B.html" class="post-title-link" itemprop="url">函数调用过程</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-17 11:00:21" itemprop="dateCreated datePublished" datetime="2020-07-17T11:00:21+08:00">2020-07-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-C/" itemprop="url" rel="index"><span itemprop="name">C/C++</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-C/compile/" itemprop="url" rel="index"><span itemprop="name">compile</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/cpp/compile/%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E8%BF%87%E7%A8%8B.html" class="post-meta-item leancloud_visitors" data-flag-title="函数调用过程" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/cpp/compile/%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E8%BF%87%E7%A8%8B.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/cpp/compile/%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E8%BF%87%E7%A8%8B.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a>寄存器</h3><hr>
+<ul>
+<li>1 ESP(Extended Stack Pointer): 堆栈指针，寄存器存放当前线程的栈顶指针；　　i.e: move ebp, esp — 用ebp保存当前栈指针；</li>
+<li>2 EBP(Extended Base Pointer): 基址指针，寄存器存放当前线程的栈底指针；　　i.e: push ebp — 将基址指针压入栈；</li>
+<li>3 EIP：寄存器存放下一个CPU指令存放的内存地址，当CPU执行完成当前的指令后，从EIP寄存器中读取下一条指令的内存地址，然后继续执行；</li>
+<li>4 EAX: 累加器(Accumulator)，加法乘法指令的缺省寄存器；</li>
+<li>5 EBX: 基地址(Base)寄存器，在内存寻址时存放基地址；</li>
+<li>6 ECX：计数器(Counter)，是重复(REP)前缀指令和LOOP指令的内定计数器；</li>
+<li>7 EDX：存放整数除法产生的余数；</li>
+<li>8 ESI/EDI: 源/目标索引寄存器(Source/Destination Index)， 在很多字符串操作指令中，DS：ESI指向源串，而ES：EDI指向目标串。</li>
+</ul>
+<hr>
+
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/cpp/compile/%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E8%BF%87%E7%A8%8B.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/cpp/compile/template.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/cpp/compile/template.html" class="post-title-link" itemprop="url">template</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-17 11:00:21" itemprop="dateCreated datePublished" datetime="2020-07-17T11:00:21+08:00">2020-07-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-C/" itemprop="url" rel="index"><span itemprop="name">C/C++</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-C/compile/" itemprop="url" rel="index"><span itemprop="name">compile</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/cpp/compile/template.html" class="post-meta-item leancloud_visitors" data-flag-title="template" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/cpp/compile/template.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/cpp/compile/template.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/cpp/compile/%E5%89%8D%E7%BD%AE%E5%A3%B0%E6%98%8E.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/cpp/compile/%E5%89%8D%E7%BD%AE%E5%A3%B0%E6%98%8E.html" class="post-title-link" itemprop="url">前置声明</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-17 11:00:21" itemprop="dateCreated datePublished" datetime="2020-07-17T11:00:21+08:00">2020-07-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-C/" itemprop="url" rel="index"><span itemprop="name">C/C++</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-C/compile/" itemprop="url" rel="index"><span itemprop="name">compile</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/cpp/compile/%E5%89%8D%E7%BD%AE%E5%A3%B0%E6%98%8E.html" class="post-meta-item leancloud_visitors" data-flag-title="前置声明" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/cpp/compile/%E5%89%8D%E7%BD%AE%E5%A3%B0%E6%98%8E.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/cpp/compile/%E5%89%8D%E7%BD%AE%E5%A3%B0%E6%98%8E.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="前置声明"><a href="#前置声明" class="headerlink" title="前置声明"></a>前置声明</h1><h2 id="前置声明-1"><a href="#前置声明-1" class="headerlink" title="前置声明"></a>前置声明</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/cpp/compile/%E5%89%8D%E7%BD%AE%E5%A3%B0%E6%98%8E.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/cpp/compile/%E5%A4%B4%E6%96%87%E4%BB%B6%E5%92%8C%E6%BA%90%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/cpp/compile/%E5%A4%B4%E6%96%87%E4%BB%B6%E5%92%8C%E6%BA%90%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3.html" class="post-title-link" itemprop="url">头文件和源文件详解</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-17 11:00:21" itemprop="dateCreated datePublished" datetime="2020-07-17T11:00:21+08:00">2020-07-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-C/" itemprop="url" rel="index"><span itemprop="name">C/C++</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-C/compile/" itemprop="url" rel="index"><span itemprop="name">compile</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/cpp/compile/%E5%A4%B4%E6%96%87%E4%BB%B6%E5%92%8C%E6%BA%90%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3.html" class="post-meta-item leancloud_visitors" data-flag-title="头文件和源文件详解" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/cpp/compile/%E5%A4%B4%E6%96%87%E4%BB%B6%E5%92%8C%E6%BA%90%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/cpp/compile/%E5%A4%B4%E6%96%87%E4%BB%B6%E5%92%8C%E6%BA%90%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <hr>
+<p>.h叫做头文件，它是不能被编译的。“#include”叫做编译预处理指令，可以简单理解成，在1.cpp中的#include”1.h”指令把1.h中的代码在编译前添加到了1.cpp的头部。每个.cpp文件会被编译，生成一个.obj文件，然后所有的.obj文件链接起来你的可执行程序就算生成了。<br>发现了没有，你要在.h文件中严格区分声明语句和定义语句。好的习惯是，头文件中应只处理常量、变量、函数以及类等等等等的声明，变量的定义和函数的实现等等等等都应该在源文件.cpp中进行。</p>
+<hr>
+<hr>
+<p>.h文件中能包含：</p>
+<p>  类成员数据的声明，但不能赋值</p>
+<p>  类静态数据成员的定义和赋值，但不建议，只是个声明就好。</p>
+<p>  类的成员函数的声明</p>
+<p>  非类成员函数的声明</p>
+<p>  常数的定义：如：constint a=5;</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/cpp/compile/%E5%A4%B4%E6%96%87%E4%BB%B6%E5%92%8C%E6%BA%90%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/cpp/compile/%E5%AE%8F.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/cpp/compile/%E5%AE%8F.html" class="post-title-link" itemprop="url">宏</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-17 11:00:21" itemprop="dateCreated datePublished" datetime="2020-07-17T11:00:21+08:00">2020-07-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-C/" itemprop="url" rel="index"><span itemprop="name">C/C++</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-C/compile/" itemprop="url" rel="index"><span itemprop="name">compile</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/cpp/compile/%E5%AE%8F.html" class="post-meta-item leancloud_visitors" data-flag-title="宏" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/cpp/compile/%E5%AE%8F.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/cpp/compile/%E5%AE%8F.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="宏"><a href="#宏" class="headerlink" title="宏"></a>宏</h1><h2 id="编译器参数和条件编译"><a href="#编译器参数和条件编译" class="headerlink" title="编译器参数和条件编译"></a>编译器参数和条件编译</h2><p>在头文件中经常见到下面的代码，以防止头文件的重复包含<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span>  _XXX_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span>  _XXX_H</span></span><br><span class="line"><span class="comment">//...</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure></p>
+<p>编译宏<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">__LINE__  <span class="comment">//行</span></span><br><span class="line">__FILE__  <span class="comment">//文件名</span></span><br><span class="line">__DATE__  <span class="comment">//日期  </span></span><br><span class="line">__TIME__  <span class="comment">//</span></span><br><span class="line">__STDC__  <span class="comment">//</span></span><br><span class="line"></span><br><span class="line">__func__</span><br></pre></td></tr></table></figure></p>
+<h2 id="无参宏"><a href="#无参宏" class="headerlink" title="无参宏"></a>无参宏</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PI 3.1415926</span></span><br></pre></td></tr></table></figure>
+<h2 id="宏函数"><a href="#宏函数" class="headerlink" title="宏函数"></a>宏函数</h2><hr>
+<pre><code>#define 宏名称( [形参列表] ) 替换文本
+#define 宏名称( [形参列表 ,] ... ) 替换文本  
+</code></pre><hr>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/cpp/compile/%E5%AE%8F.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/cpp/error/link.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/cpp/error/link.html" class="post-title-link" itemprop="url">C++ error link</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-17 11:00:21" itemprop="dateCreated datePublished" datetime="2020-07-17T11:00:21+08:00">2020-07-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-C/" itemprop="url" rel="index"><span itemprop="name">C/C++</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/cpp/error/link.html" class="post-meta-item leancloud_visitors" data-flag-title="C++ error link" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/cpp/error/link.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/cpp/error/link.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="LNK1169-找到一个或多个多重定义的符号"><a href="#LNK1169-找到一个或多个多重定义的符号" class="headerlink" title="LNK1169    找到一个或多个多重定义的符号"></a>LNK1169    找到一个或多个多重定义的符号</h1>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/cpp/error/link.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/cpp/optimize/%E5%86%85%E5%AD%98%E5%AF%B9%E8%B1%A1%E6%B1%A0.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/cpp/optimize/%E5%86%85%E5%AD%98%E5%AF%B9%E8%B1%A1%E6%B1%A0.html" class="post-title-link" itemprop="url">内存对象池</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-17 11:00:21" itemprop="dateCreated datePublished" datetime="2020-07-17T11:00:21+08:00">2020-07-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-C/" itemprop="url" rel="index"><span itemprop="name">C/C++</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-C/optimize/" itemprop="url" rel="index"><span itemprop="name">optimize</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/cpp/optimize/%E5%86%85%E5%AD%98%E5%AF%B9%E8%B1%A1%E6%B1%A0.html" class="post-meta-item leancloud_visitors" data-flag-title="内存对象池" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/cpp/optimize/%E5%86%85%E5%AD%98%E5%AF%B9%E8%B1%A1%E6%B1%A0.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/cpp/optimize/%E5%86%85%E5%AD%98%E5%AF%B9%E8%B1%A1%E6%B1%A0.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/cpp/optimize/%E5%86%85%E5%AD%98%E6%B1%A0.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/cpp/optimize/%E5%86%85%E5%AD%98%E6%B1%A0.html" class="post-title-link" itemprop="url">内存池</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-17 11:00:21" itemprop="dateCreated datePublished" datetime="2020-07-17T11:00:21+08:00">2020-07-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-C/" itemprop="url" rel="index"><span itemprop="name">C/C++</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-C/optimize/" itemprop="url" rel="index"><span itemprop="name">optimize</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/cpp/optimize/%E5%86%85%E5%AD%98%E6%B1%A0.html" class="post-meta-item leancloud_visitors" data-flag-title="内存池" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/cpp/optimize/%E5%86%85%E5%AD%98%E6%B1%A0.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/cpp/optimize/%E5%86%85%E5%AD%98%E6%B1%A0.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/cpp/optimize/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -249,989 +1141,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/cpp/template/%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%A3%B0%E6%98%8E%E5%92%8C%E5%AE%9A%E4%B9%89.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/cpp/template/%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%A3%B0%E6%98%8E%E5%92%8C%E5%AE%9A%E4%B9%89.html" class="post-title-link" itemprop="url">模板的声明和定义</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-17 11:00:21" itemprop="dateCreated datePublished" datetime="2020-07-17T11:00:21+08:00">2020-07-17</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C-C/" itemprop="url" rel="index"><span itemprop="name">C/C++</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C-C/template/" itemprop="url" rel="index"><span itemprop="name">template</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/cpp/template/%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%A3%B0%E6%98%8E%E5%92%8C%E5%AE%9A%E4%B9%89.html" class="post-meta-item leancloud_visitors" data-flag-title="模板的声明和定义" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/cpp/template/%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%A3%B0%E6%98%8E%E5%92%8C%E5%AE%9A%E4%B9%89.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/cpp/template/%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%A3%B0%E6%98%8E%E5%92%8C%E5%AE%9A%E4%B9%89.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="声明和定义都放在-hpp中"><a href="#声明和定义都放在-hpp中" class="headerlink" title="声明和定义都放在.hpp中"></a>声明和定义都放在.hpp中</h2><details>
-<summary>演示代码</summary>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> lt &#123;</span><br><span class="line">	<span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class">	<span class="title">class</span> <span class="title">Stack</span> &#123;</span></span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		T* arr;</span><br><span class="line">		<span class="keyword">int</span> top;</span><br><span class="line">		<span class="keyword">int</span> size;</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">resize</span><span class="params">(<span class="keyword">int</span> size)</span></span>;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		Stack();</span><br><span class="line">		Stack(<span class="keyword">int</span> size);</span><br><span class="line">		~Stack();</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">Push</span><span class="params">(T e)</span></span>;</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">Pop</span><span class="params">()</span></span>;</span><br><span class="line">		<span class="function">T <span class="title">Top</span><span class="params">()</span></span>;</span><br><span class="line">		<span class="function"><span class="keyword">bool</span> <span class="title">Empty</span><span class="params">()</span></span>;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">"datastructure/Stack.hpp"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> lt;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MALLOCSIZE 256</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">Stack</span>&lt;T&gt;:</span>:Stack() :size(MALLOCSIZE), top(<span class="number">0</span>), arr(<span class="literal">NULL</span>) &#123;</span><br><span class="line">	arr = (T*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(T) * size);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">Stack</span>&lt;T&gt;:</span>:Stack(<span class="keyword">int</span> _size) : size(_size), top(<span class="number">0</span>), arr(<span class="literal">NULL</span>) &#123;</span><br><span class="line">	arr = (T*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(T) * size);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">Stack</span>&lt;T&gt;:</span>:~Stack() &#123;</span><br><span class="line">	<span class="built_in">free</span>(arr);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">Stack</span>&lt;T&gt;:</span>:Push(T e) &#123;</span><br><span class="line">	<span class="keyword">if</span> (size &lt;= top) &#123;</span><br><span class="line">		resize(size + MALLOCSIZE);</span><br><span class="line">	&#125;</span><br><span class="line">	arr[top++] = e;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">Stack</span>&lt;T&gt;:</span>:Pop() &#123;</span><br><span class="line">	top--;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">T</span> <span class="title">Stack</span>&lt;T&gt;:</span>:Top() &#123;</span><br><span class="line">	<span class="keyword">return</span> arr[top - <span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">bool</span> <span class="title">Stack</span>&lt;T&gt;:</span>:Empty() &#123;</span><br><span class="line">	<span class="keyword">return</span> top == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">Stack</span>&lt;T&gt;:</span>:resize(<span class="keyword">int</span> _size) &#123;</span><br><span class="line">	arr = (T*)<span class="built_in">realloc</span>(arr, <span class="keyword">sizeof</span>(T) * _size);</span><br><span class="line">	size = _size;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</details>
-
-<h2 id="声明放在-hpp文件中，定义放在-cpp文件中"><a href="#声明放在-hpp文件中，定义放在-cpp文件中" class="headerlink" title="声明放在.hpp文件中，定义放在.cpp文件中"></a>声明放在.hpp文件中，定义放在.cpp文件中</h2><p>声明放在.hpp文件中，定义放在.cpp文件中,需要在.cpp文件中将所有用到的类型显示实例化<br>编译器怎么处理模板呢？本质上来说，模板可被编译器产生多种多样函数和类的代码。只有当被使用的时候，编译器才会产生用于这种类型的代码。模板不是直接编译成以后需要的各种类的实现，而是将模板代码解析放入内存中，当编译某个编译单元需要用到该模板，则会按需产生相应的代码。实例化是编译器确定特定模板与特定参数集一起使用并在模板上执行参数替换以生成要编译的类或函数以及最终编译为模板的二进制代码的过程。</p>
-<details>
-<summary>.hpp演示代码</summary>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> lt &#123;</span><br><span class="line">	<span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class">	<span class="title">class</span> <span class="title">Stack</span> &#123;</span></span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		T* arr;</span><br><span class="line">		<span class="keyword">int</span> top;</span><br><span class="line">		<span class="keyword">int</span> size;</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">resize</span><span class="params">(<span class="keyword">int</span> size)</span></span>;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		Stack();</span><br><span class="line">		Stack(<span class="keyword">int</span> size);</span><br><span class="line">		~Stack();</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">Push</span><span class="params">(T e)</span></span>;</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">Pop</span><span class="params">()</span></span>;</span><br><span class="line">		<span class="function">T <span class="title">Top</span><span class="params">()</span></span>;</span><br><span class="line">		<span class="function"><span class="keyword">bool</span> <span class="title">Empty</span><span class="params">()</span></span>;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</details>
-
-<details>
-<summary>.cpp演示代码</summary>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">"datastructure/Stack.hpp"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> lt;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MALLOCSIZE 64</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">lt</span>:</span>:Stack&lt;T&gt;::Stack():size(MALLOCSIZE),top(<span class="number">0</span>),arr(<span class="literal">NULL</span>) &#123;</span><br><span class="line">	arr = (T*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(T) * size);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">lt</span>:</span>:Stack&lt;T&gt;::Stack(<span class="keyword">int</span> _size):size(_size), top(<span class="number">0</span>), arr(<span class="literal">NULL</span>) &#123;</span><br><span class="line">	arr = (T*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(T) * size);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">lt</span>:</span>:Stack&lt;T&gt;::~Stack() &#123;</span><br><span class="line">	<span class="built_in">free</span>(arr);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">lt</span>:</span>:Stack&lt;T&gt;::Push(T e) &#123;</span><br><span class="line">	<span class="keyword">if</span> (size &lt;= top) &#123;</span><br><span class="line">		resize(size+ MALLOCSIZE);</span><br><span class="line">	&#125;</span><br><span class="line">	arr[top++] = e;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">lt</span>:</span>:Stack&lt;T&gt;::Pop() &#123;</span><br><span class="line">	top--;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">T</span> <span class="title">lt</span>:</span>:Stack&lt;T&gt;::Top() &#123;</span><br><span class="line">	<span class="keyword">return</span> arr[top<span class="number">-1</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">bool</span> <span class="title">lt</span>:</span>:Stack&lt;T&gt;::Empty() &#123;</span><br><span class="line">	<span class="keyword">return</span> top == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">lt</span>:</span>:Stack&lt;T&gt;::resize(<span class="keyword">int</span> _size) &#123;</span><br><span class="line">	arr = (T*)<span class="built_in">realloc</span>(arr,<span class="keyword">sizeof</span>(T) * _size);</span><br><span class="line">	size = _size;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> <span class="class"><span class="keyword">class</span> <span class="title">Stack</span>&lt;int&gt;;</span></span><br></pre></td></tr></table></figure>
-</details>
-
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/cpp/template/%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%A3%B0%E6%98%8E%E5%92%8C%E5%AE%9A%E4%B9%89.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E7%82%B9%E6%98%AF%E5%90%A6%E5%9C%A8%E6%89%87%E5%BD%A2%E5%8C%BA%E5%9F%9F.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E7%82%B9%E6%98%AF%E5%90%A6%E5%9C%A8%E6%89%87%E5%BD%A2%E5%8C%BA%E5%9F%9F.html" class="post-title-link" itemprop="url">判断一个点是否在扇形区域内</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-16 18:15:12" itemprop="dateCreated datePublished" datetime="2020-07-16T18:15:12+08:00">2020-07-16</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/" itemprop="url" rel="index"><span itemprop="name">线性代数与几何</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/" itemprop="url" rel="index"><span itemprop="name">计算几何</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E7%82%B9%E6%98%AF%E5%90%A6%E5%9C%A8%E6%89%87%E5%BD%A2%E5%8C%BA%E5%9F%9F.html" class="post-meta-item leancloud_visitors" data-flag-title="判断一个点是否在扇形区域内" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E7%82%B9%E6%98%AF%E5%90%A6%E5%9C%A8%E6%89%87%E5%BD%A2%E5%8C%BA%E5%9F%9F.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E7%82%B9%E6%98%AF%E5%90%A6%E5%9C%A8%E6%89%87%E5%BD%A2%E5%8C%BA%E5%9F%9F.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="判断一个点是否在扇形区域内"><a href="#判断一个点是否在扇形区域内" class="headerlink" title="判断一个点是否在扇形区域内"></a>判断一个点是否在扇形区域内</h1><hr>
-<p>判断点$P$是否在以点$A$为圆心,点$B$,$C$为两个角的扇形内</p>
-<hr>
-<h2 id="重心法"><a href="#重心法" class="headerlink" title="重心法"></a>重心法</h2><hr>
-<p>1.比较$\vec {AP}$ 和$\vec {AB}$的长度，判断是否在圆内  </p>
-<p>2.</p>
-<script type="math/tex; mode=display">\vec{AP}=u*\vec{AB}+v*\vec{AC}</script><p>u&gt;=0,v&gt;=0则点$P$在$\vec {AB}$和$\vec {AC}$的夹角内</p>
-<hr>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E7%82%B9%E6%98%AF%E5%90%A6%E5%9C%A8%E6%89%87%E5%BD%A2%E5%8C%BA%E5%9F%9F.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E7%82%B9%E6%98%AF%E5%90%A6%E5%9C%A8%E7%9F%A9%E5%BD%A2%E5%8C%BA%E5%9F%9F%E5%86%85.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E7%82%B9%E6%98%AF%E5%90%A6%E5%9C%A8%E7%9F%A9%E5%BD%A2%E5%8C%BA%E5%9F%9F%E5%86%85.html" class="post-title-link" itemprop="url">判断一个点是否在矩形区域内</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-16 18:15:12" itemprop="dateCreated datePublished" datetime="2020-07-16T18:15:12+08:00">2020-07-16</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/" itemprop="url" rel="index"><span itemprop="name">线性代数与几何</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/" itemprop="url" rel="index"><span itemprop="name">计算几何</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E7%82%B9%E6%98%AF%E5%90%A6%E5%9C%A8%E7%9F%A9%E5%BD%A2%E5%8C%BA%E5%9F%9F%E5%86%85.html" class="post-meta-item leancloud_visitors" data-flag-title="判断一个点是否在矩形区域内" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E7%82%B9%E6%98%AF%E5%90%A6%E5%9C%A8%E7%9F%A9%E5%BD%A2%E5%8C%BA%E5%9F%9F%E5%86%85.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E7%82%B9%E6%98%AF%E5%90%A6%E5%9C%A8%E7%9F%A9%E5%BD%A2%E5%8C%BA%E5%9F%9F%E5%86%85.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="判断一个点是否在矩形区域内"><a href="#判断一个点是否在矩形区域内" class="headerlink" title="判断一个点是否在矩形区域内"></a>判断一个点是否在矩形区域内</h1>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E7%82%B9%E6%98%AF%E5%90%A6%E5%9C%A8%E7%9F%A9%E5%BD%A2%E5%8C%BA%E5%9F%9F%E5%86%85.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E7%BA%BF%E6%AE%B5%E7%9B%B8%E4%BA%A4.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E7%BA%BF%E6%AE%B5%E7%9B%B8%E4%BA%A4.html" class="post-title-link" itemprop="url">线段相交</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-16 18:15:12" itemprop="dateCreated datePublished" datetime="2020-07-16T18:15:12+08:00">2020-07-16</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/" itemprop="url" rel="index"><span itemprop="name">线性代数与几何</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/" itemprop="url" rel="index"><span itemprop="name">计算几何</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E7%BA%BF%E6%AE%B5%E7%9B%B8%E4%BA%A4.html" class="post-meta-item leancloud_visitors" data-flag-title="线段相交" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E7%BA%BF%E6%AE%B5%E7%9B%B8%E4%BA%A4.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E7%BA%BF%E6%AE%B5%E7%9B%B8%E4%BA%A4.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="线段相交"><a href="#线段相交" class="headerlink" title="线段相交"></a>线段相交</h1><h2 id="方程式"><a href="#方程式" class="headerlink" title="方程式"></a>方程式</h2><hr>
-<p>1.如果</p>
-<script type="math/tex; mode=display">\vec{A1B1}\ast\vec{A2B2}==0</script><p>则线段平行<br>2.</p>
-<script type="math/tex; mode=display">\vec{A1P}=u*\vec{A1B1}</script><script type="math/tex; mode=display">\vec{A2P}=v*\vec{A2B2}</script><p>求出u,v的值，<br>如果 0&lt;=u&lt;=1,0&lt;=v&lt;=1，则线段相交，否则不相交<br>3.根据 u或者v 可以求的交点  </p>
-<hr>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">IsLineIntersected</span><span class="params">( lt::Vector2&lt;<span class="keyword">float</span>&gt; a1, lt::Vector2&lt;<span class="keyword">float</span>&gt; b1, lt::Vector2&lt;<span class="keyword">float</span>&gt; a2, lt::Vector2&lt;<span class="keyword">float</span>&gt; b2)</span> </span>&#123;</span><br><span class="line">	lt::Vector2&lt;<span class="keyword">float</span>&gt; a1b1 = b1 - a1;</span><br><span class="line">	lt::Vector2&lt;<span class="keyword">float</span>&gt; a2b2 = b2 - a2;</span><br><span class="line">	lt::Vector2&lt;<span class="keyword">float</span>&gt; a2a1 = a1 - a2;</span><br><span class="line">	lt::Vector2&lt;<span class="keyword">float</span>&gt; a1a2 = a2 - a1;</span><br><span class="line">	<span class="keyword">if</span> (a1b1.x * a2b2.y - a2b2.x * a1b1.y == <span class="number">0</span>) &#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;</span><br><span class="line">	<span class="keyword">float</span> u = (a2b2.x * a2a1.y - a2a1.x * a2b2.y) / (a1b1.x * a2b2.y - a2b2.x * a1b1.y);</span><br><span class="line">	<span class="keyword">float</span> v = (a1b1.x * a1a2.y - a1a2.x * a1b1.y) / (a2b2.x * a1b1.y - a1b1.x * a2b2.y);</span><br><span class="line">	<span class="keyword">return</span> u &gt;= <span class="number">0</span> &amp;&amp; u &lt;= <span class="number">1</span> &amp;&amp; v &gt;= <span class="number">0</span> &amp;&amp; v&lt;=<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">lt::Vector2&lt;<span class="keyword">float</span>&gt; <span class="title">PointLineIntersected</span><span class="params">(lt::Vector2&lt;<span class="keyword">float</span>&gt; a1, lt::Vector2&lt;<span class="keyword">float</span>&gt; b1, lt::Vector2&lt;<span class="keyword">float</span>&gt; a2, lt::Vector2&lt;<span class="keyword">float</span>&gt; b2)</span> </span>&#123;</span><br><span class="line">	lt::Vector2&lt;<span class="keyword">float</span>&gt; a1b1 = b1 - a1;</span><br><span class="line">	lt::Vector2&lt;<span class="keyword">float</span>&gt; a2b2 = b2 - a2;</span><br><span class="line">	lt::Vector2&lt;<span class="keyword">float</span>&gt; a2a1 = a1 - a2;</span><br><span class="line">	lt::Vector2&lt;<span class="keyword">float</span>&gt; a1a2 = a2 - a1;</span><br><span class="line">	<span class="keyword">float</span> u = (a2b2.x * a2a1.y - a2a1.x * a2b2.y) / (a1b1.x * a2b2.y - a2b2.x * a1b1.y);</span><br><span class="line">	<span class="keyword">return</span> a1 + a1b1 * u;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E7%BA%BF%E6%AE%B5%E7%9B%B8%E4%BA%A4.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E8%A3%81%E5%89%AA%E7%AE%97%E6%B3%95.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E8%A3%81%E5%89%AA%E7%AE%97%E6%B3%95.html" class="post-title-link" itemprop="url">裁剪算法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-16 18:15:12" itemprop="dateCreated datePublished" datetime="2020-07-16T18:15:12+08:00">2020-07-16</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/" itemprop="url" rel="index"><span itemprop="name">线性代数与几何</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/" itemprop="url" rel="index"><span itemprop="name">计算几何</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E8%A3%81%E5%89%AA%E7%AE%97%E6%B3%95.html" class="post-meta-item leancloud_visitors" data-flag-title="裁剪算法" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E8%A3%81%E5%89%AA%E7%AE%97%E6%B3%95.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E8%A3%81%E5%89%AA%E7%AE%97%E6%B3%95.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="裁剪算法"><a href="#裁剪算法" class="headerlink" title="裁剪算法"></a>裁剪算法</h1><h2 id="Sutherland－Hodgeman算法"><a href="#Sutherland－Hodgeman算法" class="headerlink" title="Sutherland－Hodgeman算法"></a>Sutherland－Hodgeman算法</h2><h2 id="Cohen—Sutherland算法"><a href="#Cohen—Sutherland算法" class="headerlink" title="Cohen—Sutherland算法"></a>Cohen—Sutherland算法</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E8%A3%81%E5%89%AA%E7%AE%97%E6%B3%95.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0.html" class="post-title-link" itemprop="url">三角函数</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-16 18:15:12" itemprop="dateCreated datePublished" datetime="2020-07-16T18:15:12+08:00">2020-07-16</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/" itemprop="url" rel="index"><span itemprop="name">线性代数与几何</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/" itemprop="url" rel="index"><span itemprop="name">计算几何</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0.html" class="post-meta-item leancloud_visitors" data-flag-title="三角函数" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="三角函数"><a href="#三角函数" class="headerlink" title="三角函数"></a>三角函数</h1>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E7%82%B9%E6%98%AF%E5%90%A6%E5%9C%A8%E5%A4%9A%E8%BE%B9%E5%BD%A2%E5%86%85.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E7%82%B9%E6%98%AF%E5%90%A6%E5%9C%A8%E5%A4%9A%E8%BE%B9%E5%BD%A2%E5%86%85.html" class="post-title-link" itemprop="url">判断一个点是否在多边形内</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-16 18:15:12" itemprop="dateCreated datePublished" datetime="2020-07-16T18:15:12+08:00">2020-07-16</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/" itemprop="url" rel="index"><span itemprop="name">线性代数与几何</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/" itemprop="url" rel="index"><span itemprop="name">计算几何</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E7%82%B9%E6%98%AF%E5%90%A6%E5%9C%A8%E5%A4%9A%E8%BE%B9%E5%BD%A2%E5%86%85.html" class="post-meta-item leancloud_visitors" data-flag-title="判断一个点是否在多边形内" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E7%82%B9%E6%98%AF%E5%90%A6%E5%9C%A8%E5%A4%9A%E8%BE%B9%E5%BD%A2%E5%86%85.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E7%82%B9%E6%98%AF%E5%90%A6%E5%9C%A8%E5%A4%9A%E8%BE%B9%E5%BD%A2%E5%86%85.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="判断一个点是否在多边形内"><a href="#判断一个点是否在多边形内" class="headerlink" title="判断一个点是否在多边形内"></a>判断一个点是否在多边形内</h1><hr>
-<p>判断点$p$是否在$(a,b,c)$组成的三角形内  </p>
-<hr>
-<h2 id="面积法"><a href="#面积法" class="headerlink" title="面积法"></a>面积法</h2><hr>
-<p>如果 $(p,a,b),(p,a,c),(p,b,c)$ 三个三角形的面积和等于三角形$(a,b,c)$的面积，则代表点$p$在三角形$(a,b,c)$内  </p>
-<hr>
-
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E7%82%B9%E6%98%AF%E5%90%A6%E5%9C%A8%E5%A4%9A%E8%BE%B9%E5%BD%A2%E5%86%85.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/Transformation.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/Transformation.html" class="post-title-link" itemprop="url">Transformation</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-16 13:43:01" itemprop="dateCreated datePublished" datetime="2020-07-16T13:43:01+08:00">2020-07-16</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">图形学</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/" itemprop="url" rel="index"><span itemprop="name">Transformation</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/Transformation.html" class="post-meta-item leancloud_visitors" data-flag-title="Transformation" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/Transformation.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/Transformation.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Transformation"><a href="#Transformation" class="headerlink" title="Transformation"></a>Transformation</h1><h2 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h2><script type="math/tex; mode=display">R_{xyz}(\alpha,\beta,\gamma)=R_{x}(\alpha)R_{y}(\beta)R_{z}(\gamma)</script><script type="math/tex; mode=display">R_{x}(\alpha)=
-\begin{bmatrix}
-1&0&0&0\\
-0&cos{\alpha}&-sin{\alpha}&0\\
-0&sin{\alpha}&cos{\alpha}&0\\
-0&0&0&1\\
-\end{bmatrix}</script><script type="math/tex; mode=display">R_{y}(\beta)=
-\begin{bmatrix}
-cos{\beta}&0&sin{\beta}&0\\
-0&0&0&0\\
--sin{\beta}&0&cos{\beta}&0\\
-0&0&0&1\\
-\end{bmatrix}</script><script type="math/tex; mode=display">R_{z}(\gamma)=
-\begin{bmatrix}
-cos{\gamma}&-sin{\gamma}&0&0\\
-sin{\gamma}&cos{\gamma}&0&0\\
-0&0&0&0\\
-0&0&0&1\\
-\end{bmatrix}</script><h2 id="缩放"><a href="#缩放" class="headerlink" title="缩放"></a>缩放</h2><script type="math/tex; mode=display">S_{(s_x,s_y,s_z)}\begin{bmatrix}
-s_x&0&0&0\\
-0&s_y&0&0\\
-0&0&s_z&0\\
-0&0&0&1\\
-\end{bmatrix}</script><h2 id="齐次坐标"><a href="#齐次坐标" class="headerlink" title="齐次坐标"></a>齐次坐标</h2><h2 id="平移"><a href="#平移" class="headerlink" title="平移"></a>平移</h2><script type="math/tex; mode=display">T_{(t_x,t_y,t_z)}=\begin{bmatrix}
-1&0&0&t_x\\
-0&1&0&t_y\\
-0&0&1&t_z\\
-0&0&0&1\\
-\end{bmatrix}</script><h2 id="模型变换Modeling"><a href="#模型变换Modeling" class="headerlink" title="模型变换Modeling"></a>模型变换Modeling</h2><h2 id="视图变换View"><a href="#视图变换View" class="headerlink" title="视图变换View"></a>视图变换View</h2><p>Camera Position<br>Camera LookAt<br>Camera UpDirection</p>
-<h2 id="投影变换Projection"><a href="#投影变换Projection" class="headerlink" title="投影变换Projection"></a>投影变换Projection</h2><h3 id="Orthographic-Projection"><a href="#Orthographic-Projection" class="headerlink" title="Orthographic Projection"></a>Orthographic Projection</h3>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/Transformation.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2.html" class="post-title-link" itemprop="url">空间变换</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-16 13:43:01" itemprop="dateCreated datePublished" datetime="2020-07-16T13:43:01+08:00">2020-07-16</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">图形学</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/" itemprop="url" rel="index"><span itemprop="name">Transformation</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2.html" class="post-meta-item leancloud_visitors" data-flag-title="空间变换" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="空间变换"><a href="#空间变换" class="headerlink" title="空间变换"></a>空间变换</h1><h2 id="空间变换和矩阵变换"><a href="#空间变换和矩阵变换" class="headerlink" title="空间变换和矩阵变换"></a>空间变换和矩阵变换</h2><h2 id="根据变换操作求变换矩阵"><a href="#根据变换操作求变换矩阵" class="headerlink" title="根据变换操作求变换矩阵"></a>根据变换操作求变换矩阵</h2><h2 id="本地坐标系和世界坐标系的相互变换-本地空间和世界空间"><a href="#本地坐标系和世界坐标系的相互变换-本地空间和世界空间" class="headerlink" title="本地坐标系和世界坐标系的相互变换(本地空间和世界空间)"></a>本地坐标系和世界坐标系的相互变换(本地空间和世界空间)</h2><ul>
-<li>已知世界坐标点和变换操作，计算变换矩阵，求本地坐标点</li>
-<li>已知本地坐标点和变换操作，计算变换矩阵，求世界坐标点</li>
-<li>已知世界坐标系和本地坐标系，计算变换矩阵  </li>
-</ul>
-<h2 id="视图变换-摄像机坐标系"><a href="#视图变换-摄像机坐标系" class="headerlink" title="视图变换(摄像机坐标系)"></a>视图变换(摄像机坐标系)</h2><h2 id="投影变换"><a href="#投影变换" class="headerlink" title="投影变换"></a>投影变换</h2><h3 id="正交投影"><a href="#正交投影" class="headerlink" title="正交投影"></a>正交投影</h3><h3 id="透视投影"><a href="#透视投影" class="headerlink" title="透视投影"></a>透视投影</h3>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1302,7 +1211,7 @@ s_x&0&0&0\\
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">391</span>
+          <span class="site-state-item-count">400</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1517,59 +1426,6 @@ s_x&0&0&0\\
   
 
   
-      
-
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
-
-    
 
   
 
