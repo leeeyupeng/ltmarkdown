@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://leeeyupeng.github.io/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/Unity/Scripts/Destroy.html</loc>
+    <lastmod>2021-01-06</lastmod>
+  </url>
+  <url>
+    <loc>https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%9B%BE%E8%AE%BA/%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84/%E6%AC%A1%E7%9F%AD%E8%B7%AF.html</loc>
+    <lastmod>2020-12-31</lastmod>
+  </url>
+  <url>
+    <loc>https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%9B%BE%E8%AE%BA/%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84/%E7%AC%ACK%E7%9F%AD%E8%B7%AF.html</loc>
+    <lastmod>2020-12-31</lastmod>
+  </url>
+  <url>
     <loc>https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A0%88/%E6%A0%88.html</loc>
     <lastmod>2020-12-23</lastmod>
   </url>
   <url>
     <loc>https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%9B%BE%E8%AE%BA/%E5%93%88%E5%AF%86%E9%A1%BF%E5%9B%BE/%E5%93%88%E5%AF%86%E9%A1%BF%E5%9B%BE.html</loc>
-    <lastmod>2020-12-22</lastmod>
+    <lastmod>2020-12-23</lastmod>
   </url>
   <url>
     <loc>https://leeeyupeng.github.io/cpp/template/C++%E6%A8%A1%E6%9D%BF%E5%85%83%E7%BC%96%E7%A8%8B%EF%BC%88C++%20template%20metaprogramming%EF%BC%89.html</loc>

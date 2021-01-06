@@ -46,30 +46,30 @@ public:
     }
 };
 
-int main(){
-    int n,m;
-    Solution solution;
-    while(scanf("%d%d",&n,&m)){
-        if(n==0&&m==0){break;}
-        vector<EdgeNode*> vertice(n+1);
-        vector<EdgeNode> edges((m<<1),EdgeNode(0));
-        int s,t,d,p;
-        for(int i = 0; i < m; i ++){
-            scanf("%d%d%d%d",&s,&t,&d,&p);
-            edges[(i<<1)].t = t;
-            edges[(i<<1)].d = d;
-            edges[(i<<1)].p = p;
-            edges[(i<<1)].next = vertice[s];
-            vertice[s] = &edges[(i<<1)];
-            edges[(i<<1) + 1].t = s;
-            edges[(i<<1) + 1].d = d;
-            edges[(i<<1) + 1].p = p;
-            edges[(i<<1) + 1].next = vertice[t];
-            vertice[t]=&edges[(i<<1) + 1];
-        }
-        scanf("%d%d",&s,&t);
-        pair<int,int> ret = solution.shortestpath(vertice,edges,n,m,s,t);
-        printf("%d %d\n",ret.first,ret.second);
-    }
-    return 0;
-}
+// int main(){
+//     int n,m;
+//     Solution solution;
+//     while(scanf("%d%d",&n,&m)){
+//         if(n==0&&m==0){break;}
+//         vector<EdgeNode*> vertice(n+1);
+//         vector<EdgeNode> edges((m<<1),EdgeNode(0));
+//         int s,t,d,p;
+//         for(int i = 0; i < m; i ++){
+//             scanf("%d%d%d%d",&s,&t,&d,&p);
+//             edges[(i<<1)].t = t;
+//             edges[(i<<1)].d = d;
+//             edges[(i<<1)].p = p;
+//             edges[(i<<1)].next = vertice[s];
+//             vertice[s] = &edges[(i<<1)];
+//             edges[(i<<1) + 1].t = s;
+//             edges[(i<<1) + 1].d = d;
+//             edges[(i<<1) + 1].p = p;
+//             edges[(i<<1) + 1].next = vertice[t];
+//             vertice[t]=&edges[(i<<1) + 1];
+//         }
+//         scanf("%d%d",&s,&t);
+//         pair<int,int> ret = solution.shortestpath(vertice,edges,n,m,s,t);
+//         printf("%d %d\n",ret.first,ret.second);
+//     }
+//     return 0;
+// }
