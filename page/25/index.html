@@ -153,6 +153,559 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E7%82%B9%E6%98%AF%E5%90%A6%E5%9C%A8%E5%A4%9A%E8%BE%B9%E5%BD%A2%E5%86%85.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E7%82%B9%E6%98%AF%E5%90%A6%E5%9C%A8%E5%A4%9A%E8%BE%B9%E5%BD%A2%E5%86%85.html" class="post-title-link" itemprop="url">判断一个点是否在多边形内</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-16 18:15:12" itemprop="dateCreated datePublished" datetime="2020-07-16T18:15:12+08:00">2020-07-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/" itemprop="url" rel="index"><span itemprop="name">线性代数与几何</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/" itemprop="url" rel="index"><span itemprop="name">计算几何</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E7%82%B9%E6%98%AF%E5%90%A6%E5%9C%A8%E5%A4%9A%E8%BE%B9%E5%BD%A2%E5%86%85.html" class="post-meta-item leancloud_visitors" data-flag-title="判断一个点是否在多边形内" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E7%82%B9%E6%98%AF%E5%90%A6%E5%9C%A8%E5%A4%9A%E8%BE%B9%E5%BD%A2%E5%86%85.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E7%82%B9%E6%98%AF%E5%90%A6%E5%9C%A8%E5%A4%9A%E8%BE%B9%E5%BD%A2%E5%86%85.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="判断一个点是否在多边形内"><a href="#判断一个点是否在多边形内" class="headerlink" title="判断一个点是否在多边形内"></a>判断一个点是否在多边形内</h1><hr>
+<p>判断点$p$是否在$(a,b,c)$组成的三角形内  </p>
+<hr>
+<h2 id="面积法"><a href="#面积法" class="headerlink" title="面积法"></a>面积法</h2><hr>
+<p>如果 $(p,a,b),(p,a,c),(p,b,c)$ 三个三角形的面积和等于三角形$(a,b,c)$的面积，则代表点$p$在三角形$(a,b,c)$内  </p>
+<hr>
+
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%87%A0%E4%BD%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E7%82%B9%E6%98%AF%E5%90%A6%E5%9C%A8%E5%A4%9A%E8%BE%B9%E5%BD%A2%E5%86%85.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/Transformation.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/Transformation.html" class="post-title-link" itemprop="url">Transformation</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-16 13:43:01" itemprop="dateCreated datePublished" datetime="2020-07-16T13:43:01+08:00">2020-07-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">图形学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/" itemprop="url" rel="index"><span itemprop="name">Transformation</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/Transformation.html" class="post-meta-item leancloud_visitors" data-flag-title="Transformation" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/Transformation.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/Transformation.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Transformation"><a href="#Transformation" class="headerlink" title="Transformation"></a>Transformation</h1><h2 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h2><script type="math/tex; mode=display">R_{xyz}(\alpha,\beta,\gamma)=R_{x}(\alpha)R_{y}(\beta)R_{z}(\gamma)</script><script type="math/tex; mode=display">R_{x}(\alpha)=
+\begin{bmatrix}
+1&0&0&0\\
+0&cos{\alpha}&-sin{\alpha}&0\\
+0&sin{\alpha}&cos{\alpha}&0\\
+0&0&0&1\\
+\end{bmatrix}</script><script type="math/tex; mode=display">R_{y}(\beta)=
+\begin{bmatrix}
+cos{\beta}&0&sin{\beta}&0\\
+0&0&0&0\\
+-sin{\beta}&0&cos{\beta}&0\\
+0&0&0&1\\
+\end{bmatrix}</script><script type="math/tex; mode=display">R_{z}(\gamma)=
+\begin{bmatrix}
+cos{\gamma}&-sin{\gamma}&0&0\\
+sin{\gamma}&cos{\gamma}&0&0\\
+0&0&0&0\\
+0&0&0&1\\
+\end{bmatrix}</script><h2 id="缩放"><a href="#缩放" class="headerlink" title="缩放"></a>缩放</h2><script type="math/tex; mode=display">S_{(s_x,s_y,s_z)}\begin{bmatrix}
+s_x&0&0&0\\
+0&s_y&0&0\\
+0&0&s_z&0\\
+0&0&0&1\\
+\end{bmatrix}</script><h2 id="齐次坐标"><a href="#齐次坐标" class="headerlink" title="齐次坐标"></a>齐次坐标</h2><h2 id="平移"><a href="#平移" class="headerlink" title="平移"></a>平移</h2><script type="math/tex; mode=display">T_{(t_x,t_y,t_z)}=\begin{bmatrix}
+1&0&0&t_x\\
+0&1&0&t_y\\
+0&0&1&t_z\\
+0&0&0&1\\
+\end{bmatrix}</script><h2 id="模型变换Modeling"><a href="#模型变换Modeling" class="headerlink" title="模型变换Modeling"></a>模型变换Modeling</h2><h2 id="视图变换View"><a href="#视图变换View" class="headerlink" title="视图变换View"></a>视图变换View</h2><p>Camera Position<br>Camera LookAt<br>Camera UpDirection</p>
+<h2 id="投影变换Projection"><a href="#投影变换Projection" class="headerlink" title="投影变换Projection"></a>投影变换Projection</h2><h3 id="Orthographic-Projection"><a href="#Orthographic-Projection" class="headerlink" title="Orthographic Projection"></a>Orthographic Projection</h3>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/Transformation.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/%E7%BB%95%E4%BB%BB%E6%84%8F%E7%82%B9%E6%97%8B%E8%BD%AC.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/%E7%BB%95%E4%BB%BB%E6%84%8F%E7%82%B9%E6%97%8B%E8%BD%AC.html" class="post-title-link" itemprop="url">绕任意点旋转</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-16 13:43:01" itemprop="dateCreated datePublished" datetime="2020-07-16T13:43:01+08:00">2020-07-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">图形学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/" itemprop="url" rel="index"><span itemprop="name">Transformation</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/%E7%BB%95%E4%BB%BB%E6%84%8F%E7%82%B9%E6%97%8B%E8%BD%AC.html" class="post-meta-item leancloud_visitors" data-flag-title="绕任意点旋转" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/%E7%BB%95%E4%BB%BB%E6%84%8F%E7%82%B9%E6%97%8B%E8%BD%AC.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/%E7%BB%95%E4%BB%BB%E6%84%8F%E7%82%B9%E6%97%8B%E8%BD%AC.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="绕任意点旋转"><a href="#绕任意点旋转" class="headerlink" title="绕任意点旋转"></a>绕任意点旋转</h1><p>以点$C(c_x,c_y,c_z)$为原点，旋转$\theta(\alpha,\beta,\gamma)$</p>
+<ul>
+<li>1.先将整个模型平移，点C平移到原点；</li>
+<li>2.然后旋转$\theta$；</li>
+<li>3.最后将整个模型平移，原点平移到点C原来的位置;</li>
+</ul>
+<h2 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h2><script type="math/tex; mode=display">T(C)R(\theta)T(-C)</script><script type="math/tex; mode=display">\begin{bmatrix}
+1&0&0&c_x\\
+0&1&0&c_y\\
+0&0&1&c_z\\
+0&0&0&1\\
+\end{bmatrix}
+R(\theta)
+\begin{bmatrix}
+1&0&0&-c_x\\
+0&1&0&-c_y\\
+0&0&1&-c_z\\
+0&0&0&1\\
+\end{bmatrix}</script>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/%E7%BB%95%E4%BB%BB%E6%84%8F%E7%82%B9%E6%97%8B%E8%BD%AC.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2.html" class="post-title-link" itemprop="url">空间变换</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-16 13:43:01" itemprop="dateCreated datePublished" datetime="2020-07-16T13:43:01+08:00">2020-07-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">图形学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/" itemprop="url" rel="index"><span itemprop="name">Transformation</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2.html" class="post-meta-item leancloud_visitors" data-flag-title="空间变换" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="空间变换"><a href="#空间变换" class="headerlink" title="空间变换"></a>空间变换</h1><h2 id="空间变换和矩阵变换"><a href="#空间变换和矩阵变换" class="headerlink" title="空间变换和矩阵变换"></a>空间变换和矩阵变换</h2><h2 id="根据变换操作求变换矩阵"><a href="#根据变换操作求变换矩阵" class="headerlink" title="根据变换操作求变换矩阵"></a>根据变换操作求变换矩阵</h2><h2 id="本地坐标系和世界坐标系的相互变换-本地空间和世界空间"><a href="#本地坐标系和世界坐标系的相互变换-本地空间和世界空间" class="headerlink" title="本地坐标系和世界坐标系的相互变换(本地空间和世界空间)"></a>本地坐标系和世界坐标系的相互变换(本地空间和世界空间)</h2><ul>
+<li>已知世界坐标点和变换操作，计算变换矩阵，求本地坐标点</li>
+<li>已知本地坐标点和变换操作，计算变换矩阵，求世界坐标点</li>
+<li>已知世界坐标系和本地坐标系，计算变换矩阵  </li>
+</ul>
+<h2 id="视图变换-摄像机坐标系"><a href="#视图变换-摄像机坐标系" class="headerlink" title="视图变换(摄像机坐标系)"></a>视图变换(摄像机坐标系)</h2><h2 id="投影变换"><a href="#投影变换" class="headerlink" title="投影变换"></a>投影变换</h2><h3 id="正交投影"><a href="#正交投影" class="headerlink" title="正交投影"></a>正交投影</h3><h3 id="透视投影"><a href="#透视投影" class="headerlink" title="透视投影"></a>透视投影</h3>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Transformation/%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/web/css%E6%A0%87%E9%A2%98.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/web/css%E6%A0%87%E9%A2%98.html" class="post-title-link" itemprop="url">css标题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-15 12:39:25" itemprop="dateCreated datePublished" datetime="2020-07-15T12:39:25+08:00">2020-07-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/web/css%E6%A0%87%E9%A2%98.html" class="post-meta-item leancloud_visitors" data-flag-title="css标题" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/web/css%E6%A0%87%E9%A2%98.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/web/css%E6%A0%87%E9%A2%98.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="css标题"><a href="#css标题" class="headerlink" title="css标题"></a>css标题</h1><h2 id="css标题2"><a href="#css标题2" class="headerlink" title="css标题2"></a>css标题2</h2><h3 id="css标题3"><a href="#css标题3" class="headerlink" title="css标题3"></a>css标题3</h3><h4 id="css标题4"><a href="#css标题4" class="headerlink" title="css标题4"></a>css标题4</h4><h5 id="css标题5"><a href="#css标题5" class="headerlink" title="css标题5"></a>css标题5</h5>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/web/css%E6%A0%87%E9%A2%98.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/web/html%E8%A1%A8%E6%A0%BC.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -726,519 +1279,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/assembly.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/assembly.html" class="post-title-link" itemprop="url">OPENGL assembly</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-15 12:39:25" itemprop="dateCreated datePublished" datetime="2020-07-15T12:39:25+08:00">2020-07-15</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/OpenGL/" itemprop="url" rel="index"><span itemprop="name">OpenGL</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/assembly.html" class="post-meta-item leancloud_visitors" data-flag-title="OPENGL assembly" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/assembly.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/assembly.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="OPENGL-assembly"><a href="#OPENGL-assembly" class="headerlink" title="OPENGL assembly"></a>OPENGL assembly</h1><h2 id="NVEmulate"><a href="#NVEmulate" class="headerlink" title="NVEmulate"></a>NVEmulate</h2><hr>
-<hr>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
-<li><a href="https://developer.nvidia.com/nvemulate" target="_blank" rel="noopener">NVEmulate</a></li>
-<li><a href="https://www.khronos.org/registry/OpenGL/extensions/ARB/ARB_get_program_binary.txt" target="_blank" rel="noopener">ARB_get_program_binary</a></li>
-<li><a href="https://computergraphics.stackexchange.com/questions/7594/how-to-get-assembly-code-from-glsl-shader" target="_blank" rel="noopener">how-to-get-assembly-code-from-glsl-shader</a></li>
-</ul>
-
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/assembly.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/history.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/history.html" class="post-title-link" itemprop="url">OPENGL History</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-15 12:39:25" itemprop="dateCreated datePublished" datetime="2020-07-15T12:39:25+08:00">2020-07-15</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/OpenGL/" itemprop="url" rel="index"><span itemprop="name">OpenGL</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/history.html" class="post-meta-item leancloud_visitors" data-flag-title="OPENGL History" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/history.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/history.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="/images/opengl/opengl.jpg" alt><br><img src="/images/opengl/history.jpg" alt>  </p>
-<h1 id="OpenGL-2-0"><a href="#OpenGL-2-0" class="headerlink" title="OpenGL 2.0"></a>OpenGL 2.0</h1><h1 id="OpenGL-3-0"><a href="#OpenGL-3-0" class="headerlink" title="OpenGL 3.0"></a>OpenGL 3.0</h1><h1 id="OpenGL-3-3"><a href="#OpenGL-3-3" class="headerlink" title="OpenGL 3.3"></a>OpenGL 3.3</h1><h1 id="OpenGL-4-0"><a href="#OpenGL-4-0" class="headerlink" title="OpenGL 4.0"></a>OpenGL 4.0</h1>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/history.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/learn.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/learn.html" class="post-title-link" itemprop="url">游戏开发/OpenGL/learn</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-15 12:39:25" itemprop="dateCreated datePublished" datetime="2020-07-15T12:39:25+08:00">2020-07-15</time>
-            </span>
-
-          
-            <span id="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/learn.html" class="post-meta-item leancloud_visitors" data-flag-title="游戏开发/OpenGL/learn" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/learn.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/learn.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="learn"><a href="#learn" class="headerlink" title="learn"></a>learn</h1><h3 id="ubo"><a href="#ubo" class="headerlink" title="ubo"></a><a href="/ubo.html">ubo</a></h3><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><h3 id="Shading-Language"><a href="#Shading-Language" class="headerlink" title="Shading_Language"></a><a href="https://www.khronos.org/opengl/wiki/Selecting_a_Shading_Language#SPIR-V" target="_blank" rel="noopener">Shading_Language</a></h3>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/learn.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/opengl%20api.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/opengl%20api.html" class="post-title-link" itemprop="url">OPENGL API</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-15 12:39:25" itemprop="dateCreated datePublished" datetime="2020-07-15T12:39:25+08:00">2020-07-15</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/OpenGL/" itemprop="url" rel="index"><span itemprop="name">OpenGL</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/opengl%20api.html" class="post-meta-item leancloud_visitors" data-flag-title="OPENGL API" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/opengl%20api.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/opengl%20api.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="/images/opengl/opengl.jpg" alt>  </p>
-<h1 id="A"><a href="#A" class="headerlink" title="A"></a>A</h1><h1 id="B"><a href="#B" class="headerlink" title="B"></a>B</h1><h1 id="C"><a href="#C" class="headerlink" title="C"></a>C</h1><h1 id="D"><a href="#D" class="headerlink" title="D"></a>D</h1><h2 id="glDrawElements"><a href="#glDrawElements" class="headerlink" title="glDrawElements"></a>glDrawElements</h2><hr>
-<p>函数原型为:void glDrawElements(GLenum mode, GLsizei count,GLenum type, const GLvoid * indices);   </p>
-<p>Specifies what kind of primitives to render. Symbolic constants GL_POINTS, GL_LINE_STRIP, GL_LINE_LOOP, GL_LINES, GL_TRIANGLE_STRIP, GL_TRIANGLE_FAN and GL_TRIANGLES are accepted.</p>
-<pre><code>GL_POINTS：点
-GL_LINES：线段，二个点确定线段
-GL_LINE_STRIP：第一个点依次连接的线段
-GL_LINE_LOOP：和GL_LINE_STRIP相同，但首尾连接，形成环状
-GL_TRIANGLES：三角形，三个点确定
-GL_TRIANGLE_STRIP：共用一个条带上的顶点的一组三角形
-GL_TRIANGLE_FAN：以一个原点为中心呈扇形排列，公共相邻顶点的一组三角形  
-</code></pre>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/opengl%20api.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/opengl.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/opengl.html" class="post-title-link" itemprop="url">OPENGL</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-15 12:39:25" itemprop="dateCreated datePublished" datetime="2020-07-15T12:39:25+08:00">2020-07-15</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/OpenGL/" itemprop="url" rel="index"><span itemprop="name">OpenGL</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/opengl.html" class="post-meta-item leancloud_visitors" data-flag-title="OPENGL" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/opengl.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/opengl.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Welcome-to-OpenGL"><a href="#Welcome-to-OpenGL" class="headerlink" title="Welcome to OpenGL"></a>Welcome to OpenGL</h2><p><img alt="OpenGL Logo" src="/images/opengl/opengl.jpg" class="right"></p>
-<h3 id="learn"><a href="#learn" class="headerlink" title="learn"></a><a href="learn/learn.html">learn</a></h3><video src="/images/opengl/movie.mp4" controls="controls" width="100%" height="100%"></video>
-
-<h3 id="Books"><a href="#Books" class="headerlink" title="Books"></a>Books</h3><ul>
-<li><a href="https://books.google.it/books?id=OVpsAQAAQBAJ" target="_blank" rel="noopener">Computer Graphics: Principles and Practice</a></li>
-<li><a href="http://www.opengl-redbook.com/" target="_blank" rel="noopener">redbook</a></li>
-<li><a href="http://www.openglsuperbible.com/" target="_blank" rel="noopener">openglsuperbible</a></li>
-<li><a href="https://learnopengl-cn.github.io/" target="_blank" rel="noopener">learnopengl</a></li>
-</ul>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
-<li><a href="https://www.opengl.org/" target="_blank" rel="noopener">opengl.org</a>：OpenGL官方网站。</li>
-<li><a href="https://www.opengl.org/registry/" target="_blank" rel="noopener">OpenGL registry</a>：包含OpenGL各版本的规范和扩展。</li>
-<li><a href="https://www.khronos.org/" target="_blank" rel="noopener">khronos</a></li>
-<li><a href="https://github.khronos.org/" target="_blank" rel="noopener">khronos github</a></li>
-<li><a href="https://www.khronos.org/opengl/wiki" target="_blank" rel="noopener">khronos opengl wiki</a></li>
-<li><a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/" target="_blank" rel="noopener">khronos opengl reference</a> api</li>
-<li><a href="http://www.opengl-redbook.com/" target="_blank" rel="noopener">opengl redbook</a></li>
-<li><a href="http://www.openglsuperbible.com/" target="_blank" rel="noopener">openglsuperbible</a></li>
-<li><a href="https://learnopengl-cn.github.io/" target="_blank" rel="noopener">learnopengl</a></li>
-<li><a href="https://www.mesa3d.org/install.html" target="_blank" rel="noopener">mesa3d</a></li>
-</ul>
-<h2 id="聯係方式"><a href="#聯係方式" class="headerlink" title="聯係方式"></a>聯係方式</h2><ul>
-<li>QQ:418846793</li>
-<li>email:leeyupeng@126.com</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/OpenGL/opengl.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/24/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><span class="page-number current">25</span><a class="page-number" href="/page/26/">26</a><span class="space">&hellip;</span><a class="page-number" href="/page/41/">41</a><a class="extend next" rel="next" href="/page/26/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/24/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><span class="page-number current">25</span><a class="page-number" href="/page/26/">26</a><span class="space">&hellip;</span><a class="page-number" href="/page/42/">42</a><a class="extend next" rel="next" href="/page/26/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1305,18 +1349,18 @@ GL_TRIANGLE_FAN：以一个原点为中心呈扇形排列，公共相邻顶点�
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">409</span>
+          <span class="site-state-item-count">414</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-count">58</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">149</span>
+        <span class="site-state-item-count">150</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

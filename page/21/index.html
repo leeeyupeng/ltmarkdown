@@ -153,6 +153,503 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Rasterization/%E5%A4%9A%E8%BE%B9%E5%BD%A2%E7%9A%84%E6%89%AB%E6%8F%8F%E8%BD%AC%E6%8D%A2%E4%B8%8E%E5%8C%BA%E5%9F%9F%E5%A1%AB%E5%85%85.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Rasterization/%E5%A4%9A%E8%BE%B9%E5%BD%A2%E7%9A%84%E6%89%AB%E6%8F%8F%E8%BD%AC%E6%8D%A2%E4%B8%8E%E5%8C%BA%E5%9F%9F%E5%A1%AB%E5%85%85.html" class="post-title-link" itemprop="url">多边形的扫描转换与区域填充</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-20 13:18:58" itemprop="dateCreated datePublished" datetime="2020-07-20T13:18:58+08:00">2020-07-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">图形学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Rasterization/" itemprop="url" rel="index"><span itemprop="name">Rasterization</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Rasterization/%E5%A4%9A%E8%BE%B9%E5%BD%A2%E7%9A%84%E6%89%AB%E6%8F%8F%E8%BD%AC%E6%8D%A2%E4%B8%8E%E5%8C%BA%E5%9F%9F%E5%A1%AB%E5%85%85.html" class="post-meta-item leancloud_visitors" data-flag-title="多边形的扫描转换与区域填充" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Rasterization/%E5%A4%9A%E8%BE%B9%E5%BD%A2%E7%9A%84%E6%89%AB%E6%8F%8F%E8%BD%AC%E6%8D%A2%E4%B8%8E%E5%8C%BA%E5%9F%9F%E5%A1%AB%E5%85%85.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Rasterization/%E5%A4%9A%E8%BE%B9%E5%BD%A2%E7%9A%84%E6%89%AB%E6%8F%8F%E8%BD%AC%E6%8D%A2%E4%B8%8E%E5%8C%BA%E5%9F%9F%E5%A1%AB%E5%85%85.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="多边形的扫描转换与区域填充"><a href="#多边形的扫描转换与区域填充" class="headerlink" title="多边形的扫描转换与区域填充"></a>多边形的扫描转换与区域填充</h1><h2 id="多边形的扫描转换"><a href="#多边形的扫描转换" class="headerlink" title="多边形的扫描转换"></a>多边形的扫描转换</h2><h3 id="扫描线算法"><a href="#扫描线算法" class="headerlink" title="扫描线算法"></a>扫描线算法</h3><p>  <a href="/project/cg/projects/graphic/include/polygonfill_scanning.hpp">polygonfill_scanning.hpp</a><br>  <a href="/project/cg/projects/graphic/src/polygonfill_scanning.cpp">polygonfill_scanning.cpp</a></p>
+<h3 id="边界标志算法"><a href="#边界标志算法" class="headerlink" title="边界标志算法"></a>边界标志算法</h3><p>  <a href="/project/cg/projects/graphic/include/polygonfill_edgemark.hpp">polygonfill_edgemark.hpp</a><br>  <a href="/project/cg/projects/graphic/src/polygonfill_edgemark.cpp">polygonfill_edgemark.cpp</a><br>  <a href="/project/cg/projects/graphic/include/polygonfill_edgemark2.hpp">polygonfill_edgemark2.hpp</a><br>  <a href="/project/cg/projects/graphic/src/polygonfill_edgemark2.cpp">polygonfill_edgemark2.cpp</a></p>
+<h2 id="区域填充"><a href="#区域填充" class="headerlink" title="区域填充"></a>区域填充</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Rasterization/%E5%A4%9A%E8%BE%B9%E5%BD%A2%E7%9A%84%E6%89%AB%E6%8F%8F%E8%BD%AC%E6%8D%A2%E4%B8%8E%E5%8C%BA%E5%9F%9F%E5%A1%AB%E5%85%85.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Rasterization/%E4%B8%AD%E7%82%B9%E7%94%BB%E7%BA%BF%E6%B3%95.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Rasterization/%E4%B8%AD%E7%82%B9%E7%94%BB%E7%BA%BF%E6%B3%95.html" class="post-title-link" itemprop="url">中点画线法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-20 13:18:58" itemprop="dateCreated datePublished" datetime="2020-07-20T13:18:58+08:00">2020-07-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">图形学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Rasterization/" itemprop="url" rel="index"><span itemprop="name">Rasterization</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Rasterization/%E4%B8%AD%E7%82%B9%E7%94%BB%E7%BA%BF%E6%B3%95.html" class="post-meta-item leancloud_visitors" data-flag-title="中点画线法" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Rasterization/%E4%B8%AD%E7%82%B9%E7%94%BB%E7%BA%BF%E6%B3%95.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Rasterization/%E4%B8%AD%E7%82%B9%E7%94%BB%E7%BA%BF%E6%B3%95.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="中点画线法"><a href="#中点画线法" class="headerlink" title="中点画线法"></a>中点画线法</h1><hr>
+<p>直线段L的方程式为F(x, y)=ax+by+c=0  </p>
+<hr>
+<p><a href="/project/cg/projects/graphic/include/midpointline.hpp">midpointline.hpp</a><br><a href="/project/cg/projects/graphic/src/midpointline.cpp">midpointline.cpp</a></p>
+
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Rasterization/%E4%B8%AD%E7%82%B9%E7%94%BB%E7%BA%BF%E6%B3%95.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Rasterization/%E6%95%B0%E5%80%BC%E5%BE%AE%E5%88%86%E6%B3%95%E7%94%BB%E7%BA%BF.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Rasterization/%E6%95%B0%E5%80%BC%E5%BE%AE%E5%88%86%E6%B3%95%E7%94%BB%E7%BA%BF.html" class="post-title-link" itemprop="url">数值微分法画线</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-20 13:18:58" itemprop="dateCreated datePublished" datetime="2020-07-20T13:18:58+08:00">2020-07-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">图形学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Rasterization/" itemprop="url" rel="index"><span itemprop="name">Rasterization</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Rasterization/%E6%95%B0%E5%80%BC%E5%BE%AE%E5%88%86%E6%B3%95%E7%94%BB%E7%BA%BF.html" class="post-meta-item leancloud_visitors" data-flag-title="数值微分法画线" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Rasterization/%E6%95%B0%E5%80%BC%E5%BE%AE%E5%88%86%E6%B3%95%E7%94%BB%E7%BA%BF.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Rasterization/%E6%95%B0%E5%80%BC%E5%BE%AE%E5%88%86%E6%B3%95%E7%94%BB%E7%BA%BF.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="数值微分法画线"><a href="#数值微分法画线" class="headerlink" title="数值微分法画线"></a>数值微分法画线</h1><p><a href="/project/cg/projects/graphic/include/ddaline.hpp">ddaline.hpp</a><br><a href="/project/cg/projects/graphic/src/ddaline.cpp">ddaline.cpp</a></p>
+
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Rasterization/%E6%95%B0%E5%80%BC%E5%BE%AE%E5%88%86%E6%B3%95%E7%94%BB%E7%BA%BF.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Shading/Blinn-Phong%20Reflectance%20Model.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Shading/Blinn-Phong%20Reflectance%20Model.html" class="post-title-link" itemprop="url">Blinn-Phong Reflectance Model</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-20 13:18:58" itemprop="dateCreated datePublished" datetime="2020-07-20T13:18:58+08:00">2020-07-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">图形学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Shading/" itemprop="url" rel="index"><span itemprop="name">Shading</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Shading/Blinn-Phong%20Reflectance%20Model.html" class="post-meta-item leancloud_visitors" data-flag-title="Blinn-Phong Reflectance Model" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Shading/Blinn-Phong%20Reflectance%20Model.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Shading/Blinn-Phong%20Reflectance%20Model.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Ambient-lighting"><a href="#Ambient-lighting" class="headerlink" title="Ambient lighting"></a>Ambient lighting</h2><p>环境光</p>
+<h2 id="Specular-highlights"><a href="#Specular-highlights" class="headerlink" title="Specular highlights"></a>Specular highlights</h2><p>镜面高光</p>
+<h2 id="Diffuse-reflection"><a href="#Diffuse-reflection" class="headerlink" title="Diffuse reflection"></a>Diffuse reflection</h2><p>漫反射</p>
+
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Shading/Blinn-Phong%20Reflectance%20Model.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Shading/ambient.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Shading/ambient.html" class="post-title-link" itemprop="url">ambient</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-20 13:18:58" itemprop="dateCreated datePublished" datetime="2020-07-20T13:18:58+08:00">2020-07-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">图形学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Shading/" itemprop="url" rel="index"><span itemprop="name">Shading</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Shading/ambient.html" class="post-meta-item leancloud_visitors" data-flag-title="ambient" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Shading/ambient.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Shading/ambient.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E5%9B%BE%E5%BD%A2%E5%AD%A6/Shading/diffuse.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -625,492 +1122,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/cpp/cplusplus.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/cpp/cplusplus.html" class="post-title-link" itemprop="url">C++</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-17 11:00:21" itemprop="dateCreated datePublished" datetime="2020-07-17T11:00:21+08:00">2020-07-17</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C-C/" itemprop="url" rel="index"><span itemprop="name">C/C++</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/cpp/cplusplus.html" class="post-meta-item leancloud_visitors" data-flag-title="C++" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/cpp/cplusplus.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/cpp/cplusplus.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Welcome-to-CPlusPlus"><a href="#Welcome-to-CPlusPlus" class="headerlink" title="Welcome to CPlusPlus"></a>Welcome to CPlusPlus</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//hello world</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"hello world"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="聯係方式"><a href="#聯係方式" class="headerlink" title="聯係方式"></a>聯係方式</h2><ul>
-<li>QQ:418846793</li>
-<li>email:leeyupeng@126.com</li>
-</ul>
-
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/cpp/cplusplus.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/cpp/C%E8%AF%AD%E8%A8%80OOP%E5%AE%9E%E7%8E%B0.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/cpp/C%E8%AF%AD%E8%A8%80OOP%E5%AE%9E%E7%8E%B0.html" class="post-title-link" itemprop="url">C语言OOP实现</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-17 11:00:21" itemprop="dateCreated datePublished" datetime="2020-07-17T11:00:21+08:00">2020-07-17</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C-C/" itemprop="url" rel="index"><span itemprop="name">C/C++</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/cpp/C%E8%AF%AD%E8%A8%80OOP%E5%AE%9E%E7%8E%B0.html" class="post-meta-item leancloud_visitors" data-flag-title="C语言OOP实现" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/cpp/C%E8%AF%AD%E8%A8%80OOP%E5%AE%9E%E7%8E%B0.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/cpp/C%E8%AF%AD%E8%A8%80OOP%E5%AE%9E%E7%8E%B0.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="C语言OOP实现"><a href="#C语言OOP实现" class="headerlink" title="C语言OOP实现"></a>C语言OOP实现</h1><hr>
-<p>C语言 类的实现</p>
-<hr>
-<p><a href="/project/cpp/coop/include/shape.h">shape.h</a><br><a href="/project/cpp/coop/src/shape.c">shape.c</a><br><a href="/project/cpp/coop/src/coop.c">coop.c</a></p>
-
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/cpp/C%E8%AF%AD%E8%A8%80OOP%E5%AE%9E%E7%8E%B0.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/cpp/%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/cpp/%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6.html" class="post-title-link" itemprop="url">C++反射机制的实现</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-17 11:00:21" itemprop="dateCreated datePublished" datetime="2020-07-17T11:00:21+08:00">2020-07-17</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C-C/" itemprop="url" rel="index"><span itemprop="name">C/C++</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/cpp/%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6.html" class="post-meta-item leancloud_visitors" data-flag-title="C++反射机制的实现" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/cpp/%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/cpp/%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="反射机制"><a href="#反射机制" class="headerlink" title="反射机制"></a>反射机制</h1><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><hr>
-<p>1.通过类名创建类实例<br>2.通过类成员名字操作类实例成员的值<br>3.通过类方法名字操作类实例方法的调用<br>4.读取配置文件创建类实例，赋值成员，调用成员方法<br>5.将类实例生成配置文件<br>6.创建编辑器对类实例进行赋值修改，保存类实例，加载类实例  </p>
-<hr>
-<h1 id="java的反射机制"><a href="#java的反射机制" class="headerlink" title="java的反射机制"></a>java的反射机制</h1><hr>
-<p>java的反射机制是通过Class实现的<br>1.获取Class<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Student stu1 = <span class="keyword">new</span> Student();<span class="comment">//这一new 产生一个Student对象，一个Class对象。</span></span><br><span class="line">Class stuClass = stu1.getClass();<span class="comment">//获取Class对象</span></span><br><span class="line">System.out.println(stuClass.getName());</span><br><span class="line"></span><br><span class="line"><span class="comment">//第二种方式获取Class对象</span></span><br><span class="line">Class stuClass2 = Student<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line">System.out.println(stuClass == stuClass2);<span class="comment">//判断第一种方式获取的Class对象和第二种方式获取的是否是同一个</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//第三种方式获取Class对象</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  Class stuClass3 = Class.forName(<span class="string">"fanshe.Student"</span>);<span class="comment">//注意此字符串必须是真实路径，就是带包名的类路径，包名.类名</span></span><br><span class="line">  System.out.println(stuClass3 == stuClass2);<span class="comment">//判断三种方式是否获取的是同一个Class对象</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">  e.printStackTrace();</span><br></pre></td></tr></table></figure><br>2.创建实例<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Class&lt;?&gt; c = String<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line">Object str = c.newInstance();</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取String的Class对象</span></span><br><span class="line">Class&lt;?&gt; str = String<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line"><span class="comment">//通过Class对象获取指定的Constructor构造器对象</span></span><br><span class="line">Constructor constructor=c.getConstructor(String<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"><span class="comment">//根据构造器创建实例：</span></span><br><span class="line">Object obj = constructor.newInstance(“hello reflection”);</span><br></pre></td></tr></table></figure></p>
-<p>3.获取成员变量<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.获取Class对象</span></span><br><span class="line">Class stuClass = Class.forName(<span class="string">"fanshe.field.Student"</span>);</span><br><span class="line"><span class="comment">//2.获取字段</span></span><br><span class="line">System.out.println(<span class="string">"************获取所有公有的字段********************"</span>);</span><br><span class="line">Field[] fieldArray = stuClass.getFields();</span><br><span class="line"><span class="keyword">for</span>(Field f : fieldArray)&#123;</span><br><span class="line">	System.out.println(f);</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(<span class="string">"************获取所有的字段(包括私有、受保护、默认的)********************"</span>);</span><br><span class="line">fieldArray = stuClass.getDeclaredFields();</span><br><span class="line"><span class="keyword">for</span>(Field f : fieldArray)&#123;</span><br><span class="line">	System.out.println(f);</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(<span class="string">"*************获取公有字段**并调用***********************************"</span>);</span><br><span class="line">Field f = stuClass.getField(<span class="string">"name"</span>);</span><br><span class="line">System.out.println(f);</span><br><span class="line"><span class="comment">//获取一个对象</span></span><br><span class="line">Object obj = stuClass.getConstructor().newInstance();<span class="comment">//产生Student对象--》Student stu = new Student();</span></span><br><span class="line"><span class="comment">//为字段设置值</span></span><br><span class="line">f.set(obj, <span class="string">"刘德华"</span>);<span class="comment">//为Student对象中的name属性赋值--》stu.name = "刘德华"</span></span><br><span class="line"><span class="comment">//验证</span></span><br><span class="line">Student stu = (Student)obj;</span><br><span class="line">System.out.println(<span class="string">"验证姓名："</span> + stu.name);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">System.out.println(<span class="string">"**************获取私有字段****并调用********************************"</span>);</span><br><span class="line">f = stuClass.getDeclaredField(<span class="string">"phoneNum"</span>);</span><br><span class="line">System.out.println(f);</span><br><span class="line">f.setAccessible(<span class="keyword">true</span>);<span class="comment">//暴力反射，解除私有限定</span></span><br><span class="line">f.set(obj, <span class="string">"18888889999"</span>);</span><br><span class="line">System.out.println(<span class="string">"验证电话："</span> + stu);</span><br></pre></td></tr></table></figure><br>4.获取成员方法并调用<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.获取Class对象</span></span><br><span class="line">Class stuClass = Class.forName(<span class="string">"fanshe.method.Student"</span>);</span><br><span class="line"><span class="comment">//2.获取所有公有方法</span></span><br><span class="line">System.out.println(<span class="string">"***************获取所有的”公有“方法*******************"</span>);</span><br><span class="line">stuClass.getMethods();</span><br><span class="line">Method[] methodArray = stuClass.getMethods();</span><br><span class="line"><span class="keyword">for</span>(Method m : methodArray)&#123;</span><br><span class="line">  System.out.println(m);</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(<span class="string">"***************获取所有的方法，包括私有的*******************"</span>);</span><br><span class="line">methodArray = stuClass.getDeclaredMethods();</span><br><span class="line"><span class="keyword">for</span>(Method m : methodArray)&#123;</span><br><span class="line">  System.out.println(m);</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(<span class="string">"***************获取公有的show1()方法*******************"</span>);</span><br><span class="line">Method m = stuClass.getMethod(<span class="string">"show1"</span>, String<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">System.out.println(m);</span><br><span class="line"><span class="comment">//实例化一个Student对象</span></span><br><span class="line">Object obj = stuClass.getConstructor().newInstance();</span><br><span class="line">m.invoke(obj, <span class="string">"刘德华"</span>);</span><br><span class="line"></span><br><span class="line">System.out.println(<span class="string">"***************获取私有的show4()方法******************"</span>);</span><br><span class="line">m = stuClass.getDeclaredMethod(<span class="string">"show4"</span>, <span class="keyword">int</span><span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">System.out.println(m);</span><br><span class="line">m.setAccessible(<span class="keyword">true</span>);<span class="comment">//解除私有限定</span></span><br><span class="line">Object result = m.invoke(obj, <span class="number">20</span>);<span class="comment">//需要两个参数，一个是要调用的对象（获取有反射），一个是实参</span></span><br><span class="line">System.out.println(<span class="string">"返回值："</span> + result);</span><br></pre></td></tr></table></figure><br>5.读取配置文件，创建类实例，并赋值成员，调用成员方法  </p>
-<p>6.根据类实例，保存类实例的值，生成配置文件  </p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/cpp/%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/cpp/base/assert.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/cpp/base/assert.html" class="post-title-link" itemprop="url">assert</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-17 11:00:21" itemprop="dateCreated datePublished" datetime="2020-07-17T11:00:21+08:00">2020-07-17</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C-C/" itemprop="url" rel="index"><span itemprop="name">C/C++</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C-C/base/" itemprop="url" rel="index"><span itemprop="name">base</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/cpp/base/assert.html" class="post-meta-item leancloud_visitors" data-flag-title="assert" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/cpp/base/assert.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/cpp/base/assert.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/cpp/base/bind.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/cpp/base/bind.html" class="post-title-link" itemprop="url">std::bind</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-17 11:00:21" itemprop="dateCreated datePublished" datetime="2020-07-17T11:00:21+08:00">2020-07-17</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C-C/" itemprop="url" rel="index"><span itemprop="name">C/C++</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C-C/base/" itemprop="url" rel="index"><span itemprop="name">base</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/cpp/base/bind.html" class="post-meta-item leancloud_visitors" data-flag-title="std::bind" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/cpp/base/bind.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/cpp/base/bind.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/20/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><span class="page-number current">21</span><a class="page-number" href="/page/22/">22</a><span class="space">&hellip;</span><a class="page-number" href="/page/41/">41</a><a class="extend next" rel="next" href="/page/22/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/20/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><span class="page-number current">21</span><a class="page-number" href="/page/22/">22</a><span class="space">&hellip;</span><a class="page-number" href="/page/42/">42</a><a class="extend next" rel="next" href="/page/22/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1177,18 +1192,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">409</span>
+          <span class="site-state-item-count">414</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-count">58</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">149</span>
+        <span class="site-state-item-count">150</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

@@ -49,17 +49,17 @@ public:
     }
 };
 
-int main(){
-    Test test=Test(10,1);
-    Base2 test2=Test2(20,2);
-    Base2* test22 = new Test2(20,2);
-    Base2& test222=*test22;
-    test.foo();
-    test2.foo();
-    ((Test2*)(&test2))->foo();
-    //(reinterpret_cast<Test2>)(test2)).foo();
+// int main(){
+//     Test test=Test(10,1);
+//     Base2 test2=Test2(20,2);
+//     Base2* test22 = new Test2(20,2);
+//     Base2& test222=*test22;
+//     test.foo();
+//     test2.foo();
+//     ((Test2*)(&test2))->foo();
+//     //(reinterpret_cast<Test2>)(test2)).foo();
     
-    test22->foo();
-    test222.foo();
-    return 0;
-}
+//     test22->foo();
+//     test222.foo();
+//     return 0;
+// }
