@@ -1,9 +1,18 @@
+#pragma once
+#include<string>
+using namespace std;
+
 #include"Token.hpp"
 
-class TokenNum:Token{
+class TokenNum:public Token{
 private:
-
+    int value;
 public:
-    TokenNum(/* args */);
-    ~TokenNum();
+    TokenNum(int _value):value(_value){
+        tokentype = (Token::TokenType::NUM);
+    };
+    ~TokenNum(){};
+    virtual string tostring(){
+        return "TokenNum";
+    }
 };

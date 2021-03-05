@@ -1,26 +1,26 @@
+#pragma once
+
 #include<iostream>
 #include<string>
 using namespace std;
 
 #include"Token.hpp"
 
-enum TokenReservedWordType{
-    NONE,
-    CHAR,
-    INT,
-    FLOAT,
-
-    BOOL,
-    IF,
-    WHILE,
-    RETURN,
-    LPAREN,
-    RPAREN,
-};
-
-
 
 class TokenReservedWord:Token{
+    enum TokenReservedWordType{
+        NONE,
+        CHAR,
+        INT,
+        FLOAT,
+
+        BOOL,
+        IF,
+        WHILE,
+        RETURN,
+        LPAREN,
+        RPAREN,
+    };
 private:
     TokenReservedWordType tokenreservedwordtype=TokenReservedWordType::NONE;
 public:

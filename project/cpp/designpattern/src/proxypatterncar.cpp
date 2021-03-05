@@ -48,13 +48,13 @@ public:
     }
 };
 
-int main(){
-    std::unique_ptr<ICar> car2(std::make_unique<ProxyCar>(16));
-    std::unique_ptr<ICar> car = std::make_unique<ProxyCar>(16);
-    car->DriveCar();
+// int main(){
+//     std::unique_ptr<ICar> car2(std::make_unique<ProxyCar>(16));
+//     std::unique_ptr<ICar> car = std::make_unique<ProxyCar>(16);
+//     car->DriveCar();
 
-    car = std::make_unique<ProxyCar>(25);
-    car->DriveCar();
+//     car = std::make_unique<ProxyCar>(25);
+//     car->DriveCar();
 
-    return 0;
-}
+//     return 0;
+// }

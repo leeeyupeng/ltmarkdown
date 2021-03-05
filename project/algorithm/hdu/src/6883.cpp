@@ -19,43 +19,43 @@ void gen(int n,unsigned long long _k1,unsigned long long _k2){
         b[i] = xorShitf128Plus() % threshold + 1;
     }
 }
-int main(){
-    ios::sync_with_stdio(0);
-    int n,m;
-    unsigned long long k1,k2;
-    while(scanf("%d%d%llu%llu",&n,&m,&k1,&k2)!=EOF){
-        gen(n,k1,k2);
+// int main(){
+//     ios::sync_with_stdio(0);
+//     int n,m;
+//     unsigned long long k1,k2;
+//     while(scanf("%d%d%llu%llu",&n,&m,&k1,&k2)!=EOF){
+//         gen(n,k1,k2);
         
-        a[n] = 0;
-        b[n] = 0;
-        for(int i = 0; i < n; i ++){
-            b[i] += a[i];
-        }
-        sort(a,a+n,greater<int>());
-        sort(b,b+n,greater<int>());
+//         a[n] = 0;
+//         b[n] = 0;
+//         for(int i = 0; i < n; i ++){
+//             b[i] += a[i];
+//         }
+//         sort(a,a+n,greater<int>());
+//         sort(b,b+n,greater<int>());
 
-        int cnt = 0;
-        int i = 0,j = 0;
+//         int cnt = 0;
+//         int i = 0,j = 0;
         
-        long long ans = 0;
-        long long ret = 0;
-        while(cnt < m){
-            if(i == 0){
-                ans += a[i++];                
-            }
-            else{
-                if(a[i] > b[j] - a[i-1]){
-                    ans += a[i++];
-                }
-                else{
-                    ans += b[j] - a[i-1];
-                    j ++;i--;
-                }
-            }
-            cnt++;
-            ret ^= ans;
-        }
-        printf("%lld\n",ret);
-    }
-    return 0;
-}
+//         long long ans = 0;
+//         long long ret = 0;
+//         while(cnt < m){
+//             if(i == 0){
+//                 ans += a[i++];                
+//             }
+//             else{
+//                 if(a[i] > b[j] - a[i-1]){
+//                     ans += a[i++];
+//                 }
+//                 else{
+//                     ans += b[j] - a[i-1];
+//                     j ++;i--;
+//                 }
+//             }
+//             cnt++;
+//             ret ^= ans;
+//         }
+//         printf("%lld\n",ret);
+//     }
+//     return 0;
+// }

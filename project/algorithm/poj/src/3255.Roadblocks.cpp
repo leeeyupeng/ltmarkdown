@@ -76,28 +76,28 @@ public:
     }
 };
 
-int main()
-{
-    int n,r;
-    int a,b,d;
-    while(scanf("%d%d",&n,&r)!=EOF)
-    {
-        vector<int> vertice(n+1,-1);
-        vector<Edge> edge(r<<1,{0,0,0});
-        for(int i = 0; i < r; i ++){
-            scanf("%d%d%d",&a,&b,&d);
-            edge[i<<1] = {a,b,d};
-            edge[i<<1].next = vertice[a];
-            vertice[a] = i<<1;
+// int main()
+// {
+//     int n,r;
+//     int a,b,d;
+//     while(scanf("%d%d",&n,&r)!=EOF)
+//     {
+//         vector<int> vertice(n+1,-1);
+//         vector<Edge> edge(r<<1,{0,0,0});
+//         for(int i = 0; i < r; i ++){
+//             scanf("%d%d%d",&a,&b,&d);
+//             edge[i<<1] = {a,b,d};
+//             edge[i<<1].next = vertice[a];
+//             vertice[a] = i<<1;
 
-            edge[(i<<1) | 0x1] = {b,a,d};
-            edge[(i<<1) | 0x1].next = vertice[b];
-            vertice[b] = (i<<1) | 0x1;
-        }
+//             edge[(i<<1) | 0x1] = {b,a,d};
+//             edge[(i<<1) | 0x1].next = vertice[b];
+//             vertice[b] = (i<<1) | 0x1;
+//         }
 
-        Solution solution;
-        int ret = solution.solve(n,r,vertice,edge,1,n);      
-        printf("%d\n",ret);
-    }
-    return 0;
-}
+//         Solution solution;
+//         int ret = solution.solve(n,r,vertice,edge,1,n);      
+//         printf("%d\n",ret);
+//     }
+//     return 0;
+// }

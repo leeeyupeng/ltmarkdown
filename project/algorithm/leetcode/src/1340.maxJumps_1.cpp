@@ -79,13 +79,13 @@ public:
     }
 };
 
-int main()
-{
-    vector<int> arr={
-6,4,14,6,8,13,9,7,10,6,12
-};
+// int main()
+// {
+//     vector<int> arr={
+// 6,4,14,6,8,13,9,7,10,6,12
+// };
 
-    Solution solution;
-    int ret = solution.maxJumps(arr,25);
-    return 0;
-}
+//     Solution solution;
+//     int ret = solution.maxJumps(arr,25);
+//     return 0;
+// }

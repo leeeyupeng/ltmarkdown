@@ -1,5 +1,5 @@
 #include"leetcode.h"
-#include"leetcodetreenode.h"
+#include"leetcodenode.h"
 
 /**
  * Definition for a binary tree node.

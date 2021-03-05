@@ -1,5 +1,5 @@
 #include"leetcode.h"
-#include"leetcodetreenode.h"
+#include"leetcodenode.h"
 
 TreeNode *GetTree(vector<int>& tree){
     int n = tree.size();

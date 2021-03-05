@@ -8,7 +8,7 @@ TokenReservedWord::~TokenReservedWord()
 {
 }
 
-TokenReservedWordType TokenReservedWord::GetReservedWordType(string str){
+TokenReservedWord::TokenReservedWordType TokenReservedWord::GetReservedWordType(string str){
     TokenReservedWordType type = TokenReservedWordType::NONE;
     if(str=="char"){
         type = TokenReservedWordType::CHAR;

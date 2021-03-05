@@ -38,9 +38,9 @@ void apply2(Indices<I...>){
 //         )
 //     };
 // }
-int main(){
-    auto result = BuildIndices<-1,10>::result{};
+// int main(){
+//     auto result = BuildIndices<-1,10>::result{};
 
-    apply2(result);
-    return 0;
-}
+//     apply2(result);
+//     return 0;
+// }

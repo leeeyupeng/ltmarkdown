@@ -51,34 +51,34 @@ public:
     }    
 };
 
-int main(){
-    int n,m;
-    int a,b,c;
-    while(scanf("%d%d",&n,&m)!=EOF){
-        vector<vector<int>> matrix(105,vector<int>(105,INT_MAX));
-        for(int i = 0; i < m; i++){
-            scanf("%d%d%d",&a,&b,&c);
-            a--;
-            b--;
-            // a = rand() % n;
-            // b = rand() % n;
-            // while(a == b){
-            //    b = rand() % n; 
-            // }
-            // c = rand() % 100 + 1;
-            matrix[a][b] = min(matrix[a][b],c);
-            matrix[b][a] = matrix[a][b];
-        }
+// int main(){
+//     int n,m;
+//     int a,b,c;
+//     while(scanf("%d%d",&n,&m)!=EOF){
+//         vector<vector<int>> matrix(105,vector<int>(105,INT_MAX));
+//         for(int i = 0; i < m; i++){
+//             scanf("%d%d%d",&a,&b,&c);
+//             a--;
+//             b--;
+//             // a = rand() % n;
+//             // b = rand() % n;
+//             // while(a == b){
+//             //    b = rand() % n; 
+//             // }
+//             // c = rand() % 100 + 1;
+//             matrix[a][b] = min(matrix[a][b],c);
+//             matrix[b][a] = matrix[a][b];
+//         }
 
-        Solution solution;
-        int ret = solution.Solve(n,m,matrix);
-        if(ret == INT_MAX){
-            printf("It's impossible.\n");
-        }
-        else{
-            printf("%d\n",ret);
-        }
-    }
+//         Solution solution;
+//         int ret = solution.Solve(n,m,matrix);
+//         if(ret == INT_MAX){
+//             printf("It's impossible.\n");
+//         }
+//         else{
+//             printf("%d\n",ret);
+//         }
+//     }
 
-    return 0;
-}
+//     return 0;
+// }

@@ -153,7 +153,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/%E9%9D%A2%E8%AF%95%E9%A2%98%2008.13.%20%E5%A0%86%E7%AE%B1%E5%AD%90.html">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/407.%20%E6%8E%A5%E9%9B%A8%E6%B0%B4%20II.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/icon128.jpg">
@@ -167,7 +167,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/%E9%9D%A2%E8%AF%95%E9%A2%98%2008.13.%20%E5%A0%86%E7%AE%B1%E5%AD%90.html" class="post-title-link" itemprop="url">leetcode.面试题 08.13. 堆箱子</a>
+            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/407.%20%E6%8E%A5%E9%9B%A8%E6%B0%B4%20II.html" class="post-title-link" itemprop="url">leetcode.407. 接雨水 II</a>
         </h2>
 
         <div class="post-meta">
@@ -194,7 +194,7 @@
             </span>
 
           
-            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/%E9%9D%A2%E8%AF%95%E9%A2%98%2008.13.%20%E5%A0%86%E7%AE%B1%E5%AD%90.html" class="post-meta-item leancloud_visitors" data-flag-title="leetcode.面试题 08.13. 堆箱子" title="阅读次数">
+            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/407.%20%E6%8E%A5%E9%9B%A8%E6%B0%B4%20II.html" class="post-meta-item leancloud_visitors" data-flag-title="leetcode.407. 接雨水 II" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -209,8 +209,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/%E9%9D%A2%E8%AF%95%E9%A2%98%2008.13.%20%E5%A0%86%E7%AE%B1%E5%AD%90.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/%E9%9D%A2%E8%AF%95%E9%A2%98%2008.13.%20%E5%A0%86%E7%AE%B1%E5%AD%90.html" itemprop="commentCount"></span>
+    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/407.%20%E6%8E%A5%E9%9B%A8%E6%B0%B4%20II.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/407.%20%E6%8E%A5%E9%9B%A8%E6%B0%B4%20II.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -225,15 +225,547 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="leetcode-面试题-08-13-堆箱子"><a href="#leetcode-面试题-08-13-堆箱子" class="headerlink" title="leetcode.面试题 08.13. 堆箱子"></a>leetcode.面试题 08.13. 堆箱子</h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><hr>
-<p>堆箱子。给你一堆n个箱子，箱子宽 wi、深 di、高 hi。箱子不能翻转，将箱子堆起来时，下面箱子的宽度、高度和深度必须大于上面的箱子。实现一种方法，搭出最高的一堆箱子。箱堆的高度为每个箱子高度的总和。</p>
-<p>输入使用数组[wi, di, hi]表示每个箱子。</p>
+          <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>给你一个 m x n 的矩阵，其中的值均为非负整数，代表二维高度图每个单元的高度，请计算图中形状最多能接多少体积的雨水。</p>
+<h2 id="BFS搜索-最小堆"><a href="#BFS搜索-最小堆" class="headerlink" title="BFS搜索+最小堆"></a>BFS搜索+最小堆</h2><ul>
+<li>1.maxHeightMap 维护矩阵maxHeightMap,maxHeightMap[i][j] 代表 (i,j) 格子，水位可以达到的最大高度</li>
+<li>2.初始化maxHeightMap[i][j]等于2000</li>
+<li>3.将矩阵各个边界放入最小堆</li>
+<li>4.循环从堆中拿出堆顶元素，并Pop,更新堆顶元素附近的格子，如果附近格子的maxHeightMap大于堆顶元素，赋值maxHeightMap为堆顶元素的值，并将此格子入堆</li>
+<li>5.循环直到堆为空</li>
+<li>6.根据 maxHeightMap - heightMap，算出可以积多少水</li>
+</ul>
+<p>时间复杂度$O(n^2)$</p>
+<p><a href="\project\algorithm\tree\include\tree\MinHeap.h">MinHeap.h</a><br><a href="\project\algorithm\leetcode\src\trapRainWater_1.cpp">trapRainWater_1.cpp</a></p>
+
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/407.%20%E6%8E%A5%E9%9B%A8%E6%B0%B4%20II.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/42.%E6%8E%A5%E9%9B%A8%E6%B0%B4.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/42.%E6%8E%A5%E9%9B%A8%E6%B0%B4.html" class="post-title-link" itemprop="url">leetcode.42.接雨水</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-11 17:13:46" itemprop="dateCreated datePublished" datetime="2020-09-11T17:13:46+08:00">2020-09-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/42.%E6%8E%A5%E9%9B%A8%E6%B0%B4.html" class="post-meta-item leancloud_visitors" data-flag-title="leetcode.42.接雨水" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/42.%E6%8E%A5%E9%9B%A8%E6%B0%B4.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/42.%E6%8E%A5%E9%9B%A8%E6%B0%B4.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="单调递减栈"><a href="#单调递减栈" class="headerlink" title="单调递减栈"></a>单调递减栈</h2><p><a href="\project\algorithm\datastructure\include\datastructure\Stack.hpp">Stack.hpp</a><br><a href="\project\algorithm\datastructure\src\Stack.cpp">Stack.cpp</a></p>
+<p><a href="\project\algorithm\leetcode\src\trap.cpp">trap.cpp</a></p>
+<h2 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h2><p><a href="\project\algorithm\leetcode\src\trap_1.cpp">trap_1.cpp</a></p>
+
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/42.%E6%8E%A5%E9%9B%A8%E6%B0%B4.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/45.%20%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F%20II.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/45.%20%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F%20II.html" class="post-title-link" itemprop="url">leetcode.45. 跳跃游戏 II</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-11 17:13:46" itemprop="dateCreated datePublished" datetime="2020-09-11T17:13:46+08:00">2020-09-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/45.%20%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F%20II.html" class="post-meta-item leancloud_visitors" data-flag-title="leetcode.45. 跳跃游戏 II" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/45.%20%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F%20II.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/45.%20%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F%20II.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>给定一个非负整数数组，你最初位于数组的第一个位置。</p>
+<p>数组中的每个元素代表你在该位置可以跳跃的最大长度。</p>
+<p>你的目标是使用最少的跳跃次数到达数组的最后一个位置。</p>
+<h2 id="Ad-Hoc"><a href="#Ad-Hoc" class="headerlink" title="Ad Hoc"></a>Ad Hoc</h2><p><a href="\project\algorithm\leetcode\src\jump_3.cpp">jump_3.cpp</a></p>
+
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/45.%20%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F%20II.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/630.%20%E8%AF%BE%E7%A8%8B%E8%A1%A8%20III.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/630.%20%E8%AF%BE%E7%A8%8B%E8%A1%A8%20III.html" class="post-title-link" itemprop="url">leetcode.630. 课程表 III</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-11 17:13:46" itemprop="dateCreated datePublished" datetime="2020-09-11T17:13:46+08:00">2020-09-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/630.%20%E8%AF%BE%E7%A8%8B%E8%A1%A8%20III.html" class="post-meta-item leancloud_visitors" data-flag-title="leetcode.630. 课程表 III" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/630.%20%E8%AF%BE%E7%A8%8B%E8%A1%A8%20III.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/630.%20%E8%AF%BE%E7%A8%8B%E8%A1%A8%20III.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="leetcode-630-课程表-III"><a href="#leetcode-630-课程表-III" class="headerlink" title="leetcode.630. 课程表 III"></a>leetcode.630. 课程表 III</h1><p>这里有 n 门不同的在线课程，他们按从 1 到 n 编号。每一门课程有一定的持续上课时间（课程时间）t 以及关闭时间第 d 天。一门课要持续学习 t 天直到第 d 天时要完成，你将会从第 1 天开始。</p>
+<p>给出 n 个在线课程用 (t, d) 对表示。你的任务是找出最多可以修几门课。</p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/course-schedule-iii" target="_blank" rel="noopener">https://leetcode-cn.com/problems/course-schedule-iii</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h2 id="树状数组"><a href="#树状数组" class="headerlink" title="树状数组"></a>树状数组</h2><p><a href="\project\algorithm\leetcode\src\630.scheduleCourse_2.cpp">630.scheduleCourse_2.cpp</a></p>
+<h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><p>超时<br><a href="\project\algorithm\leetcode\src\630.scheduleCourse_3.cpp">630.scheduleCourse_3.cpp</a></p>
+<h2 id="最大堆"><a href="#最大堆" class="headerlink" title="最大堆"></a>最大堆</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/630.%20%E8%AF%BE%E7%A8%8B%E8%A1%A8%20III.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/753.%20%E7%A0%B4%E8%A7%A3%E4%BF%9D%E9%99%A9%E7%AE%B1.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/753.%20%E7%A0%B4%E8%A7%A3%E4%BF%9D%E9%99%A9%E7%AE%B1.html" class="post-title-link" itemprop="url">leetcode.753. 破解保险箱</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-11 17:13:46" itemprop="dateCreated datePublished" datetime="2020-09-11T17:13:46+08:00">2020-09-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/753.%20%E7%A0%B4%E8%A7%A3%E4%BF%9D%E9%99%A9%E7%AE%B1.html" class="post-meta-item leancloud_visitors" data-flag-title="leetcode.753. 破解保险箱" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/753.%20%E7%A0%B4%E8%A7%A3%E4%BF%9D%E9%99%A9%E7%AE%B1.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/753.%20%E7%A0%B4%E8%A7%A3%E4%BF%9D%E9%99%A9%E7%AE%B1.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="leetcode-753-破解保险箱"><a href="#leetcode-753-破解保险箱" class="headerlink" title="leetcode.753. 破解保险箱"></a>leetcode.753. 破解保险箱</h1><p>有一个需要密码才能打开的保险箱。密码是 n 位数, 密码的每一位是 k 位序列 0, 1, …, k-1 中的一个 。</p>
+<p>你可以随意输入密码，保险箱会自动记住最后 n 位输入，如果匹配，则能够打开保险箱。</p>
+<p>举个例子，假设密码是 “345”，你可以输入 “012345” 来打开它，只是你输入了 6 个字符.</p>
+<p>请返回一个能打开保险箱的最短字符串。</p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/cracking-the-safe" target="_blank" rel="noopener">https://leetcode-cn.com/problems/cracking-the-safe</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<p>欧拉回路问题</p>
+<h2 id="Hierholzer-算法"><a href="#Hierholzer-算法" class="headerlink" title="Hierholzer 算法"></a>Hierholzer 算法</h2><p><a href="\project\algorithm\leetcode\src\753.crackSafe_2.cpp">753.crackSafe_2.cpp</a></p>
+
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/753.%20%E7%A0%B4%E8%A7%A3%E4%BF%9D%E9%99%A9%E7%AE%B1.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/850.%E7%9F%A9%E5%BD%A2%E9%9D%A2%E7%A7%AF.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon128.jpg">
+      <meta itemprop="name" content="leeyupeng">
+      <meta itemprop="description" content="leeyupeng@126.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leeyupeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/850.%E7%9F%A9%E5%BD%A2%E9%9D%A2%E7%A7%AF.html" class="post-title-link" itemprop="url">leetcode.850.矩形面积</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-11 17:13:46" itemprop="dateCreated datePublished" datetime="2020-09-11T17:13:46+08:00">2020-09-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/850.%E7%9F%A9%E5%BD%A2%E9%9D%A2%E7%A7%AF.html" class="post-meta-item leancloud_visitors" data-flag-title="leetcode.850.矩形面积" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/850.%E7%9F%A9%E5%BD%A2%E9%9D%A2%E7%A7%AF.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/850.%E7%9F%A9%E5%BD%A2%E9%9D%A2%E7%A7%AF.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="矩形面积"><a href="#矩形面积" class="headerlink" title="矩形面积"></a>矩形面积</h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><hr>
+<p>我们给出了一个（轴对齐的）矩形列表 rectangles 。 对于 rectangle[i] = [x1, y1, x2, y2]，其中（x1，y1）是矩形 i 左下角的坐标，（x2，y2）是该矩形右上角的坐标。  </p>
+<p>找出平面中所有矩形叠加覆盖后的总面积。 由于答案可能太大，请返回它对 10 ^ 9 + 7 取模的结果。  </p>
+<p>示例 1：<br>输入：[[0,0,2,2],[1,0,2,3],[1,0,3,1]]<br>输出：6<br>示例 2：<br>输入：[[0,0,1000000000,1000000000]]<br>输出：49<br>解释：答案是 10^18 对 (10^9 + 7) 取模的结果， 即 (10^9)^2 → (-7)^2 = 49 。  </p>
+<p>提示：  </p>
+<ul>
+<li>1 &lt;= rectangles.length &lt;= 200  </li>
+<li>rectanges[i].length = 4   </li>
+<li>0 &lt;= rectangles[i][j] &lt;= 10^9  </li>
+<li>矩形叠加覆盖后的总面积不会超越 2^63 - 1 ，这意味着可以用一个 64 位有符号整数来保存面积结果。  </li>
+</ul>
 <hr>
-<h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><h3 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h3><hr>
-<p>先对数组进行排序<br>dp[i] 代表0-i，以i为尾的最大高度</p>
+<h2 id="空间压缩"><a href="#空间压缩" class="headerlink" title="空间压缩"></a>空间压缩</h2>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/%E9%9D%A2%E8%AF%95%E9%A2%98%2008.13.%20%E5%A0%86%E7%AE%B1%E5%AD%90.html#more" rel="contents">
+              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/850.%E7%9F%A9%E5%BD%A2%E9%9D%A2%E7%A7%AF.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -257,7 +789,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/%E5%89%91%E6%8C%87%20Offer%2020.%20%E8%A1%A8%E7%A4%BA%E6%95%B0%E5%80%BC%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2.html">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/887.%E9%B8%A1%E8%9B%8B%E6%8E%89%E8%90%BD.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/icon128.jpg">
@@ -271,7 +803,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/%E5%89%91%E6%8C%87%20Offer%2020.%20%E8%A1%A8%E7%A4%BA%E6%95%B0%E5%80%BC%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2.html" class="post-title-link" itemprop="url">leetcode.剑指 Offer 20. 表示数值的字符串</a>
+            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/887.%E9%B8%A1%E8%9B%8B%E6%8E%89%E8%90%BD.html" class="post-title-link" itemprop="url">leetcode.887.鸡蛋掉落</a>
         </h2>
 
         <div class="post-meta">
@@ -298,7 +830,7 @@
             </span>
 
           
-            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/%E5%89%91%E6%8C%87%20Offer%2020.%20%E8%A1%A8%E7%A4%BA%E6%95%B0%E5%80%BC%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2.html" class="post-meta-item leancloud_visitors" data-flag-title="leetcode.剑指 Offer 20. 表示数值的字符串" title="阅读次数">
+            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/887.%E9%B8%A1%E8%9B%8B%E6%8E%89%E8%90%BD.html" class="post-meta-item leancloud_visitors" data-flag-title="leetcode.887.鸡蛋掉落" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -313,8 +845,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/%E5%89%91%E6%8C%87%20Offer%2020.%20%E8%A1%A8%E7%A4%BA%E6%95%B0%E5%80%BC%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/%E5%89%91%E6%8C%87%20Offer%2020.%20%E8%A1%A8%E7%A4%BA%E6%95%B0%E5%80%BC%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2.html" itemprop="commentCount"></span>
+    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/887.%E9%B8%A1%E8%9B%8B%E6%8E%89%E8%90%BD.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/887.%E9%B8%A1%E8%9B%8B%E6%8E%89%E8%90%BD.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -329,13 +861,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="leetcode-剑指-Offer-20-表示数值的字符串"><a href="#leetcode-剑指-Offer-20-表示数值的字符串" class="headerlink" title="leetcode.剑指 Offer 20. 表示数值的字符串"></a>leetcode.剑指 Offer 20. 表示数值的字符串</h1><p>请实现一个函数用来判断字符串是否表示数值（包括整数和小数）。例如，字符串”+100”、”5e2”、”-123”、”3.1416”、”-1E-16”、”0123”都表示数值，但”12e”、”1a3.14”、”1.2.3”、”+-5”及”12e+5.4”都不是。</p>
-<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof" target="_blank" rel="noopener">https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<h2 id="DFA-确定有限自动机"><a href="#DFA-确定有限自动机" class="headerlink" title="DFA(确定有限自动机)"></a>DFA(确定有限自动机)</h2><p><a href="\project\algorithm\leetcode\src\20.isNumber.cpp">20.isNumber.cpp</a><br><a href="\project\algorithm\leetcode\src\20.isNumber_2.cpp">20.isNumber_2.cpp</a></p>
-
+          <h1 id="鸡蛋掉落"><a href="#鸡蛋掉落" class="headerlink" title="鸡蛋掉落"></a>鸡蛋掉落</h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><hr>
+<p>你将获得 K 个鸡蛋，并可以使用一栋从 1 到 N  共有 N 层楼的建筑。</p>
+<p>每个蛋的功能都是一样的，如果一个蛋碎了，你就不能再把它掉下去。</p>
+<p>你知道存在楼层 F ，满足 0 &lt;= F &lt;= N 任何从高于 F 的楼层落下的鸡蛋都会碎，从 F 楼层或比它低的楼层落下的鸡蛋都不会破。</p>
+<p>每次移动，你可以取一个鸡蛋（如果你有完整的鸡蛋）并把它从任一楼层 X 扔下（满足 1 &lt;= X &lt;= N）。</p>
+<p>你的目标是确切地知道 F 的值是多少。</p>
+<p>无论 F 的初始值如何，你确定 F 的值的最小移动次数是多少？  </p>
+<hr>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/%E5%89%91%E6%8C%87%20Offer%2020.%20%E8%A1%A8%E7%A4%BA%E6%95%B0%E5%80%BC%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2.html#more" rel="contents">
+              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/887.%E9%B8%A1%E8%9B%8B%E6%8E%89%E8%90%BD.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -359,7 +895,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/1386.Play%20on%20Words.html">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/956.%20%E6%9C%80%E9%AB%98%E7%9A%84%E5%B9%BF%E5%91%8A%E7%89%8C.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/icon128.jpg">
@@ -373,7 +909,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/1386.Play%20on%20Words.html" class="post-title-link" itemprop="url">poj.1386.Play on Words</a>
+            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/956.%20%E6%9C%80%E9%AB%98%E7%9A%84%E5%B9%BF%E5%91%8A%E7%89%8C.html" class="post-title-link" itemprop="url">leetcode.956. 最高的广告牌</a>
         </h2>
 
         <div class="post-meta">
@@ -395,12 +931,12 @@
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/" itemprop="url" rel="index"><span itemprop="name">poj</span></a>
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
                 </span>
             </span>
 
           
-            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/1386.Play%20on%20Words.html" class="post-meta-item leancloud_visitors" data-flag-title="poj.1386.Play on Words" title="阅读次数">
+            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/956.%20%E6%9C%80%E9%AB%98%E7%9A%84%E5%B9%BF%E5%91%8A%E7%89%8C.html" class="post-meta-item leancloud_visitors" data-flag-title="leetcode.956. 最高的广告牌" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -415,8 +951,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/1386.Play%20on%20Words.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/1386.Play%20on%20Words.html" itemprop="commentCount"></span>
+    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/956.%20%E6%9C%80%E9%AB%98%E7%9A%84%E5%B9%BF%E5%91%8A%E7%89%8C.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/956.%20%E6%9C%80%E9%AB%98%E7%9A%84%E5%B9%BF%E5%91%8A%E7%89%8C.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -431,116 +967,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="poj-1386-Play-on-Words"><a href="#poj-1386-Play-on-Words" class="headerlink" title="poj.1386.Play on Words"></a>poj.1386.Play on Words</h1><p>判断是否存在欧拉通路</p>
-<p><a href="/project/algorithm/poj/src/1386.Play on Words.cpp">1386.Play on Words.cpp</a></p>
-
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/1386.Play%20on%20Words.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/1469.COURSES.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/1469.COURSES.html" class="post-title-link" itemprop="url">poj.1469.COURSES</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-09-11 17:13:46" itemprop="dateCreated datePublished" datetime="2020-09-11T17:13:46+08:00">2020-09-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/" itemprop="url" rel="index"><span itemprop="name">poj</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/1469.COURSES.html" class="post-meta-item leancloud_visitors" data-flag-title="poj.1469.COURSES" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/1469.COURSES.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/1469.COURSES.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="poj-1469-COURSES"><a href="#poj-1469-COURSES" class="headerlink" title="poj.1469.COURSES"></a>poj.1469.COURSES</h1><p>Consider a group of N students and P courses. Each student visits zero, one or more than one courses. Your task is to determine whether it is possible to form a committee of exactly P students that satisfies simultaneously the conditions:</p>
+          <h1 id="leetcode-956-最高的广告牌"><a href="#leetcode-956-最高的广告牌" class="headerlink" title="leetcode.956. 最高的广告牌"></a>leetcode.956. 最高的广告牌</h1><p>你正在安装一个广告牌，并希望它高度最大。这块广告牌将有两个钢制支架，两边各一个。每个钢支架的高度必须相等。</p>
+<p>你有一堆可以焊接在一起的钢筋 rods。举个例子，如果钢筋的长度为 1、2 和 3，则可以将它们焊接在一起形成长度为 6 的支架。</p>
+<p>返回广告牌的最大可能安装高度。如果没法安装广告牌，请返回 0。</p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/tallest-billboard" target="_blank" rel="noopener">https://leetcode-cn.com/problems/tallest-billboard</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h2 id="DFS"><a href="#DFS" class="headerlink" title="DFS"></a>DFS</h2><p>剪枝：</p>
 <ul>
-<li>every student in the committee represents a different course (a student can represent a course if he/she visits that course)</li>
-<li>each course has a representative in the committee</li>
+<li>1.abs(leftheight - rightheight) &gt; remain[index] 加上剩余的支架也无法左右等高了</li>
+<li>2.(leftheight + rightheight + remain[index]) &lt;= ans + ans 加上剩余的支架也不会高于当前的答案</li>
 </ul>
-
+<p><a href="\project\algorithm\leetcode\src\tallestBillboard_7.cpp">tallestBillboard_7.cpp</a></p>
+<h2 id="动态规划-DFS"><a href="#动态规划-DFS" class="headerlink" title="动态规划+DFS"></a>动态规划+DFS</h2>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/1469.COURSES.html#more" rel="contents">
+              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/956.%20%E6%9C%80%E9%AB%98%E7%9A%84%E5%B9%BF%E5%91%8A%E7%89%8C.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -564,7 +1004,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/1017.Packets.html">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/LCP%2013.%20%E5%AF%BB%E5%AE%9D.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/icon128.jpg">
@@ -578,7 +1018,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/1017.Packets.html" class="post-title-link" itemprop="url">poj.1017.Packets</a>
+            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/LCP%2013.%20%E5%AF%BB%E5%AE%9D.html" class="post-title-link" itemprop="url">leetcode.LCP 13. 寻宝</a>
         </h2>
 
         <div class="post-meta">
@@ -600,12 +1040,12 @@
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/" itemprop="url" rel="index"><span itemprop="name">poj</span></a>
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
                 </span>
             </span>
 
           
-            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/1017.Packets.html" class="post-meta-item leancloud_visitors" data-flag-title="poj.1017.Packets" title="阅读次数">
+            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/LCP%2013.%20%E5%AF%BB%E5%AE%9D.html" class="post-meta-item leancloud_visitors" data-flag-title="leetcode.LCP 13. 寻宝" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -620,8 +1060,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/1017.Packets.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/1017.Packets.html" itemprop="commentCount"></span>
+    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/LCP%2013.%20%E5%AF%BB%E5%AE%9D.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/LCP%2013.%20%E5%AF%BB%E5%AE%9D.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -636,319 +1076,172 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="poj-1017-Packets"><a href="#poj-1017-Packets" class="headerlink" title="poj.1017.Packets"></a>poj.1017.Packets</h1><p>A factory produces products packed in square packets of the same height h and of the sizes 1*1, 2*2, 3*3, 4*4, 5*5, 6*6. These products are always delivered to customers in the square parcels of the same height h as the products have and of the size 6*6. Because of the expenses it is the interest of the factory as well as of the customer to minimize the number of parcels necessary to deliver the ordered products from the factory to the customer. A good program solving the problem of finding the minimal number of parcels necessary to deliver the given products according to an order would save a lot of money. You are asked to make such a program.</p>
-<h2 id="贪心算法"><a href="#贪心算法" class="headerlink" title="贪心算法"></a>贪心算法</h2><p><a href="/project/algorithm/poj/src/1017.Packets.cpp">1017.Packets.cpp</a></p>
-
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/1017.Packets.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/1637.Sightseeing%20tour.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/1637.Sightseeing%20tour.html" class="post-title-link" itemprop="url">poj.1637.Sightseeing tour</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-09-11 17:13:46" itemprop="dateCreated datePublished" datetime="2020-09-11T17:13:46+08:00">2020-09-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/" itemprop="url" rel="index"><span itemprop="name">poj</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/1637.Sightseeing%20tour.html" class="post-meta-item leancloud_visitors" data-flag-title="poj.1637.Sightseeing tour" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/1637.Sightseeing%20tour.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/1637.Sightseeing%20tour.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="poj-1637-Sightseeing-tour"><a href="#poj-1637-Sightseeing-tour" class="headerlink" title="poj.1637.Sightseeing tour"></a>poj.1637.Sightseeing tour</h1>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/1637.Sightseeing%20tour.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/2230.Watchcow.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/2230.Watchcow.html" class="post-title-link" itemprop="url">poj.2230.Watchcow</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-09-11 17:13:46" itemprop="dateCreated datePublished" datetime="2020-09-11T17:13:46+08:00">2020-09-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/" itemprop="url" rel="index"><span itemprop="name">poj</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/2230.Watchcow.html" class="post-meta-item leancloud_visitors" data-flag-title="poj.2230.Watchcow" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/2230.Watchcow.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/2230.Watchcow.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="poj-2230-Watchcow"><a href="#poj-2230-Watchcow" class="headerlink" title="poj.2230.Watchcow"></a>poj.2230.Watchcow</h1><p>查找欧拉回路</p>
-<p><a href="/project/algorithm/poj/src/2230.Watchcow_6.cpp">2230.Watchcow_6.cpp</a></p>
-
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/2230.Watchcow.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/2985.The%20k-th%20Largest%20Group.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/2985.The%20k-th%20Largest%20Group.html" class="post-title-link" itemprop="url">poj.2985.The k-th Largest Group</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-09-11 17:13:46" itemprop="dateCreated datePublished" datetime="2020-09-11T17:13:46+08:00">2020-09-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/" itemprop="url" rel="index"><span itemprop="name">poj</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/2985.The%20k-th%20Largest%20Group.html" class="post-meta-item leancloud_visitors" data-flag-title="poj.2985.The k-th Largest Group" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/2985.The%20k-th%20Largest%20Group.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/2985.The%20k-th%20Largest%20Group.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="poj-2985-The-k-th-Largest-Group"><a href="#poj-2985-The-k-th-Largest-Group" class="headerlink" title="poj.2985.The k-th Largest Group"></a>poj.2985.The k-th Largest Group</h1><p>Newman likes playing with cats. He possesses lots of cats in his home. Because the number of cats is really huge, Newman wants to group some of the cats. To do that, he first offers a number to each of the cat (1, 2, 3, …, n). Then he occasionally combines the group cat i is in and the group cat j is in, thus creating a new group. On top of that, Newman wants to know the size of the k-th biggest group at any time. So, being a friend of Newman, can you help him?</p>
-<p>要点:</p>
+          <h1 id="leetcode-LCP-13-寻宝"><a href="#leetcode-LCP-13-寻宝" class="headerlink" title="leetcode.LCP 13. 寻宝"></a>leetcode.LCP 13. 寻宝</h1><p>构造出S&gt;M1,M2,Mn&gt;T的图信息,求解旅行商问题</p>
+<h2 id="旅行商问题-贪心算法"><a href="#旅行商问题-贪心算法" class="headerlink" title="旅行商问题 贪心算法"></a>旅行商问题 贪心算法</h2><ul>
+<li>1.先计算矩阵两两之间的最短路信息</li>
+<li>2.计算S&gt;Oi&gt;Mi的最小花费</li>
+<li>3.计算Mi&gt;Oj&gt;Mj的最小花费</li>
+<li>4.计算Mj&gt;T的最小花费</li>
+</ul>
+<p>不是最优解<br><a href="\project\algorithm\leetcode\src\minimalSteps.cpp">minimalSteps.cpp</a></p>
+<h2 id="旅行商问题-动态规划"><a href="#旅行商问题-动态规划" class="headerlink" title="旅行商问题 动态规划"></a>旅行商问题 动态规划</h2><ul>
+<li>1.先求出 S&gt;Oj,Mi&gt;Oj,S&gt;T,Mi&gt;T之间的最短路信息<br>求此矩阵信息</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>$O_1$</th>
+<th>$O_2$</th>
+<th>$O_3$</th>
+<th>…</th>
+<th>$O_{m-1}$</th>
+<th>$O_{m}$</th>
+<th>T</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S</td>
+<td></td>
+<td></td>
+<td></td>
+<td>…</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>$M_1$</td>
+<td></td>
+<td></td>
+<td></td>
+<td>…</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>$M_2$</td>
+<td></td>
+<td></td>
+<td></td>
+<td>…</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td>$M_{n-1}$</td>
+<td></td>
+<td></td>
+<td></td>
+<td>…</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>$M_{n}$</td>
+<td></td>
+<td></td>
+<td></td>
+<td>…</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
 <ul>
-<li>1.统计每一个Group的大小</li>
-<li>2.所有的Group的大小组成的集合,求集合的第K大元素</li>
+<li>2.根据第一步得到的结果，求出 S&gt;Oj&gt;Mi,Mi&gt;Oj&gt;Mii之间的最短路信息</li>
 </ul>
-<h2 id="树状数组"><a href="#树状数组" class="headerlink" title="树状数组"></a>树状数组</h2><p>树状数组中寻找第K大元素</p>
-<h3 id="二分法"><a href="#二分法" class="headerlink" title="二分法"></a>二分法</h3><p><a href="/project/algorithm/poj/src/2985.The k-th Largest Group.cpp">2985.The k-th Largest Group.cpp</a></p>
-<h3 id="索引find-kth"><a href="#索引find-kth" class="headerlink" title="索引find_kth"></a>索引find_kth</h3><p><a href="/project/algorithm/poj/src/2985.The k-th Largest Group_1.cpp">2985.The k-th Largest Group_1.cpp</a></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>S</th>
+<th>$M_1$</th>
+<th>$M_2$</th>
+<th>…</th>
+<th>$M_{n-1}$</th>
+<th>$M_{n}$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S</td>
+<td>0</td>
+<td></td>
+<td></td>
+<td>…</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>$M_1$</td>
+<td></td>
+<td></td>
+<td></td>
+<td>…</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>$M_2$</td>
+<td></td>
+<td></td>
+<td></td>
+<td>…</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td>$M_{n-1}$</td>
+<td></td>
+<td></td>
+<td></td>
+<td>…</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>$M_{n}$</td>
+<td></td>
+<td></td>
+<td></td>
+<td>…</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/2985.The%20k-th%20Largest%20Group.html#more" rel="contents">
+              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/LCP%2013.%20%E5%AF%BB%E5%AE%9D.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -972,7 +1265,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/2155.Matrix.html">
+    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/LCP%2016.%20%E6%B8%B8%E4%B9%90%E5%9B%AD%E7%9A%84%E6%B8%B8%E8%A7%88%E8%AE%A1%E5%88%92.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/icon128.jpg">
@@ -986,7 +1279,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/2155.Matrix.html" class="post-title-link" itemprop="url">poj.2155.Matrix</a>
+            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/LCP%2016.%20%E6%B8%B8%E4%B9%90%E5%9B%AD%E7%9A%84%E6%B8%B8%E8%A7%88%E8%AE%A1%E5%88%92.html" class="post-title-link" itemprop="url">leetcode.LCP 16. 游乐园的游览计划</a>
         </h2>
 
         <div class="post-meta">
@@ -1008,12 +1301,12 @@
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/" itemprop="url" rel="index"><span itemprop="name">poj</span></a>
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
                 </span>
             </span>
 
           
-            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/2155.Matrix.html" class="post-meta-item leancloud_visitors" data-flag-title="poj.2155.Matrix" title="阅读次数">
+            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/LCP%2016.%20%E6%B8%B8%E4%B9%90%E5%9B%AD%E7%9A%84%E6%B8%B8%E8%A7%88%E8%AE%A1%E5%88%92.html" class="post-meta-item leancloud_visitors" data-flag-title="leetcode.LCP 16. 游乐园的游览计划" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -1028,8 +1321,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/2155.Matrix.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/2155.Matrix.html" itemprop="commentCount"></span>
+    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/LCP%2016.%20%E6%B8%B8%E4%B9%90%E5%9B%AD%E7%9A%84%E6%B8%B8%E8%A7%88%E8%AE%A1%E5%88%92.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/LCP%2016.%20%E6%B8%B8%E4%B9%90%E5%9B%AD%E7%9A%84%E6%B8%B8%E8%A7%88%E8%AE%A1%E5%88%92.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1044,140 +1337,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Matrix"><a href="#Matrix" class="headerlink" title="Matrix"></a>Matrix</h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><hr>
-<p>Description</p>
-<p>Given an N*N matrix A, whose elements are either 0 or 1. A[i, j] means the number in the i-th row and j-th column. Initially we have A[i, j] = 0 (1 &lt;= i, j &lt;= N).</p>
-<p>We can change the matrix in the following way. Given a rectangle whose upper-left corner is (x1, y1) and lower-right corner is (x2, y2), we change all the elements in the rectangle by using “not” operation (if it is a ‘0’ then change it into ‘1’ otherwise change it into ‘0’). To maintain the information of the matrix, you are asked to write a program to receive and execute two kinds of instructions.</p>
-<ol>
-<li>C x1 y1 x2 y2 (1 &lt;= x1 &lt;= x2 &lt;= n, 1 &lt;= y1 &lt;= y2 &lt;= n) changes the matrix by using the rectangle whose upper-left corner is (x1, y1) and lower-right corner is (x2, y2).</li>
-<li>Q x y (1 &lt;= x, y &lt;= n) querys A[x, y].<br>Input</li>
-</ol>
-<p>The first line of the input is an integer X (X &lt;= 10) representing the number of test cases. The following X blocks each represents a test case.</p>
-<p>The first line of each block contains two numbers N and T (2 &lt;= N &lt;= 1000, 1 &lt;= T &lt;= 50000) representing the size of the matrix and the number of the instructions. The following T lines each represents an instruction having the format “Q x y” or “C x1 y1 x2 y2”, which has been described above.<br>Output</p>
-<p>For each querying output one line, which has an integer representing A[x, y].</p>
+          <h1 id="leetcode-LCP-16-游乐园的游览计划"><a href="#leetcode-LCP-16-游乐园的游览计划" class="headerlink" title="leetcode.LCP 16. 游乐园的游览计划"></a>leetcode.LCP 16. 游乐园的游览计划</h1><hr>
+<p>又到了一年一度的春游时间，小吴计划去游乐场游玩 1 天，游乐场总共有 N 个游乐项目，编号从 0 到 N-1。小吴给每个游乐项目定义了一个非负整数值 value[i] 表示自己的喜爱值。两个游乐项目之间会有双向路径相连，整个游乐场总共有 M 条双向路径，保存在二维数组 edges中。 小吴计划选择一个游乐项目 A 作为这一天游玩的重点项目。上午小吴准备游玩重点项目 A 以及与项目 A 相邻的两个项目 B、C （项目A、B与C要求是不同的项目，且项目B与项目C要求相邻），并返回 A ，即存在一条 A-B-C-A 的路径。 下午，小吴决定再游玩重点项目 A以及与A相邻的两个项目 B’、C’，（项目A、B’与C’要求是不同的项目，且项目B’与项目C’要求相邻），并返回 A ，即存在一条 A-B’-C’-A 的路径。下午游玩项目 B’、C’ 可与上午游玩项目B、C存在重复项目。 小吴希望提前安排好游玩路径，使得喜爱值之和最大。请你返回满足游玩路径选取条件的最大喜爱值之和，如果没有这样的路径，返回 0。 注意：一天中重复游玩同一个项目并不能重复增加喜爱值了。例如：上下午游玩路径分别是 A-B-C-A与A-C-D-A 那么只能获得 value[A] + value[B] + value[C] + value[D] 的总和。</p>
+<p>示例 1：</p>
+<p>输入：edges = [[0,1],[1,2],[0,2]], value = [1,2,3]</p>
+<p>输出：6</p>
+<p>解释：喜爱值之和最高的方案之一是 0-&gt;1-&gt;2-&gt;0 与 0-&gt;2-&gt;1-&gt;0 。重复游玩同一点不重复计入喜爱值，返回1+2+3=6</p>
+<p>示例 2：</p>
+<p>输入：edges = [[0,2],[2,1]], value = [1,2,5]</p>
+<p>输出：0</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/poj/2155.Matrix.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leeeyupeng.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/CHAPTER1.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon128.jpg">
-      <meta itemprop="name" content="leeyupeng">
-      <meta itemprop="description" content="leeyupeng@126.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leeyupeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/CHAPTER1.html" class="post-title-link" itemprop="url">usaco CHAPTER 1</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-09-11 17:13:46" itemprop="dateCreated datePublished" datetime="2020-09-11T17:13:46+08:00">2020-09-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/" itemprop="url" rel="index"><span itemprop="name">usaco</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/CHAPTER1.html" class="post-meta-item leancloud_visitors" data-flag-title="usaco CHAPTER 1" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/CHAPTER1.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/CHAPTER1.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="/images/数据结构与算法/usaco/usaco.jpg" alt></p>
-<h1 id="CHAPTER-1"><a href="#CHAPTER-1" class="headerlink" title="CHAPTER 1"></a>CHAPTER 1</h1><hr>
-<p><a href="https://train.usaco.org/" target="_blank" rel="noopener">usaco</a></p>
-<p>Problem Types 问题类型：  </p>
-<pre><code>Dynamic Programming
-Greedy
-Complete Search
-Flood Fill
-Shortest Path
-Recursive Search Techniques
-Minimum Spanning Tree
-Knapsack
-Computational Geometry
-Network Flow
-Eulerian Path
-Two-Dimensional Convex Hull
-BigNums
-Heuristic Search
-Approximate Search
-Ad Hoc Problems  
-</code></pre><hr>
-<h2 id="Section-1-1"><a href="#Section-1-1" class="headerlink" title="Section 1.1"></a>Section 1.1</h2><h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><h2 id="Section-1-2"><a href="#Section-1-2" class="headerlink" title="Section 1.2"></a>Section 1.2</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/usaco/CHAPTER1.html#more" rel="contents">
+              <a class="btn" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/LCP%2016.%20%E6%B8%B8%E4%B9%90%E5%9B%AD%E7%9A%84%E6%B8%B8%E8%A7%88%E8%AE%A1%E5%88%92.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1267,7 +1438,7 @@ Ad Hoc Problems
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">414</span>
+          <span class="site-state-item-count">417</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1482,6 +1653,59 @@ Ad Hoc Problems
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

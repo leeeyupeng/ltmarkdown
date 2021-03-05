@@ -41,60 +41,60 @@ public:
     }
 };
 
-int main(){
-    int n,m,q;
-    int x,y,c;
-    int operation;
-    int testcount = 0;
+// int main(){
+//     int n,m,q;
+//     int x,y,c;
+//     int operation;
+//     int testcount = 0;
 
-    while(scanf("%d%d%d",&n,&m,&q)){
-        if(n==0&&m==0&&q == 0){
-            break;
-        }
-        if(testcount!=0){
-            printf("\n");
-        }
-        Solution solution;
-        vector<vector<int>> matrix(n,vector<int>(n,-1));
-        testcount++;
-        printf("Case %d:\n",testcount);
-        for(int i = 0; i < m; i ++){
-            scanf("%d%d%d",&x,&y,&c);
-            if(matrix[x][y] == -1){
-                matrix[x][y] = c;
-            }
-            else if(matrix[x][y] > c){
-                matrix[x][y] = c;
-            }
-        }
-        for(int i = 0; i < n; i ++){
-            matrix[i][i] = 0;
-        }
-        solution.init(n,m,matrix);
-        for(int i = 0; i < q; i ++){
-            scanf("%d",&operation);
-            if(operation==0){
-                scanf("%d",&x);
-                int ret = solution.operation0(x);
-                if(ret == -1){
-                    printf("ERROR! At point %d\n",x);
-                }
-            }
-            else{
-                scanf("%d%d",&x,&y);
+//     while(scanf("%d%d%d",&n,&m,&q)){
+//         if(n==0&&m==0&&q == 0){
+//             break;
+//         }
+//         if(testcount!=0){
+//             printf("\n");
+//         }
+//         Solution solution;
+//         vector<vector<int>> matrix(n,vector<int>(n,-1));
+//         testcount++;
+//         printf("Case %d:\n",testcount);
+//         for(int i = 0; i < m; i ++){
+//             scanf("%d%d%d",&x,&y,&c);
+//             if(matrix[x][y] == -1){
+//                 matrix[x][y] = c;
+//             }
+//             else if(matrix[x][y] > c){
+//                 matrix[x][y] = c;
+//             }
+//         }
+//         for(int i = 0; i < n; i ++){
+//             matrix[i][i] = 0;
+//         }
+//         solution.init(n,m,matrix);
+//         for(int i = 0; i < q; i ++){
+//             scanf("%d",&operation);
+//             if(operation==0){
+//                 scanf("%d",&x);
+//                 int ret = solution.operation0(x);
+//                 if(ret == -1){
+//                     printf("ERROR! At point %d\n",x);
+//                 }
+//             }
+//             else{
+//                 scanf("%d%d",&x,&y);
 
-                int ret = solution.operation1(x,y);
-                if(ret == -2){
-                    printf("ERROR! At path %d to %d\n",x,y);
-                }
-                else if(ret == -1){
-                    printf("No such path\n");
-                }
-                else{
-                    printf("%d\n",ret);
-                }
-            }
-        }
-    }
-    return 0;
-}
+//                 int ret = solution.operation1(x,y);
+//                 if(ret == -2){
+//                     printf("ERROR! At path %d to %d\n",x,y);
+//                 }
+//                 else if(ret == -1){
+//                     printf("No such path\n");
+//                 }
+//                 else{
+//                     printf("%d\n",ret);
+//                 }
+//             }
+//         }
+//     }
+//     return 0;
+// }
